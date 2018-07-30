@@ -23,4 +23,6 @@ const Index = ({ sections, ...props }) => (
   </div>
 )
 
+export { Index };
+
 export default withGlobalVars(Index);

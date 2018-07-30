@@ -86,6 +86,6 @@ class Index extends Component {
 }
 
 export default compose(
-  withApiFetching('loadAssets', { pagination: true, perPage: 18 }),
-  asView
+  asView,
+  withApiFetching('loadAssets', { pagination: true, perPage: 18 })
 )(Index);

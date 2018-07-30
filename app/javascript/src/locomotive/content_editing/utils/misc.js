@@ -1,5 +1,7 @@
-// we want to avoid the flickering if the iframe is loaded too quickly
-const WAIT_UNTIL_MIN_DELAY = 1000;
+
+// Constants
+const WAIT_UNTIL_MIN_DELAY  = 1000; // we want to avoid the flickering if the iframe is loaded too quickly
+const LINK_REGEXP           = /\/_locomotive-link\/(.+)/;
 
 export function waitUntil(startedAt, minDelay, callback) {
   minDelay = minDelay || WAIT_UNTIL_MIN_DELAY;
@@ -65,21 +67,51 @@ export function argNames(func) {
 // https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding
 
 // Encode in Base64
-export function b64EncodeUnicode(str) {
+const b64EncodeUnicode = str => {
   return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (match, p1) => {
     return String.fromCharCode('0x' + p1);
   }));
 }
 
-//
-export function b64DecodeUnicode(str) {
+// Decode
+const b64DecodeUnicode = str => {
   // Going backwards: from bytestream, to percent-encoding, to original string.
   return decodeURIComponent(atob(str).split('').map(c => {
     return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
   }).join(''));
 }
 
+export function encodeLinkResource(resource) {
+  const parameter = b64EncodeUnicode(JSON.stringify(resource));
+  const baseUrl   = window.Locomotive.previewBaseUrl;
+  return `${window.location.origin}${baseUrl}/_locomotive-link/${parameter}`;
+}
+
+export function decodeLinkResource(url) {
+  const matches = url.match(LINK_REGEXP);
+
+  if (matches && matches.length > 1)
+    return JSON.parse(b64DecodeUnicode(matches[1]))
+  else
+    return null;
+}
+
+// DOM
+
 // get the content of a meta tag inside an iframe
 export function getMetaContentFromIframe(iframe, name) {
   return iframe.contentWindow.document.head.querySelector(`meta[name=${name}]`).content;
+}
+
+export function findParentElement(tagName, el) {
+  while (el) {
+    if ((el.nodeName || el.tagName).toLowerCase() === tagName) return el;
+    el = el.parentNode;
+  }
+  return null;
+}
+
+export function stopPropagation(event) {
+  event.preventDefault() & event.stopPropagation();
+  return false;
 }

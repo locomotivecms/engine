@@ -1,11 +1,7 @@
 import React from 'react';
 import { compose } from 'redux';
-// import GlobalContext from '../context';
 import withRedux from './with_redux';
 import { find } from 'lodash';
-
-// Services
-// import ApiFactory from '../services/api';
 
 const withGlobalVars = Component => {
 
@@ -34,8 +30,6 @@ const withGlobalVars = Component => {
   };
 }
 
-// TODO: splat
-
 export default compose(
   withRedux(state => { return {
     pageId:             state.page.id,
@@ -47,33 +41,3 @@ export default compose(
   } }),
   withGlobalVars
 );
-
-
-// export default function withGlobalVars(Component) {
-
-//   // Helpers
-//   const findSectionDefinition = (sectionDefinitions, sectionType) => {
-//     return find(sectionDefinitions, def => def.type === sectionType)
-//   }
-
-//   const findBlockDefinition = (sectionDefinition, blockType) => {
-//     return find((sectionDefinition || {}).blocks, def => def.type === blockType);
-//   }
-
-//   return function WrappedComponent(props) {
-//     return (
-//       <GlobalContext.Consumer>
-//         {value =>
-//           <Component
-//             findSectionDefinition={findSectionDefinition.bind(null, value.sectionDefinitions)}
-//             findBlockDefinition={findBlockDefinition}
-//             {...value}
-//             {...props}
-//           />
-//         }
-//       </GlobalContext.Consumer>
-//     );
-//   };
-// }
-
-

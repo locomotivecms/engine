@@ -31,7 +31,7 @@ module Locomotive
           self.locales.size > 1
         end
 
-        # TODO: use the Steam service instead
+        # WARNING: this method is not deprecated but we should use the Steam service instead.
         #
         # Returns the fullpath of a page in the context of the current locale (I18n.locale)
         # or the one passed in parameter. It also depends on the default site locale.

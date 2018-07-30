@@ -1,3 +1,6 @@
+import { decodeLinkResource, findParentElement, stopPropagation } from '../utils/misc';
+import { startsWith } from 'lodash';
+
 const sendEvent = (elem, type, data) => {
   if (elem === null || elem === undefined) return false;
 
@@ -41,6 +44,29 @@ const popBlock = (_window, action, sectionId, blockId) => {
 
     resolve(true);
   });
+}
+
+// General
+
+export function prepareIframe(_window) {
+  _window.document.body.addEventListener('click', event => {
+    var link = findParentElement('a', event.target);
+
+    if (link) {
+      const url       = link.getAttribute('href');
+      const resource  = decodeLinkResource(url);
+
+      // first case: link built by the RTE
+      if (resource !== null && resource.type !== '_external')
+        return;
+
+      // second case: don't handle urls to an external site
+      if (url[0] !== '/') {
+        alert("This link cannot be opened inside the editor.");
+        return stopPropagation(event);
+      }
+    }
+  })
 }
 
 // Actions

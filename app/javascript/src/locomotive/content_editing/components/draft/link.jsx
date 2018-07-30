@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { bindAll } from 'lodash';
 import classNames from 'classnames';
-import { b64EncodeUnicode, b64DecodeUnicode } from '../../utils/misc';
+import { encodeLinkResource, decodeLinkResource, stopPropagation } from '../../utils/misc';
 
 // HOC
 import withRedux from '../../hoc/with_redux';
@@ -9,13 +9,6 @@ import withRedux from '../../hoc/with_redux';
 // Components
 import Option from './option.jsx';
 import UrlPicker from '../url_picker';
-
-const LINK_REGEXP = /\/#link_target=(.+)/
-
-const stopPropagation = event => {
-  event.stopPropagation();
-  return false;
-}
 
 class Link extends Component {
 
@@ -73,24 +66,9 @@ class Link extends Component {
     });
   }
 
-  encodeResource(resource) {
-    const parameter = b64EncodeUnicode(JSON.stringify(resource));
-    const baseUrl   = window.location.origin;
-    return `${baseUrl}/#link_target=${parameter}`;
-  }
-
-  decodeResource(url) {
-    const matches = url.match(LINK_REGEXP);
-
-    if (matches && matches.length > 1)
-      return JSON.parse(b64DecodeUnicode(matches[1]))
-    else
-      return null;
-  }
-
   onUpdate(resource) {
     const { onChange }  = this.props;
-    const target        = this.encodeResource(resource);
+    const target        = encodeLinkResource(resource);
     const targetOption  = resource.new_window ? '_blank' : null;
     onChange('link', this.state.linkTitle, target, targetOption);
   }
@@ -110,10 +88,11 @@ class Link extends Component {
         onClick={stopPropagation}
       >
         <UrlPicker
-          value={this.decodeResource(linkTarget) || linkTitle}
+          value={decodeLinkResource(linkTarget) || linkTitle}
           handleChange={this.onUpdate}
           useDoneButton={true}
           searchForResources={this.props.api.searchForResources}
+          locale={locale}
         />
       </div>
     )
@@ -161,4 +140,7 @@ class Link extends Component {
 
 }
 
-export default withRedux(state => ({ api: state.editor.api }))(Link);
+export default withRedux(state => ({
+  api:      state.editor.api,
+  locale:   state.editor.locale
+}))(Link);

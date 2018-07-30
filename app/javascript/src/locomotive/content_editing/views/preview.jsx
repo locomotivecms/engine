@@ -7,6 +7,7 @@ import withRedux from '../hoc/with_redux';
 
 // Services
 import {
+  prepareIframe,
   updateSection, updateSectionText,
   previewSection, addSection, moveSection, removeSection,
   selectSection, deselectSection, selectSectionBlock, deselectSectionBlock
@@ -21,6 +22,9 @@ class Preview extends React.Component {
 
   componentDidMount() {
     this.iframe.onload = () => {
+      // bring some modifications to the iframe
+      prepareIframe(this.iframe.contentWindow);
+
       // don't allow to go to another page if the changes have not been saved
       this.iframe.contentWindow.onbeforeunload = () => {
         return this.props.changed ? 'Changes unsaved!' : null;
@@ -30,11 +34,7 @@ class Preview extends React.Component {
         // alright, we are all good to display the first screen
         waitUntil(this.createdAt, null, () => this.props.onIframeLoaded(this.iframe.contentWindow))
       } else {
-        // the user clicks on a link in the iframe
-
-        // TODO: check if the new page is a locomotive one (and also editable!)
-        // otherwise, redirect to an error page.
-
+        // the user clicks on a link in the iframe.
         this.props.reloadEditor(
           this.props.api,
           getMetaContentFromIframe(this.iframe, 'locomotive-page-id'),

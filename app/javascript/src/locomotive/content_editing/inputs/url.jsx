@@ -11,6 +11,7 @@ const UrlInput = props => (
       value={props.getValue(null)}
       handleChange={props.handleChange}
       searchForResources={props.api.searchForResources}
+      locale={props.locale}
     />
   </div>
 )

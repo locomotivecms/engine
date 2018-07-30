@@ -19,7 +19,7 @@ module Locomotive
         .only(:_id, :site_id, :target_klass_name)
         .where(:target_klass_name.ne => nil).map do |page|
           page.fetch_target_entries(
-            page.content_type.label_field_name => /#{query}/i, visible: true
+            page.content_type.label_field_name => /#{query}/i, _visible: true
           ).map do |entry|
             {
               type:   'content_entry',
@@ -33,8 +33,7 @@ module Locomotive
       .first(max_results)
     end
 
-    # Save sections for both the current site (static versions) and
-    # the page
+    # Save sections for both the current site (static versions) and the page
     def save(site_attributes, page_attributes)
       site_attributes[:sections_content] = remove_site_blocks_ids(site_attributes[:sections_content])
       site.update_attributes(site_attributes)
@@ -59,11 +58,11 @@ module Locomotive
     end
 
     def remove_blocks_ids(json)
-      JSON.parse(json).each{ |section| section["blocks"].map! { |block| block.except("id") } }.to_json
+      JSON.parse(json).each{ |section| section['blocks'].map! { |block| block.except("id") } }.to_json
     end
 
     def remove_site_blocks_ids(json)
-      JSON.parse(json).each{ |k, section| section["blocks"].map! { |block| block.except("id") } }.to_json
+      JSON.parse(json).each{ |_, section| section['blocks'].map! { |block| block.except("id") } }.to_json
     end
   end
 end

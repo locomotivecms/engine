@@ -4,6 +4,8 @@
   <script>
     const _json = <%== render template: 'locomotive/page_content/edit.json.jbuilder' %>;
 
+    window.Locomotive.previewBaseUrl = "<%= preview_path(current_site) %>";
+
     window.Locomotive.data = _json.data;
     window.Locomotive.urls = _json.urls;
 

@@ -60,4 +60,8 @@ class Base extends Component {
 
 }
 
-export default withRedux(state => ({ site: state.site, page: state.page }))(Base);
+export default withRedux(state => ({
+  site:   state.site,
+  page:   state.page,
+  locale: state.editor.locale
+}))(Base);

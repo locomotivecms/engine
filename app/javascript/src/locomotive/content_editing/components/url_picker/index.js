@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { bindAll } from 'lodash';
 import PropTypes from 'prop-types';
+import { isBlank } from '../../utils/misc';
 
 // Components
 import UrlInput from './input.jsx';
@@ -45,10 +46,10 @@ class UrlPicker extends Component {
   }
 
   getValue() {
-    const value = this.props.value;
+    const { value, locale } = this.props;
 
-    if (typeof(value) === 'string') {
-      return { type: '_external', value, label: ['external', value], new_window: false };
+    if (typeof(value) === 'string' || isBlank(value)) {
+      return { type: '_external', value, label: ['external', value], new_window: false, locale };
     } else
       return { new_window: false, ...value };
   }

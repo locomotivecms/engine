@@ -49,7 +49,7 @@ describe Locomotive::Section do
         it 'requires the type property to be included in the list of available ones' do
           section = build(:section, definition: { settings: [{ id: 'title', label: 'Hello world', type: 'color' }] })
           expect(section).to_not be_valid
-          expect(section.errors[:definition]).to eq(["The property '#/settings/0/type' value \"color\" did not match one of the following values: text, image_picker, checkbox, select, url"])
+          expect(section.errors[:definition]).to eq(["The property '#/settings/0/type' value \"color\" did not match one of the following values: text, image_picker, checkbox, select, url, radio"])
         end
 
       end

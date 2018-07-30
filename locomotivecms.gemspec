@@ -62,7 +62,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'yajl-ruby',                       '~> 1.3.1'
   s.add_dependency 'actionmailer-with-request',       '~> 0.5.0'
 
-  s.add_dependency 'grape',                           '~> 1.0.2'
+  s.add_dependency 'grape',                           '~> 1.0.3'
   s.add_dependency 'grape-entity',                    '0.7.1'
 
 end

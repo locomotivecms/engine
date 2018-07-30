@@ -18,6 +18,8 @@ json.data do
     json.bottom   bottom_static_sections(@static_section_types)
     json.dropzone @static_section_types.include?('_sections_dropzone_')
   end
+
+  json.locale current_content_locale
 end
 
 json.urls do

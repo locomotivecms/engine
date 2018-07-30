@@ -60,40 +60,7 @@ class Main extends Component {
   }
 }
 
-// const Main = ({ pageId, iframe, ...props }) => (
-//   <div className="actionbar">
-//     <div className="actionbar-trigger" onClick={togglePreview}>
-//       <i className="fa fa-chevron-left"></i>
-//     </div>
-//     <div className="content">
-//         <div className="container-fluid main" role="main">
-//           {!iframe.loaded && <Startup />}
-
-//           {iframe.loaded && (
-//            <Switch>
-//               <Route exact path={`/${pageId}/content/edit/`} render={() => (
-//                 <Redirect to={`/${pageId}/content/edit/sections`} />
-//               )} />
-
-//               {routes.map(route => (
-//                 <Route
-//                   key={route.path}
-//                   exact={route.exact === true}
-//                   path={route.path}
-//                   render={(_props) => {
-//                     const Component = route.component;
-//                     return <Component {...props} {..._props} />
-//                   }}
-//                 />
-//               ))}
-
-//               <Route render={() => <Redirect to={`/${pageId}/content/edit/sections`} />} />
-//             </Switch>
-//           )}
-//         </div>
-//     </div>
-//   </div>
-// )
+export { Main };
 
 export default compose(
   withRouter,

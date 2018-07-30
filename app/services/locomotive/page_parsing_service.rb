@@ -12,13 +12,23 @@ module Locomotive
 
     def find_or_create_editable_elements(page)
       benchmark "Parse page #{page._id} find_or_create_editable_elements" do
-        parsed = { extends: {}, blocks: {}, super_blocks: {}, elements: [], sections: [] }
+        parsed = {
+          extends:                  {},
+          blocks:                   {},
+          super_blocks:             {},
+          elements:                 [],
+          sections:                 [],
+          sections_dropzone_block:  nil
+        }
 
         subscribe(parsed) do
           parse(page)
 
-          # Warning, this method also modifies the parsed[:elements] array by
-          # removing non visible editable elements.
+          # the sections_dropzone liquid tag might be hidden by an overidding block
+          # if so, remove the "_sections_dropzone_" keyword from the sections
+          check_if_sections_dropzone_still_visible(parsed)
+
+          # !Important! Non visible editable elements are not removed
           persist_editable_elements!(page, parsed)
         end
 
@@ -56,7 +66,7 @@ module Locomotive
         subscribe_to_blocks(parsed[:blocks], parsed[:super_blocks]),
         subscribe_to_editable_elements(parsed[:elements]),
         subscribe_to_sections(parsed[:sections]),
-        subscribe_to_sections_dropzones(parsed[:sections])
+        subscribe_to_sections_dropzone(parsed)
       ]
 
       yield.tap do
@@ -96,9 +106,10 @@ module Locomotive
       end
     end
 
-    def subscribe_to_sections_dropzones(sections)
+    def subscribe_to_sections_dropzone(memo)
       ActiveSupport::Notifications.subscribe('steam.parse.sections_dropzone') do |name, start, finish, id, payload|
-        sections.push('_sections_dropzone_')
+        memo[:sections].push('_sections_dropzone_')
+        memo[:sections_dropzone_block] = [payload[:page]._id, payload[:block]]
       end
     end
 
@@ -108,6 +119,16 @@ module Locomotive
 
       parser = services.liquid_parser
       parser.parse(decorated_page)
+    end
+
+    def check_if_sections_dropzone_still_visible(parsed)
+      return if parsed[:sections_dropzone_block].blank?
+
+      page_id, block = parsed[:sections_dropzone_block]
+
+      unless block_visible?(page_id, parsed, { block: block })
+        parsed[:sections].delete('_sections_dropzone_')
+      end
     end
 
     def persist_editable_elements!(page, parsed)
@@ -139,7 +160,7 @@ module Locomotive
 
       if page._id == _page._id  # same page
         true
-      elsif block_name.blank?   # an editable_element out of a block (impossible to remove it in pages extending this template)
+      elsif block_name.blank?   # an editable_element outside a block (impossible to remove it in pages extending this template)
         true
       else
         block_visible?(_page._id, parsed, attributes)
@@ -187,13 +208,6 @@ module Locomotive
         page.editable_elements.build(attributes, klass)
       end
     end
-
-    # FIXME (Did): see comment on line 17.
-    # def remove_useless_editable_elements(page, elements)
-    #   if _elements = (elements.map { |p, _elements| p._id == page._id ? _elements : nil }.flatten.compact)
-    #     page.editable_elements.where(:_id.nin => _elements.map(&:_id)).destroy_all
-    #   end
-    # end
 
     def assign_block_information(element, blocks)
       if element.block && (options = blocks[element.block])

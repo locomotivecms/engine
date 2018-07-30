@@ -22,11 +22,11 @@ module Locomotive
       @static_section_types   = @editable_content[:sections]
       @editable_elements      = @editable_content[:elements]
 
-      # TODO: move to the helper
-      @preview_path = [
-        preview_path(current_site),
-        params[:preview_path] || current_site.localized_page_fullpath(@page, current_content_locale)
-      ].join('/')
+      # # TODO: move to the helper
+      # @preview_path = [
+      #   preview_path(current_site),
+      #   params[:preview_path] || current_site.localized_page_fullpath(@page, current_content_locale)
+      # ].join('/')
     end
 
     def update

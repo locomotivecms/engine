@@ -28,7 +28,7 @@ module Locomotive
 
               <!-- [Locomotive] fix absolute links to inner pages in preview mode-->
               <script>
-                window.document.addEventListener('click', function (event) {
+                window.document.addEventListener('click', function(event) {
                   var qs = document.querySelectorAll('a');
                   if (qs) {
                     var el = event.target, index = -1;
