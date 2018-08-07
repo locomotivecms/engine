@@ -1,7 +1,12 @@
 module Locomotive
   class Activity
+    ## const ##
+    UPDATE_ACTIONS = ['deploy']
 
     include Locomotive::Mongoid::Document
+
+    ## callbacks ##
+    after_create :send_notifications, if: :is_an_update?
 
     ## fields ##
     field :key
@@ -26,6 +31,17 @@ module Locomotive
 
     def action
       self.key.split('.').last
+    end
+
+    def is_an_update?
+      self.key.in? UPDATE_ACTIONS
+    end
+
+    def send_notifications
+      ActiveSupport::Notifications.instrument 'deploy', {
+        site: site,
+        actor: actor
+      }
     end
 
   end

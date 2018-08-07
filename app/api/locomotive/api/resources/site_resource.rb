@@ -47,7 +47,6 @@ module Locomotive
             get do
               site = load_site
               authorize(site, :show?)
-
               present site, with: entity_klass
             end
           end

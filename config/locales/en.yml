@@ -95,6 +95,7 @@ en:
         type: "Model: %{type}"
 
     activity:
+      deploy: 'deployed a new version'
       site:
         created: 'created the site'
       page:

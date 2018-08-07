@@ -15,6 +15,7 @@ module Locomotive
 
     def activity_to_icon(activity)
       case activity.domain
+      when 'deploy'           then 'fa-cloud-upload-alt'
       when 'site'             then 'fa-cog'
       when 'page'             then 'fa-file-alt'
       when 'editable_element' then 'fa-file-alt'

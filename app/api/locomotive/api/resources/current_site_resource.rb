@@ -23,7 +23,7 @@ module Locomotive
           desc 'Show current_site'
           get do
             authorize current_site, :show?
-
+            Activity.create site: current_site, actor: @current_user, key: 'deploy'
             present current_site, with: entity_klass
           end
 

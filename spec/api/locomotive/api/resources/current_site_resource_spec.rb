@@ -29,11 +29,15 @@ describe Locomotive::API::Resources::CurrentSiteResource do
 
     describe 'GET show' do
       context 'JSON' do
-        before { get "#{url_prefix}.json" }
+        subject { get "#{url_prefix}.json" }
         it 'returns the current site' do
+          subject
           expect(parsed_response[:name]).to eq(site.name)
           expect(parsed_response[:preview_url]).to eq('http://example.org/locomotive/acme/preview')
           expect(parsed_response[:sign_in_url]).to eq('http://example.org/locomotive/sign_in')
+        end
+        it 'create a new activity' do
+          expect { subject }.to change { Locomotive::Activity.count }.by(1)
         end
       end
     end
