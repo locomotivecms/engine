@@ -32,6 +32,8 @@ module Locomotive
           persist_editable_elements!(page, parsed)
         end
 
+        puts parsed.inspect
+
         parsed
       end
     rescue Exception => e

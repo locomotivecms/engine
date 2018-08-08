@@ -38,6 +38,7 @@ class Preview extends React.Component {
         this.props.reloadEditor(
           this.props.api,
           getMetaContentFromIframe(this.iframe, 'locomotive-page-id'),
+          getMetaContentFromIframe(this.iframe, 'locomotive-content-entry-id'),
           getMetaContentFromIframe(this.iframe, 'locomotive-locale')
         )
       }

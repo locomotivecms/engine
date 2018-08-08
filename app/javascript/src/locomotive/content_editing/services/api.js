@@ -62,9 +62,9 @@ export function saveContent(url, site, page) {
   });
 }
 
-export function loadContent(url, pageId, locale) {
+export function loadContent(url, pageId, contentEntryId, locale) {
   const _url = replace(url, /\/pages\/[0-9a-z]+\//, `/pages/${pageId}\/`) + '.json';
-  return jsonGet(_url, { content_locale: locale })
+  return jsonGet(_url, { content_locale: locale, content_entry_id: contentEntryId })
   .then(response => ({ data: response.json.data, urls: response.json.urls }))
 }
 

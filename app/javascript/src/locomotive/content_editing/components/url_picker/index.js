@@ -13,9 +13,9 @@ class UrlPicker extends Component {
     super(props);
     this.state = {
       editing:        props.editing || false,
-      value:          this.getValue(),
-      useDoneButton:  false
+      value:          this.getValue()
     };
+
     bindAll(this, 'handleEditing', 'handleChange', 'handleCancel', 'handleDone', 'handleChangeCheckbox');
   }
 
@@ -28,17 +28,19 @@ class UrlPicker extends Component {
   }
 
   handleChange(value) {
-    this.setState({ editing: false, value: { new_window: this.state.value.new_window, ...value } });
-    if (!this.props.useDoneButton)
-      this.handleDone();
+    this.setState({ editing: false, value: { new_window: this.state.value.new_window, ...value } }, () => {
+      if (!this.props.useDoneButton)
+        this.handleDone();
+    });
   }
 
   handleChangeCheckbox(event) {
     const { value } = this.state;
     value.new_window = event.target.checked;
-    this.setState({ value });
-    if (!this.props.useDoneButton)
-      this.handleDone();
+    this.setState({ value }, () => {
+      if (!this.props.useDoneButton)
+        this.handleDone();
+    });
   }
 
   handleDone() {
@@ -89,6 +91,10 @@ UrlPicker.propTypes = {
   value:              PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   useDoneButton:      PropTypes.bool,
   searchForResources: PropTypes.func
+}
+
+UrlPicker.defaultProps = {
+  useDoneButton: false
 }
 
 export default UrlPicker;

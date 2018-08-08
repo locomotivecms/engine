@@ -12,8 +12,8 @@ module Locomotive
         expose :slug, :fullpath
 
         expose :localized_fullpaths do |page, options|
-          (options[:site].try(:locales) || []).inject({}) do |hash, locale|
-            hash.merge(locale => options[:site].localized_page_fullpath(page, locale))
+          (options[:site]&.locales || []).inject({}) do |hash, locale|
+            hash.merge(locale => options[:url_builder].url_for(page, locale))
           end
         end
 

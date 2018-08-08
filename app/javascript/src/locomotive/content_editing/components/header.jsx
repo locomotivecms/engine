@@ -10,15 +10,6 @@ import withRedux from '../hoc/with_redux';
 // Components
 import SaveButton from './save_button.jsx';
 
-const isActive = (name, props) => {
-  if (props.match === undefined) return false;
-
-  if (props.match.path === '/')
-    return name === 'sections' && props.hasSections;
-  else
-    return RegExp(`^/${name}`).test(props.match.path);
-}
-
 const Header = (props) => (
   <div className="row header-row">
     <div className="col-md-12">
@@ -26,7 +17,7 @@ const Header = (props) => (
     </div>
     <div className="col-md-9">
       <ul className="nav nav-tabs" role="tablist">
-        <li className={isActive('sections', props) ? 'active' : ''}>
+        <li className="active">
           <Link to={props.sectionsPath()}>Sections</Link>
         </li>
         {props.hasEditableElements && (

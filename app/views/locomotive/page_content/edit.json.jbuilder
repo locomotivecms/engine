@@ -5,6 +5,7 @@ json.data do
 
   json.page do
     json.(@page, :id, :title)
+    json.contentEntryId @page.content_entry&.id
     json.sectionsContent sections_content(@page)
   end
 
@@ -28,7 +29,7 @@ json.urls do
   json.save             page_content_path(current_site, @page, format: :json)
   json.editableElements editable_elements_path(current_site, @page)
   json.settings         edit_page_path(current_site, @page)
-  json.preview          @preview_path
+  json.preview          preview_page_path(@page, mounted_on: true)
   json.thumbnail        root_path + '_image_thumbnail'
   json.assets           content_assets_path(current_site, format: :json)
   json.bulkAssetUpload  bulk_create_content_assets_path(current_site, :json)

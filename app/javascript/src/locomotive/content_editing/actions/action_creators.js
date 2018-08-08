@@ -1,7 +1,6 @@
 import ApiFactory from '../services/api';
 import { waitUntil } from '../utils/misc';
 
-
 // Helpers
 const actionName = (name, sectionId) => {
   return `${sectionId ? '' : 'STATIC_'}${name}`;
@@ -37,7 +36,7 @@ function loadEditor(data, urls) {
   }
 }
 
-export function reloadEditor(api, pageId, locale) {
+export function reloadEditor(api, pageId, contentEntryId, locale) {
   return dispatch => {
     const now = new Date().getMilliseconds();
 
@@ -45,7 +44,7 @@ export function reloadEditor(api, pageId, locale) {
     dispatch({ type: 'IFRAME::NEW_SOURCE' });
 
     // load the new data + wait a little bit to avoid a flickering
-    api.loadContent(pageId, locale)
+    api.loadContent(pageId, contentEntryId, locale)
     .then(response => waitUntil(now, null, () => {
       dispatch(loadEditor(response.data, response.urls));
     }));

@@ -1,11 +1,12 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import { bindAll } from 'lodash';
+import { bindAll, compact } from 'lodash';
 
 export default function withRoutes(Component) {
 
-  const buildRoutes = pageId => {
-    const basePath = `/${pageId}/content/edit`;
+  const buildRoutes = (pageId, contentEntryId) => {
+    const _pageId   = compact([pageId, contentEntryId]).join('-');
+    const basePath  = `/${_pageId}/content/edit`;
 
     const sectionsPath          = () => `${basePath}/sections`;
     const newSectionPath        = () => `${basePath}/dropzone_sections/pick`;
@@ -68,7 +69,7 @@ export default function withRoutes(Component) {
       return this.state.redirectTo === undefined ? (
         <Component
           redirectTo={this.redirectTo}
-          {...buildRoutes(this.props.pageId)}
+          {...buildRoutes(this.props.pageId, this.props.contentEntryId)}
           {...this.props}
         />
       ) : (

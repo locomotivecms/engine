@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { compose } from 'redux';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import { compact } from 'lodash';
 import routes from '../routes';
 
 // HOC
@@ -16,8 +17,10 @@ const Startup = withHeader(_Startup);
 class Main extends Component {
 
   componentDidUpdate(prevProps) {
-    if (prevProps.pageId !== this.props.pageId)
-      this.props.history.replace(`/${this.props.pageId}/content/edit/sections`);
+    if (prevProps.pageId !== this.props.pageId) {
+      const pageId = compact([this.props.pageId, this.props.contentEntryId]).join('-');
+      this.props.history.replace(`/${pageId}/content/edit/sections`);
+    }
   }
 
   togglePreview(event) {
@@ -65,8 +68,9 @@ export { Main };
 export default compose(
   withRouter,
   withRedux(state => ({
-    pageId: state.page.id,
-    api:    state.editor.api,
-    iframe: state.iframe
+    pageId:         state.page.id,
+    contentEntryId: state.page.contentEntryId,
+    api:            state.editor.api,
+    iframe:         state.iframe
   }))
 )(Main);

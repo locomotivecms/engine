@@ -33,6 +33,7 @@ const withGlobalVars = Component => {
 export default compose(
   withRedux(state => { return {
     pageId:             state.page.id,
+    contentEntryId:     state.page.contentEntryId,
     api:                state.editor.api,
     urls:               state.editor.urls,
     sections:           state.editor.sections,

@@ -21,12 +21,6 @@ module Locomotive
       @editable_content       = parsing_service.find_all_elements(@page)
       @static_section_types   = @editable_content[:sections]
       @editable_elements      = @editable_content[:elements]
-
-      # # TODO: move to the helper
-      # @preview_path = [
-      #   preview_path(current_site),
-      #   params[:preview_path] || current_site.localized_page_fullpath(@page, current_content_locale)
-      # ].join('/')
     end
 
     def update
@@ -51,8 +45,22 @@ module Locomotive
 
     private
 
+    # load the page based on the page_id param. If this param includes a dash,
+    # that means we've got a templatized page with one of the content entries.
+    # The id of the content entry can also come from a param.
+    # Either ways, we load both the page and the content entry.
     def load_page
-      @page = current_site.pages.find(params[:page_id])
+      page_id, content_entry_id = params[:page_id].split('-')
+      content_entry_id ||= params[:content_entry_id]
+
+      @page = current_site.pages.find(page_id).tap do |page|
+        if page.templatized? &&
+          page.content_entry = content_entry_id ?
+          page.content_type.entries.find(content_entry_id) :
+          page.fetch_target_entries.first
+
+        end
+      end
     end
 
     def parsing_service

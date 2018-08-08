@@ -1,2 +1,2 @@
 .embed-responsive.embed-page
-  iframe.embed-responsive-item src=preview_url(current_site) + '/' + current_site.localized_page_fullpath(@page)
+  iframe.embed-responsive-item src=(preview_page_path(@page, mounted_on: true))

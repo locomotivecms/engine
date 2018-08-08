@@ -22,6 +22,7 @@ module Locomotive
               <meta name="locomotive-locale" content="#{locale}" />
               <meta name="locomotive-editable-elements-path" content="#{editable_elements_path(site, page, locale, env)}" />
               <meta name="locomotive-page-id" content="#{page._id}" />
+              <meta name="locomotive-content-entry-id" content="#{content_entry_id(env)}" />
               <meta name="locomotive-mounted-on" content="#{mounted_on}" />
 
               <link href='https://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
@@ -68,7 +69,7 @@ module Locomotive
         def editable_elements_path(site, page, locale, env)
           options = {}
 
-          if content_entry_id = env['steam.content_entry'].try(:_id)
+          if content_entry_id = content_entry_id(env)
             options = {
               content_entry_id: content_entry_id,
               preview_path:     env['steam.path'],
@@ -78,6 +79,10 @@ module Locomotive
           options[:content_locale] = locale if site.locales.size > 1
 
           super(site.handle, page._id, options)
+        end
+
+        def content_entry_id(env)
+          env['steam.content_entry']&._id
         end
 
       end
