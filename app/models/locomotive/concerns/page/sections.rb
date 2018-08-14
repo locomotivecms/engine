@@ -9,10 +9,12 @@ module Locomotive
         included do
 
           ## fields ##
-          field :sections_content, type: Array, default: [], localize: true
+          field :sections_dropzone_content, type: Array, default: [], localize: true
 
           ## behaviours ##
-          json_attribute  :sections_content
+          json_attribute  :sections_dropzone_content
+
+          # TODO: sections_content
         end
 
         private
@@ -47,9 +49,9 @@ module Locomotive
         #   }
         # ]
         #
-        def _sections_content_schema
+        def _sections_dropzone_content_schema
           {
-            id: 'http://www.locomotive.cms/schemas/page/sections_content.json',
+            id: 'http://www.locomotive.cms/schemas/page/sections_dropzone_content.json',
             definitions: {
               section: {
                 type: 'object',

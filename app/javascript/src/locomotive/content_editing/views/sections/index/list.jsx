@@ -74,7 +74,7 @@ export class List extends Component {
 }
 
 export default compose(
-  withRedux(state => ({ list: state.page.sectionsContent })),
+  withRedux(state => ({ list: state.page.sectionsDropzoneContent })),
   withGlobalVars,
   withRoutes
 )(List)

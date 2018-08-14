@@ -123,7 +123,7 @@ class Preview extends React.Component {
 
 export default withRedux(state => ({
   staticContent:  state.site.sectionsContent,
-  content:        state.page.sectionsContent,
+  content:        state.page.sectionsDropzoneContent,
   iframeState:    state.iframe,
   api:            state.editor.api,
   changed:        state.editor.changed

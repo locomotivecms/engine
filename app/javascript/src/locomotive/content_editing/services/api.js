@@ -58,7 +58,7 @@ const jsonGet = (url, query, headers) => {
 export function saveContent(url, site, page) {
   return jsonPut(url, {
     site: { sections_content: JSON.stringify(site.sectionsContent) },
-    page: { sections_content: JSON.stringify(page.sectionsContent) }
+    page: { sections_dropzone_content: JSON.stringify(page.sectionsDropzoneContent) }
   });
 }
 

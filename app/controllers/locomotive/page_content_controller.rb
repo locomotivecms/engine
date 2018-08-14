@@ -80,7 +80,7 @@ module Locomotive
     end
 
     def page_params
-      params.require(:page).permit(:sections_content)
+      params.require(:page).permit(:sections_content, :sections_dropzone_content)
     end
 
     def only_if_sections

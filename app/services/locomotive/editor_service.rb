@@ -38,7 +38,9 @@ module Locomotive
       site_attributes[:sections_content] = remove_site_blocks_ids(site_attributes[:sections_content])
       site.update_attributes(site_attributes)
 
-      page_attributes[:sections_content] = remove_ids(page_attributes[:sections_content])
+      # TODO: sections_content
+
+      page_attributes[:sections_dropzone_content] = remove_ids(page_attributes[:sections_dropzone_content])
 
       page.update_attributes(page_attributes)
 

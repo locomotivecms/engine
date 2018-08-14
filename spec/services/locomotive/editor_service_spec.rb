@@ -136,7 +136,7 @@ describe Locomotive::EditorService do
 
     describe '#save' do
       let(:page_attributes) { {
-        sections_content:
+        sections_dropzone_content:
           <<-JSON
               [{
                 "id": "10ebe2f8-af88-4d87-9df8-58e3e624d662",
@@ -168,12 +168,12 @@ describe Locomotive::EditorService do
       } }
 
       let(:expected_page_attribute) { {
-        sections_content: "[{\"name\":\"Cover 04\",\"type\":\"cover_04\",\"settings\":{},\"blocks\":[{\"type\":\"slide\",\"settings\":{\"title\":\"A brand new way to excite \\u003cbr\\u003eyour audience\",\"description\":\"Who can visualize the sorrow and mineral of a lord if he has the evil sainthood of the seeker.\",\"image\":\"https://images.unsplash.com/photo-1437532437759-a0ce0535dfed?ixlib=rb-0.3.5\\u0026amp;q=80\\u0026amp;fm=jpg\\u0026amp;crop=entropy\\u0026amp;s=2c277dc10ba53e29a62d09c13cdf01b9\"}},{\"type\":\"slide\",\"settings\":{\"title\":\"A meaningless form of vision is the uniqueness!\",\"image\":\"https://images.unsplash.com/photo-1437532437759-a0ce0535dfed?ixlib=rb-0.3.5\\u0026amp;q=80\\u0026amp;fm=jpg\\u0026amp;crop=entropy\\u0026amp;s=2c277dc10ba53e29a62d09c13cdf01b9\",\"description\":\"Description goes here\"}}]}]"
+        sections_dropzone_content: "[{\"name\":\"Cover 04\",\"type\":\"cover_04\",\"settings\":{},\"blocks\":[{\"type\":\"slide\",\"settings\":{\"title\":\"A brand new way to excite \\u003cbr\\u003eyour audience\",\"description\":\"Who can visualize the sorrow and mineral of a lord if he has the evil sainthood of the seeker.\",\"image\":\"https://images.unsplash.com/photo-1437532437759-a0ce0535dfed?ixlib=rb-0.3.5\\u0026amp;q=80\\u0026amp;fm=jpg\\u0026amp;crop=entropy\\u0026amp;s=2c277dc10ba53e29a62d09c13cdf01b9\"}},{\"type\":\"slide\",\"settings\":{\"title\":\"A meaningless form of vision is the uniqueness!\",\"image\":\"https://images.unsplash.com/photo-1437532437759-a0ce0535dfed?ixlib=rb-0.3.5\\u0026amp;q=80\\u0026amp;fm=jpg\\u0026amp;crop=entropy\\u0026amp;s=2c277dc10ba53e29a62d09c13cdf01b9\",\"description\":\"Description goes here\"}}]}]"
       } }
 
       subject { service.save(site_attributes, page_attributes) }
 
-      it 'save the page section' do
+      it 'save the page sections dropzone' do
         allow(site).to receive(:title) { 'aTitle' }
         allow(activities).to receive(:create!) { true }
         allow(site).to receive(:activities) { activities }

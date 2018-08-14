@@ -6,7 +6,8 @@ json.data do
   json.page do
     json.(@page, :id, :title)
     json.contentEntryId @page.content_entry&.id
-    json.sectionsContent sections_content(@page)
+    # json.sectionsContent sections_content(@page) #TODO
+    json.sectionsDropzoneContent sections_dropzone_content(@page)
   end
 
   json.sectionDefinitions @section_definitions

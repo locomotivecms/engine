@@ -23,7 +23,7 @@ describe Locomotive::PageContentController  do
         page_id: site.pages.first,
         site_handle: site.handle,
         page: {
-          sections_content: <<-JSON
+          sections_dropzone_content: <<-JSON
             []
           JSON
         },

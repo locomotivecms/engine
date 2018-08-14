@@ -36,6 +36,7 @@ group :test do
   gem 'capybara',                 '~> 2.18'
   gem 'selenium-webdriver',       '~> 3.11.0'
   gem 'puma',                     '~> 3.11.3'
+  gem 'chromedriver-helper'
 
   gem 'grape-entity-matchers',    github: 'salsify/grape-entity-matchers', branch: 'grape-entity-exposures'
   gem 'shoulda-matchers',         '~> 3.1.2'

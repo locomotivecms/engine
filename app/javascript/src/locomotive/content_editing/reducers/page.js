@@ -2,12 +2,12 @@ import update from '../utils/immutable_update';
 import { findIndex } from 'lodash';
 
 function findSectionIndex(state, action) {
-  const sections = state.sectionsContent;
+  const sections = state.sectionsDropzoneContent;
   return findIndex(sections, section => section.id === action.sectionId);
 }
 
 function findBlockIndex(sectionIndex, state, action) {
-  const blocks = state.sectionsContent[sectionIndex].blocks;
+  const blocks = state.sectionsDropzoneContent[sectionIndex].blocks;
   return findIndex(blocks, block => block.id === action.blockId);
 }
 
@@ -23,7 +23,7 @@ function page(state = [], action) {
 
     case 'SECTION::UPDATE_INPUT':
       return update(state, {
-        sectionsContent: {
+        sectionsDropzoneContent: {
           [findSectionIndex(state, action)]: {
             settings: {
               [action.id]: { $set: action.newValue }
@@ -34,12 +34,12 @@ function page(state = [], action) {
 
     case 'SECTION::ADD':
       return update(state, {
-        sectionsContent: { $push: [action.newSection] }
+        sectionsDropzoneContent: { $push: [action.newSection] }
       });
 
     case 'SECTION::MOVE':
       return update(state, {
-        sectionsContent: {
+        sectionsDropzoneContent: {
           $arrayMove: {
             oldIndex: action.oldIndex,
             newIndex: action.newIndex
@@ -49,7 +49,7 @@ function page(state = [], action) {
 
     case 'SECTION::REMOVE':
       return update(state, {
-        sectionsContent: {
+        sectionsDropzoneContent: {
           $splice: [[findSectionIndex(state, action), 1]]
         }
       });
@@ -58,7 +58,7 @@ function page(state = [], action) {
 
     case 'SECTION::BLOCK::ADD':
       return update(state, {
-        sectionsContent: {
+        sectionsDropzoneContent: {
           [findSectionIndex(state, action)]: {
             blocks: { $push: [action.newBlock] }
           }
@@ -67,7 +67,7 @@ function page(state = [], action) {
 
     case 'SECTION::BLOCK::MOVE':
       return update(state, {
-        sectionsContent: {
+        sectionsDropzoneContent: {
           [findSectionIndex(state, action)]: {
             blocks: {
               $arrayMove: {
@@ -82,7 +82,7 @@ function page(state = [], action) {
     case 'SECTION::BLOCK::REMOVE':
       sectionIndex = findSectionIndex(state, action);
       return update(state, {
-        sectionsContent: {
+        sectionsDropzoneContent: {
           [sectionIndex]: {
             blocks: { $splice: [[findBlockIndex(sectionIndex, state, action), 1]] }
           }
@@ -92,7 +92,7 @@ function page(state = [], action) {
     case 'SECTION::BLOCK::UPDATE_INPUT':
       sectionIndex = findSectionIndex(state, action);
       return update(state, {
-        sectionsContent: {
+        sectionsDropzoneContent: {
           [sectionIndex]: {
             blocks: {
               [findBlockIndex(sectionIndex, state, action)]: {

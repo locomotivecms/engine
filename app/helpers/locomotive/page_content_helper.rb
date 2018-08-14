@@ -5,10 +5,6 @@ module Locomotive
       section_types.without('_sections_dropzone_')
     end
 
-    def all_static_sections_to_json(section_types)
-      all_static_sections(section_types).to_json.html_safe
-    end
-
     def top_static_sections(section_types)
       if (array = section_types.split('_sections_dropzone_')).size == 1
         []
@@ -17,20 +13,12 @@ module Locomotive
       end
     end
 
-    def top_static_sections_to_json(section_types)
-      top_static_sections(section_types).to_json.html_safe
-    end
-
     def bottom_static_sections(section_types)
       if (array = section_types.split('_sections_dropzone_')).size == 1
         []
       else
         array.last
       end
-    end
-
-    def bottom_static_sections_to_json(section_types)
-      bottom_static_sections(section_types).to_json.html_safe
     end
 
     def static_sections_content(site, types, definitions)
@@ -58,12 +46,8 @@ module Locomotive
       content
     end
 
-    def static_sections_content_to_json(site, names, definitions)
-      static_sections_content(site, names, definitions).to_json.html_safe
-    end
-
-    def sections_content(page)
-      page.sections_content.each_with_index.map do |section, index|
+    def sections_dropzone_content(page)
+      page.sections_dropzone_content.each_with_index.map do |section, index|
         section['id'] = index.to_s
 
         section['blocks'] = section['blocks'].each_with_index.map do |block, _index|
@@ -75,9 +59,19 @@ module Locomotive
       end
     end
 
-    def sections_content_to_json(page)
-      sections_content(page).to_json.html_safe
-    end
+    # TODO: sections_content
+    # def sections_content(page)
+    #   page.sections_content.each_with_index.map do |section, index|
+    #     section['id'] = index.to_s
+
+    #     section['blocks'] = section['blocks'].each_with_index.map do |block, _index|
+    #       block['id'] = _index.to_s
+    #       block
+    #     end
+
+    #     section
+    #   end
+    # end
 
   end
 end
