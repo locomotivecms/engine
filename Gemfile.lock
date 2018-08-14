@@ -10,6 +10,7 @@ GIT
 GIT
   remote: https://github.com/locomotivecms/steam.git
   revision: 68c936e92a36964d968c34d90888889d20fa591f
+  ref: 68c936e
   branch: sections_static
   specs:
     locomotivecms_steam (1.4.0.rc2)
