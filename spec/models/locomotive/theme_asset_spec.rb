@@ -84,7 +84,6 @@ describe Locomotive::ThemeAsset do
 
     end
 
-
     it 'processes stylesheet' do
       asset.source = FixturedAsset.open('main.css')
       expect(asset.source.file.content_type).to_not eq(nil)
