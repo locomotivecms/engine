@@ -302,9 +302,9 @@ GEM
     method_source (0.9.0)
     mime-types (3.1)
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2016.0521)
+    mime-types-data (3.2018.0812)
     mimetype-fu (0.1.2)
-    mini_mime (1.0.0)
+    mini_mime (1.0.1)
     mini_portile2 (2.3.0)
     minitest (5.11.3)
     moneta (1.0.0)
@@ -312,7 +312,7 @@ GEM
       money (~> 6.9)
     money (6.12.0)
       i18n (>= 0.6.4, < 1.1)
-    mongo (2.6.1)
+    mongo (2.6.2)
       bson (>= 4.3.0, < 5.0.0)
     mongo_session_store (3.1.0)
       actionpack (>= 4.0)
@@ -341,7 +341,7 @@ GEM
     pony (1.12)
       mail (>= 2.0)
     public_suffix (3.0.2)
-    puma (3.11.4)
+    puma (3.12.0)
     pundit (1.1.0)
       activesupport (>= 3.0.0)
     rack (2.0.5)
@@ -421,7 +421,7 @@ GEM
     sassc (1.12.1)
       ffi (~> 1.9.6)
       sass (>= 3.3.0)
-    selenium-webdriver (3.11.0)
+    selenium-webdriver (3.14.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.2)
     shoulda-matchers (3.1.2)
@@ -456,7 +456,7 @@ GEM
     timecop (0.9.1)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
-    uglifier (4.1.17)
+    uglifier (4.1.18)
       execjs (>= 0.3.0, < 3)
     virtus (1.0.5)
       axiom-types (~> 0.1)
@@ -477,8 +477,8 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
-  capybara (~> 2.18)
-  chromedriver-helper
+  capybara (~> 2.18.0)
+  chromedriver-helper (~> 1.2.0)
   codeclimate-test-reporter (~> 1.0.7)
   database_cleaner (~> 1.6.2)
   email_spec (~> 2.1.1)
@@ -487,10 +487,10 @@ DEPENDENCIES
   json_spec (~> 1.1.4)
   locomotivecms!
   locomotivecms_steam!
-  puma (~> 3.11.3)
+  puma (~> 3.12.0)
   rails-controller-testing (~> 1.0.2)
   rspec-rails (~> 3.7.2)
-  selenium-webdriver (~> 3.11.0)
+  selenium-webdriver (~> 3.14.0)
   shoulda-matchers (~> 3.1.2)
   simplecov
   timecop (~> 0.9.1)
