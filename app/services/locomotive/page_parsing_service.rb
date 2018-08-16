@@ -103,9 +103,13 @@ module Locomotive
     end
 
     def subscribe_to_sections(sections)
-      ActiveSupport::Notifications.subscribe('steam.parse.section') do |name, start, finish, id, payload|
+      ActiveSupport::Notifications.subscribe('steam.parse.static_section') do |name, start, finish, id, payload|
         sections.push(payload[:name])
       end
+      # TODO: sections related to the current page
+      # ActiveSupport::Notifications.subscribe('steam.parse.section') do |name, start, finish, id, payload|
+      #   sections.push(payload[:name])
+      # end
     end
 
     def subscribe_to_sections_dropzone(memo)
