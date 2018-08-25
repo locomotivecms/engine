@@ -70,10 +70,10 @@ export function loadContent(url, pageId, contentEntryId, locale) {
 
 // SECTION
 
-export function loadSectionHTML(url, sectionType, content) {
+export function loadSectionHTML(url, section, content) {
   return put(url,
     JSON.stringify({ section_content: content }),
-    { 'Locomotive-Section-Type': sectionType }
+    { 'Locomotive-Section-Type': section.type }
   ).then(response => { return response.text(); })
 }
 

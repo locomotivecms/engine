@@ -39,6 +39,7 @@ module Locomotive
       site.update_attributes(site_attributes)
 
       # TODO: sections_content
+      raise 'TODO'
 
       page_attributes[:sections_dropzone_content] = remove_ids(page_attributes[:sections_dropzone_content])
 

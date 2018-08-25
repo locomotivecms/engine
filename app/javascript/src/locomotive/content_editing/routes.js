@@ -5,19 +5,20 @@ import buildRoutes from './utils/routes_builder';
 import withHeader from './hoc/with_header';
 
 // Views
-import _SectionsIndex from './views/sections/index.jsx';
-import SectionGallery from './views/sections/gallery.jsx';
-import EditSection from './views/sections/edit.jsx';
-import EditBlock from './views/blocks/edit.jsx';
+import _SectionsList from './views/sections/list';
+import SectionGallery from './views/sections/gallery';
+import EditSection from './views/sections/edit';
+import EditBlock from './views/blocks/edit';
 import ImagesIndex from './views/assets/images/index.jsx';
 
-const SectionsIndex = withHeader(_SectionsIndex);
+const SectionsList = withHeader(_SectionsList);
 
 const nestedRoutes = {
-  // Static Sections
+  // NEW ROUTES
   '/:pageId/content/edit/sections': {
-    component: SectionsIndex,
-    '/:sectionType': {
+    component: SectionsList,
+    '/dropzone/new': SectionGallery,
+    '/:sectionId': {
       '/edit': EditSection,
       '/setting/:settingType/:settingId/images': ImagesIndex,
       '/blocks/:blockType/:blockId': {
@@ -27,18 +28,19 @@ const nestedRoutes = {
     }
   },
 
-  // Dropzone sections
-  '/:pageId/content/edit/dropzone_sections': {
-    '/pick': SectionGallery,
-    '/:sectionType/:sectionId': {
-      '/edit': EditSection,
-      '/setting/:settingType/:settingId/images': ImagesIndex,
-      '/blocks/:blockType/:blockId': {
-        '/edit': EditBlock,
-        '/setting/:settingType/:settingId/images': ImagesIndex
-      }
-    }
-  }
+
+  // Dropzone sections [TODO]
+  // '/:pageId/content/edit/dropzone_sections': {
+  //   '/pick': SectionGallery,
+  //   '/:sectionType/:sectionId': {
+  //     '/edit': EditSection,
+  //     '/setting/:settingType/:settingId/images': ImagesIndex,
+  //     '/blocks/:blockType/:blockId': {
+  //       '/edit': EditBlock,
+  //       '/setting/:settingType/:settingId/images': ImagesIndex
+  //     }
+  //   }
+  // }
 }
 
 export default buildRoutes(nestedRoutes);

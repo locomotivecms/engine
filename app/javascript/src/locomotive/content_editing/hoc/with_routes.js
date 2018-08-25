@@ -9,38 +9,33 @@ export default function withRoutes(Component) {
     const basePath  = `/${_pageId}/content/edit`;
 
     const sectionsPath          = () => `${basePath}/sections`;
-    const newSectionPath        = () => `${basePath}/dropzone_sections/pick`;
+    const newSectionPath        = () => `${basePath}/sections/dropzone/new`;
 
-    const staticSectionPath   = sectionType => `${sectionsPath()}/${sectionType}`;
-    const dropzoneSectionPath = (sectionType, sectionId) => {
-      return `${basePath}/dropzone_sections/${sectionType}/${sectionId}`;
+    const sectionPath = (section) => {
+      return `${sectionsPath()}/${section.uuid}`;
     }
-
-    const sectionPath = (sectionType, sectionId) => {
-      return sectionId ? dropzoneSectionPath(sectionType, sectionId) : staticSectionPath(sectionType);
-    }
-    const editSectionPath = (sectionType, sectionId) => {
-      return `${sectionPath(sectionType, sectionId)}/edit`;
+    const editSectionPath = (section) => {
+      return `${sectionPath(section)}/edit`;
     }
 
-    const blockPath = (sectionType, sectionId, blockType, blockId) => {
-      return `${sectionPath(sectionType, sectionId)}/blocks/${blockType}/${blockId}`;
+    const blockPath = (section, blockType, blockId) => {
+      return `${sectionPath(section)}/blocks/${blockType}/${blockId}`;
     }
-    const editBlockPath = (sectionType, sectionId, blockType, blockId) => {
-      return `${blockPath(sectionType, sectionId, blockType, blockId)}/edit`;
-    }
-
-    const blockParentPath = (sectionType, sectionId) => {
-      return `${sectionPath(sectionType, sectionId)}/edit`;
+    const editBlockPath = (section, blockType, blockId) => {
+      return `${blockPath(section, blockType, blockId)}/edit`;
     }
 
-    const imagesPath = (sectionType, sectionId, blockType, blockId, settingType, settingId) => {
+    const blockParentPath = (section) => {
+      return `${sectionPath(section)}/edit`;
+    }
+
+    const imagesPath = (section, blockType, blockId, settingType, settingId) => {
       const postfix = `setting/${settingType}/${settingId}/images`;
 
       if (blockType && blockId)
-        return `${blockPath(sectionType, sectionId, blockType, blockId)}/${postfix}`;
+        return `${blockPath(section, blockType, blockId)}/${postfix}`;
       else
-        return `${sectionPath(sectionType, sectionId)}/${postfix}`;
+        return `${sectionPath(section)}/${postfix}`;
     }
 
     return {

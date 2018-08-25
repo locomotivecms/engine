@@ -17,27 +17,26 @@ module Locomotive
           blocks:                   {},
           super_blocks:             {},
           elements:                 [],
-          sections:                 [],
-          sections_dropzone_block:  nil
+          sections:                 { top: [], bottom: [], dropzone: nil }
         }
 
         subscribe(parsed) do
           parse(page)
 
-          # the sections_dropzone liquid tag might be hidden by an overidding block
-          # if so, remove the "_sections_dropzone_" keyword from the sections
-          check_if_sections_dropzone_still_visible(parsed)
+          # remove the sections if hidden (sections might be hidden by an overidding block).
+          # also sort them by their placement.
+          # finally, only return their types (+ sectionId)
+          extract_section_attributes!(parsed)
 
           # !Important! Non visible editable elements are not removed
           persist_editable_elements!(page, parsed)
         end
 
-        puts parsed.inspect
-
         parsed
       end
     rescue Exception => e
       logger.error "[PageParsing] " + e.message + "\n\t" + e.backtrace.join("\n\t")
+      puts "[PageParsing] " + e.message + "\n\t" + e.backtrace.join("\n\t")
       nil
     end
 
@@ -67,8 +66,7 @@ module Locomotive
         subscribe_to_extends(parsed[:extends]),
         subscribe_to_blocks(parsed[:blocks], parsed[:super_blocks]),
         subscribe_to_editable_elements(parsed[:elements]),
-        subscribe_to_sections(parsed[:sections]),
-        subscribe_to_sections_dropzone(parsed)
+        subscribe_to_sections(parsed[:sections])
       ]
 
       yield.tap do
@@ -103,19 +101,15 @@ module Locomotive
     end
 
     def subscribe_to_sections(sections)
-      ActiveSupport::Notifications.subscribe('steam.parse.static_section') do |name, start, finish, id, payload|
-        sections.push(payload[:name])
-      end
-      # TODO: sections related to the current page
-      # ActiveSupport::Notifications.subscribe('steam.parse.section') do |name, start, finish, id, payload|
-      #   sections.push(payload[:name])
-      # end
-    end
+      ActiveSupport::Notifications.subscribe('steam.parse.section') do |name, start, finish, id, payload|
+        page, block, attributes = payload[:page], payload[:block], payload[:attributes]
 
-    def subscribe_to_sections_dropzone(memo)
-      ActiveSupport::Notifications.subscribe('steam.parse.sections_dropzone') do |name, start, finish, id, payload|
-        memo[:sections].push('_sections_dropzone_')
-        memo[:sections_dropzone_block] = [payload[:page]._id, payload[:block]]
+        if attributes[:is_dropzone]
+          sections[:dropzone] = [page, block, attributes]
+        else
+          placement = attributes[:placement] || :top
+          sections[placement].push([page, block, attributes])
+        end
       end
     end
 
@@ -127,13 +121,24 @@ module Locomotive
       parser.parse(decorated_page)
     end
 
-    def check_if_sections_dropzone_still_visible(parsed)
-      return if parsed[:sections_dropzone_block].blank?
+    # Remove sections from hidden blocks.
+    # It also tells if there is a visible sections dropzone.
+    def extract_section_attributes!(parsed)
+      [:top, :bottom].each do |placement|
+        parsed[:sections][placement] = parsed[:sections][placement].map do |(page, block, attributes)|
+          # we don't want hidden sections
+          next unless block_visible?(page._id, parsed, { block: block })
 
-      page_id, block = parsed[:sections_dropzone_block]
+          attributes.slice(:source, :type, :key, :id, :label)
+        end.compact
+      end
 
-      unless block_visible?(page_id, parsed, { block: block })
-        parsed[:sections].delete('_sections_dropzone_')
+      if parsed[:sections][:dropzone]
+        # we don't want a hidden dropzone
+        page, block, _ = parsed[:sections][:dropzone]
+        parsed[:sections][:dropzone] = block_visible?(page._id, parsed, { block: block })
+      else
+        parsed[:sections][:dropzone] = false
       end
     end
 

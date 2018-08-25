@@ -14,8 +14,8 @@ const SortableList  = SortableContainer(({ blocks, ...props }) => (
         key={`section-${props.sectionType}-block-${index}`}
         index={index}
         handleComponent={DragHandle}
-        editPath={props.editBlockPath(props.sectionType, props.sectionId, block.type, block.id)}
-        removeBlock={props.removeSectionBlock.bind(null, props.sectionType, props.sectionId, block.id)}
+        editPath={props.editBlockPath(props.section, block.type, block.id)}
+        removeBlock={props.removeSectionBlock.bind(null, props.section, block.id)}
         block={block}
         {...props}
         blockDefinition={props.sectionDefinition.blocks.find(def => def.type === block.type)}

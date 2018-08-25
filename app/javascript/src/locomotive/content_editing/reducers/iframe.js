@@ -1,119 +1,114 @@
 import update from '../utils/immutable_update';
 
-const refreshSection = (state, action) => {
-  const name = action.sectionId ? 'refreshSection' : 'refreshStaticSection';
-  return update(state, {
-    refreshAction:  { $set: name },
-    sectionType:    { $set: action.sectionType },
-    sectionId:      { $set: action.sectionId },
-    blockType:      { $set: action.blockType },
-    blockId:        { $set: action.blockId }
-  });
-}
+// const refreshSection = (state, action) => {
+//   return update(state, {
+//     refreshAction:  { $set: 'refreshSection' },
+//     section:        { $set: action.section },
+//     blockType:      { $set: action.blockType },
+//     blockId:        { $set: action.blockId }
+//   });
+// }
 
 function iframe(state = {}, action) {
-  switch(action.type) {
-    case 'IFRAME::NEW_SOURCE':
-      return { loaded: false };
-
-    case 'IFRAME::LOADED':
-      return { loaded: true, window: action.window };
+  switch (action.type) {
 
     case 'EDITOR::LOAD':
       return { loaded: true };
 
-    case 'SECTION::PREVIEW':
-      return update(state, {
-        refreshAction:      { $set: 'previewSection' },
-        section:            { $set: action.newSection },
-        previousSectionId:  {
-          $set: state.section ? state.section.id : null
-        }
-      });
+    case 'IFRAME::NEW_SOURCE':
+      return { loaded: false };
 
-    case 'SECTION::ADD':
-      return update(state, {
-        refreshAction:      { $set: null },
-        section:            { $set: null }
-      });
-
-    case 'SECTION::SELECT':
-      return update(state, {
-        refreshAction:      { $set: 'selectSection' },
-        sectionId:          { $set: action.sectionId || action.sectionType }
-      });
-
-    case 'SECTION::DESELECT':
-      return update(state, {
-        refreshAction:      { $set: 'deselectSection' },
-        sectionId:          { $set: action.sectionId || action.sectionType }
-      });
-
-    case 'SECTION::CANCEL_PREVIEW':
-      if (!state.section) return state;
-      return update(state, {
-        refreshAction:      { $set: 'removeSection' },
-        sectionId:          { $set: state.section.id },
-        previousSectionId:  { $set: null }
-      });
-
-    case 'SECTION::MOVE':
-      return update(state, {
-        refreshAction:      { $set: 'moveSection' },
-        sectionId:          { $set: action.sectionId },
-        targetSectionId:    { $set: action.targetSectionId },
-        direction:          { $set: action.newIndex > action.oldIndex ? 'after' : 'before' }
-      });
-
-    case 'SECTION::REMOVE':
-      return update(state, {
-        refreshAction:      { $set: 'removeSection' },
-        sectionId:          { $set: action.sectionId }
-      });
-
-    case 'SECTION::UPDATE_INPUT':
-    case 'SECTION::BLOCK::UPDATE_INPUT':
-    case 'STATIC_SECTION::BLOCK::UPDATE_INPUT':
-    case 'STATIC_SECTION::UPDATE_INPUT':
-      if (action.fieldType === 'text')
-        return update(state, {
-          refreshAction:    { $set: 'updateInput' },
-          sectionType:      { $set: action.sectionType },
-          sectionId:        { $set: action.sectionId },
-          blockId:          { $set: action.blockId },
-          fieldId:          { $set: action.id },
-          fieldValue:       { $set: action.newValue }
-        });
-      else
-        return refreshSection(state, action);
-
-    case 'SECTION::BLOCK::ADD':
-    case 'SECTION::BLOCK::REMOVE':
-    case 'SECTION::BLOCK::MOVE':
-    case 'STATIC_SECTION::BLOCK::ADD':
-    case 'STATIC_SECTION::BLOCK::REMOVE':
-    case 'STATIC_SECTION::BLOCK::MOVE':
-      return refreshSection(state, action);
-
-    case 'SECTION::BLOCK::SELECT':
-      return update(state, {
-        refreshAction:      { $set: 'selectSectionBlock' },
-        sectionId:          { $set: action.sectionId || action.sectionType },
-        blockId:            { $set: action.blockId }
-      });
-
-    case 'SECTION::BLOCK::DESELECT':
-      return update(state, {
-        refreshAction:      { $set: 'deselectSectionBlock' },
-        sectionId:          { $set: action.sectionId || action.sectionType },
-        blockId:            { $set: action.blockId }
-      });
+    case 'IFRAME::LOADED':
+      return { loaded: true, window: action.window, _window: action.window };
 
     case 'IFRAME::DONE':
       return update(state, {
         refreshAction:      { $set: null },
-        refreshInput:       { $set: null }
+        refreshInput:       { $set: null },
+        previousSection:    { $set: null }
       })
+
+    // // SECTION INPUTS
+    // case 'SITE::SECTION::UPDATE_INPUT':
+    // case 'PAGE::SECTION::UPDATE_INPUT':
+    // case 'DROPZONE::SECTION::UPDATE_INPUT':
+    // case 'SITE::SECTION::BLOCK::UPDATE_INPUT':
+    // case 'PAGE::SECTION::BLOCK::UPDATE_INPUT':
+    // case 'DROPZONE::SECTION::BLOCK::UPDATE_INPUT':
+    //   if (action.fieldType === 'text')
+    //     return update(state, {
+    //       refreshAction:    { $set: 'updateInput' },
+    //       section:          { $set: action.section },
+    //       blockId:          { $set: action.blockId },
+    //       fieldId:          { $set: action.id },
+    //       fieldValue:       { $set: action.newValue }
+    //     });
+    //   else
+    //     return refreshSection(state, action);
+
+    // SECTION BLOCKS
+    // case 'SITE::SECTION::BLOCK::ADD':
+    // case 'SITE::SECTION::BLOCK::REMOVE':
+    // case 'SITE::SECTION::BLOCK::MOVE':
+    // case 'PAGE::SECTION::BLOCK::ADD':
+    // case 'PAGE::SECTION::BLOCK::REMOVE':
+    // case 'PAGE::SECTION::BLOCK::MOVE':
+    // case 'DROPZONE::SECTION::BLOCK::ADD':
+    // case 'DROPZONE::SECTION::BLOCK::REMOVE':
+    // case 'DROPZONE::SECTION::BLOCK::MOVE':
+    //   return refreshSection(state, action);
+
+    // DROPZONE
+    case 'DROPZONE::SECTION::PREVIEW':
+      return update(state, { previousSection: { $set: action.newSection } });
+
+    case 'DROPZONE::SECTION::CANCEL_PREVIEW':
+      return update(state, { previousSection: { $set: null } });
+
+    case 'DROPZONE::SECTION::ADD':
+      return update(state, { previousSection: { $set: null } });
+
+    // case 'DROPZONE::SECTION::REMOVE':
+    //   return update(state, {
+    //     refreshAction:      { $set: 'removeSection' },
+    //     section:            { $set: action.section }
+    //   });
+
+    // case 'DROPZONE::SECTION::MOVE':
+    //   return update(state, {
+    //     refreshAction:      { $set: 'moveSection' },
+    //     section:            { $set: action.section },
+    //     targetSection:      { $set: action.targetSection },
+    //     direction:          { $set: action.newIndex > action.oldIndex ? 'after' : 'before' }
+    //   });
+
+    // SELECT/UNSELECT SECTIONS/BLOCKs
+
+    // case 'SECTION::SELECT':
+    //   return update(state, {
+    //     refreshAction:      { $set: 'selectSection' },
+    //     section:            { $set: action.section }
+    //   });
+
+    // case 'SECTION::DESELECT':
+    //   return update(state, {
+    //     refreshAction:      { $set: 'deselectSection' },
+    //     section:            { $set: action.section }
+    //   });
+
+    // case 'SECTION::BLOCK::SELECT':
+    //   return update(state, {
+    //     refreshAction:      { $set: 'selectSectionBlock' },
+    //     section:            { $set: action.section },
+    //     blockId:            { $set: action.blockId }
+    //   });
+
+    // case 'SECTION::BLOCK::DESELECT':
+    //   return update(state, {
+    //     refreshAction:      { $set: 'deselectSectionBlock' },
+    //     section:            { $set: action.section },
+    //     blockId:            { $set: action.blockId }
+    //   });
 
    default:
     return state;

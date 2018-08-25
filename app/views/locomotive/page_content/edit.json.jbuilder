@@ -1,12 +1,12 @@
 json.data do
   json.site do
-    json.sectionsContent static_sections_content(current_site, @static_section_types, @section_definitions)
+    json.sectionsContent sections_content(current_site, @sections, @section_definitions)
   end
 
   json.page do
     json.(@page, :id, :title)
     json.contentEntryId @page.content_entry&.id
-    # json.sectionsContent sections_content(@page) #TODO
+    json.sectionsContent sections_content(@page, @sections, @section_definitions)
     json.sectionsDropzoneContent sections_dropzone_content(@page)
   end
 
@@ -15,10 +15,10 @@ json.data do
   json.editableElements @editable_elements
 
   json.sections do
-    json.all      all_static_sections(@static_section_types)
-    json.top      top_static_sections(@static_section_types)
-    json.bottom   bottom_static_sections(@static_section_types)
-    json.dropzone @static_section_types.include?('_sections_dropzone_')
+    json.all      sections_by_id(@sections, @page)
+    json.top      @sections[:top]
+    json.bottom   @sections[:bottom]
+    json.dropzone @sections[:dropzone]
   end
 
   json.locale current_content_locale

@@ -7,72 +7,75 @@ function findBlockIndex(state, action) {
 }
 
 function site(state = {}, action) {
-  switch(action.type) {
+  // switch(action.type) {
 
-    case 'CONTENT::LOAD':
-      return action.site;
+  //   case 'CONTENT::LOAD':
+  //     return action.site;
 
-    case 'STATIC_SECTION::UPDATE_INPUT':
-      return update(state, {
-        sectionsContent: {
-          [action.sectionType]: {
-            settings: {
-              [action.id]: { $set: action.newValue }
-            }
-          }
-        }
-      });
+  //   case 'SITE::SECTION::UPDATE_INPUT':
+  //     return update(state, {
+  //       sectionsContent: {
+  //         [action.section.key]: {
+  //           settings: {
+  //             [action.id]: { $set: action.newValue }
+  //           }
+  //         }
+  //       }
+  //     });
 
-    case 'STATIC_SECTION::BLOCK::ADD':
-      return update(state, {
-        sectionsContent: {
-          [action.sectionType]: {
-            blocks: { $push: [action.newBlock] }
-          }
-        }
-      });
+  //   case 'SITE::SECTION::BLOCK::ADD':
+  //     return update(state, {
+  //       sectionsContent: {
+  //         [action.section.key]: {
+  //           blocks: { $push: [action.newBlock] }
+  //         }
+  //       }
+  //     });
 
-    case 'STATIC_SECTION::BLOCK::MOVE':
-      return update(state, {
-        sectionsContent: {
-          [action.sectionType]: {
-            blocks: {
-              $arrayMove: {
-                oldIndex: action.oldIndex,
-                newIndex: action.newIndex
-              }
-            }
-          }
-        }
-      });
+  //   case 'SITE::SECTION::BLOCK::MOVE':
+  //     return update(state, {
+  //       sectionsContent: {
+  //         [action.section.key]: {
+  //           blocks: {
+  //             $arrayMove: {
+  //               oldIndex: action.oldIndex,
+  //               newIndex: action.newIndex
+  //             }
+  //           }
+  //         }
+  //       }
+  //     });
 
-    case 'STATIC_SECTION::BLOCK::REMOVE':
-      return update(state, {
-        sectionsContent: {
-          [action.sectionType]: {
-            blocks: { $splice: [[findBlockIndex(state, action), 1]] }
-          }
-        }
-      });
+  //   case 'SITE::SECTION::BLOCK::REMOVE':
+  //     return update(state, {
+  //       sectionsContent: {
+  //         [action.sectionType]: {
+  //           blocks: { $splice: [[findBlockIndex(state, action), 1]] }
+  //         }
+  //       }
+  //     });
 
-    case 'STATIC_SECTION::BLOCK::UPDATE_INPUT':
-      return update(state, {
-        sectionsContent: {
-          [action.sectionType]: {
-            blocks: {
-              [findBlockIndex(state, action)]: {
-                settings: {
-                  [action.id]: { $set: action.newValue }
-                }
-              }
-            }
-          }
-        }
-      });
+  //   // TODO
+  //   case 'STATIC_SECTION::BLOCK::UPDATE_INPUT':
+  //     return update(state, {
+  //       sectionsContent: {
+  //         [action.sectionType]: {
+  //           blocks: {
+  //             [findBlockIndex(state, action)]: {
+  //               settings: {
+  //                 [action.id]: { $set: action.newValue }
+  //               }
+  //             }
+  //           }
+  //         }
+  //       }
+  //     });
 
-    default:
-      return state;
-  }
+  //   default:
+  //     return state;
+  // }
+
+  return state;
 }
 
 export default site;

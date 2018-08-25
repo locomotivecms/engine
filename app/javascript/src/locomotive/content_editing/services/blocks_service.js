@@ -1,4 +1,4 @@
-import { find, keyBy, mapValues } from 'lodash';
+import { find, findIndex, keyBy, mapValues } from 'lodash';
 import { uuid } from '../utils/misc';
 import striptags from 'striptags';
 
@@ -31,4 +31,18 @@ export function getLabelElements(blockDefinition, block) {
     elements.name = striptags(block.settings[setting.id]);
 
   return elements;
+}
+
+export function fetchBlockContent(sectionContent, blockId) {
+  return blockId ? find(sectionContent.blocks, b => b.id === blockId) : null;
+}
+
+export function findBlockIndex(globalContent, section, blockId) {
+  const content = globalContent[section.source].sectionsContent;
+  const blocks  = content[section.key].blocks;
+  return findIndex(blocks, block => block.id === blockId);
+}
+
+export function findDropzoneBlockIndex(section, blockId) {
+  return findIndex(section.blocks, block => block.id === blockId);
 }

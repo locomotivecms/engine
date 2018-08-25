@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Components
-import Preset from './preset.jsx';
+import Preset from './preset';
 
 const Category = props => (
   <div className="editor-section-category">

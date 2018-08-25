@@ -7,8 +7,7 @@ import withRoutes from '../hoc/with_routes';
 
 const openLibrary = props => {
   props.redirectTo(props.imagesPath(
-    props.sectionType,
-    props.sectionId,
+    props.section,
     props.blockType,
     props.blockId,
     props.setting.type,

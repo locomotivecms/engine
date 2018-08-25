@@ -3,15 +3,15 @@ import { compose } from 'redux';
 import { bindAll } from 'lodash';
 
 // HOC
-import withRoutes from '../../hoc/with_routes';
-import withRedux from '../../hoc/with_redux';
-import withGlobalVars from '../../hoc/with_global_vars';
+import withRoutes from '../../../hoc/with_routes';
+import withRedux from '../../../hoc/with_redux';
+import withGlobalVars from '../../../hoc/with_global_vars';
 
 // Components
-import Category from './gallery/category.jsx';
+import Category from './category';
 
 // Services
-import { buildSection, buildCategories } from '../../services/sections_service';
+import { buildSection, buildCategories } from '../../../services/sections_service';
 
 class Gallery extends Component {
 
@@ -38,7 +38,7 @@ class Gallery extends Component {
     this.props.addSection(section);
 
     // Go directly to the section edit page
-    this.props.redirectTo(this.props.editSectionPath(section.type, section.id));
+    this.props.redirectTo(this.props.editSectionPath(section));
   }
 
   previewPreset(category, preset) {

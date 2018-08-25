@@ -10,11 +10,11 @@ module Locomotive
 
           ## fields ##
           field :sections_dropzone_content, type: Array, default: [], localize: true
+          field :sections_content, type: Hash, default: {}, localize: true
 
           ## behaviours ##
           json_attribute  :sections_dropzone_content
-
-          # TODO: sections_content
+          json_attribute  :sections_content
         end
 
         private
@@ -66,6 +66,35 @@ module Locomotive
             },
             type: 'array',
             items: { '$ref': '#/definitions/section' }
+          }
+        end
+
+        # Example:
+        #
+        # {
+        #   "banner": {
+        #     "settings": {
+        #       "title": "Hello world!",
+        #       "backgroundImage": "/picture.png"
+        #     },
+        #     "blocks": []
+        #   }
+        # }
+        #
+        def _sections_content_schema
+          {
+            id: 'http://www.locomotive.cms/schemas/page/sections_content.json',
+            type: 'object',
+            patternProperties: {
+              "^[a-z][a-z0-9_]+$" => {
+                type: 'object',
+                properties: {
+                  settings: { type: 'object' },
+                  blocks:   { type: 'array' }
+                },
+                additionalProperties: false
+              }
+            }
           }
         end
 

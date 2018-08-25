@@ -1,10 +1,9 @@
 import ApiFactory from '../services/api';
 import { waitUntil } from '../utils/misc';
 
-// Helpers
-const actionName = (name, sectionId) => {
-  return `${sectionId ? '' : 'STATIC_'}${name}`;
-}
+export * from './section_actions';
+export * from './section_block_actions';
+export * from './dropzone_actions';
 
 // GLOBAL
 
@@ -24,8 +23,10 @@ export function persistChanges(result, data) {
 function loadEditor(data, urls) {
   return {
     type: 'EDITOR::LOAD',
-    site: data.site,
-    page: data.page,
+    content: {
+      site: data.site,
+      page: data.page
+    },
     editor: {
       sections:           data.sections,
       sectionDefinitions: data.sectionDefinitions,
@@ -51,133 +52,6 @@ export function reloadEditor(api, pageId, contentEntryId, locale) {
   };
 }
 
-// SECTIONS
-
-export function previewSection(newSection) {
-  return {
-    type:         'SECTION::PREVIEW',
-    newSection
-  }
-}
-
-export function addSection(newSection) {
-  return {
-    type:         'SECTION::ADD',
-    newSection
-  }
-}
-
-export function selectSection(sectionType, sectionId) {
-  return {
-    type:         'SECTION::SELECT',
-    sectionType,
-    sectionId
-  }
-}
-
-export function deselectSection(sectionType, sectionId) {
-  return {
-    type:         'SECTION::DESELECT',
-    sectionType,
-    sectionId
-  }
-}
-
-export function moveSection(oldIndex, newIndex, sectionId, targetSectionId) {
-  return {
-    type:         'SECTION::MOVE',
-    oldIndex,
-    newIndex,
-    sectionId,
-    targetSectionId
-  }
-}
-
-export function cancelPreviewSection() {
-  return {
-    type:         'SECTION::CANCEL_PREVIEW'
-  }
-}
-
-export function removeSection(sectionId) {
-  return {
-    type:         'SECTION::REMOVE',
-    sectionId
-  }
-}
-
-export function updateSectionInput(sectionType, sectionId, fieldType, id, newValue) {
-  return {
-    type:         actionName('SECTION::UPDATE_INPUT', sectionId),
-    sectionType,
-    sectionId,
-    fieldType,
-    id,
-    newValue
-  }
-}
-
-// SECTION BLOCKS
-
-export function addSectionBlock(sectionType, sectionId, newBlock) {
-  return {
-    type:         actionName('SECTION::BLOCK::ADD', sectionId),
-    sectionType,
-    sectionId,
-    newBlock
-  }
-}
-
-export function moveSectionBlock(sectionType, sectionId, oldIndex, newIndex) {
-  return {
-    type:         actionName('SECTION::BLOCK::MOVE', sectionId),
-    sectionType,
-    sectionId,
-    oldIndex,
-    newIndex
-  }
-}
-
-export function removeSectionBlock(sectionType, sectionId, blockId) {
-  return {
-    type:         actionName('SECTION::BLOCK::REMOVE', sectionId),
-    sectionType,
-    sectionId,
-    blockId
-  }
-}
-
-export function updateSectionBlockInput(sectionType, sectionId, blockId, fieldType, id, newValue) {
-  return {
-    type:         actionName('SECTION::BLOCK::UPDATE_INPUT', sectionId),
-    sectionType,
-    sectionId,
-    blockId,
-    fieldType,
-    id,
-    newValue
-  }
-}
-
-export function selectSectionBlock(sectionType, sectionId, blockType, blockId) {
-  return {
-    type:         'SECTION::BLOCK::SELECT',
-    sectionType,
-    sectionId,
-    blockType,
-    blockId
-  }
-}
-
-export function deselectSectionBlock(sectionType, sectionId, blockId) {
-  return {
-    type:         'SECTION::BLOCK::DESELECT',
-    sectionType,
-    sectionId,
-    blockId
-  }
-}
-
 // PREVIEW / IFRAME
 
 export function onIframeLoaded(contentWindow) {
@@ -192,3 +66,87 @@ export function onIframeOperationsDone() {
     type:         'IFRAME::DONE'
   }
 }
+
+// SECTION (COMMON TO PAGE, SITE AND DROPZONE)
+
+// export function updateSectionInput(section, fieldType, id, newValue) {
+//   return {
+//     type:         actionName('SECTION::UPDATE_INPUT', section),
+//     section,
+//     fieldType,
+//     id,
+//     newValue
+//   }
+// }
+
+// export function selectSection(section) {
+//   return {
+//     type:         'SECTION::SELECT',
+//     section
+//   }
+// }
+
+// export function deselectSection(section) {
+//   return {
+//     type:         'SECTION::DESELECT',
+//     section
+//   }
+// }
+
+// SECTION BLOCKS
+
+// export function updateSectionBlockInput(section, blockId, fieldType, id, newValue) {
+//   return {
+//     type:         actionName('SECTION::BLOCK::UPDATE_INPUT', section),
+//     section,
+//     blockId,
+//     fieldType,
+//     id,
+//     newValue
+//   }
+// }
+
+// export function addSectionBlock(section, newBlock) {
+//   return {
+//     type:         actionName('SECTION::BLOCK::ADD', section),
+//     section,
+//     newBlock
+//   }
+// }
+
+// export function moveSectionBlock(section, oldIndex, newIndex) {
+//   return {
+//     type:         actionName('SECTION::BLOCK::MOVE', section),
+//     section,
+//     oldIndex,
+//     newIndex
+//   }
+// }
+
+// export function removeSectionBlock(section, blockId) {
+//   return {
+//     type:         actionName('SECTION::BLOCK::REMOVE', section),
+//     section,
+//     blockId
+//   }
+// }
+
+// // TODO
+// export function selectSectionBlock(section, blockType, blockId) {
+//   return {
+//     type:         'SECTION::BLOCK::SELECT',
+//     section,
+//     blockType,
+//     blockId
+//   }
+// }
+
+// // TODO
+// export function deselectSectionBlock(section, blockType, blockId) {
+//   return {
+//     type:         'SECTION::BLOCK::DESELECT',
+//     section,
+//     blockType,
+//     blockId
+//   }
+// }

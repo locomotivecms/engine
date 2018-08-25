@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers/index';
 
@@ -16,19 +16,26 @@ const defaultState = {
     editableElements,
     locale,
     urls,
-    api: ApiFactory(urls),
+    api: ApiFactory(urls)
+  },
+  content: {
+    site: site,
+    page: page
   },
   site,
   page,
   iframe: {
-    loaded: false,
-    window: null
+    loaded:   false,
+    window:   null,
+    _window:  null
   }
 };
 
 export default createStore(
   rootReducer,
   defaultState,
-  applyMiddleware(thunk),
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  compose(
+    applyMiddleware(thunk),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  )
 );

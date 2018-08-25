@@ -5,8 +5,8 @@ import { BrowserRouter as Router, browserHistory } from 'react-router-dom';
 import store from './store';
 
 // Views/Components
-import Main from './views/main.jsx';
-import Preview from './views/preview.jsx';
+import Main from './views/main';
+import Preview from './views/preview';
 
 const App = props => (
   <Provider store={store}>

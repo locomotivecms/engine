@@ -1,16 +1,10 @@
 import React, { Component } from 'react';
-import { compose } from 'redux';
 import { Link } from 'react-router-dom';
 import { SortableContainer, SortableElement, SortableHandle } from 'react-sortable-hoc';
 import { bindAll } from 'lodash';
 
-// HOC
-import withRedux from '../../../hoc/with_redux';
-import withRoutes from '../../../hoc/with_routes';
-import withGlobalVars from '../../../hoc/with_global_vars';
-
 // Components
-import Section from './section.jsx';
+import Section from './section';
 
 const DragHandle      = SortableHandle(() => <span>::</span>);
 const SortableSection = SortableElement(Section);
@@ -22,8 +16,8 @@ const SortableList    = SortableContainer(({ list, removeSection, ...props }) =>
           key={`section-${section.id}`}
           index={index}
           section={section}
-          editPath={props.editSectionPath(section.type, section.id)}
-          removeSection={removeSection.bind(null, section.id)}
+          editPath={props.editSectionPath(section)}
+          removeSection={removeSection.bind(null, section)}
           handleComponent={DragHandle}
         />
       )}
@@ -31,7 +25,7 @@ const SortableList    = SortableContainer(({ list, removeSection, ...props }) =>
   );
 });
 
-export class List extends Component {
+export class Dropzone extends Component {
 
   constructor(props) {
     super(props);
@@ -42,8 +36,8 @@ export class List extends Component {
     this.props.moveSection(
       oldIndex,
       newIndex,
-      this.props.list[oldIndex].id,
-      this.props.list[newIndex].id
+      this.props.list[oldIndex],
+      this.props.list[newIndex]
     );
   }
 
@@ -73,8 +67,4 @@ export class List extends Component {
 
 }
 
-export default compose(
-  withRedux(state => ({ list: state.page.sectionsDropzoneContent })),
-  withGlobalVars,
-  withRoutes
-)(List)
+export default Dropzone;

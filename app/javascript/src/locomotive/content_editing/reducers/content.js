@@ -1,0 +1,175 @@
+import update from '../utils/immutable_update';
+import { findSectionIndex } from '../services/sections_service';
+import { findBlockIndex, findDropzoneBlockIndex } from '../services/blocks_service';
+
+function content(state = {}, action) {
+  switch (action.type) {
+
+    // SECTIONS DROPZONE
+
+    case 'DROPZONE::SECTION::ADD':
+      return update(state, {
+        'page': {
+          sectionsDropzoneContent: { $push: [action.newSection] }
+        }
+      });
+
+    case 'DROPZONE::SECTION::UPDATE_INPUT':
+      return update(state, {
+        page: {
+          sectionsDropzoneContent: {
+            [findSectionIndex(state.page.sectionsDropzoneContent, action.section)]: {
+              settings: {
+                [action.id]: { $set: action.newValue }
+              }
+            }
+          }
+        }
+      });
+
+    case 'DROPZONE::SECTION::REMOVE':
+      return update(state, {
+        page: {
+          sectionsDropzoneContent: {
+            $splice: [[findSectionIndex(state.page.sectionsDropzoneContent, action.section), 1]]
+          }
+        }
+      });
+
+    case 'DROPZONE::SECTION::MOVE':
+      return update(state, {
+        page: {
+          sectionsDropzoneContent: {
+            $arrayMove: {
+              oldIndex: action.oldIndex,
+              newIndex: action.newIndex
+            }
+          }
+        }
+      });
+
+    // BLOCKS IN THE SECTIONS DROPZONE
+
+    case 'DROPZONE::SECTION::BLOCK::ADD':
+      return update(state, {
+        page: {
+          sectionsDropzoneContent: {
+            [findSectionIndex(state.page.sectionsDropzoneContent, action.section)]: {
+              blocks: { $push: [action.newBlock] }
+            }
+          }
+        }
+      });
+
+    case 'DROPZONE::SECTION::BLOCK::REMOVE':
+      const dropzoneContent   = state.page.sectionsDropzoneContent;
+      const sectionIndex      = findSectionIndex(dropzoneContent, action.section);
+
+      return update(state, {
+        page: {
+          sectionsDropzoneContent: {
+            [sectionIndex]: {
+              blocks: { $splice: [[findDropzoneBlockIndex(dropzoneContent[sectionIndex], action.blockId), 1]] }
+            }
+          }
+        }
+      });
+
+    case 'DROPZONE::SECTION::BLOCK::MOVE':
+      return update(state, {
+        page: {
+          sectionsDropzoneContent: {
+            [findSectionIndex(state.page.sectionsDropzoneContent, action.section)]: {
+              blocks: {
+                $arrayMove: {
+                  oldIndex: action.oldIndex,
+                  newIndex: action.newIndex
+                }
+              }
+            }
+          }
+        }
+      });
+
+    // SECTIONS CONTENT (BOTH PAGE AND SITE)
+
+    case 'SITE::SECTION::UPDATE_INPUT':
+    case 'PAGE::SECTION::UPDATE_INPUT':
+      return update(state, {
+        [action.section.source]: {
+          sectionsContent: {
+            [action.section.key]: {
+              settings: {
+                [action.id]: { $set: action.newValue }
+              }
+            }
+          }
+        }
+      });
+
+    case 'SITE::SECTION::BLOCK::ADD':
+    case 'PAGE::SECTION::BLOCK::ADD':
+      return update(state, {
+        [action.section.source]: {
+          sectionsContent: {
+            [action.section.key]: {
+              blocks: { $push: [action.newBlock] }
+            }
+          }
+        }
+      });
+
+    case 'SITE::SECTION::BLOCK::MOVE':
+    case 'PAGE::SECTION::BLOCK::MOVE':
+      return update(state, {
+        [action.section.source]: {
+          sectionsContent: {
+            [action.section.key]: {
+              blocks: {
+                $arrayMove: {
+                  oldIndex: action.oldIndex,
+                  newIndex: action.newIndex
+                }
+              }
+            }
+          }
+        }
+      });
+
+    case 'SITE::SECTION::BLOCK::REMOVE':
+    case 'PAGE::SECTION::BLOCK::REMOVE':
+      return update(state, {
+        [action.section.source]: {
+          sectionsContent: {
+            [action.section.key]: {
+              blocks: { $splice: [[findBlockIndex(state, action.section, action.blockId), 1]] }
+            }
+          }
+        }
+      });
+
+
+    case 'SITE::SECTION::BLOCK::UPDATE_INPUT':
+    case 'PAGE::SECTION::BLOCK::UPDATE_INPUT':
+      return update(state, {
+        [action.section.source]: {
+          sectionsContent: {
+            [action.section.key]: {
+              blocks: {
+                [findBlockIndex(state, action.section, action.blockId)]: {
+                  settings: {
+                    [action.id]: { $set: action.newValue }
+                  }
+                }
+              }
+            }
+          }
+        }
+      });
+
+    default:
+      return state;
+  }
+}
+
+export default content;

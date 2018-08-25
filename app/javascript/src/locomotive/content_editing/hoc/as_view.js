@@ -7,8 +7,7 @@ import withEditingSection from './with_editing_section';
 
 export default compose(
   withRedux(state => { return {
-    staticContent:  state.site.sectionsContent,
-    content:        state.page.sectionsDropzoneContent
+    globalContent: state.content
   } }),
   withGlobalVars,
   withRoutes,

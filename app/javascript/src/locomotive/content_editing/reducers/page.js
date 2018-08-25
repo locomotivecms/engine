@@ -11,103 +11,150 @@ function findBlockIndex(sectionIndex, state, action) {
   return findIndex(blocks, block => block.id === action.blockId);
 }
 
-function page(state = [], action) {
-  var sectionIndex = null, blockIndex = null;
+function page(state = {}, action) {
+  // var sectionIndex = null, blockIndex = null;
 
-  switch(action.type) {
+  // switch(action.type) {
 
-    case 'EDITOR::LOAD':
-      return action.page;
+  //   case 'EDITOR::LOAD':
+  //     return action.page;
 
-    // SECTIONS
+  //   // SECTIONS
 
-    case 'SECTION::UPDATE_INPUT':
-      return update(state, {
-        sectionsDropzoneContent: {
-          [findSectionIndex(state, action)]: {
-            settings: {
-              [action.id]: { $set: action.newValue }
-            }
-          }
-        }
-      });
+  //   case 'PAGE::SECTION::UPDATE_INPUT':
+  //     return update(state, {
+  //       sectionsContent: {
+  //         [action.section.key]: {
+  //           settings: {
+  //             [action.id]: { $set: action.newValue }
+  //           }
+  //         }
+  //       }
+  //     });
 
-    case 'SECTION::ADD':
-      return update(state, {
-        sectionsDropzoneContent: { $push: [action.newSection] }
-      });
+  //   case 'PAGE::SECTION::BLOCK::ADD':
+  //     return update(state, {
+  //       sectionsContent: {
+  //         [action.section.key]: {
+  //           blocks: { $push: [action.newBlock] }
+  //         }
+  //       }
+  //     });
 
-    case 'SECTION::MOVE':
-      return update(state, {
-        sectionsDropzoneContent: {
-          $arrayMove: {
-            oldIndex: action.oldIndex,
-            newIndex: action.newIndex
-          }
-        }
-      });
+  //   case 'PAGE::SECTION::BLOCK::MOVE':
+  //     return update(state, {
+  //       sectionsContent: {
+  //         [action.section.key]: {
+  //           blocks: {
+  //             $arrayMove: {
+  //               oldIndex: action.oldIndex,
+  //               newIndex: action.newIndex
+  //             }
+  //           }
+  //         }
+  //       }
+  //     });
 
-    case 'SECTION::REMOVE':
-      return update(state, {
-        sectionsDropzoneContent: {
-          $splice: [[findSectionIndex(state, action), 1]]
-        }
-      });
 
-    // BLOCKS
+  //   // SECTIONS DROPZONE
 
-    case 'SECTION::BLOCK::ADD':
-      return update(state, {
-        sectionsDropzoneContent: {
-          [findSectionIndex(state, action)]: {
-            blocks: { $push: [action.newBlock] }
-          }
-        }
-      });
+  //   // TODO
+  //   case 'SECTION::UPDATE_INPUT':
+  //     return update(state, {
+  //       sectionsDropzoneContent: {
+  //         [findSectionIndex(state, action)]: {
+  //           settings: {
+  //             [action.id]: { $set: action.newValue }
+  //           }
+  //         }
+  //       }
+  //     });
 
-    case 'SECTION::BLOCK::MOVE':
-      return update(state, {
-        sectionsDropzoneContent: {
-          [findSectionIndex(state, action)]: {
-            blocks: {
-              $arrayMove: {
-                oldIndex: action.oldIndex,
-                newIndex: action.newIndex
-              }
-            }
-          }
-        }
-      });
+  //   // TODO
+  //   case 'SECTION::ADD':
+  //     return update(state, {
+  //       sectionsDropzoneContent: { $push: [action.newSection] }
+  //     });
 
-    case 'SECTION::BLOCK::REMOVE':
-      sectionIndex = findSectionIndex(state, action);
-      return update(state, {
-        sectionsDropzoneContent: {
-          [sectionIndex]: {
-            blocks: { $splice: [[findBlockIndex(sectionIndex, state, action), 1]] }
-          }
-        }
-      });
+  //   // TODO
+  //   case 'SECTION::MOVE':
+  //     return update(state, {
+  //       sectionsDropzoneContent: {
+  //         $arrayMove: {
+  //           oldIndex: action.oldIndex,
+  //           newIndex: action.newIndex
+  //         }
+  //       }
+  //     });
 
-    case 'SECTION::BLOCK::UPDATE_INPUT':
-      sectionIndex = findSectionIndex(state, action);
-      return update(state, {
-        sectionsDropzoneContent: {
-          [sectionIndex]: {
-            blocks: {
-              [findBlockIndex(sectionIndex, state, action)]: {
-                settings: {
-                  [action.id]: { $set: action.newValue }
-                }
-              }
-            }
-          }
-        }
-      });
+  //   // TODO
+  //   case 'SECTION::REMOVE':
+  //     return update(state, {
+  //       sectionsDropzoneContent: {
+  //         $splice: [[findSectionIndex(state, action), 1]]
+  //       }
+  //     });
 
-    default:
-      return state;
-  }
+  //   // BLOCKS
+
+  //   // TODO
+  //   case 'SECTION::BLOCK::ADD':
+  //     return update(state, {
+  //       sectionsDropzoneContent: {
+  //         [findSectionIndex(state, action)]: {
+  //           blocks: { $push: [action.newBlock] }
+  //         }
+  //       }
+  //     });
+
+  //   // TODO
+  //   case 'SECTION::BLOCK::MOVE':
+  //     return update(state, {
+  //       sectionsDropzoneContent: {
+  //         [findSectionIndex(state, action)]: {
+  //           blocks: {
+  //             $arrayMove: {
+  //               oldIndex: action.oldIndex,
+  //               newIndex: action.newIndex
+  //             }
+  //           }
+  //         }
+  //       }
+  //     });
+
+  //   // TODO
+  //   case 'SECTION::BLOCK::REMOVE':
+  //     sectionIndex = findSectionIndex(state, action);
+  //     return update(state, {
+  //       sectionsDropzoneContent: {
+  //         [sectionIndex]: {
+  //           blocks: { $splice: [[findBlockIndex(sectionIndex, state, action), 1]] }
+  //         }
+  //       }
+  //     });
+
+  //   // TODO
+  //   case 'SECTION::BLOCK::UPDATE_INPUT':
+  //     sectionIndex = findSectionIndex(state, action);
+  //     return update(state, {
+  //       sectionsDropzoneContent: {
+  //         [sectionIndex]: {
+  //           blocks: {
+  //             [findBlockIndex(sectionIndex, state, action)]: {
+  //               settings: {
+  //                 [action.id]: { $set: action.newValue }
+  //               }
+  //             }
+  //           }
+  //         }
+  //       }
+  //     });
+
+  //   default:
+  //     return state;
+  // }
+
+  return state;
 }
 
 export default page;

@@ -6,6 +6,27 @@ describe Locomotive::PageParsingService do
   let(:home)    { site.pages.root.first }
   let(:service) { described_class.new(site, :en) }
 
+  describe '#find_all_elements' do
+
+    context 'with sections' do
+
+      let(:home_template) { %({% static_section nav, placement: 'top' %}{% section title, id: 'page_title', placement: 'top' %} {% block body %}{% section random_section %}{% endblock %}{% static_section footer, placement: 'bottom' %}) }
+      let(:page_template) { '{% extends parent %}{% block body %}{% sections_dropzone %}{% endblock %}' }
+
+      before { home.update_attributes(raw_template: home_template) }
+
+      let(:page) { create(:sub_page, site: site, parent: home, raw_template: page_template) }
+
+      subject { service.find_all_elements(page)[:sections] }
+
+      it { expect(subject[:top].pluck(:type)).to eq(['nav', 'title']) }
+      it { expect(subject[:bottom].pluck(:type)).to eq(['footer']) }
+      it { expect(subject[:dropzone]).to eq true }
+
+    end
+
+  end
+
   describe '#find_or_create_editable_elements' do
 
     let(:home_template) { 'Test: {% editable_file banner, fixed: true %}banner.png{% endeditable_file %}{% block body %}{% editable_text bottom %}Bla bla{% endeditable_text %}{% endblock %}' }

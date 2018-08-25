@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import { compose } from 'redux';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { compact } from 'lodash';
-import routes from '../routes';
+import routes from '../../routes';
 
 // HOC
-import withRedux from '../hoc/with_redux';
-import withHeader from '../hoc/with_header';
+import withRedux from '../../hoc/with_redux';
+import withHeader from '../../hoc/with_header';
 import { withRouter } from 'react-router';
 
 // Views
-import _Startup from './startup.jsx';
+import _Startup from '../startup';
 
 const Startup = withHeader(_Startup);
 

@@ -1,5 +1,8 @@
 import update from '../utils/immutable_update';
 
+// TODO: SITE::SECTION::UPDATE_INPUT
+// TODO: PAGE::SECTION::UPDATE_INPUT
+
 function editor(state = {}, action) {
   switch(action.type) {
     case 'EDITOR::LOAD':
@@ -8,13 +11,23 @@ function editor(state = {}, action) {
     case 'PERSIST_CHANGES':
       return update(state, { changed: { $set: false } });
 
-    case 'STATIC_SECTION::UPDATE_INPUT':
-    case 'STATIC_SECTION::BLOCK::ADD':
-    case 'STATIC_SECTION::BLOCK::MOVE':
-    case 'STATIC_SECTION::BLOCK::REMOVE':
-    case 'STATIC_SECTION::BLOCK::UPDATE_INPUT':
+    case 'DROPZONE::SECTION::ADD':
+      return update(state, {
+        changed: { $set: true },
+        sections: { all: { [action.newSection.uuid]: { $set: action.newSection } } }
+      });
+
+    case 'SITE::UPDATE_INPUT':
+    case 'SITE::BLOCK::ADD':
+    case 'SITE::BLOCK::MOVE':
+    case 'SITE::BLOCK::REMOVE':
+    case 'SITE::BLOCK::UPDATE_INPUT':
+    case 'PAGE::UPDATE_INPUT':
+    case 'PAGE::BLOCK::ADD':
+    case 'PAGE::BLOCK::MOVE':
+    case 'PAGE::BLOCK::REMOVE':
+    case 'PAGE::BLOCK::UPDATE_INPUT':
     case 'SECTION::UPDATE_INPUT':
-    case 'SECTION::ADD':
     case 'SECTION::MOVE':
     case 'SECTION::REMOVE':
     case 'SECTION::BLOCK::ADD':

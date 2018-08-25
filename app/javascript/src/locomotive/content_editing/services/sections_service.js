@@ -1,4 +1,4 @@
-import { forEach, find, sortBy, pick, cloneDeep } from 'lodash';
+import { forEach, find, findIndex, sortBy, pick, cloneDeep } from 'lodash';
 import { uuid } from '../utils/misc';
 
 const setDefaultValuesTo = (settings, object) => {
@@ -31,6 +31,10 @@ export function buildSection(definitions, sectionType, presetIndex) {
     blocks:   [],
     ...section
   }
+
+  // add attributes for the Editor tool
+  section.uuid    = section.id;
+  section.source  = 'dropzone';
 
   // make sure all the settings are correctly filled
   // in by defaut values for both settings and blocks (if present)
@@ -82,3 +86,23 @@ export function buildCategories(definitions) {
 
   return sortBy(categories, ['name']);
 }
+
+export function fetchSectionContent(globalContent, section) {
+  const { site, page } = globalContent;
+
+  switch (section.source) {
+    case 'site':
+      return site.sectionsContent[section.key];
+    case 'page':
+      return page.sectionsContent[section.key];
+    case 'dropzone':
+      return find(page.sectionsDropzoneContent, s => s.id === section.id)
+  }
+
+  return null;
+}
+
+export function findSectionIndex(sections, section) {
+  return findIndex(sections, _section => _section.id === section.id);
+}
+

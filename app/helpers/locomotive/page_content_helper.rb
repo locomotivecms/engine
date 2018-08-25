@@ -1,43 +1,31 @@
+require 'digest'
+
 module Locomotive
   module PageContentHelper
 
-    def all_static_sections(section_types)
-      section_types.without('_sections_dropzone_')
-    end
+    def sections_content(model, sections, definitions)
+      source  = model.respond_to?(:title) ? :page : :site
+      content = model.sections_content || {}
 
-    def top_static_sections(section_types)
-      if (array = section_types.split('_sections_dropzone_')).size == 1
-        []
-      else
-        array.first
-      end
-    end
+      (sections[:top] + sections[:bottom]).each do |attributes|
+        next if attributes[:source] != source
 
-    def bottom_static_sections(section_types)
-      if (array = section_types.split('_sections_dropzone_')).size == 1
-        []
-      else
-        array.last
-      end
-    end
+        key, type = attributes[:key], attributes[:type]
 
-    def static_sections_content(site, types, definitions)
-      content = site.sections_content || {}
-
-      types.each do |type|
-        next if type == '_sections_dropzone_'
-
-        # no content yet?
-        if content[type].blank?
+        # no content yet? take the default one from the section definition
+        if content[key].blank?
           definition = definitions.find { |definition| definition['type'] == type }
 
-          content[type] = definition['default'] || { 'settings' => {}, 'blocks' => [] }
+          content[key] = definition['default'] || { 'settings' => {}, 'blocks' => [] }
         else
-          content[type]['settings'] ||= {}
-          content[type]['blocks']   ||= []
+          content[key]['settings'] ||= {}
+          content[key]['blocks']   ||= []
         end
 
-        content[type]['blocks'] = content[type]['blocks'].each_with_index.map do |block, index|
+        content[key]['id'] = attributes[:id] # FIXME: attributes[:id] => section domId
+
+        # reset block id
+        content[key]['blocks'] = content[key]['blocks'].each_with_index.map do |block, index|
           block['id'] = index.to_s
           block
         end
@@ -59,19 +47,27 @@ module Locomotive
       end
     end
 
-    # TODO: sections_content
-    # def sections_content(page)
-    #   page.sections_content.each_with_index.map do |section, index|
-    #     section['id'] = index.to_s
+    def sections_by_id(sections, page)
+      {}.tap do |ids|
+        (sections[:top] + sections[:bottom]).each do |attributes|
+          attributes[:uuid] = Digest::MD5.hexdigest(attributes[:id])
 
-    #     section['blocks'] = section['blocks'].each_with_index.map do |block, _index|
-    #       block['id'] = _index.to_s
-    #       block
-    #     end
+          ids[attributes[:uuid]] = attributes
+        end
 
-    #     section
-    #   end
-    # end
+        page.sections_dropzone_content.each_with_index do |section, index|
+          id    = "dropzone-#{index}"
+          uuid  = Digest::MD5.hexdigest(id)
+
+          ids[uuid] = {
+            id:     uuid,
+            key:    index,
+            type:   section['type'],
+            source: 'dropzone'
+          }
+        end
+      end
+    end
 
   end
 end

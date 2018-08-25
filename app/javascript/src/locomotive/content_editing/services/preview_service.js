@@ -22,29 +22,49 @@ const scrollTo = (_window, $elem) => {
   }, 400);
 }
 
-const popSection = (_window, action, sectionId) => {
+const pokeSection = (_window, action, sectionId, blockId) => {
   return new Promise(resolve => {
-    const $elem = $(_window.document).find(`#locomotive-section-${sectionId}`);
+    var $elem, eventName, eventData;
+
+    if (blockId) {
+      const value = `section-${sectionId}-block-${blockId}`;
+
+      $elem     = $(_window.document).find(`[data-locomotive-block='${value}']`);
+      eventName = `block::${action}`;
+      eventData = { sectionId, blockId };
+    } else {
+      $elem = $(_window.document).find(`#locomotive-section-${sectionId}`);
+      eventName = `section::${action}`;
+      eventData = { sectionId };
+    }
 
     if (action === 'select') scrollTo(_window, $elem);
 
-    sendEvent($elem[0], `section::${action}`, { sectionId });
+    sendEvent($elem[0], eventName, eventData);
+
     resolve(true);
+
+    // const $elem = $(_window.document).find(`#locomotive-section-${sectionId}`);
+
+    // if (action === 'select') scrollTo(_window, $elem);
+
+    // sendEvent($elem[0], `section::${action}`, { sectionId });
+    // resolve(true);
   });
 }
 
-const popBlock = (_window, action, sectionId, blockId) => {
-  return new Promise(resolve => {
-    const value = `section-${sectionId}-block-${blockId}`;
-    const $elem = $(_window.document).find(`[data-locomotive-block='${value}']`);
+// const popBlock = (_window, action, sectionId, blockId) => {
+//   return new Promise(resolve => {
+//     const value = `section-${sectionId}-block-${blockId}`;
+//     const $elem = $(_window.document).find(`[data-locomotive-block='${value}']`);
 
-    if (action === 'select') scrollTo(_window, $elem);
+//     if (action === 'select') scrollTo(_window, $elem);
 
-    sendEvent($elem[0], `block::${action}`, { sectionId, blockId });
+//     sendEvent($elem[0], `block::${action}`, { sectionId, blockId });
 
-    resolve(true);
-  });
-}
+//     resolve(true);
+//   });
+// }
 
 // General
 
@@ -71,24 +91,25 @@ export function prepareIframe(_window) {
 
 // Actions
 
-export function updateSection(_window, sectionId, html) {
+export function updateSection(_window, section, html) {
   return new Promise(resolve => {
-    const $elem = $(_window.document).find(`#locomotive-section-${sectionId}`);
+    const $elem = $(_window.document).find(`#locomotive-section-${section.id}`);
 
-    sendEvent($elem[0], 'section::unload', { sectionId });
-    $elem.html(html);
-    sendEvent($elem[0], 'section::load', { sectionId });
+    sendEvent($elem[0], 'section::unload', { sectionId: section.id });
+    $elem.replaceWith(html);
+    sendEvent($elem[0], 'section::load', { sectionId: section.id });
 
     resolve(true);
   });
 }
 
 // Refresh the HTML of any text input elements, no matter if it belongs to a section
-export function updateSectionText(_window, sectionType, sectionId, blockId, settingId, value) {
+export function updateSectionText(_window, section, blockId, settingId, value) {
   return new Promise(resolve => {
-    var dataValue = 'section-';
+    var dataValue = `section-${section.id}`;
 
-    dataValue += sectionId ? sectionId : sectionType;
+    // var dataValue = `${section.source}-section-${section.section_id}`;
+    // dataValue += sectionId ? sectionId : sectionType;
 
     if (blockId)
       dataValue = `${dataValue}-block.${blockId}.${settingId}`;
@@ -105,60 +126,62 @@ export function updateSectionText(_window, sectionType, sectionId, blockId, sett
 
 // Append a new section to the dropzone container. If another previewed section
 // exists, it will be removed first.
-export function previewSection(_window, html, sectionId, previousSectionId) {
+export function previewSection(_window, html, section, previousSection) {
   return new Promise(resolve => {
-    // remove the previous previewed section
-    const $previous = $(_window.document).find(`#locomotive-section-${previousSectionId}`);
-    sendEvent($previous[0], 'section::unload', { sectionId: previousSectionId });
-    $previous.remove();
+    // remove the previous previewed section (if existing)
+    if (previousSection) {
+      const $previous = $(_window.document).find(`#locomotive-section-${previousSection.id}`);
+      sendEvent($previous[0], 'section::unload', { sectionId: previousSection.id });
+      $previous.remove();
+    }
 
     // append the new one
     const $elem = $(html);
     $(_window.document).find('.locomotive-sections').append($elem)
-    sendEvent($elem[0], 'section::load', { sectionId });
+    sendEvent($elem[0], 'section::load', { sectionId: section.id });
 
     resolve(true);
   });
 }
 
-export function moveSection(_window, sectionId, targetSectionId, direction) {
+export function moveSection(_window, section, targetSection, direction) {
   return new Promise(resolve => {
-    const $elem  = $(_window.document).find(`#locomotive-section-${sectionId}`);
-    const $pivot = $(_window.document).find(`#locomotive-section-${targetSectionId}`);
+    const $elem  = $(_window.document).find(`#locomotive-section-${section.id}`);
+    const $pivot = $(_window.document).find(`#locomotive-section-${targetSection.id}`);
 
     if (direction === 'before')
       $elem.insertBefore($pivot);
     else
       $elem.insertAfter($pivot);
 
-    sendEvent($elem[0], 'section::reorder', { sectionId });
+    sendEvent($elem[0], 'section::reorder', { sectionId: section.id });
 
     resolve(true);
   });
 }
 
-export function removeSection(_window, sectionId) {
+export function removeSection(_window, section) {
   return new Promise(resolve => {
-    const $elem = $(_window.document).find(`#locomotive-section-${sectionId}`);
-    sendEvent($elem[0], 'section::unload', { sectionId });
+    const $elem = $(_window.document).find(`#locomotive-section-${section.id}`);
+    sendEvent($elem[0], 'section::unload', { sectionId: section.id });
     $elem.remove();
 
     resolve(true);
   });
 }
 
-export function selectSection(_window, sectionId) {
-  return popSection(_window, 'select', sectionId);
+export function selectSection(_window, section, blockId) {
+  return pokeSection(_window, 'select', section.id, blockId);
 }
 
-export function deselectSection(_window, sectionId) {
-  return popSection(_window, 'deselect', sectionId);
+export function deselectSection(_window, section, blockId) {
+  return pokeSection(_window, 'deselect', section.id, blockId);
 }
 
-export function selectSectionBlock(_window, sectionId, blockId) {
-  return popBlock(_window, 'select', sectionId, blockId);
-}
+// export function selectSectionBlock(_window, section, blockId) {
+//   return pokeSection(_window, 'select', section.id, blockId);
+// }
 
-export function deselectSectionBlock(_window, sectionId, blockId) {
-  return popBlock(_window, 'select', sectionId, blockId);
-}
+// export function deselectSectionBlock(_window, section, blockId) {
+//   return pokeSection(_window, 'select', section.id, blockId);
+// }

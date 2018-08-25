@@ -1,41 +1,38 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { find, pick, bindAll } from 'lodash';
+import { fetchSectionContent } from '../services/sections_service';
+import { fetchBlockContent } from '../services/blocks_service';
 
 const withEditingSection = Component => {
 
   // Enhance the props
-  const fetchSectionContent = (props, content, staticContent) => {
-    const { sectionType, sectionId } = props;
-    return sectionId ? find(content, s => s.id === sectionId) : staticContent[sectionType];
-  }
-
-  const fetchBlockContent = props => {
-    const { sectionContent, blockId } = props;
-    return blockId ? find(sectionContent.blocks, b => b.id === blockId) : null;
-  }
-
   const buildNewProps = props => {
     var newProps = pick(props.match.params, [
-      'sectionType', 'sectionId', 'blockType', 'blockId', 'settingType', 'settingId'
+      'sectionId', 'blockType', 'blockId', 'settingType', 'settingId'
     ]);
 
-    // find definitions (section and block)
-    newProps.sectionDefinition  = props.findSectionDefinition(newProps.sectionType);
-    newProps.blockDefinition    = props.findBlockDefinition(
-      newProps.sectionDefinition,
-      newProps.blockType
-    )
+    // 1. find the section
+    newProps.section            = props.sections.all[newProps.sectionId];
 
-    // find content
-    newProps.sectionContent = fetchSectionContent(newProps, props.content, props.staticContent);
-    newProps.blockContent   = fetchBlockContent(newProps);
+    if (newProps.section) {
+      // 2. find the section definition and the content of the section
+      newProps.sectionDefinition  = props.findSectionDefinition(newProps.section.type);
+      newProps.sectionContent     = fetchSectionContent(props.globalContent, newProps.section);
+
+      // 3. (if possible) find the block definition and the content of the block
+      newProps.blockDefinition    = props.findBlockDefinition(
+        newProps.sectionDefinition,
+        newProps.blockType
+      )
+      newProps.blockContent       = fetchBlockContent(newProps.sectionContent, newProps.blockId);
+    }
 
     return Object.assign({}, props, newProps);
   }
 
   // Helpers
-  const isEditingSection  = props => (props.sectionId || props.sectionType) && props.sectionContent
+  const isEditingSection  = props => props.sectionId && props.sectionContent
   const isEditingBlock    = props => props.blockId && props.blockContent
   const isEditingSetting  = props => props.settingType && props.settingId
   const isEditing         = props => isEditingSection(props) || isEditingBlock(props)
@@ -48,34 +45,36 @@ const withEditingSection = Component => {
   }
 
   // Notifications
-  const notifySectionOnEnter = props => {
-    props.selectSection(props.sectionType, props.sectionId);
-  }
+  // const notifySectionOnEnter = props => {
+  //   props.selectSection(props.section);
+  // }
 
-  const notifyBlockOnEnter = props => {
-    props.selectSectionBlock(props.sectionType, props.sectionId, props.blockType, props.blockId);
-  }
+  // const notifyBlockOnEnter = props => {
+  //   props.selectSectionBlock(props.section, props.blockType, props.blockId);
+  // }
 
-  const notifySectionOnLeave = props => {
-    props.deselectSection(props.sectionType, props.sectionId);
-  }
+  // const notifySectionOnLeave = props => {
+  //   props.deselectSection(props.section);
+  // }
 
-  const notifyBlockOnLeave = props => {
-    props.deselectSectionBlock(props.sectionType, props.sectionId, props.blockType, props.blockId);
-  }
+  // const notifyBlockOnLeave = props => {
+  //   props.deselectSectionBlock(props.section, props.blockType, props.blockId);
+  // }
 
   const notifyOnEnter = props => {
-    switch(editingType(props)) {
-      case 'section': notifySectionOnEnter(props); break;
-      case 'block':   notifyBlockOnEnter(props); break;
-    }
+    props.selectSection(props.section, props.blockId);
+    // switch(editingType(props)) {
+    //   case 'section': notifySectionOnEnter(props); break;
+    //   case 'block':   notifyBlockOnEnter(props); break;
+    // }
   }
 
   const notifyOnLeave = props => {
-    switch(editingType(props)) {
-      case 'section': notifySectionOnLeave(props); break;
-      case 'block':   notifyBlockOnLeave(props); break;
-    }
+    props.deselectSection(props.section, props.blockId);
+    // switch(editingType(props)) {
+    //   case 'section': notifySectionOnLeave(props); break;
+    //   case 'block':   notifyBlockOnLeave(props); break;
+    // }
   }
 
   // Path helper
@@ -86,22 +85,26 @@ const withEditingSection = Component => {
         return props.sectionsPath();
       case 'section_setting':
       case 'block':
-        return props.editSectionPath(props.sectionType, props.sectionId);
+        return props.editSectionPath(props.section);
       case 'block_setting':
-        return props.editBlockPath(props.sectionType, props.sectionId, props.blockType, props.blockId);
+        return props.editBlockPath(props.section, props.blockType, props.blockId);
     }
   }
 
   // Callbacks
 
   const handleChange = (props, settingType, settingId, newValue) => {
-    const { sectionType, sectionId, blockId, updateSectionInput, updateSectionBlockInput } = props;
+    const { section, blockId, updateSectionInput } = props;
 
-    const updateInput = isEditingBlock(props) ?
-      updateSectionBlockInput.bind(null, sectionType, sectionId, blockId) :
-      updateSectionInput.bind(null, sectionType, sectionId);
+    updateSectionInput(section, blockId, settingType, settingId, newValue);
 
-    updateInput(settingType, settingId, newValue);
+    // const { section, blockId, updateSectionInput, updateSectionBlockInput } = props;
+
+    // const updateInput = isEditingBlock(props) ?
+    //   updateSectionBlockInput.bind(null, section, blockId) :
+    //   updateSectionInput.bind(null, section);
+
+    // updateInput(settingType, settingId, newValue);
   }
 
   class WrappedComponent extends React.Component {

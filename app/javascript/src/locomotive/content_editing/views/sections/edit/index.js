@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
-import { isBlank } from '../../utils/misc';
+import { isBlank } from '../../../utils/misc';
 import { bindAll } from 'lodash';
 
 // HOC
-import asView from '../../hoc/as_view';
+import asView from '../../../hoc/as_view';
 
 // Services
-import { build as buildBlock } from '../../services/blocks_service';
+import { build as buildBlock } from '../../../services/blocks_service';
 
 // Components
-import Input from '../../inputs/base.jsx';
-import BlockList from './edit/block_list.jsx';
-import NewBlockPicker from './edit/new_block_picker.jsx';
+import Input from '../../../inputs/base.jsx';
+import BlockList from './block_list.jsx';
+import NewBlockPicker from './new_block_picker.jsx';
 
 class Edit extends Component {
 
@@ -23,8 +23,7 @@ class Edit extends Component {
   // Called when an editor adds a new block
   addBlock(blockType) {
     this.props.addSectionBlock(
-      this.props.sectionType,
-      this.props.sectionId,
+      this.props.section,
       buildBlock(
         this.props.sectionDefinition,
         blockType || this.props.sectionDefinition.blocks[0].type
@@ -35,8 +34,7 @@ class Edit extends Component {
   // Called when an editor changes the block order
   moveBlock({ oldIndex, newIndex }) {
     this.props.moveSectionBlock(
-      this.props.sectionType,
-      this.props.sectionId,
+      this.props.section,
       oldIndex,
       newIndex
     )
@@ -87,6 +85,7 @@ class Edit extends Component {
 
           </div>
         )}
+
       </div>
     )
   }
