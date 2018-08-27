@@ -9,23 +9,47 @@
 .editor-section {
   display: flex;
   align-items: center;
-  border: solid 1px #e3e4e7;
+  justify-content: center;
   border-radius: 3px;
-  padding: 1rem 1.2rem;
   margin: 1rem 0rem;
-  background: #fff;
+  background: #f7f7f7;
+  box-shadow: 0 0 0 1px rgba(63, 63, 68, 0.05), 0 1px 3px 0 rgba(63, 63, 68, 0.15);
 
-  &--label {
-    text-transform: uppercase;
-    color: #4a4a4a;
+  &--icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    background: #D7D7D7;
+    width: 4rem;
+    height: 4rem;
   }
 
-  &--drag-handle {
-    margin-right: 1rem;
+  &--label {
+    margin-left: 2rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #555;
   }
 
   &--actions {
     margin-left: auto;
+    margin-right: 2rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  &--drag-handle {
+    margin-left: 1rem;
+    cursor: move;
+
+    i {
+      position: relative;
+      top: 2px;
+      font-size: 1.8rem;
+    }
   }
 }
 
@@ -41,6 +65,4 @@
 }
 
 .editor-dropzone-section {
-  background: #F0F7FF;
 }
-

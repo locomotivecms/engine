@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "webpack --mode development --watch",
     "build": "webpack --mode production",
+    "build:svg": "svgr -d ./src/locomotive/svg/generated ./src/locomotive/svg",
     "test": "jest",
     "test:watch": "npm test -- --watch"
   },
@@ -15,6 +16,7 @@
   "author": "Didier Lafforgue",
   "license": "MIT",
   "devDependencies": {
+    "@svgr/cli": "^2.2.0",
     "babel-core": "^6.26.3",
     "babel-jest": "^23.0.1",
     "babel-loader": "^7.1.4",

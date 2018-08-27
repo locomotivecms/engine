@@ -6,7 +6,9 @@ import { bindAll } from 'lodash';
 // Components
 import Section from './section';
 
-const DragHandle      = SortableHandle(() => <span className="editor-section--drag-handle">::</span>);
+const DragHandle      = SortableHandle(() => (
+  <div className="editor-section--drag-handle"><i className="fa fa-bars"></i></div>
+));
 const SortableSection = SortableElement(Section);
 const SortableList    = SortableContainer(({ list, removeSection, ...props }) => {
   return (
