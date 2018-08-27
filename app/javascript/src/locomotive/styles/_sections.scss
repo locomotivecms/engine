@@ -1,13 +1,46 @@
+.editor-all-sections {
+  padding: 2rem;
+}
+
+.editor-section-list {
+  margin-bottom: 4rem;
+}
+
 .editor-section {
   display: flex;
   align-items: center;
-  margin: 2rem 0;
+  border: solid 1px #e3e4e7;
+  border-radius: 3px;
+  padding: 1rem 1.2rem;
+  margin: 1rem 0rem;
+  background: #fff;
+
+  &--label {
+    text-transform: uppercase;
+    color: #4a4a4a;
+  }
+
+  &--drag-handle {
+    margin-right: 1rem;
+  }
+
+  &--actions {
+    margin-left: auto;
+  }
 }
 
-.editor-section-label {
-  margin-left: 1rem;
+.editor-section-add {
+  border-radius: 3px;
+  padding: 1rem 1.2rem;
+  border: dashed 1px #e3e4e7;
+
+  &--button {
+    text-transform: uppercase;
+  }
+
 }
 
-.editor-section-actions {
-  margin-left: auto;
+.editor-dropzone-section {
+  background: #F0F7FF;
 }
+

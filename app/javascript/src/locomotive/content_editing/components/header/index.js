@@ -3,12 +3,12 @@ import { compose } from 'redux';
 import { Link } from 'react-router-dom';
 
 // HOC
-import withRoutes from '../hoc/with_routes';
-import withGlobalVars from '../hoc/with_global_vars';
-import withRedux from '../hoc/with_redux';
+import withRoutes from '../../hoc/with_routes';
+import withGlobalVars from '../../hoc/with_global_vars';
+import withRedux from '../../hoc/with_redux';
 
 // Components
-import SaveButton from './save_button.jsx';
+import SaveButton from './save_button';
 
 const Header = (props) => (
   <div className="row header-row">

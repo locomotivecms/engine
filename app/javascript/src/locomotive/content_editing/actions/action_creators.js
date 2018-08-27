@@ -8,15 +8,17 @@ export * from './dropzone_actions';
 // GLOBAL
 
 export function persistChanges(result, data) {
-  const { i18n } = window.Locomotive;
-  if (result)
-    Locomotive.notify(i18n.success, 'success')
-  else
-    Locomotive.notify(i18n.fail, 'danger')
+  // TODO: call the api
+
+  // const { i18n } = window.Locomotive;
+  // if (result)
+  //   Locomotive.notify(i18n.success, 'success')
+  // else
+  //   Locomotive.notify(i18n.fail, 'danger')
 
   return {
     type: 'PERSIST_CHANGES',
-    success: result
+    success: null //result
   }
 }
 
@@ -37,8 +39,9 @@ function loadEditor(data, urls) {
   }
 }
 
-export function reloadEditor(api, pageId, contentEntryId, locale) {
-  return dispatch => {
+export function reloadEditor(pageId, contentEntryId, locale) {
+  return (dispatch, getState) => {
+    const { editor: { api } } = getState();
     const now = new Date().getMilliseconds();
 
     // Display the startup screen
@@ -66,87 +69,3 @@ export function onIframeOperationsDone() {
     type:         'IFRAME::DONE'
   }
 }
-
-// SECTION (COMMON TO PAGE, SITE AND DROPZONE)
-
-// export function updateSectionInput(section, fieldType, id, newValue) {
-//   return {
-//     type:         actionName('SECTION::UPDATE_INPUT', section),
-//     section,
-//     fieldType,
-//     id,
-//     newValue
-//   }
-// }
-
-// export function selectSection(section) {
-//   return {
-//     type:         'SECTION::SELECT',
-//     section
-//   }
-// }
-
-// export function deselectSection(section) {
-//   return {
-//     type:         'SECTION::DESELECT',
-//     section
-//   }
-// }
-
-// SECTION BLOCKS
-
-// export function updateSectionBlockInput(section, blockId, fieldType, id, newValue) {
-//   return {
-//     type:         actionName('SECTION::BLOCK::UPDATE_INPUT', section),
-//     section,
-//     blockId,
-//     fieldType,
-//     id,
-//     newValue
-//   }
-// }
-
-// export function addSectionBlock(section, newBlock) {
-//   return {
-//     type:         actionName('SECTION::BLOCK::ADD', section),
-//     section,
-//     newBlock
-//   }
-// }
-
-// export function moveSectionBlock(section, oldIndex, newIndex) {
-//   return {
-//     type:         actionName('SECTION::BLOCK::MOVE', section),
-//     section,
-//     oldIndex,
-//     newIndex
-//   }
-// }
-
-// export function removeSectionBlock(section, blockId) {
-//   return {
-//     type:         actionName('SECTION::BLOCK::REMOVE', section),
-//     section,
-//     blockId
-//   }
-// }
-
-// // TODO
-// export function selectSectionBlock(section, blockType, blockId) {
-//   return {
-//     type:         'SECTION::BLOCK::SELECT',
-//     section,
-//     blockType,
-//     blockId
-//   }
-// }
-
-// // TODO
-// export function deselectSectionBlock(section, blockType, blockId) {
-//   return {
-//     type:         'SECTION::BLOCK::DESELECT',
-//     section,
-//     blockType,
-//     blockId
-//   }
-// }

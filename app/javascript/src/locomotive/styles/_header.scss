@@ -1,0 +1,32 @@
+.editor-header {
+  display: flex;
+  padding: 3rem 2rem;
+  align-items: center;
+  justify-content: space-between;
+  background: #232528;
+
+
+  .navinfo {
+
+    &--path {
+      color: #adb1b7;
+      font-size: 1.4rem;
+    }
+
+    &--title {
+      font-size: 1.7rem;
+      font-weight: bold;
+      color: #f9f9fa;
+    }
+
+  }
+
+  &--savebtn {
+
+    .btn {
+      padding: 0.8rem 2rem;
+    }
+
+  }
+
+}

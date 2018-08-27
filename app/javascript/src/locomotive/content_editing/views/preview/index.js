@@ -1,24 +1,24 @@
 import React, { Component } from 'react';
-import { find } from 'lodash';
 import { waitUntil, getMetaContentFromIframe } from '../../utils/misc';
-// import { fetchSectionContent } from '../../services/sections_service';
+import { bindAll } from 'lodash';
+import classnames from 'classnames';
 
 // HOC
 import withRedux from '../../hoc/with_redux';
 
+// Components
+import ActionBar from './action_bar';
+
 // Services
-import {
-  prepareIframe,
-//   updateSection, updateSectionText,
-//   previewSection, addSection, moveSection, removeSection,
-//   selectSection, deselectSection, selectSectionBlock, deselectSectionBlock
-} from '../../services/preview_service';
+import { prepareIframe } from '../../services/preview_service';
 
 class Preview extends React.Component {
 
   constructor(props) {
     super(props);
     this.createdAt = new Date().getMilliseconds();
+    bindAll(this, 'changeScreensize');
+    this.state = { screensize: 'desktop' };
   }
 
   componentDidMount() {
@@ -37,7 +37,6 @@ class Preview extends React.Component {
       } else {
         // the user clicks on a link in the iframe.
         this.props.reloadEditor(
-          this.props.api,
           getMetaContentFromIframe(this.iframe, 'locomotive-page-id'),
           getMetaContentFromIframe(this.iframe, 'locomotive-content-entry-id'),
           getMetaContentFromIframe(this.iframe, 'locomotive-locale')
@@ -46,72 +45,30 @@ class Preview extends React.Component {
     }
   }
 
-  // componentDidUpdate(prevProps, prevState, snapshot) {
-  //   this.refreshPreview(this.props.iframeState.refreshAction)
-  //   .then(done => {
-  //     if (done) this.props.onIframeOperationsDone();
-  //   });
-  // }
-
-  // refreshPreview(action) {
-  //   const _window = this.iframe.contentWindow;
-  //   const { globalContent, api, iframeState } = this.props;
-  //   const { section, blockId, previousSection } = iframeState;
-
-  //   switch (action) {
-  //     // case 'refreshSection':
-  //     //   const sectionContent = fetchSectionContent(globalContent, section);
-  //     //   return api.loadSectionHTML(section, sectionContent)
-  //     //     .then(html => {
-  //     //       updateSection(_window, section, html);
-  //     //       selectSectionBlock(_window, section, blockId);
-  //     //     });
-
-  //     // case 'updateInput':
-  //     //   const { fieldId, fieldValue } = iframeState;
-  //     //   return updateSectionText(_window, section, blockId, fieldId, fieldValue);
-
-  //     // case 'previewSection':
-  //     //   return api.loadSectionHTML(section, section)
-  //     //     .then(html => {
-  //     //       previewSection(_window, html, section, previousSection);
-  //     //       selectSection(_window, section);
-  //     //     });
-
-  //     // case 'moveSection':
-  //     //   const { targetSection, direction } = this.props.iframeState;
-  //     //   return moveSection(_window, section, targetSection, direction);
-
-  //     // case 'removeSection':
-  //     //   return removeSection(_window, section);
-
-  //     // case 'selectSection':
-  //     //   return selectSection(_window, section);
-
-  //     // case 'deselectSection':
-  //     //   return deselectSection(_window, section);
-
-  //     // case 'selectSectionBlock':
-  //     //   return selectSectionBlock(_window, section, blockId);
-
-  //     // case 'deselectSectionBlock':
-  //     //   return deselectSectionBlock(_window, section, blockId);
-
-  //     default:
-  //       return new Promise(resolve => { resolve() });
-  //   }
-  // }
+  changeScreensize(screensize) {
+    this.setState({ screensize });
+  }
 
   render() {
     return (
       <div className="content-preview preview">
-        <div className="scrollable">
-          <div className="embed-responsive embed-page">
-            <iframe
-              className="embed-responsive-item"
-              src={this.props.src}
-              ref={el => this.iframe = el}>
-            </iframe>
+        <div className={classnames('preview-inner', this.state.screensize)}>
+          <ActionBar
+            changeScreensize={this.changeScreensize}
+            currentScreensize={this.state.screensize}
+            {...this.props}
+          />
+
+          <div className="preview-iframe">
+            <div className="scrollable">
+              <div className="embed-responsive embed-page">
+                <iframe
+                  className="embed-responsive-item"
+                  src={this.props.src}
+                  ref={el => this.iframe = el}>
+                </iframe>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -121,13 +78,7 @@ class Preview extends React.Component {
 }
 
 export default withRedux(state => ({
-  // staticContent:      state.site.sectionsContent,
-  // content:            state.page.sectionsContent,
-  // dropzoneContent:    state.page.sectionsDropzoneContent,
-  // site:               state.site,
-  // page:               state.page,
-  // globalContent:      state.content,
   iframeState:        state.iframe,
-  // api:                state.editor.api,
-  changed:            state.editor.changed
+  changed:            state.editor.changed,
+  previewPath:        state.editor.urls.preview
 }))(Preview);

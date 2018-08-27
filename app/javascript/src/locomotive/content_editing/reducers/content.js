@@ -5,11 +5,17 @@ import { findBlockIndex, findDropzoneBlockIndex } from '../services/blocks_servi
 function content(state = {}, action) {
   switch (action.type) {
 
+    // EDITOR
+    case 'EDITOR::LOAD':
+      return update(state, {
+        page: { $set: action.content.page }
+      });
+
     // SECTIONS DROPZONE
 
     case 'DROPZONE::SECTION::ADD':
       return update(state, {
-        'page': {
+        page: {
           sectionsDropzoneContent: { $push: [action.newSection] }
         }
       });

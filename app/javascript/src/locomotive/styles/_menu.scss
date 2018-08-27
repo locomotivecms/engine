@@ -1,0 +1,16 @@
+.editor-menu {
+
+  .nav-tabs {
+    display: flex;
+  }
+
+  .nav-tab {
+    flex-grow: 1;
+    text-align: center;
+
+    a {
+      margin-right: 0;
+    }
+  }
+
+}

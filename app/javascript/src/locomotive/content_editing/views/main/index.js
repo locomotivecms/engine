@@ -6,13 +6,14 @@ import routes from '../../routes';
 
 // HOC
 import withRedux from '../../hoc/with_redux';
-import withHeader from '../../hoc/with_header';
 import { withRouter } from 'react-router';
 
-// Views
-import _Startup from '../startup';
+// Components
+import Header from './header';
+import Menu from './menu';
 
-const Startup = withHeader(_Startup);
+// Views
+import Startup from '../startup';
 
 class Main extends Component {
 
@@ -29,34 +30,36 @@ class Main extends Component {
 
   render() {
     const { pageId, iframe } = this.props;
+
     return (
       <div className="actionbar">
-        <div className="actionbar-trigger" onClick={this.togglePreview}>
-          <i className="fa fa-chevron-left"></i>
-        </div>
-        <div className="content">
-            <div className="container-fluid main" role="main">
-              {!iframe.loaded && <Startup />}
+        <Header />
 
-              {iframe.loaded && (
-               <Switch>
-                  <Route exact path={`/${pageId}/content/edit/`} render={() => (
-                    <Redirect to={`/${pageId}/content/edit/sections`} />
-                  )} />
+        <Menu />
 
-                  {routes.map(route => (
-                    <Route
-                      key={route.path}
-                      exact={route.exact === true}
-                      path={route.path}
-                      component={route.component}
-                    />
-                  ))}
+        <div className="actionbar-content">
+          <div className="scrollable">
+            {!iframe.loaded && <Startup />}
 
-                  <Route render={() => <Redirect to={`/${pageId}/content/edit/sections`} />} />
-                </Switch>
-              )}
-            </div>
+            {iframe.loaded && (
+             <Switch>
+                <Route exact path={`/${pageId}/content/edit/`} render={() => (
+                  <Redirect to={`/${pageId}/content/edit/sections`} />
+                )} />
+
+                {routes.map(route => (
+                  <Route
+                    key={route.path}
+                    exact={route.exact === true}
+                    path={route.path}
+                    component={route.component}
+                  />
+                ))}
+
+                <Route render={() => <Redirect to={`/${pageId}/content/edit/sections`} />} />
+              </Switch>
+            )}
+          </div>
         </div>
       </div>
     )
@@ -70,7 +73,6 @@ export default compose(
   withRedux(state => ({
     pageId:         state.page.id,
     contentEntryId: state.page.contentEntryId,
-    api:            state.editor.api,
     iframe:         state.iframe
   }))
 )(Main);

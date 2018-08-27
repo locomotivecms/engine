@@ -5,6 +5,7 @@ json.data do
 
   json.page do
     json.(@page, :id, :title)
+    json.fullpath nice_preview_page_path(@page)
     json.contentEntryId @page.content_entry&.id
     json.sectionsContent sections_content(@page, @sections, @section_definitions)
     json.sectionsDropzoneContent sections_dropzone_content(@page)

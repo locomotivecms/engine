@@ -1,4 +1,11 @@
 @import "~react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+
+@import "./styles/variables";
+
+@import "./styles/header";
+@import "./styles/menu";
+@import "./styles/preview";
+
 @import "./styles/popover";
 @import "./styles/sections";
 @import "./styles/blocks";
@@ -6,6 +13,28 @@
 @import "./styles/image_picker";
 @import "./styles/url_picker";
 
-#editor-app .container-fluid {
+#editor-app, #editor-app .container-fluid {
   height: 100%;
+
+  .actionbar {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .actionbar-content {
+    flex-grow: 1;
+    position: relative;
+  }
+
+  .actionbar .scrollable {
+    margin-top: 0;
+  }
 }
+
+.editor-startup {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+

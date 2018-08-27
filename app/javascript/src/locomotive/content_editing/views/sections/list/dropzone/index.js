@@ -6,7 +6,7 @@ import { bindAll } from 'lodash';
 // Components
 import Section from './section';
 
-const DragHandle      = SortableHandle(() => <span>::</span>);
+const DragHandle      = SortableHandle(() => <span className="editor-section--drag-handle">::</span>);
 const SortableSection = SortableElement(Section);
 const SortableList    = SortableContainer(({ list, removeSection, ...props }) => {
   return (
@@ -52,14 +52,8 @@ export class Dropzone extends Component {
           {...this.props}
         />
 
-        {this.props.list.length === 0 && (
-          <div className="editor-section-none text-center">
-            No section
-          </div>
-        )}
-
-        <div className="editor-section-add-section text-center">
-          <Link to={this.props.newSectionPath()}>Add section</Link>
+        <div className="editor-section-add text-center">
+          <Link to={this.props.newSectionPath()} className="editor-section-add--button">+ add section</Link>
         </div>
       </div>
     )

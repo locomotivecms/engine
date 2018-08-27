@@ -43,28 +43,8 @@ const pokeSection = (_window, action, sectionId, blockId) => {
     sendEvent($elem[0], eventName, eventData);
 
     resolve(true);
-
-    // const $elem = $(_window.document).find(`#locomotive-section-${sectionId}`);
-
-    // if (action === 'select') scrollTo(_window, $elem);
-
-    // sendEvent($elem[0], `section::${action}`, { sectionId });
-    // resolve(true);
   });
 }
-
-// const popBlock = (_window, action, sectionId, blockId) => {
-//   return new Promise(resolve => {
-//     const value = `section-${sectionId}-block-${blockId}`;
-//     const $elem = $(_window.document).find(`[data-locomotive-block='${value}']`);
-
-//     if (action === 'select') scrollTo(_window, $elem);
-
-//     sendEvent($elem[0], `block::${action}`, { sectionId, blockId });
-
-//     resolve(true);
-//   });
-// }
 
 // General
 
@@ -177,11 +157,3 @@ export function selectSection(_window, section, blockId) {
 export function deselectSection(_window, section, blockId) {
   return pokeSection(_window, 'deselect', section.id, blockId);
 }
-
-// export function selectSectionBlock(_window, section, blockId) {
-//   return pokeSection(_window, 'select', section.id, blockId);
-// }
-
-// export function deselectSectionBlock(_window, section, blockId) {
-//   return pokeSection(_window, 'select', section.id, blockId);
-// }

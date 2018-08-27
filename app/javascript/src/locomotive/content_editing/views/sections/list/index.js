@@ -10,24 +10,6 @@ import withGlobalVars from '../../../hoc/with_global_vars';
 import SimpleList from './simple';
 import Dropzone from './dropzone';
 
-// const Index = ({ sections, ...props }) => (
-//   <div className="editor-all-sections">
-//     {!sections.dropzone && <StaticList list={sections.all} />}
-
-//     {sections.dropzone && (
-//       <div>
-//         {sections.top.length > 0 && <StaticList list={sections.top} />}
-
-//         <List />
-
-//         {sections.bottom.length > 0 && <StaticList list={sections.bottom} />}
-//       </div>
-//     )}
-//   </div>
-// )
-
-// {!sections.dropzone && <List list={sections.all} {...props} />}
-
 const Index = ({ sections, dropzoneContent, ...props }) => (
   <div className="editor-all-sections">
     {sections.top.length > 0 && <SimpleList list={sections.top} {...props} />}

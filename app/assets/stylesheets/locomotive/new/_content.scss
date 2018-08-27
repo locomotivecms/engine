@@ -44,7 +44,7 @@
   top: 0;
   right: 0;
   bottom: 0;
-  left: 500px;
+  left: $actionbar-width;
   z-index: 90;
   transition: left $base-transition-speed linear;
 }

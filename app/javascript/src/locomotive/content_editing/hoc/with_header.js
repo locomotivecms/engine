@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Components
-import Header from '../components/header.jsx';
+import Header from '../components/header';
 
 export default Component => {
 

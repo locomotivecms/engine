@@ -6,10 +6,10 @@ const Section = props => {
 
   return (
     <div className="editor-section">
-      <div className="editor-section-label">
+      <div className="editor-section--label">
         {label}
       </div>
-      <div className="editor-section-actions">
+      <div className="editor-section--actions">
         <Link to={props.editPath}>Edit</Link>
       </div>
     </div>
