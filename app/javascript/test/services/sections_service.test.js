@@ -27,11 +27,14 @@ describe('locomotive/editor/services/sections_service', function() {
       const section = buildSection(definitions, 'slideshow', 1)
 
       expect(section.id).to.have.lengthOf(36);
-      expect(omit(section, ['id'])).to.eql({
+      expect(section.uuid).to.have.lengthOf(36);
+
+      expect(omit(section, ['id', 'uuid'])).to.eql({
         name:     'Creative',
         type:     'slideshow',
         settings: { title: 'Awesome!' },
-        blocks:   []
+        blocks:   [],
+        source:   'dropzone'
       });
 
       // it shouldn't keep a reference to the original preset settings
@@ -41,11 +44,12 @@ describe('locomotive/editor/services/sections_service', function() {
 
     it('should build a valid section even if the preset is incomplete', function() {
       const definitions = [{ type: 'slideshow', presets: [{ name: 'Simple' }] }];
-      expect(omit(buildSection(definitions, 'slideshow', 0), ['id'])).to.eql({
+      expect(omit(buildSection(definitions, 'slideshow', 0), ['id', 'uuid'])).to.eql({
         name:     'Simple',
         type:     'slideshow',
         settings: {},
-        blocks:   []
+        blocks:   [],
+        source:   'dropzone'
       });
     });
 
@@ -75,12 +79,14 @@ describe('locomotive/editor/services/sections_service', function() {
           presets: [{ name: 'Simple', settings: { image: '/banner.png' }, blocks: [{ type: 'button' }, { type: 'button' }] }]
         }
       ];
-      expect(omit(buildSection(definitions, 'hero', 0), ['id', 'blocks'])).to.eql({
+      expect(omit(buildSection(definitions, 'hero', 0), ['id', 'uuid', 'blocks'])).to.eql({
         name: 'Simple',
         type: 'hero',
-        settings: { title: 'Hello world', image: '/banner.png' }
+        settings: { title: 'Hello world', image: '/banner.png' },
+        source: 'dropzone'
       });
       expect(buildSection(definitions, 'hero', 0).blocks.length).to.eq(2);
+
       expect(omit(buildSection(definitions, 'hero', 0).blocks[0], ['id'])).to.eql({
         'type': 'button', settings: { label: 'CTA' }
       });

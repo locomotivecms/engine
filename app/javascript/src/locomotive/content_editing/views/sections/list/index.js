@@ -1,5 +1,6 @@
 import React from 'react';
 import { compose } from 'redux';
+import { isBlank } from '../../../utils/misc';
 
 // HOC
 import withRedux from '../../../hoc/with_redux';
@@ -12,13 +13,15 @@ import Dropzone from './dropzone';
 
 const Index = ({ sections, dropzoneContent, ...props }) => (
   <div className="editor-all-sections">
-    {sections.top.length > 0 && <SimpleList list={sections.top} {...props} />}
+    {!isBlank(sections.top) && <SimpleList list={sections.top} {...props} />}
 
-    <Dropzone list={dropzoneContent} {...props} />
+    {!isBlank(dropzoneContent) && <Dropzone list={dropzoneContent} {...props} />}
 
-    {sections.bottom.length > 0 && <SimpleList list={sections.bottom} {...props} />}
+    {!isBlank(sections.bottom) && <SimpleList list={sections.bottom} {...props} />}
   </div>
 );
+
+export { Index }; // Used for testing
 
 export default compose(
   withRedux(state => ({

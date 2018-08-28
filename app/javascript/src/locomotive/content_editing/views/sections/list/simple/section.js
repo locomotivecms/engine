@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 // Components
 import Icons from '../../../../components/icons';
+import EditIcon from '../../../../components/icons/edit';
 
 const Section = props => {
   const label = props.section.label || props.definition.name;
@@ -18,7 +19,7 @@ const Section = props => {
       </div>
       <div className="editor-section--actions">
         <Link to={props.editPath}>
-          <i className="fas fa-edit"></i>
+          <EditIcon />
         </Link>
       </div>
     </div>

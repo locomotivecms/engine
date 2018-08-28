@@ -39,6 +39,11 @@
     margin-right: 2rem;
     display: flex;
     justify-content: center;
+    align-items: center;
+
+    &--button {
+      height: 17px;
+    }
   }
 
   &--drag-handle {

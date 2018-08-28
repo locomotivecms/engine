@@ -1022,7 +1022,11 @@
     display: -ms-flexbox;
     display: flex;
     -ms-flex-pack: center;
-        justify-content: center; }
+        justify-content: center;
+    -ms-flex-align: center;
+        align-items: center; }
+    .editor-section--actions--button {
+      height: 17px; }
   .editor-section--drag-handle {
     margin-left: 1rem;
     cursor: move; }

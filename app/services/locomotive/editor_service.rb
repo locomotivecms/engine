@@ -38,7 +38,7 @@ module Locomotive
       site_attributes[:sections_content] = parse_sections_content(site_attributes[:sections_content])
       site.update_attributes(site_attributes)
 
-      page.attributes[:sections_content] = parse_sections_content(page_attributes[:sections_content])
+      page_attributes[:sections_content]          = parse_sections_content(page_attributes[:sections_content])
       page_attributes[:sections_dropzone_content] = parse_sections_dropzone_content(page_attributes[:sections_dropzone_content])
       page.update_attributes(page_attributes)
 
@@ -60,9 +60,9 @@ module Locomotive
     private
 
     def parse_sections_content(value)
+      return nil if value.nil?
+
       JSON.parse(value).tap do |sections|
-        # puts "___________"
-        # puts sections.class.inspect
         sections.values.each do |section|
           remove_section_ids(section)
           remove_blocks_ids(section['blocks'])
@@ -71,6 +71,8 @@ module Locomotive
     end
 
     def parse_sections_dropzone_content(value)
+      return nil if value.nil?
+
       JSON.parse(value).tap do |sections|
         sections.each do |section|
           remove_section_ids(section)

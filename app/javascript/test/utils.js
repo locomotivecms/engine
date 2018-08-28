@@ -1,18 +1,20 @@
 export function buildProps(specificPropsHash) {
   const props = {
-    site: undefined,
-    page: undefined,
+    content: {
+      site: undefined,
+      page: undefined
+    },
     editableElements: [],
     sections: {
-      "all": [],
-      "top": undefined,
-      "bottom": undefined,
-      "dropzone": undefined
+      all: [],
+      top: undefined,
+      bottom: undefined,
+      dropzone: undefined
     },
     sectionDefinitions: undefined,
     iframe: {
-      loaded:     false,
-      window:     null
+      loaded:       false,
+      _window:      null
     }
   };
 

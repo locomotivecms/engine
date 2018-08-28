@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 // Components
 import Icons from '../../../../components/icons';
+import EditIcon from '../../../../components/icons/edit';
 
 const Section = props => {
   const Handle  = props.handleComponent;
@@ -17,8 +18,8 @@ const Section = props => {
         {props.section.label || props.section.name}
       </div>
       <div className="editor-section--actions">
-        <Link to={props.editPath}>
-          <i className="fas fa-edit"></i>
+        <Link to={props.editPath} className="editor-section--actions--button">
+          <EditIcon />
         </Link>
         <Handle />
       </div>
