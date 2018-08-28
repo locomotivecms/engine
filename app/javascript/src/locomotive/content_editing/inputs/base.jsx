@@ -61,7 +61,7 @@ class Base extends Component {
 }
 
 export default withRedux(state => ({
-  site:   state.site,
-  page:   state.page,
+  site:   state.content.site,
+  page:   state.content.page,
   locale: state.editor.locale
 }))(Base);

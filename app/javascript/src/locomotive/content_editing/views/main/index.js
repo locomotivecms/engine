@@ -71,8 +71,8 @@ export { Main };
 export default compose(
   withRouter,
   withRedux(state => ({
-    pageId:         state.page.id,
-    contentEntryId: state.page.contentEntryId,
+    pageId:         state.content.page.id,
+    contentEntryId: state.content.page.contentEntryId,
     iframe:         state.iframe
   }))
 )(Main);

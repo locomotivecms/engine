@@ -36,7 +36,7 @@ module Locomotive
 
     def sections_dropzone_content(page)
       page.sections_dropzone_content.each_with_index.map do |section, index|
-        section['id'] = index.to_s
+        section['id'] = "dropzone-#{index}"
 
         section['blocks'] = section['blocks'].each_with_index.map do |block, _index|
           block['id'] = _index.to_s
@@ -59,9 +59,11 @@ module Locomotive
           id    = "dropzone-#{index}"
           uuid  = Digest::MD5.hexdigest(id)
 
+          section[:uuid] = uuid
+
           ids[uuid] = {
-            id:     uuid,
-            key:    index,
+            uuid:   uuid,
+            id:     "dropzone-#{index}",
             type:   section['type'],
             source: 'dropzone'
           }

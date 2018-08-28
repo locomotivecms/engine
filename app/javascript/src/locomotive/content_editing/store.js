@@ -22,11 +22,8 @@ const defaultState = {
     site: site,
     page: page
   },
-  site,
-  page,
   iframe: {
     loaded:   false,
-    window:   null,
     _window:  null
   }
 };

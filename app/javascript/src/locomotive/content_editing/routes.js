@@ -6,7 +6,7 @@ import SectionsList from './views/sections/list';
 import SectionGallery from './views/sections/gallery';
 import EditSection from './views/sections/edit';
 import EditBlock from './views/blocks/edit';
-import ImagesIndex from './views/assets/images/index.jsx';
+import ImagesIndex from './views/assets/images/index';
 
 const nestedRoutes = {
   // NEW ROUTES

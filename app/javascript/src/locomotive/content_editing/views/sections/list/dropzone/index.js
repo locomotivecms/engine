@@ -19,6 +19,7 @@ const SortableList    = SortableContainer(({ list, removeSection, ...props }) =>
           index={index}
           section={section}
           editPath={props.editSectionPath(section)}
+          definition={props.findSectionDefinition(section.type)}
           removeSection={removeSection.bind(null, section)}
           handleComponent={DragHandle}
         />

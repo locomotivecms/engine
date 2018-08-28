@@ -4,15 +4,15 @@ function iframe(state = {}, action) {
   switch (action.type) {
 
     case 'EDITOR::LOAD':
-      return { loaded: true };
+      return update(state, { loaded: { $set: true } });
 
     // IFRAME
 
     case 'IFRAME::NEW_SOURCE':
-      return { loaded: false };
+      return update(state, { loaded: { $set: false } });
 
     case 'IFRAME::LOADED':
-      return { loaded: true, window: action.window, _window: action.window };
+      return { loaded: true, _window: action._window };
 
     case 'IFRAME::DONE':
       return update(state, {

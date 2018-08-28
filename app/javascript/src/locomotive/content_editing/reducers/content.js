@@ -56,6 +56,28 @@ function content(state = {}, action) {
 
     // BLOCKS IN THE SECTIONS DROPZONE
 
+    case 'DROPZONE::SECTION::BLOCK::UPDATE_INPUT': {
+      const dropzoneContent   = state.page.sectionsDropzoneContent;
+      const sectionIndex      = findSectionIndex(dropzoneContent, action.section);
+      const blockIndex        = findDropzoneBlockIndex(dropzoneContent[sectionIndex], action.blockId)
+
+      return update(state, {
+        page: {
+          sectionsDropzoneContent: {
+            [sectionIndex]: {
+              blocks: {
+                [blockIndex]: {
+                  settings: {
+                    [action.id]: { $set: action.newValue }
+                  }
+                }
+              }
+            }
+          }
+        }
+      });
+    }
+
     case 'DROPZONE::SECTION::BLOCK::ADD':
       return update(state, {
         page: {
@@ -67,7 +89,7 @@ function content(state = {}, action) {
         }
       });
 
-    case 'DROPZONE::SECTION::BLOCK::REMOVE':
+    case 'DROPZONE::SECTION::BLOCK::REMOVE': {
       const dropzoneContent   = state.page.sectionsDropzoneContent;
       const sectionIndex      = findSectionIndex(dropzoneContent, action.section);
 
@@ -80,6 +102,7 @@ function content(state = {}, action) {
           }
         }
       });
+    }
 
     case 'DROPZONE::SECTION::BLOCK::MOVE':
       return update(state, {

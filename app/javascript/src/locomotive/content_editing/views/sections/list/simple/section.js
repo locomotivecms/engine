@@ -2,15 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 // Components
-import HeaderIcon from '../../../../components/icons/header';
+import Icons from '../../../../components/icons';
 
 const Section = props => {
   const label = props.section.label || props.definition.name;
+  const Icon  = Icons[props.definition.icon];
 
   return (
     <div className="editor-section">
       <div className="editor-section--icon">
-        <HeaderIcon />
+        {Icon && <Icon />}
       </div>
       <div className="editor-section--label">
         {label}

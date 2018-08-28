@@ -4,7 +4,7 @@ import { startsWith } from 'lodash';
 const sendEvent = (elem, type, data) => {
   if (elem === null || elem === undefined) return false;
 
-  // console.log('firing', `locomotive::${type}`);
+  // console.log('firing', `locomotive::${type}`, data);
 
   var event = new CustomEvent(
     `locomotive::${type}`,
@@ -73,10 +73,13 @@ export function prepareIframe(_window) {
 
 export function updateSection(_window, section, html) {
   return new Promise(resolve => {
-    const $elem = $(_window.document).find(`#locomotive-section-${section.id}`);
+    var $elem = $(_window.document).find(`#locomotive-section-${section.id}`);
 
     sendEvent($elem[0], 'section::unload', { sectionId: section.id });
     $elem.replaceWith(html);
+
+    // find the new element
+    $elem = $(_window.document).find(`#locomotive-section-${section.id}`);
     sendEvent($elem[0], 'section::load', { sectionId: section.id });
 
     resolve(true);
@@ -87,9 +90,6 @@ export function updateSection(_window, section, html) {
 export function updateSectionText(_window, section, blockId, settingId, value) {
   return new Promise(resolve => {
     var dataValue = `section-${section.id}`;
-
-    // var dataValue = `${section.source}-section-${section.section_id}`;
-    // dataValue += sectionId ? sectionId : sectionType;
 
     if (blockId)
       dataValue = `${dataValue}-block.${blockId}.${settingId}`;

@@ -45,36 +45,13 @@ const withEditingSection = Component => {
   }
 
   // Notifications
-  // const notifySectionOnEnter = props => {
-  //   props.selectSection(props.section);
-  // }
-
-  // const notifyBlockOnEnter = props => {
-  //   props.selectSectionBlock(props.section, props.blockType, props.blockId);
-  // }
-
-  // const notifySectionOnLeave = props => {
-  //   props.deselectSection(props.section);
-  // }
-
-  // const notifyBlockOnLeave = props => {
-  //   props.deselectSectionBlock(props.section, props.blockType, props.blockId);
-  // }
 
   const notifyOnEnter = props => {
     props.selectSection(props.section, props.blockId);
-    // switch(editingType(props)) {
-    //   case 'section': notifySectionOnEnter(props); break;
-    //   case 'block':   notifyBlockOnEnter(props); break;
-    // }
   }
 
   const notifyOnLeave = props => {
     props.deselectSection(props.section, props.blockId);
-    // switch(editingType(props)) {
-    //   case 'section': notifySectionOnLeave(props); break;
-    //   case 'block':   notifyBlockOnLeave(props); break;
-    // }
   }
 
   // Path helper
@@ -97,14 +74,6 @@ const withEditingSection = Component => {
     const { section, blockId, updateSectionInput } = props;
 
     updateSectionInput(section, blockId, settingType, settingId, newValue);
-
-    // const { section, blockId, updateSectionInput, updateSectionBlockInput } = props;
-
-    // const updateInput = isEditingBlock(props) ?
-    //   updateSectionBlockInput.bind(null, section, blockId) :
-    //   updateSectionInput.bind(null, section);
-
-    // updateInput(settingType, settingId, newValue);
   }
 
   class WrappedComponent extends React.Component {

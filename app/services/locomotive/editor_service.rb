@@ -35,15 +35,22 @@ module Locomotive
 
     # Save sections for both the current site (static versions) and the page
     def save(site_attributes, page_attributes)
-      site_attributes[:sections_content] = remove_site_blocks_ids(site_attributes[:sections_content])
+      site_attributes[:sections_content] = parse_sections_content(site_attributes[:sections_content])
       site.update_attributes(site_attributes)
 
-      # TODO: sections_content
-      raise 'TODO'
-
-      page_attributes[:sections_dropzone_content] = remove_ids(page_attributes[:sections_dropzone_content])
-
+      page.attributes[:sections_content] = parse_sections_content(page_attributes[:sections_content])
+      page_attributes[:sections_dropzone_content] = parse_sections_dropzone_content(page_attributes[:sections_dropzone_content])
       page.update_attributes(page_attributes)
+
+      # puts parse_sections_content(site_attributes[:sections_content]).inspect
+      # puts "----"
+      # puts parse_sections_content(page_attributes[:sections_content]).inspect
+      # puts "---"
+      # puts parse_sections_dropzone_content(page_attributes[:sections_dropzone_content]).inspect
+
+      # raise 'TODO'
+
+      # page.update_attributes(page_attributes)
 
       track_activity 'editable_element.updated_bulk', parameters: {
         pages: [page].map { |p| { title: p.title, _id: p._id } }
@@ -52,20 +59,52 @@ module Locomotive
 
     private
 
-    def remove_ids(json)
-      remove_blocks_ids(remove_sections_id(json))
+    def parse_sections_content(value)
+      JSON.parse(value).tap do |sections|
+        # puts "___________"
+        # puts sections.class.inspect
+        sections.values.each do |section|
+          remove_section_ids(section)
+          remove_blocks_ids(section['blocks'])
+        end
+      end
     end
 
-    def remove_sections_id(json)
-      JSON.parse(json).map { |section| section.except('id') }.to_json
+    def parse_sections_dropzone_content(value)
+      JSON.parse(value).tap do |sections|
+        sections.each do |section|
+          remove_section_ids(section)
+          remove_blocks_ids(section['blocks'])
+        end
+      end
     end
 
-    def remove_blocks_ids(json)
-      JSON.parse(json).each{ |section| section['blocks'].map! { |block| block.except("id") } }.to_json
+    def remove_section_ids(section)
+      section.delete('id')
+      section.delete('uuid')
     end
 
-    def remove_site_blocks_ids(json)
-      JSON.parse(json).each{ |_, section| section['blocks'].map! { |block| block.except("id") } }.to_json
+    def remove_blocks_ids(list)
+      list.each { |block| block.delete('id') }
     end
+
+    ####
+
+    # def remove_ids(json)
+    #   remove_blocks_ids(remove_sections_id(json))
+    # end
+
+    # def remove_sections_id(json)
+    #   JSON.parse(json).map { |section| section.except('id') }.to_json
+    # end
+
+    # def remove_blocks_ids(json)
+    #   JSON.parse(json).each{ |section| section['blocks'].map! { |block| block.except('id') } }.to_json
+    # end
+
+    # def remove_site_blocks_ids(json)
+    #   JSON.parse(json).each{ |_, section| section['blocks'].map! { |block| block.except('id') } }.to_json
+    # end
+
   end
 end

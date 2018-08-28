@@ -7,18 +7,28 @@ export * from './dropzone_actions';
 
 // GLOBAL
 
-export function persistChanges(result, data) {
-  // TODO: call the api
-
-  // const { i18n } = window.Locomotive;
-  // if (result)
-  //   Locomotive.notify(i18n.success, 'success')
-  // else
-  //   Locomotive.notify(i18n.fail, 'danger')
-
+const _persistChanges = success => {
   return {
     type: 'PERSIST_CHANGES',
-    success: null //result
+    success
+  }
+}
+
+export function persistChanges(result, data) {
+  return (dispatch, getState) => {
+    const { notify, i18n } = window.Locomotive;
+    const { editor: { api }, content: { site, page } } = getState();
+
+    api.saveContent(site, page)
+    .then((data) => {
+      notify(i18n.success, 'success')
+      dispatch(_persistChanges(true))
+    })
+    .catch((errors) => {
+      notify(i18n.fail, 'danger')
+      dispatch(_persistChanges(false))
+    });
+
   }
 }
 
@@ -60,7 +70,7 @@ export function reloadEditor(pageId, contentEntryId, locale) {
 export function onIframeLoaded(contentWindow) {
   return {
     type:         'IFRAME::LOADED',
-    window:       contentWindow
+    _window:      contentWindow
   }
 }
 

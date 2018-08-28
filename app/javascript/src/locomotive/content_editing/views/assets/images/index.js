@@ -8,8 +8,8 @@ import asView from '../../../hoc/as_view';
 import withApiFetching from '../../../hoc/with_api_fetching';
 
 // Components
-import Uploader from './uploader.jsx';
-import Image from './image.jsx';
+import Uploader from './uploader';
+import Image from './image';
 
 class Index extends Component {
 

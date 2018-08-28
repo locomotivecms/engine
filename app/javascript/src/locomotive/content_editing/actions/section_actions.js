@@ -39,10 +39,7 @@ export function updateSectionInput(section, blockId, fieldType, id, newValue) {
       .then(html => {
         Preview.updateSection(_window, section, html);
 
-        if (blockId)
-          Preview.selectSectionBlock(_window, section, blockId);
-        else
-          Preview.selectSection(_window, section);
+        Preview.selectSection(_window, section, blockId);
       });
     }
   }
