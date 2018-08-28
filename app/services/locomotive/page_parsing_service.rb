@@ -108,6 +108,7 @@ module Locomotive
           sections[:dropzone] = [page, block, attributes]
         else
           placement = attributes[:placement] || :top
+          attributes[:position] ||= block.blank? ? 0 : block.split('/').size
           sections[placement].push([page, block, attributes])
         end
       end
@@ -129,8 +130,8 @@ module Locomotive
           # we don't want hidden sections
           next unless block_visible?(page._id, parsed, { block: block })
 
-          attributes.slice(:source, :type, :key, :id, :label)
-        end.compact
+          attributes.slice(:source, :type, :key, :id, :label, :position)
+        end.compact.sort_by { |attributes| attributes[:position] }
       end
 
       if parsed[:sections][:dropzone]

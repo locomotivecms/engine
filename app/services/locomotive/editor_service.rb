@@ -42,16 +42,6 @@ module Locomotive
       page_attributes[:sections_dropzone_content] = parse_sections_dropzone_content(page_attributes[:sections_dropzone_content])
       page.update_attributes(page_attributes)
 
-      # puts parse_sections_content(site_attributes[:sections_content]).inspect
-      # puts "----"
-      # puts parse_sections_content(page_attributes[:sections_content]).inspect
-      # puts "---"
-      # puts parse_sections_dropzone_content(page_attributes[:sections_dropzone_content]).inspect
-
-      # raise 'TODO'
-
-      # page.update_attributes(page_attributes)
-
       track_activity 'editable_element.updated_bulk', parameters: {
         pages: [page].map { |p| { title: p.title, _id: p._id } }
       }
@@ -89,24 +79,6 @@ module Locomotive
     def remove_blocks_ids(list)
       list.each { |block| block.delete('id') }
     end
-
-    ####
-
-    # def remove_ids(json)
-    #   remove_blocks_ids(remove_sections_id(json))
-    # end
-
-    # def remove_sections_id(json)
-    #   JSON.parse(json).map { |section| section.except('id') }.to_json
-    # end
-
-    # def remove_blocks_ids(json)
-    #   JSON.parse(json).each{ |section| section['blocks'].map! { |block| block.except('id') } }.to_json
-    # end
-
-    # def remove_site_blocks_ids(json)
-    #   JSON.parse(json).each{ |_, section| section['blocks'].map! { |block| block.except('id') } }.to_json
-    # end
 
   end
 end
