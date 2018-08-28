@@ -17,7 +17,7 @@ module Locomotive
           blocks:                   {},
           super_blocks:             {},
           elements:                 [],
-          sections:                 { top: [], bottom: [], dropzone: nil }
+          sections:                 { top: [], bottom: [], dropzone: false }
         }
 
         subscribe(parsed) do
@@ -26,7 +26,7 @@ module Locomotive
           # remove the sections if hidden (sections might be hidden by an overidding block).
           # also sort them by their placement.
           # finally, only return their types (+ sectionId)
-          extract_section_attributes!(parsed)
+          extract_section_attributes!(page, parsed)
 
           # !Important! Non visible editable elements are not removed
           persist_editable_elements!(page, parsed)
@@ -105,7 +105,7 @@ module Locomotive
         page, block, attributes = payload[:page], payload[:block], payload[:attributes]
 
         if attributes[:is_dropzone]
-          sections[:dropzone] = [page, block, attributes]
+          sections[:dropzone] ||= [page, block, attributes]
         else
           placement = attributes[:placement] || :top
           attributes[:position] ||= block.blank? ? 0 : block.split('/').size
@@ -124,11 +124,11 @@ module Locomotive
 
     # Remove sections from hidden blocks.
     # It also tells if there is a visible sections dropzone.
-    def extract_section_attributes!(parsed)
+    def extract_section_attributes!(page, parsed)
       [:top, :bottom].each do |placement|
-        parsed[:sections][placement] = parsed[:sections][placement].map do |(page, block, attributes)|
+        parsed[:sections][placement] = parsed[:sections][placement].map do |(_page, block, attributes)|
           # we don't want hidden sections
-          next unless block_visible?(page._id, parsed, { block: block })
+          next unless is_element_visible?(page, parsed, _page, block)
 
           attributes.slice(:source, :type, :key, :id, :label, :position)
         end.compact.sort_by { |attributes| attributes[:position] }
@@ -136,8 +136,8 @@ module Locomotive
 
       if parsed[:sections][:dropzone]
         # we don't want a hidden dropzone
-        page, block, _ = parsed[:sections][:dropzone]
-        parsed[:sections][:dropzone] = block_visible?(page._id, parsed, { block: block })
+        _page, block, _ = parsed[:sections][:dropzone]
+        parsed[:sections][:dropzone] = is_element_visible?(page, parsed, _page, block)
       else
         parsed[:sections][:dropzone] = false
       end
@@ -149,7 +149,7 @@ module Locomotive
       parsed[:elements].map! do |couple|
         _page, attributes = couple
 
-        next if !persist_editable_element?(page, parsed, _page, attributes)
+        next if !is_element_visible?(page, parsed, _page, attributes[:block])
 
         # Note: _page is a Steam entity but we need a Mongoid document to save the elements
         _page = attributes[:fixed] ? find_page(_page._id, pages) : page
@@ -167,15 +167,13 @@ module Locomotive
       modified_pages.uniq.map(&:save!)
     end
 
-    def persist_editable_element?(page, parsed, _page, attributes)
-      page_id, block_name = _page._id, attributes[:block]
-
-      if page._id == _page._id  # same page
+    def is_element_visible?(page, parsed, _page, block)
+      if page._id == _page._id # same page, we are sure that it's visible
         true
-      elsif block_name.blank?   # an editable_element outside a block (impossible to remove it in pages extending this template)
+      elsif block.blank? # Ex: an editable_element outside a block (impossible to remove it in pages extending this template)
         true
       else
-        block_visible?(_page._id, parsed, attributes)
+        block_visible?(_page._id, parsed, { block: block })
       end
     end
 

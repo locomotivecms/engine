@@ -56,29 +56,29 @@ class Gallery extends Component {
   render() {
     return (
       <div className="editor-section-gallery">
-        <div className="row header-row">
-          <div className="col-md-12">
-            <h1>
-              Add section
-              &nbsp;
-              <small>
-                <button className="btn btn-default btn-sm" onClick={this.cancel}>
-                  Cancel
-                </button>
-              </small>
-            </h1>
+        <div className="editor-section-gallery--header">
+          <div className="editor-section-gallery--header-back-btn">
+            <a onClick={this.cancel}>
+              <i className="fas fa-chevron-left"></i>
+            </a>
+          </div>
+          <div className="editor-section-gallery--header-title">
+            Add a new section
           </div>
         </div>
-        {this.categories.map(category =>
-          <Category
-            key={category.name}
-            category={category}
-            selectPreset={this.selectPreset}
-            previewPreset={this.previewPreset}
-            selectedPreset={this.selectedPreset()}
-            {...this.props}
-          />
-        )}
+
+        <div className="editor-section-gallery--list">
+          {this.categories.map(category =>
+            <Category
+              key={category.name}
+              category={category}
+              selectPreset={this.selectPreset}
+              previewPreset={this.previewPreset}
+              selectedPreset={this.selectedPreset()}
+              {...this.props}
+            />
+          )}
+        </div>
       </div>
     )
   }

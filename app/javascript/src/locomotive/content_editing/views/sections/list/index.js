@@ -15,7 +15,7 @@ const Index = ({ sections, dropzoneContent, ...props }) => (
   <div className="editor-all-sections">
     {!isBlank(sections.top) && <SimpleList list={sections.top} {...props} />}
 
-    {!isBlank(dropzoneContent) && <Dropzone list={dropzoneContent} {...props} />}
+    {sections.dropzone && <Dropzone list={dropzoneContent} {...props} />}
 
     {!isBlank(sections.bottom) && <SimpleList list={sections.bottom} {...props} />}
   </div>

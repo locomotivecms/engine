@@ -38,7 +38,7 @@ describe('components', () => {
 
       describe('with dropzone', () => {
         it('should render a list', () => {
-          const props = buildProps({ sections: { top: [], bottom: [] }, dropzoneContent: [{ name: 'Slider' }] });
+          const props = buildProps({ sections: { top: [], bottom: [], dropzone: true }, dropzoneContent: [{ name: 'Slider' }] });
 
           const wrapper = shallow(<Index { ...props } />);
 
@@ -48,7 +48,7 @@ describe('components', () => {
 
         describe('with top and bottom sections', () => {
           it('should render a static list on top', () => {
-            const props = buildProps({sections: { top: ['header'], bottom: ['footer'] }, dropzoneContent: [{ name: 'Slider' }] });
+            const props = buildProps({sections: { top: ['header'], bottom: ['footer'], dropzone: true }, dropzoneContent: [{ name: 'Slider' }] });
             const wrapper = shallow(<Index { ...props } />);
 
             expect(wrapper.find(Dropzone).length).toBe(1)
