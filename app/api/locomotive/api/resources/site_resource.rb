@@ -72,6 +72,7 @@ module Locomotive
               optional :metafields
               optional :metafields_ui
               optional :asset_host
+              optional :sections_content, type: String
             end
           end
           post do
@@ -103,6 +104,7 @@ module Locomotive
               optional :metafields_schema
               optional :metafields
               optional :asset_host
+              optional :sections_content, type: String
             end
           end
           put ':id' do

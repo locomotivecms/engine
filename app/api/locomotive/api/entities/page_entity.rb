@@ -11,6 +11,9 @@ module Locomotive
         # Path
         expose :slug, :fullpath
 
+        # Sections
+        expose :sections_dropzone_content, :sections_content
+
         expose :localized_fullpaths do |page, options|
           (options[:site]&.locales || []).inject({}) do |hash, locale|
             hash.merge(locale => options[:url_builder].url_for(page, locale))
@@ -36,6 +39,15 @@ module Locomotive
 
         # Editable elements
         expose :editable_elements, using: EditableElementEntity
+
+        # Sections
+        expose :sections_dropzone_content do |page, _|
+          page.sections_dropzone_content&.to_json
+        end
+
+        expose :sections_content do |page, _|
+          page.sections_content&.to_json
+        end
 
         # SEO
         expose :seo_title, :meta_keywords, :meta_description

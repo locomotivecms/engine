@@ -65,6 +65,8 @@ module Locomotive
               optional :is_layout, type: Boolean
               optional :allow_layout, type: Boolean
               optional :editable_elements, type: Array
+              optional :sections_content, type: String
+              optional :sections_dropzone_content, type: String
               optional :cache_enabled
               optional :seo_title
               optional :meta_keywords
@@ -103,6 +105,8 @@ module Locomotive
               optional :allow_layout, type: Boolean
               optional :template
               optional :editable_elements, type: Array
+              optional :sections_content, type: String
+              optional :sections_dropzone_content, type: String
               optional :cache_enabled
               optional :seo_title
               optional :meta_keywords

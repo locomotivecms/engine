@@ -25,7 +25,7 @@ module Locomotive
         content[key]['id'] = attributes[:id] # FIXME: attributes[:id] => section domId
 
         # reset block id
-        content[key]['blocks'] = content[key]['blocks'].each_with_index.map do |block, index|
+        content[key]['blocks'] = (content[key]['blocks'] || []).each_with_index.map do |block, index|
           block['id'] = index.to_s
           block
         end
