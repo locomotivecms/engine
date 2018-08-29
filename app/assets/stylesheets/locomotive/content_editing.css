@@ -987,18 +987,23 @@
   margin: 1rem 0rem;
   background: #f7f7f7;
   box-shadow: 0 0 0 1px rgba(63, 63, 68, 0.05), 0 1px 3px 0 rgba(63, 63, 68, 0.15); }
+  .editor-section--icon, .editor-section--image {
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    background: #D7D7D7;
+    width: 4rem;
+    height: 4rem; }
   .editor-section--icon {
     display: -ms-flexbox;
     display: flex;
     -ms-flex-pack: center;
         justify-content: center;
     -ms-flex-align: center;
-        align-items: center;
-    border-top-left-radius: 3px;
-    border-bottom-left-radius: 3px;
-    background: #D7D7D7;
-    width: 4rem;
-    height: 4rem; }
+        align-items: center; }
+  .editor-section--image {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover; }
   .editor-section--label {
     margin-left: 2rem;
     font-size: 1.2rem;
@@ -1016,6 +1021,8 @@
         align-items: center; }
     .editor-section--actions--button {
       height: 17px; }
+  .editor-section--edit-button {
+    height: 17px; }
   .editor-section--drag-handle {
     margin-left: 1rem;
     cursor: move; }
@@ -1095,18 +1102,23 @@
   margin: 1rem 0rem;
   background: #f7f7f7;
   box-shadow: 0 0 0 1px rgba(63, 63, 68, 0.05), 0 1px 3px 0 rgba(63, 63, 68, 0.15); }
+  .editor-section--icon, .editor-section--image {
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    background: #D7D7D7;
+    width: 4rem;
+    height: 4rem; }
   .editor-section--icon {
     display: -ms-flexbox;
     display: flex;
     -ms-flex-pack: center;
         justify-content: center;
     -ms-flex-align: center;
-        align-items: center;
-    border-top-left-radius: 3px;
-    border-bottom-left-radius: 3px;
-    background: #D7D7D7;
-    width: 4rem;
-    height: 4rem; }
+        align-items: center; }
+  .editor-section--image {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover; }
   .editor-section--label {
     margin-left: 2rem;
     font-size: 1.2rem;
@@ -1124,6 +1136,8 @@
         align-items: center; }
     .editor-section--actions--button {
       height: 17px; }
+  .editor-section--edit-button {
+    height: 17px; }
   .editor-section--drag-handle {
     margin-left: 1rem;
     cursor: move; }

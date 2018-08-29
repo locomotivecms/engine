@@ -1,5 +1,5 @@
 import { forEach, find, findIndex, sortBy, pick, cloneDeep } from 'lodash';
-import { uuid } from '../utils/misc';
+import { uuid, presence, isBlank } from '../utils/misc';
 
 const setDefaultValuesTo = (settings, object) => {
   forEach(settings, setting => {
@@ -104,5 +104,42 @@ export function fetchSectionContent(globalContent, section) {
 
 export function findSectionIndex(sections, section) {
   return findIndex(sections, _section => _section.id === section.id);
+}
+
+const findFirstSettingValueOf = (type, sectionContent, definition) => {
+  var value = null;
+
+  // find the first <type> setting directly in the section
+  const setting = find(definition.settings, setting => setting.type === type);
+
+  if (setting) {
+    value = presence(sectionContent.settings[setting.id]);
+  } else if (!isBlank(sectionContent.blocks)) {
+    // no problem, try to find it in the blocks
+    forEach(sectionContent.blocks, block => {
+      if (!isBlank(value)) return; // already found
+
+      // find the block definition
+      const _definition = find(definition.blocks, _block => _block.type === block.type);
+      const _setting    = find(_definition.settings, setting => setting.type === type);
+
+      if (_setting)
+        value = presence(block.settings[_setting.id]);
+    });
+  }
+
+  return value;
+}
+
+export function findBetterImageAndTextFromSection(sectionContent, definition) {
+  var image = null, text = null;
+
+  if (!definition.keep_icon)
+    image = findFirstSettingValueOf('image_picker', sectionContent, definition);
+
+  if (!definition.keep_name)
+    text = findFirstSettingValueOf('text', sectionContent, definition);
+
+  return { image, text };
 }
 

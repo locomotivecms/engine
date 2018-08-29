@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import { SortableContainer, SortableElement, SortableHandle } from 'react-sortable-hoc';
 import { bindAll } from 'lodash';
 
+// Services
+import { findBetterImageAndTextFromSection } from '../../../../services/sections_service';
+
 // Components
 import Section from './section';
 
@@ -13,16 +16,23 @@ const SortableSection = SortableElement(Section);
 const SortableList    = SortableContainer(({ list, removeSection, ...props }) => {
   return (
     <div>
-      {(list || []).map((section, index) =>
-        <SortableSection
-          key={`section-${section.id}`}
-          index={index}
-          section={section}
-          editPath={props.editSectionPath(section)}
-          definition={props.findSectionDefinition(section.type)}
-          removeSection={removeSection.bind(null, section)}
-          handleComponent={DragHandle}
-        />
+      {(list || []).map((section, index) => {
+        const definition        = props.findSectionDefinition(section.type);
+        const { image, text }   = findBetterImageAndTextFromSection(section, definition)
+
+        return (
+          <SortableSection
+            key={`section-${section.id}`}
+            index={index}
+            image={image}
+            text={text}
+            section={section}
+            definition={definition}
+            editPath={props.editSectionPath(section)}
+            removeSection={removeSection.bind(null, section)}
+            handleComponent={DragHandle}
+          />
+        )}
       )}
     </div>
   );

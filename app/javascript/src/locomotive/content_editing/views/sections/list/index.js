@@ -25,6 +25,7 @@ export { Index }; // Used for testing
 
 export default compose(
   withRedux(state => ({
+    globalContent:    state.content,
     site:             state.content.site,
     page:             state.content.page,
     dropzoneContent:  state.content.page.sectionsDropzoneContent

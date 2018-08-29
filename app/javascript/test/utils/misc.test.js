@@ -1,7 +1,39 @@
 import { expect } from 'chai';
-import { arrayMove } from '../../src/locomotive/content_editing/utils/misc';
+import { arrayMove, isBlank, presence } from '../../src/locomotive/content_editing/utils/misc';
 
 describe('locomotive/editor/utils/misc', function() {
+
+  describe('#isBlank()', function() {
+
+    it('should return true if the object is an empty string', function() {
+      expect(isBlank('')).to.eql(true);
+    });
+
+    it('should return true if the object is an empty array', function() {
+      expect(isBlank([])).to.eql(true);
+    });
+
+    it('should return true if the object is null', function() {
+      expect(isBlank(null)).to.eql(true);
+    });
+
+    it('should return true if the object is undefined', function() {
+      expect(isBlank(undefined)).to.eql(true);
+    });
+
+  });
+
+  describe('#presence()', function() {
+
+    it('should return the object itself it is not blank', function() {
+      expect(presence('Hello world')).to.eql('Hello world');
+    });
+
+    it('should return false if the the object is blank', function() {
+      expect(presence('')).to.eql(false);
+    });
+
+  });
 
   describe('#arrayMove()', function() {
 

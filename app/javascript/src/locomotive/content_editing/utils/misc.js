@@ -10,8 +10,14 @@ export function waitUntil(startedAt, minDelay, callback) {
   setTimeout(callback, delay);
 }
 
+const _isBlank = value => value === undefined || value === null || value === '' || value.length === 0;
+
 export function isBlank(value) {
-  return value === undefined || value === null || value === '' || value.length === 0;
+  return _isBlank(value);
+}
+
+export function presence(value) {
+  return _isBlank(value) ? false : value;
 }
 
 // https://stackoverflow.com/a/8809472
