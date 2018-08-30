@@ -1,5 +1,5 @@
 import { forEach, find, findIndex, sortBy, pick, cloneDeep } from 'lodash';
-import { uuid, presence, isBlank } from '../utils/misc';
+import { uuid, presence, isBlank, stripHTML } from '../utils/misc';
 
 const setDefaultValuesTo = (settings, object) => {
   forEach(settings, setting => {
@@ -138,7 +138,7 @@ export function findBetterImageAndTextFromSection(sectionContent, definition) {
     image = findFirstSettingValueOf('image_picker', sectionContent, definition);
 
   if (!definition.keep_name)
-    text = findFirstSettingValueOf('text', sectionContent, definition);
+    text = stripHTML(findFirstSettingValueOf('text', sectionContent, definition));
 
   return { image, text };
 }

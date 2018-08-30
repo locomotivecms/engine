@@ -1,8 +1,48 @@
 import { expect } from 'chai';
 import { omit } from 'lodash';
-import { buildSection, buildCategories } from '../../src/locomotive/content_editing/services/sections_service';
+import {
+  buildSection,
+  buildCategories,
+  findBetterImageAndTextFromSection
+} from '../../src/locomotive/content_editing/services/sections_service';
 
 describe('locomotive/editor/services/sections_service', function() {
+
+  describe('#findBetterImageAndTextFromSection', function() {
+
+    it('does not return an image and a text if keep_icon and keep_text are true', function() {
+      const content = { settings: { image: '/banner.png', body: '<b>Hello</b> world' } };
+      const definition = {
+        keep_icon: true,
+        keep_name: true,
+        settings: [{ id: 'image', type: 'image_picker' }, { id: 'body', type: 'text' }]
+      };
+      expect(findBetterImageAndTextFromSection(content, definition)).to.include({ image: null, text: null });
+    });
+
+    it('returns the first image and text of the section', function() {
+      const content = { settings: { logo: '/logo.png', image: '/banner.png', body: '<b>Hello</b> world' } };
+      const definition = {
+        settings: [{ id: 'image', type: 'image_picker' }, { id: 'body', type: 'text' }, { id: 'logo', type: 'image_picker' }]
+      };
+      expect(findBetterImageAndTextFromSection(content, definition)).to.include({ image: '/banner.png', text: 'Hello world' });
+    });
+
+    it('returns the first image and text of all the blocks if the section has no settings', function() {
+      const content = { settings: {}, blocks: [{ type: 'simple', settings: { image: '/banner.png', body: '<b>Hello</b> world' } }] };
+      const definition = {
+        settings: [],
+        blocks: [
+          {
+            type: 'simple',
+            settings: [{ id: 'image', type: 'image_picker' }, { id: 'body', type: 'text' }, { id: 'logo', type: 'image_picker' }]
+          }
+        ]
+      };
+      expect(findBetterImageAndTextFromSection(content, definition)).to.include({ image: '/banner.png', text: 'Hello world' });
+    });
+
+  });
 
   describe('#buildSection', function() {
 
@@ -159,5 +199,7 @@ describe('locomotive/editor/services/sections_service', function() {
     });
 
   });
+
+
 
 });

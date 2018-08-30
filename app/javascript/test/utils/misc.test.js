@@ -1,7 +1,19 @@
 import { expect } from 'chai';
-import { arrayMove, isBlank, presence } from '../../src/locomotive/content_editing/utils/misc';
+import { arrayMove, isBlank, presence, stripHTML } from '../../src/locomotive/content_editing/utils/misc';
 
 describe('locomotive/editor/utils/misc', function() {
+
+  describe('#stripHTML', function() {
+
+    it('should strip all the HTML tags of a string', function() {
+      expect(stripHTML('<b>Hello</b> world')).to.eql('Hello world');
+    });
+
+    it('should return null if the HTML string is null', function() {
+      expect(stripHTML(null)).to.eql(null);
+    });
+
+  });
 
   describe('#isBlank()', function() {
 

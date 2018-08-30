@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { truncate } from 'lodash';
 
 // Components
 import Icons from '../../../../components/icons';
@@ -21,7 +22,7 @@ const Section = ({ image, text, ...props }) => {
         </div>
       )}
       <div className="editor-section--label">
-        {text || props.section.label || props.section.name}
+        {truncate(text || props.section.label || props.section.name, { length: 32 })}
       </div>
       <div className="editor-section--actions">
         <Link to={props.editPath} className="editor-section--actions--button">
