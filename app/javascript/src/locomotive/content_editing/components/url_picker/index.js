@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import { isBlank } from '../../utils/misc';
 
 // Components
-import UrlInput from './input.jsx';
-import UrlInfo from './info.jsx';
+import UrlInput from './input';
+import UrlInfo from './info';
 
 class UrlPicker extends Component {
 

@@ -1,25 +1,5 @@
 .editor-section-gallery {
   padding: 2rem;
-
-  &--header {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-
-    &-title {
-      margin-left: 1rem;
-      font-size: 2.1rem;
-      color: #666;
-    }
-
-    &-back-btn {
-      cursor: pointer;
-    }
-  }
-
-  &--list {
-    margin-top: 2rem;
-  }
 }
 
 .editor-section {

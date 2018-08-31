@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { isBlank } from '../../../utils/misc';
+import { isBlank, presence } from '../../../utils/misc';
 import { bindAll } from 'lodash';
 
 // HOC
@@ -9,9 +9,10 @@ import asView from '../../../hoc/as_view';
 import { build as buildBlock } from '../../../services/blocks_service';
 
 // Components
-import Input from '../../../inputs/base.jsx';
+import View from '../../../components/default_view';
+import Input from '../../../inputs/base';
 import BlockList from './block_list.jsx';
-import NewBlockPicker from './new_block_picker.jsx';
+import NewBlockPicker from './new_block_picker';
 
 class Edit extends Component {
 
@@ -42,51 +43,42 @@ class Edit extends Component {
 
   render() {
     return (
-      <div className="editor-edit-section">
-        <div className="row header-row">
-          <div className="col-md-12">
-            <h1>
-              {this.props.sectionDefinition.name}
-              &nbsp;
-              <small>
-                <a onClick={this.props.leaveView}>Back</a>
-              </small>
-            </h1>
-          </div>
-        </div>
+      <View title={presence(this.props.sectionLabel) || this.props.sectionDefinition.name} onLeave={this.props.leaveView}>
+        <div className="editor-edit-section">
 
-        <div className="editor-section-settings">
-          {this.props.sectionDefinition.settings.map((setting, index) =>
-            <Input
-              key={`section-section-input-${setting.id}-${index}`}
-              setting={setting}
-              data={this.props.sectionContent}
-              onChange={this.props.handleChange}
-              {...this.props}
-            />
+          <div className="editor-section-settings">
+            {this.props.sectionDefinition.settings.map((setting, index) =>
+              <Input
+                key={`section-section-input-${setting.id}-${index}`}
+                setting={setting}
+                data={this.props.sectionContent}
+                onChange={this.props.handleChange}
+                {...this.props}
+              />
+            )}
+          </div>
+
+          <hr/>
+
+          {!isBlank(this.props.sectionDefinition.blocks) && (
+            <div className="editor-section-blocks">
+              <h3>Blocks</h3>
+
+              <BlockList
+                moveBlock={this.moveBlock}
+                {...this.props}
+              />
+
+              <NewBlockPicker
+                addBlock={this.addBlock}
+                {...this.props}
+              />
+
+            </div>
           )}
+
         </div>
-
-        <hr/>
-
-        {!isBlank(this.props.sectionDefinition.blocks) && (
-          <div className="editor-section-blocks">
-            <h3>Blocks</h3>
-
-            <BlockList
-              moveBlock={this.moveBlock}
-              {...this.props}
-            />
-
-            <NewBlockPicker
-              addBlock={this.addBlock}
-              {...this.props}
-            />
-
-          </div>
-        )}
-
-      </div>
+      </View>
     )
   }
 }

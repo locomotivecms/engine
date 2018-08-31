@@ -9,7 +9,7 @@ describe('components', () => {
   describe('Startup', () => {
     it('should render a loading screen', () => {
       const wrapper = shallow(<Startup />);
-      expect(wrapper.text()).to.contain('Waiting');
+      expect(wrapper.children().text()).to.contain('Waiting');
     });
   })
 })

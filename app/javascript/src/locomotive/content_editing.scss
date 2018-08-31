@@ -4,6 +4,7 @@
 
 @import "./styles/header";
 @import "./styles/menu";
+@import "./styles/view";
 @import "./styles/preview";
 
 @import "./styles/sections";
@@ -22,11 +23,6 @@
   .actionbar {
     display: flex;
     flex-direction: column;
-  }
-
-  .actionbar-content {
-    flex-grow: 1;
-    position: relative;
   }
 
   .actionbar .scrollable {

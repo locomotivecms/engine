@@ -1,37 +1,29 @@
 import React from 'react';
+import { truncate } from 'lodash';
 
 // HOC
 import asView from '../../hoc/as_view';
 
 // Components
-import Input from '../../inputs/base.jsx';
+import View from '../../components/default_view';
+import Input from '../../inputs/base';
 
 const Edit = props => (
-  <div className="editor-edit-block">
-    <div className="row header-row">
-      <div className="col-md-12">
-        <h1>
-          {props.sectionDefinition.name} / {props.blockDefinition.name}
-          &nbsp;
-          <small>
-            <a onClick={props.leaveView}>Back</a>
-          </small>
-        </h1>
+  <View title={props.blockLabel || props.blockDefinition.name} subTitle={props.sectionLabel || props.sectionDefinition.name} onLeave={props.leaveView}>
+    <div className="editor-edit-block">
+      <div className="editor-block-settings">
+        {props.blockDefinition.settings.map((setting, index) =>
+          <Input
+            key={`section-section-input-${setting.id}-${index}`}
+            setting={setting}
+            data={props.blockContent}
+            onChange={props.handleChange}
+            {...props}
+          />
+        )}
       </div>
     </div>
-
-    <div className="editor-block-settings">
-      {props.blockDefinition.settings.map((setting, index) =>
-        <Input
-          key={`section-section-input-${setting.id}-${index}`}
-          setting={setting}
-          data={props.blockContent}
-          onChange={props.handleChange}
-          {...props}
-        />
-      )}
-    </div>
-  </div>
+  </View>
 )
 
 export default asView(Edit);

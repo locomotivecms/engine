@@ -3,12 +3,12 @@ import { omit } from 'lodash';
 import {
   buildSection,
   buildCategories,
-  findBetterImageAndTextFromSection
+  findBetterImageAndText
 } from '../../src/locomotive/content_editing/services/sections_service';
 
 describe('locomotive/editor/services/sections_service', function() {
 
-  describe('#findBetterImageAndTextFromSection', function() {
+  describe('#findBetterImageAndText', function() {
 
     it('does not return an image and a text if keep_icon and keep_text are true', function() {
       const content = { settings: { image: '/banner.png', body: '<b>Hello</b> world' } };
@@ -17,7 +17,7 @@ describe('locomotive/editor/services/sections_service', function() {
         keep_name: true,
         settings: [{ id: 'image', type: 'image_picker' }, { id: 'body', type: 'text' }]
       };
-      expect(findBetterImageAndTextFromSection(content, definition)).to.include({ image: null, text: null });
+      expect(findBetterImageAndText(content, definition)).to.include({ image: null, text: null });
     });
 
     it('returns the first image and text of the section', function() {
@@ -25,7 +25,7 @@ describe('locomotive/editor/services/sections_service', function() {
       const definition = {
         settings: [{ id: 'image', type: 'image_picker' }, { id: 'body', type: 'text' }, { id: 'logo', type: 'image_picker' }]
       };
-      expect(findBetterImageAndTextFromSection(content, definition)).to.include({ image: '/banner.png', text: 'Hello world' });
+      expect(findBetterImageAndText(content, definition)).to.include({ image: '/banner.png', text: 'Hello world' });
     });
 
     it('returns the first image and text of all the blocks if the section has no settings', function() {
@@ -39,7 +39,7 @@ describe('locomotive/editor/services/sections_service', function() {
           }
         ]
       };
-      expect(findBetterImageAndTextFromSection(content, definition)).to.include({ image: '/banner.png', text: 'Hello world' });
+      expect(findBetterImageAndText(content, definition)).to.include({ image: '/banner.png', text: 'Hello world' });
     });
 
   });

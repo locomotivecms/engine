@@ -37,30 +37,26 @@ class Main extends Component {
 
         <Menu />
 
-        <div className="actionbar-content">
-          <div className="scrollable">
-            {!iframe.loaded && <Startup />}
+        {!iframe.loaded && <Startup />}
 
-            {iframe.loaded && (
-             <Switch>
-                <Route exact path={`/${pageId}/content/edit/`} render={() => (
-                  <Redirect to={`/${pageId}/content/edit/sections`} />
-                )} />
+        {iframe.loaded && (
+         <Switch>
+            <Route exact path={`/${pageId}/content/edit/`} render={() => (
+              <Redirect to={`/${pageId}/content/edit/sections`} />
+            )} />
 
-                {routes.map(route => (
-                  <Route
-                    key={route.path}
-                    exact={route.exact === true}
-                    path={route.path}
-                    component={route.component}
-                  />
-                ))}
+            {routes.map(route => (
+              <Route
+                key={route.path}
+                exact={route.exact === true}
+                path={route.path}
+                component={route.component}
+              />
+            ))}
 
-                <Route render={() => <Redirect to={`/${pageId}/content/edit/sections`} />} />
-              </Switch>
-            )}
-          </div>
-        </div>
+            <Route render={() => <Redirect to={`/${pageId}/content/edit/sections`} />} />
+          </Switch>
+        )}
       </div>
     )
   }

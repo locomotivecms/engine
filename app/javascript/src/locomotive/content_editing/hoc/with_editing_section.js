@@ -1,9 +1,13 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { find, pick, bindAll } from 'lodash';
-import { fetchSectionContent } from '../services/sections_service';
-import { fetchBlockContent } from '../services/blocks_service';
 
+// Services
+import { fetchSectionContent, findBetterText as findBetterTextForSection } from '../services/sections_service';
+import { fetchBlockContent, findBetterText as findBetterTextForBlock } from '../services/blocks_service';
+
+// Acts as a controller when editing a section or block
+// In charge of find the section and the block based on the location
 const withEditingSection = Component => {
 
   // Enhance the props
@@ -13,12 +17,13 @@ const withEditingSection = Component => {
     ]);
 
     // 1. find the section
-    newProps.section            = props.sections.all[newProps.sectionId];
+    newProps.section = props.sections.all[newProps.sectionId];
 
     if (newProps.section) {
       // 2. find the section definition and the content of the section
       newProps.sectionDefinition  = props.findSectionDefinition(newProps.section.type);
       newProps.sectionContent     = fetchSectionContent(props.globalContent, newProps.section);
+      newProps.sectionLabel       = findBetterTextForSection(newProps.sectionContent, newProps.sectionDefinition);
 
       // 3. (if possible) find the block definition and the content of the block
       newProps.blockDefinition    = props.findBlockDefinition(
@@ -26,6 +31,7 @@ const withEditingSection = Component => {
         newProps.blockType
       )
       newProps.blockContent       = fetchBlockContent(newProps.sectionContent, newProps.blockId);
+      newProps.blockLabel         = findBetterTextForBlock(newProps.blockContent, newProps.blockDefinition);
     }
 
     return Object.assign({}, props, newProps);

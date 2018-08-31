@@ -4,7 +4,7 @@ import { SortableContainer, SortableElement, SortableHandle } from 'react-sortab
 import { bindAll } from 'lodash';
 
 // Services
-import { findBetterImageAndTextFromSection } from '../../../../services/sections_service';
+import { findBetterImageAndText } from '../../../../services/sections_service';
 
 // Components
 import Section from './section';
@@ -18,7 +18,7 @@ const SortableList    = SortableContainer(({ list, removeSection, ...props }) =>
     <div>
       {(list || []).map((section, index) => {
         const definition        = props.findSectionDefinition(section.type);
-        const { image, text }   = findBetterImageAndTextFromSection(section, definition)
+        const { image, text }   = findBetterImageAndText(section, definition)
 
         return (
           <SortableSection

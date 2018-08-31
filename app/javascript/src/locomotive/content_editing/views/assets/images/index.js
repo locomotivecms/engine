@@ -8,6 +8,7 @@ import asView from '../../../hoc/as_view';
 import withApiFetching from '../../../hoc/with_api_fetching';
 
 // Components
+import View from '../../../components/default_view';
 import Uploader from './uploader';
 import Image from './image';
 
@@ -33,22 +34,9 @@ class Index extends Component {
 
   render() {
     return (
-      <div className="editor-image-picker">
-        <div className="editor-image-picker-header">
-          <div className="row header-row">
-            <div className="col-md-12">
-              <h1>
-                Images
-                &nbsp;
-                <small>
-                  <a onClick={this.props.leaveView}>Back</a>
-                </small>
-              </h1>
-            </div>
-          </div>
+      <View title="Images" subTitle={this.props.blockLabel || this.props.sectionLabel} onLeave={this.props.leaveView}>
 
-          <Uploader handleUpload={this.handleUpload} uploadAssets={this.props.api.uploadAssets} />
-        </div>
+        <Uploader handleUpload={this.handleUpload} uploadAssets={this.props.api.uploadAssets} />
 
         {this.props.isLoading ? (
           <p>Loading the assets</p>
@@ -79,7 +67,7 @@ class Index extends Component {
             />
           </div>
         )}
-      </div>
+      </View>
     )
   }
 

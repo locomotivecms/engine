@@ -131,7 +131,7 @@ const findFirstSettingValueOf = (type, sectionContent, definition) => {
   return value;
 }
 
-export function findBetterImageAndTextFromSection(sectionContent, definition) {
+export function findBetterImageAndText(sectionContent, definition) {
   var image = null, text = null;
 
   if (!definition.keep_icon)
@@ -141,5 +141,9 @@ export function findBetterImageAndTextFromSection(sectionContent, definition) {
     text = stripHTML(findFirstSettingValueOf('text', sectionContent, definition));
 
   return { image, text };
+}
+
+export function findBetterText(sectionContent, definition) {
+  return definition.keep_name ? null : stripHTML(findFirstSettingValueOf('text', sectionContent, definition));
 }
 

@@ -923,6 +923,40 @@
   .editor-menu .nav-tab svg {
     margin-right: 0.8rem; }
 
+.editor-view {
+  -ms-flex-positive: 1;
+      flex-grow: 1;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column; }
+  .editor-view--header {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: start;
+        justify-content: flex-start;
+    -ms-flex-align: center;
+        align-items: center;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid #e3e4e7; }
+    .editor-view--header-title {
+      margin-left: 2rem;
+      font-size: 2.1rem;
+      color: #666; }
+    .editor-view--header-subTitle {
+      font-size: 1.4rem;
+      color: #91979f; }
+    .editor-view--header-mainTitle {
+      font-size: 2.1rem;
+      color: #666; }
+    .editor-view--header-back-btn {
+      cursor: pointer;
+      font-size: 2.4rem; }
+  .editor-view--scrollable {
+    position: relative;
+    -ms-flex-positive: 1;
+        flex-grow: 1; }
+
 .preview {
   background: #f1f1f1;
   box-sizing: border-box;
@@ -1040,21 +1074,6 @@
 
 .editor-section-gallery {
   padding: 2rem; }
-  .editor-section-gallery--header {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-pack: start;
-        justify-content: flex-start;
-    -ms-flex-align: center;
-        align-items: center; }
-    .editor-section-gallery--header-title {
-      margin-left: 1rem;
-      font-size: 2.1rem;
-      color: #666; }
-    .editor-section-gallery--header-back-btn {
-      cursor: pointer; }
-  .editor-section-gallery--list {
-    margin-top: 2rem; }
 
 .editor-section--category-name {
   font-size: 1.8rem;
@@ -1182,28 +1201,80 @@
     max-width: 100%;
     max-height: 3rem; }
 
-.editor-input-image-picker-src {
-  max-width: 100%;
-  max-height: 100px; }
+.editor-edit-section, .editor-edit-block {
+  padding: 2rem; }
+
+.editor-input {
+  margin-bottom: 2rem; }
+  .editor-input--label {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #474b51;
+    margin-bottom: 0.8rem; }
+  .editor-input--text {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0.8rem;
+    border-radius: 3px;
+    border: 1px solid #e3e4e7; }
+  .editor-input--image-picker {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+        align-items: center;
+    -ms-flex-pack: center;
+        justify-content: center;
+    -ms-flex-direction: column;
+        flex-direction: column; }
+
+.editor-input-image-picker--source {
+  background: #f9f9fa;
+  border-radius: 3px;
+  border: 1px solid #e3e4e7;
+  width: 20rem;
+  height: 20rem;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain; }
+
+.editor-input-image-picker--actions {
+  margin-top: 1rem;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center; }
+
+.editor-input-radio--option input {
+  margin-right: 1rem; }
+
+.editor-input-checkbox .editor-input--label {
+  display: inline-block;
+  margin-left: 1rem; }
 
 .DraftEditor-editorContainer, .DraftEditor-root, .public-DraftEditor-content {
   height: 100%; }
 
-.editor-input {
-  margin-bottom: 2rem; }
+.editor-input-rich-text .rdw-editor-wrapper {
+  border: 1px solid #e3e4e7;
+  border-radius: 3px; }
 
-.editor-input input[type=text] {
-  display: block;
-  width: 100%;
-  padding: 0.5rem 0.8rem; }
+.editor-input-rich-text .rdw-editor-toolbar {
+  position: relative;
+  border: none;
+  margin-bottom: 0px; }
 
-.editor-input-text .rdw-editor-toolbar {
-  position: relative; }
+.editor-input-rich-text .rdw-editor-main {
+  border-top: 1px solid #e3e4e7;
+  padding: 0rem 0.8rem; }
 
-.editor-input-text .rdw-link-wrapper {
+.editor-input-rich-text .rdw-link-wrapper {
   position: static; }
 
-.editor-input-text .rdw-link-modal {
+.editor-input-rich-text .rdw-link-modal {
   left: 0;
   right: 0;
   width: auto;
@@ -1300,10 +1371,6 @@
     display: flex;
     -ms-flex-direction: column;
         flex-direction: column; }
-  #editor-app .actionbar-content, #editor-app .container-fluid .actionbar-content {
-    -ms-flex-positive: 1;
-        flex-grow: 1;
-    position: relative; }
   #editor-app .actionbar .scrollable, #editor-app .container-fluid .actionbar .scrollable {
     margin-top: 0; }
 

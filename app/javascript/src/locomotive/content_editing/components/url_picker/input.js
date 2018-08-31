@@ -4,7 +4,7 @@ import Popover from 'react-awesome-popover';
 import { isBlank } from '../../utils/misc';
 
 // Components
-import UrlPickerResource from './resource.jsx';
+import UrlPickerResource from './resource';
 
 class UrlInput extends Component {
 

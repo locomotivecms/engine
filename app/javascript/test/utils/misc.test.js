@@ -42,7 +42,7 @@ describe('locomotive/editor/utils/misc', function() {
     });
 
     it('should return false if the the object is blank', function() {
-      expect(presence('')).to.eql(false);
+      expect(presence('')).to.eql(null);
     });
 
   });

@@ -1,5 +1,5 @@
 import { find, findIndex, keyBy, mapValues } from 'lodash';
-import { uuid } from '../utils/misc';
+import { uuid, presence, stripHTML, isBlank } from '../utils/misc';
 import striptags from 'striptags';
 
 export function build(sectionDefinition, blockType) {
@@ -45,4 +45,13 @@ export function findBlockIndex(globalContent, section, blockId) {
 
 export function findDropzoneBlockIndex(section, blockId) {
   return findIndex(section.blocks, block => block.id === blockId);
+}
+
+export function findBetterText(blockContent, definition) {
+  if (isBlank(blockContent)) return null;
+
+  // find the first <type> setting directly in the block
+  const setting = find(definition.settings, setting => setting.type === 'text');
+
+  return stripHTML(presence(blockContent.settings[setting.id]));
 }

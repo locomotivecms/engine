@@ -8,6 +8,7 @@ import withRedux from '../../../hoc/with_redux';
 import withGlobalVars from '../../../hoc/with_global_vars';
 
 // Components
+import View from '../../../components/default_view';
 import Category from './category';
 
 // Services
@@ -55,31 +56,23 @@ class Gallery extends Component {
 
   render() {
     return (
-      <div className="editor-section-gallery">
-        <div className="editor-section-gallery--header">
-          <div className="editor-section-gallery--header-back-btn">
-            <a onClick={this.cancel}>
-              <i className="fas fa-chevron-left"></i>
-            </a>
-          </div>
-          <div className="editor-section-gallery--header-title">
-            Add a new section
-          </div>
-        </div>
+      <View title="Add a new section" onLeave={this.cancel}>
+        <div className="editor-section-gallery">
 
-        <div className="editor-section-gallery--list">
-          {this.categories.map(category =>
-            <Category
-              key={category.name}
-              category={category}
-              selectPreset={this.selectPreset}
-              previewPreset={this.previewPreset}
-              selectedPreset={this.selectedPreset()}
-              {...this.props}
-            />
-          )}
+          <div className="editor-section-gallery--list">
+            {this.categories.map(category =>
+              <Category
+                key={category.name}
+                category={category}
+                selectPreset={this.selectPreset}
+                previewPreset={this.previewPreset}
+                selectedPreset={this.selectedPreset()}
+                {...this.props}
+              />
+            )}
+          </div>
         </div>
-      </div>
+      </View>
     )
   }
 

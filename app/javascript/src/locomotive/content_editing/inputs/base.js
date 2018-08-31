@@ -5,13 +5,13 @@ import { bindAll } from 'lodash';
 import withRedux from '../hoc/with_redux';
 
 // Components
-import TextInput from './text.jsx';
-import RichTextInput from './rich_text.jsx';
-import CheckboxInput from './checkbox.jsx';
-import SelectInput from './select.jsx';
-import RadioInput from './radio.jsx';
-import ImagePickerInput from './image_picker.jsx';
-import UrlInput from './url.jsx';
+import TextInput from './text';
+import RichTextInput from './rich_text';
+import CheckboxInput from './checkbox';
+import SelectInput from './select';
+import RadioInput from './radio';
+import ImagePickerInput from './image_picker';
+import UrlInput from './url';
 
 class Base extends Component {
 

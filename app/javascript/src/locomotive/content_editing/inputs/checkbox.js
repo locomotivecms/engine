@@ -1,13 +1,15 @@
 import React from 'react';
 
 const CheckboxInput = ({ setting, getValue, handleChange }) => (
-  <div className="editor-input editor-input-text">
+  <div className="editor-input editor-input-checkbox">
     <input
       type="checkbox"
       checked={getValue(false)}
       onChange={e => handleChange(e.target.checked)}
     />
-    <label>{setting.label}</label>
+    <label className="editor-input--label">
+      {setting.label}
+    </label>
   </div>
 )
 

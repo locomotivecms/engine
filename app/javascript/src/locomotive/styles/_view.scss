@@ -1,0 +1,40 @@
+.editor-view {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+
+  &--header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid $gray-lighter;
+
+    &-title {
+      margin-left: 2rem;
+      font-size: 2.1rem;
+      color: #666;
+    }
+
+    &-subTitle {
+      font-size: 1.4rem;
+      color: $gray;
+    }
+
+    &-mainTitle {
+      font-size: 2.1rem;
+      color: #666;
+    }
+
+    &-back-btn {
+      cursor: pointer;
+      font-size: 2.4rem;
+    }
+  }
+
+  &--scrollable {
+    position: relative;
+    flex-grow: 1;
+  }
+
+}

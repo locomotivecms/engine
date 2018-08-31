@@ -16,7 +16,7 @@ export function isBlank(value) {
 }
 
 export function presence(value) {
-  return _isBlank(value) ? false : value;
+  return _isBlank(value) ? null : value;
 }
 
 // https://stackoverflow.com/a/8809472
