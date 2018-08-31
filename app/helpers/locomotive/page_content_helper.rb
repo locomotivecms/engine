@@ -38,7 +38,8 @@ module Locomotive
       page.sections_dropzone_content.each_with_index.map do |section, index|
         section['id'] = "dropzone-#{index}"
 
-        section['blocks'] = section['blocks'].each_with_index.map do |block, _index|
+        # FIXME: sections content deployed with Wagon might have no blocks (nil)
+        section['blocks'] = (section['blocks'] || []).each_with_index.map do |block, _index|
           block['id'] = _index.to_s
           block
         end
