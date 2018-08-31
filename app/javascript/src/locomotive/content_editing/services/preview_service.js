@@ -38,7 +38,9 @@ const pokeSection = (_window, action, sectionId, blockId) => {
       eventData = { sectionId };
     }
 
-    if (action === 'select') scrollTo(_window, $elem);
+    if (action === 'select' && !$elem.hasClass('no-scroll')){
+      scrollTo(_window, $elem);
+    }
 
     sendEvent($elem[0], eventName, eventData);
 
