@@ -3,7 +3,7 @@ import { bindAll, truncate } from 'lodash';
 import { isBlank } from '../../utils/misc';
 import classnames from 'classnames';
 
-const DefaultView = ({ title, subTitle, onLeave, ...props }) => (
+const DefaultView = ({ title, subTitle, onLeave, renderAction, ...props }) => (
   <div className={classnames('editor-view', title ? 'editor-view--with-nav' : null)}>
     {title && (
       <div className="editor-view--header">
@@ -22,6 +22,11 @@ const DefaultView = ({ title, subTitle, onLeave, ...props }) => (
             {truncate(title, { length: 30 })}
           </div>
         </div>
+        {renderAction && (
+          <div className="editor-view--header-action">
+            {renderAction()}
+          </div>
+        )}
       </div>
     )}
     <div className="editor-view--scrollable">

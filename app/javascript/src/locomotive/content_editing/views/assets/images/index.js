@@ -34,15 +34,21 @@ class Index extends Component {
 
   render() {
     return (
-      <View title="Images" subTitle={this.props.blockLabel || this.props.sectionLabel} onLeave={this.props.leaveView}>
-
-        <Uploader handleUpload={this.handleUpload} uploadAssets={this.props.api.uploadAssets} />
-
+      <View
+        title="Images"
+        subTitle={this.props.blockLabel || this.props.sectionLabel}
+        onLeave={this.props.leaveView}
+        renderAction={() => <Uploader handleUpload={this.handleUpload} uploadAssets={this.props.api.uploadAssets} />}
+      >
         {this.props.isLoading ? (
-          <p>Loading the assets</p>
+          <div className="editor-image-list--loading">
+            <div className="editor-image-list--loading-text">
+              Loading the images
+            </div>
+          </div>
         ) : (
           <div className="editor-image-list">
-            <div className="editor-image-inner-list">
+            <div className="editor-image-list--container">
               {this.props.list.map(image =>
                 <Image
                   key={image.id}
@@ -52,19 +58,17 @@ class Index extends Component {
                 />
               )}
             </div>
-          </div>
-        )}
 
-        {!this.props.isLoading && (
-          <div className="editor-image-pagination">
-            <Pagination
-              innerClass="pagination pagination-sm"
-              activePage={this.props.pagination.page}
-              itemsCountPerPage={this.props.pagination.perPage}
-              totalItemsCount={this.props.pagination.totalEntries}
-              pageRangeDisplayed={5}
-              onChange={this.props.handlePageChange}
-            />
+            <div className="editor-image-list--pagination">
+              <Pagination
+                innerClass="pagination pagination-sm"
+                activePage={this.props.pagination.page}
+                itemsCountPerPage={this.props.pagination.perPage}
+                totalItemsCount={this.props.pagination.totalEntries}
+                pageRangeDisplayed={5}
+                onChange={this.props.handlePageChange}
+              />
+            </div>
           </div>
         )}
       </View>

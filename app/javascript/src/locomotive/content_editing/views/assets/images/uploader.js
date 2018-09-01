@@ -32,13 +32,13 @@ class Uploader extends Component {
       <div className="editor-image-uploader">
         {this.state.uploading ? (
           <div>
-            <p>Uploading file....</p>
+            <p>Uploading...</p>
           </div>
         ) : (
           <div>
             <input type="file" ref={el => this.input = el} onChange={this.handleUpload} />
             <button className="btn btn-primary btn-sm" onClick={this.openDialog}>
-              Upload file
+              Upload
             </button>
           </div>
         )}
