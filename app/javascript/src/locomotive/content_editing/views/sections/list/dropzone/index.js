@@ -13,7 +13,7 @@ const DragHandle      = SortableHandle(() => (
   <div className="editor-section--drag-handle"><i className="fa fa-bars"></i></div>
 ));
 const SortableSection = SortableElement(Section);
-const SortableList    = SortableContainer(({ list, removeSection, ...props }) => {
+const SortableList    = SortableContainer(({ list, ...props }) => {
   return (
     <div>
       {(list || []).map((section, index) => {
@@ -29,7 +29,6 @@ const SortableList    = SortableContainer(({ list, removeSection, ...props }) =>
             section={section}
             definition={definition}
             editPath={props.editSectionPath(section)}
-            removeSection={removeSection.bind(null, section)}
             handleComponent={DragHandle}
           />
         )}

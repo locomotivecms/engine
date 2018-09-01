@@ -19,7 +19,7 @@ const DefaultView = ({ title, subTitle, onLeave, renderAction, ...props }) => (
             </div>
           )}
           <div className="editor-view--header-mainTitle">
-            {truncate(title, { length: 30 })}
+            {truncate(title, { length: 25 })}
           </div>
         </div>
         {renderAction && (

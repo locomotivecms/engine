@@ -18,7 +18,7 @@ class Edit extends Component {
 
   constructor(props) {
     super(props);
-    bindAll(this, ['addBlock', 'moveBlock']);
+    bindAll(this, 'addBlock', 'moveBlock', 'removeSection');
   }
 
   // Called when an editor adds a new block
@@ -41,9 +41,22 @@ class Edit extends Component {
     )
   }
 
+  removeSection() {
+    if (confirm('Are you sure?'))
+      this.props.removeSection(this.props.section);
+  }
+
   render() {
     return (
-      <View title={presence(this.props.sectionLabel) || this.props.sectionDefinition.name} onLeave={this.props.leaveView}>
+      <View
+        title={presence(this.props.sectionLabel) || this.props.sectionDefinition.name}
+        onLeave={this.props.leaveView}
+        renderAction={() => (
+          <button className="btn btn-primary btn-sm" onClick={this.removeSection}>
+            Remove
+          </button>
+        )}
+      >
         <div className="editor-edit-section">
 
           <div className="editor-section-settings">

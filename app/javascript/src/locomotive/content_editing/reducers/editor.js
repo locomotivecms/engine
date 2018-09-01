@@ -15,6 +15,12 @@ function editor(state = {}, action) {
         sections: { all: { [action.newSection.uuid]: { $set: action.newSection } } }
       });
 
+    case 'DROPZONE::SECTION::REMOVE':
+      return update(state, {
+        changed: { $set: true },
+        sections: { all: { $unset: [action.section.uuid] } }
+      });
+
     case 'SITE::SECTION::UPDATE_INPUT':
     case 'SITE::SECTION::BLOCK::ADD':
     case 'SITE::SECTION::BLOCK::MOVE':
@@ -27,7 +33,6 @@ function editor(state = {}, action) {
     case 'PAGE::SECTION::BLOCK::UPDATE_INPUT':
     case 'DROPZONE::SECTION::UPDATE_INPUT':
     case 'DROPZONE::SECTION::MOVE':
-    case 'DROPZONE::SECTION::REMOVE':
     case 'DROPZONE::SECTION::BLOCK::ADD':
     case 'DROPZONE::SECTION::BLOCK::MOVE':
     case 'DROPZONE::SECTION::BLOCK::REMOVE':
