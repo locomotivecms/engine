@@ -1,3 +1,5 @@
+import striptags from 'striptags';
+
 // Constants
 const WAIT_UNTIL_MIN_DELAY  = 1000; // we want to avoid the flickering if the iframe is loaded too quickly
 const LINK_REGEXP           = /\/_locomotive-link\/(.+)/;
@@ -63,9 +65,7 @@ export function formatLineBreak(text) {
 export function stripHTML(html) {
   if (_isBlank(html)) return html;
 
-  var div = document.createElement('div');
-  div.innerHTML = html;
-  return div.innerText || div.textContent; // for older browsers and JEST :-)
+  return striptags(html);
 }
 
 // parse an integer/float and returns null if it's not an integer

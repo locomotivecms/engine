@@ -10,7 +10,7 @@ import { findBetterImageAndText } from '../../../../services/sections_service';
 import Section from './section';
 
 const DragHandle      = SortableHandle(() => (
-  <div className="editor-section--drag-handle"><i className="fa fa-bars"></i></div>
+  <div className="editor-list-item--drag-handle"><i className="fa fa-bars"></i></div>
 ));
 const SortableSection = SortableElement(Section);
 const SortableList    = SortableContainer(({ list, ...props }) => {
@@ -64,8 +64,8 @@ export class Dropzone extends Component {
           {...this.props}
         />
 
-        <div className="editor-section-add text-center">
-          <Link to={this.props.newSectionPath()} className="editor-section-add--button">+ add section</Link>
+        <div className="editor-list-add">
+          <Link to={this.props.newSectionPath()} className="editor-list-add--button">+ add section</Link>
         </div>
       </div>
     )

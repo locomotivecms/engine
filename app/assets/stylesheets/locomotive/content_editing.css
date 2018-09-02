@@ -1011,68 +1011,8 @@
 
 .editor-section-list {
   margin-bottom: 4rem; }
-
-.editor-section {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-align: center;
-      align-items: center;
-  -ms-flex-pack: center;
-      justify-content: center;
-  border-radius: 3px;
-  margin: 1rem 0rem;
-  background: #f7f7f7;
-  box-shadow: 0 0 0 1px rgba(63, 63, 68, 0.05), 0 1px 3px 0 rgba(63, 63, 68, 0.15); }
-  .editor-section--icon, .editor-section--image {
-    border-top-left-radius: 3px;
-    border-bottom-left-radius: 3px;
-    background: #D7D7D7;
-    width: 4rem;
-    height: 4rem; }
-  .editor-section--icon {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-pack: center;
-        justify-content: center;
-    -ms-flex-align: center;
-        align-items: center; }
-  .editor-section--image {
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover; }
-  .editor-section--label {
-    margin-left: 2rem;
-    font-size: 1.2rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    color: #555; }
-  .editor-section--actions {
-    margin-left: auto;
-    margin-right: 2rem;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-pack: center;
-        justify-content: center;
-    -ms-flex-align: center;
-        align-items: center; }
-    .editor-section--actions--button {
-      height: 17px; }
-  .editor-section--edit-button {
-    height: 17px; }
-  .editor-section--drag-handle {
-    margin-left: 1rem;
-    cursor: move; }
-    .editor-section--drag-handle i {
-      position: relative;
-      top: 2px;
-      font-size: 1.8rem; }
-
-.editor-section-add {
-  border-radius: 3px;
-  padding: 1rem 1.2rem;
-  border: dashed 1px #e3e4e7; }
-  .editor-section-add--button {
-    text-transform: uppercase; }
+  .editor-section-list > div {
+    height: 100%; }
 
 .editor-section-gallery {
   padding: 2rem; }
@@ -1095,6 +1035,77 @@
 .editor-category-section--label {
   cursor: pointer; }
 
+.editor-list-item {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  border-radius: 3px;
+  margin: 1rem 0rem;
+  background: #f7f7f7;
+  box-shadow: 0 0 0 1px rgba(63, 63, 68, 0.05), 0 1px 3px 0 rgba(63, 63, 68, 0.15);
+  min-height: 4rem; }
+  .editor-list-item--icon, .editor-list-item--image {
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    background: #D7D7D7;
+    width: 4rem;
+    height: 4rem; }
+  .editor-list-item--icon {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+        justify-content: center;
+    -ms-flex-align: center;
+        align-items: center; }
+  .editor-list-item--image {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover; }
+  .editor-list-item--label {
+    margin-left: 2rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #555; }
+  .editor-list-item--actions {
+    margin-left: auto;
+    margin-right: 2rem;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+        justify-content: center;
+    -ms-flex-align: center;
+        align-items: center; }
+    .editor-list-item--actions--button {
+      height: 17px; }
+  .editor-list-item--edit-button {
+    height: 17px; }
+  .editor-list-item--drag-handle {
+    margin-left: 1rem;
+    cursor: move; }
+    .editor-list-item--drag-handle i {
+      position: relative;
+      top: 2px;
+      font-size: 1.8rem; }
+
+.editor-list-add {
+  margin-top: 1rem; }
+  .editor-list-add--button {
+    display: block;
+    width: 100%;
+    border-radius: 3px;
+    padding: 1rem 1.2rem;
+    border: dashed 1px #e3e4e7;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+    background: #fff; }
+    .editor-list-add--button:hover {
+      text-decoration: none; }
+
 .rap-popover-content {
   box-shadow: 0 0 0 1px rgba(16, 22, 26, 0.1), 0 2px 4px rgba(16, 22, 26, 0.2), 0 8px 24px rgba(16, 22, 26, 0.2); }
 
@@ -1111,97 +1122,26 @@
 
 .editor-section-list {
   margin-bottom: 4rem; }
+  .editor-section-list > div {
+    height: 100%; }
 
-.editor-section {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-align: center;
-      align-items: center;
-  -ms-flex-pack: center;
-      justify-content: center;
-  border-radius: 3px;
-  margin: 1rem 0rem;
-  background: #f7f7f7;
-  box-shadow: 0 0 0 1px rgba(63, 63, 68, 0.05), 0 1px 3px 0 rgba(63, 63, 68, 0.15); }
-  .editor-section--icon, .editor-section--image {
-    border-top-left-radius: 3px;
-    border-bottom-left-radius: 3px;
-    background: #D7D7D7;
-    width: 4rem;
-    height: 4rem; }
-  .editor-section--icon {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-pack: center;
-        justify-content: center;
-    -ms-flex-align: center;
-        align-items: center; }
-  .editor-section--image {
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover; }
-  .editor-section--label {
-    margin-left: 2rem;
-    font-size: 1.2rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    color: #555; }
-  .editor-section--actions {
-    margin-left: auto;
-    margin-right: 2rem;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-pack: center;
-        justify-content: center;
-    -ms-flex-align: center;
-        align-items: center; }
-    .editor-section--actions--button {
-      height: 17px; }
-  .editor-section--edit-button {
-    height: 17px; }
-  .editor-section--drag-handle {
-    margin-left: 1rem;
-    cursor: move; }
-    .editor-section--drag-handle i {
-      position: relative;
-      top: 2px;
-      font-size: 1.8rem; }
+.editor-section-blocks--title {
+  font-size: 1.8rem;
+  font-family: "Muli", sans-serif;
+  font-weight: 200;
+  color: #6a707a;
+  margin-bottom: 1rem; }
 
-.editor-section-add {
-  border-radius: 3px;
-  padding: 1rem 1.2rem;
-  border: dashed 1px #e3e4e7; }
-  .editor-section-add--button {
-    text-transform: uppercase; }
+.editor-section-blocks--list {
+  margin-top: 2rem; }
+  .editor-section-blocks--list > div {
+    height: 100%; }
 
-.editor-block {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-align: center;
-      align-items: center;
-  margin: 2rem 0; }
+.editor-section-blocks .rap-manager {
+  margin-top: 1rem; }
 
-.editor-block-label {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-align: center;
-      align-items: center;
-  margin-left: 1rem; }
-
-.editor-block-image {
-  margin-right: 1rem; }
-
-.editor-block-actions {
-  margin-left: auto; }
-
-.editor-block-image {
-  background: #ccc;
-  width: 3rem;
-  height: 3rem; }
-  .editor-block-image img {
-    display: block;
-    max-width: 100%;
-    max-height: 3rem; }
+.editor-section-blocks .rap-manager, .editor-section-blocks .rap-target-container {
+  width: 100%; }
 
 .editor-edit-section, .editor-edit-block {
   padding: 2rem; }

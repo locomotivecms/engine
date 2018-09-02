@@ -1,31 +1,26 @@
-.editor-block {
-  display: flex;
-  align-items: center;
-  margin: 2rem 0;
-}
+.editor-section-blocks {
 
-.editor-block-label {
-  display: flex;
-  align-items: center;
-  margin-left: 1rem;
-}
+  &--title {
+    font-size: 1.8rem;
+    font-family: "Muli", sans-serif;
+    font-weight: 200;
+    color: #6a707a;
+    margin-bottom: 1rem;
+  }
 
-.editor-block-image {
-  margin-right: 1rem;
-}
+  &--list {
+    margin-top: 2rem;
 
-.editor-block-actions {
-  margin-left: auto;
-}
+    & > div {
+      height: 100%;
+    }
+  }
 
-.editor-block-image {
-  background: #ccc;
-  width: 3rem;
-  height: 3rem;
+  .rap-manager {
+    margin-top: 1rem;
+  }
 
-  img {
-    display: block;
-    max-width: 100%;
-    max-height: 3rem;
+  .rap-manager, .rap-target-container {
+    width: 100%;
   }
 }

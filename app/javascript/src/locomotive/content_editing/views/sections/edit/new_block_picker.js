@@ -2,17 +2,18 @@ import React from 'react';
 import Popover from 'react-awesome-popover';
 
 const NewBlockPicker = ({ sectionDefinition, addBlock, ...props }) => (
-  <div className="editor-section-add-block text-center">
+  <div className="editor-section-blocks--new">
+
     {sectionDefinition.blocks.length === 1 && (
-      <button className="btn btn-primary btn-sm" onClick={addBlock.bind(null, null)}>
-        Add block
-      </button>
+      <div className="editor-list-add">
+        <a className="editor-list-add--button" onClick={addBlock.bind(null, null)}>+ add</a>
+      </div>
     )}
 
     {sectionDefinition.blocks.length > 1 && (
       <Popover placement="bottom">
-        <button className="btn btn-primary btn-sm">
-          Add block
+        <button className="editor-list-add--button">
+          + add
         </button>
         <div className="rap-popover-pad">
           {sectionDefinition.blocks.map(blockDefinition =>

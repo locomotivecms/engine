@@ -11,21 +11,21 @@ const Section = ({ image, text, ...props }) => {
   const Icon    = Icons[props.definition.icon];
 
   return (
-    <div className="editor-section editor-dropzone-section">
+    <div className="editor-list-item editor-dropzone-section">
       {image && (
-        <div className="editor-section--image" style={{ backgroundImage: `url("${image}")` }}>
+        <div className="editor-list-item--image" style={{ backgroundImage: `url("${image}")` }}>
         </div>
       )}
       {!image && (
-        <div className="editor-section--icon">
+        <div className="editor-list-item--icon">
           {Icon && <Icon />}
         </div>
       )}
-      <div className="editor-section--label">
+      <div className="editor-list-item--label">
         {truncate(text || props.section.label || props.section.name, { length: 32 })}
       </div>
-      <div className="editor-section--actions">
-        <Link to={props.editPath} className="editor-section--actions--button">
+      <div className="editor-list-item--actions">
+        <Link to={props.editPath} className="editor-list-item--actions--button">
           <EditIcon />
         </Link>
         <Handle />

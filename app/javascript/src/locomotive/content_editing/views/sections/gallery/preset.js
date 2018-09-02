@@ -32,14 +32,14 @@ class Preset extends Component {
     const Icon = Icons[this.props.preset.icon || this.props.definition.icon];
 
     return (
-      <div className="editor-section">
-        <div className="editor-section--icon editor-category-section--icon" onClick={this.previewPreset}>
+      <div className="editor-list-item">
+        <div className="editor-list-item--icon editor-category-section--icon" onClick={this.previewPreset}>
           {Icon && <Icon />}
         </div>
-        <div className="editor-section--label editor-category-section--label" onClick={this.previewPreset}>
+        <div className="editor-list-item--label editor-category-section--label" onClick={this.previewPreset}>
           {this.props.preset.name}
         </div>
-        <div className="editor-section--actions">
+        <div className="editor-list-item--actions">
           {this.isSelected() &&
             <button className="btn btn-primary btn-sm" onClick={this.selectPreset}>
               Add

@@ -11,7 +11,7 @@ import { build as buildBlock } from '../../../services/blocks_service';
 // Components
 import View from '../../../components/default_view';
 import Input from '../../../inputs/base';
-import BlockList from './block_list.jsx';
+import BlockList from './block_list';
 import NewBlockPicker from './new_block_picker';
 
 class Edit extends Component {
@@ -71,16 +71,18 @@ class Edit extends Component {
             )}
           </div>
 
-          <hr/>
-
           {!isBlank(this.props.sectionDefinition.blocks) && (
             <div className="editor-section-blocks">
-              <h3>Blocks</h3>
+              <h3 className="editor-section-blocks--title">
+                {this.props.sectionDefinition.blocksLabel || 'Content'}
+              </h3>
 
-              <BlockList
-                moveBlock={this.moveBlock}
-                {...this.props}
-              />
+              <div className="editor-section-blocks--list">
+                <BlockList
+                  moveBlock={this.moveBlock}
+                  {...this.props}
+                />
+              </div>
 
               <NewBlockPicker
                 addBlock={this.addBlock}
