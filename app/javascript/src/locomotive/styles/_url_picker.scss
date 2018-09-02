@@ -2,22 +2,79 @@
   width: 100%;
 }
 
-.url-picker-info, .url-picker-input {
+.url-picker-info {
   display: flex;
   align-items: center;
-}
+  margin-bottom: 1rem;
 
-.url-picker-info-actions, .url-picker-input-actions {
-  margin-left: auto;
-  min-width: 30%;
-  text-align: right;
-}
+  &--value {
+    flex-grow: 1;
 
-.url-picker-input-autocomplete {
-  width: 100%;
+    .label {
+      position: relative;
+      top: -2px;
+    }
+  }
 
-  .rap-manager, .rap-target-container {
-    width: 100%;
+  &--actions {
+    display: flex;
+    margin-left: 1rem;
+    .btn {
+      margin-left: 0.5rem;
+    }
   }
 }
 
+.url-picker-input {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+
+  &--autocomplete {
+    flex-grow: 1;
+
+    .rap-manager, .rap-target-container {
+      width: 100%;
+    }
+
+    .rap-popover-pad {
+      width: 30rem;
+      padding: 0;
+    }
+  }
+
+  &--actions {
+    display: flex;
+    margin-left: 1rem;
+    .btn {
+      margin-left: 0.5rem;
+    }
+  }
+}
+
+.url-picker-new-window {
+  font-size: 1.2rem;
+  color: $gray;
+  text-align: right;
+}
+
+
+.url-picker-resource {
+  display: flex;
+  align-items: center;
+
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid $gray-lighter;
+
+  &--type {
+    margin-right: 1rem;
+    span {
+      position: relative;
+      top: -2px;
+    }
+  }
+
+  &--label {
+    cursor: pointer;
+  }
+}

@@ -5,8 +5,9 @@ import UrlPicker from '../components/url_picker';
 
 const UrlInput = props => (
   <div className="editor-input editor-input-url">
-    <label>{props.setting.label}</label>
-    <br/>
+    <label className="editor-input--label">
+      {props.setting.label}
+    </label>
     <UrlPicker
       value={props.getValue(null)}
       handleChange={props.handleChange}

@@ -6,7 +6,6 @@ function editor(state = {}, action) {
       return action.editor;
 
     case 'PERSIST_CHANGES':
-      console.log('PERSIST_CHANGES', action.success);
       return action.success ? update(state, { changed: { $set: false } }) : state;
 
     case 'DROPZONE::SECTION::ADD':

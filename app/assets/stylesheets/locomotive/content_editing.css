@@ -1111,7 +1111,7 @@
 
 .rap-popover-pad {
   padding: 10px;
-  width: 200px; }
+  width: 20rem; }
 
 .rap-popover-button-wrapper button {
   background: none;
@@ -1217,8 +1217,9 @@
   position: static; }
 
 .editor-input-rich-text .rdw-link-modal {
-  left: 0;
-  right: 0;
+  margin-top: 1rem;
+  left: 1rem;
+  right: 1rem;
   width: auto;
   height: auto;
   box-shadow: none; }
@@ -1286,21 +1287,65 @@
 .url-picker {
   width: 100%; }
 
-.url-picker-info, .url-picker-input {
+.url-picker-info {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;
-      align-items: center; }
+      align-items: center;
+  margin-bottom: 1rem; }
+  .url-picker-info--value {
+    -ms-flex-positive: 1;
+        flex-grow: 1; }
+    .url-picker-info--value .label {
+      position: relative;
+      top: -2px; }
+  .url-picker-info--actions {
+    display: -ms-flexbox;
+    display: flex;
+    margin-left: 1rem; }
+    .url-picker-info--actions .btn {
+      margin-left: 0.5rem; }
 
-.url-picker-info-actions, .url-picker-input-actions {
-  margin-left: auto;
-  min-width: 30%;
+.url-picker-input {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  margin-bottom: 1rem; }
+  .url-picker-input--autocomplete {
+    -ms-flex-positive: 1;
+        flex-grow: 1; }
+    .url-picker-input--autocomplete .rap-manager, .url-picker-input--autocomplete .rap-target-container {
+      width: 100%; }
+    .url-picker-input--autocomplete .rap-popover-pad {
+      width: 30rem;
+      padding: 0; }
+  .url-picker-input--actions {
+    display: -ms-flexbox;
+    display: flex;
+    margin-left: 1rem; }
+    .url-picker-input--actions .btn {
+      margin-left: 0.5rem; }
+
+.url-picker-new-window {
+  font-size: 1.2rem;
+  color: #91979f;
   text-align: right; }
 
-.url-picker-input-autocomplete {
-  width: 100%; }
-  .url-picker-input-autocomplete .rap-manager, .url-picker-input-autocomplete .rap-target-container {
-    width: 100%; }
+.url-picker-resource {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid #e3e4e7; }
+  .url-picker-resource--type {
+    margin-right: 1rem; }
+    .url-picker-resource--type span {
+      position: relative;
+      top: -2px; }
+  .url-picker-resource--label {
+    cursor: pointer; }
 
 #editor-app, #editor-app .container-fluid {
   height: 100%; }

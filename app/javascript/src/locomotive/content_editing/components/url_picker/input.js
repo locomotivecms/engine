@@ -51,13 +51,14 @@ class UrlInput extends Component {
 
     return (
       <div className="url-picker-input">
-        <div className="url-picker-input-autocomplete">
+        <div className="url-picker-input--autocomplete">
           <Popover placement="bottom" action={null} open={this.state.results.length > 0}>
             <input
               type="text"
               onKeyUp={this.handleKeyUp}
               defaultValue={this.getDefaultValue()}
               placeholder="Please type the label of a resource"
+              className="editor-input--text"
             />
             <div className="rap-popover-pad">
               {this.state.results.map((resource, index) => (
@@ -70,7 +71,7 @@ class UrlInput extends Component {
             </div>
           </Popover>
         </div>
-        <div className="url-picker-input-actions">
+        <div className="url-picker-input--actions">
           {!isBlank(this.state.input) && isBlank(this.state.results) && (
             <button className="btn btn-sm btn-primary" onClick={this.handleChange}>
               Select
