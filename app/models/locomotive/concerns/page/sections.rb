@@ -56,12 +56,11 @@ module Locomotive
               section: {
                 type: 'object',
                 properties: {
-                  name:     { type: 'string' },
                   type:     { type: 'string' },
                   settings: { type: 'object' },
                   blocks:   { type: 'array' }
                 },
-                required: [:name, :type, :settings, :blocks]
+                required: [:type, :settings, :blocks]
               }
             },
             type: 'array',

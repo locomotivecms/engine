@@ -74,7 +74,7 @@ class Edit extends Component {
           {!isBlank(this.props.sectionDefinition.blocks) && (
             <div className="editor-section-blocks">
               <h3 className="editor-section-blocks--title">
-                {this.props.sectionDefinition.blocksLabel || 'Content'}
+                {this.props.sectionDefinition.blocks_label || 'Content'}
               </h3>
 
               <div className="editor-section-blocks--list">
