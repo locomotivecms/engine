@@ -22,7 +22,7 @@ const Section = ({ image, text, ...props }) => {
         </div>
       )}
       <div className="editor-list-item--label">
-        {truncate(text || props.section.label || props.section.name, { length: 32 })}
+        {truncate(text || props.section.label || props.section.name || props.definition.name, { length: 32 })}
       </div>
       <div className="editor-list-item--actions">
         <Link to={props.editPath} className="editor-list-item--actions--button">
