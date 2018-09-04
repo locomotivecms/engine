@@ -27,20 +27,6 @@ module Locomotive
       authorize @page
 
       persisting_service.save(site_params, page_params)
-
-      respond_to do |format|
-        format.json do
-          if current_site.valid? && @page.valid?
-            render json: { success: true }
-          else
-            render json: {
-              errors: {
-                site: current_site.errors.to_json, page: @page.errors.to_json
-              }
-            }
-          end
-        end
-      end
     end
 
     private
@@ -80,7 +66,7 @@ module Locomotive
     end
 
     def page_params
-      params.require(:page).permit(:sections_content, :sections_dropzone_content)
+      params.require(:page).permit(:title, :slug, :seo_title, :meta_keywords, :meta_description, :sections_content, :sections_dropzone_content)
     end
 
     def only_if_sections

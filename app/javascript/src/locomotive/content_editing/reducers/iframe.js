@@ -15,11 +15,7 @@ function iframe(state = {}, action) {
       return { loaded: true, _window: action._window };
 
     case 'IFRAME::DONE':
-      return update(state, {
-        refreshAction:      { $set: null },
-        refreshInput:       { $set: null },
-        previousSection:    { $set: null }
-      })
+      return update(state, { previousSection: { $set: null } })
 
     // DROPZONE
 

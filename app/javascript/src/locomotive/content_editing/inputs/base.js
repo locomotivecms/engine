@@ -28,7 +28,6 @@ class Base extends Component {
   getValue(undefinedValue) {
     const { setting, data } = this.props;
     var value = data.settings[setting.id];
-
     return value === undefined ? setting.defaultValue || undefinedValue : value;
   }
 
@@ -60,8 +59,4 @@ class Base extends Component {
 
 }
 
-export default withRedux(state => ({
-  site:   state.content.site,
-  page:   state.content.page,
-  locale: state.editor.locale
-}))(Base);
+export default Base;

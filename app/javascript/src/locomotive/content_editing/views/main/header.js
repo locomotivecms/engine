@@ -10,7 +10,7 @@ const Header = props => (
         {props.page.fullpath}
       </div>
       <div className="navinfo--title">
-        {props.page.title}
+        {props.page.title || 'No title'}
       </div>
     </div>
 

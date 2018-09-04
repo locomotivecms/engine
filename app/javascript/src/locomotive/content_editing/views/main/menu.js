@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { compose } from 'redux';
 import { Link } from 'react-router-dom';
+import classnames from 'classnames';
 
 // Components
 import SectionIcon from '../../components/icons/sections';
@@ -17,26 +18,38 @@ const Style = {
   navTabActiveColor: '#595959'
 }
 
+const PathRegexps = {
+  sections: /^\/[0-9a-z]+\/content\/edit\/sections\/?/,
+  settings: /^\/[0-9a-z]+\/content\/edit\/settings\/?/,
+  seo: /^\/[0-9a-z]+\/content\/edit\/seo\/?/
+}
+
+const menuItemClassname = (name, props) => {
+  const location = props.history.location.pathname;
+  const isActive = PathRegexps[name].test(location);
+  return classnames('nav-tab', isActive ? 'active' : false);
+}
+
 const Menu = props => (
   <div className="editor-menu">
     <ul className="nav nav-tabs" role="tablist">
-      <li className="nav-tab active">
+      <li className={menuItemClassname('sections', props)}>
         <Link to={props.sectionsPath()}>
           <SectionIcon color={Style.navTabActiveColor} />
           Content
         </Link>
       </li>
-      <li className="nav-tab">
-        <a href="#">
+      <li className={menuItemClassname('settings', props)}>
+        <Link to={props.settingsPath()}>
           <SettingsIcon color={Style.navTabColor} />
           Settings
-        </a>
+        </Link>
       </li>
-      <li className="nav-tab">
-        <a href="#">
+      <li className={menuItemClassname('seo', props)}>
+        <Link to={props.seoPath()}>
           <BarChartIcon color={Style.navTabColor} />
           SEO
-        </a>
+        </Link>
       </li>
     </ul>
   </div>

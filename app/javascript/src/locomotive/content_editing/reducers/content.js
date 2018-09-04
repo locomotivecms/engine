@@ -11,6 +11,14 @@ function content(state = {}, action) {
         page: { $set: action.content.page }
       });
 
+    // PAGE
+    case 'PAGE::SETTING::UPDATE':
+      return update(state, {
+        page: {
+          [action.name]: { $set: action.newValue }
+        }
+      });
+
     // SECTIONS DROPZONE
 
     case 'DROPZONE::SECTION::ADD':

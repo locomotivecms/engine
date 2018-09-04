@@ -8,6 +8,9 @@ export default function withRoutes(Component) {
     const _pageId   = compact([pageId, contentEntryId]).join('-');
     const basePath  = `/${_pageId}/content/edit`;
 
+    const settingsPath          = () => `${basePath}/settings`;
+    const seoPath               = () => `${basePath}/seo`;
+
     const sectionsPath          = () => `${basePath}/sections`;
     const newSectionPath        = () => `${basePath}/sections/dropzone/new`;
 
@@ -39,6 +42,8 @@ export default function withRoutes(Component) {
     }
 
     return {
+      settingsPath,
+      seoPath,
       sectionsPath,
       editSectionPath,
       newSectionPath,

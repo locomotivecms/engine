@@ -35,7 +35,7 @@ class Main extends Component {
       <div className="actionbar">
         <Header />
 
-        <Menu />
+        <Menu {...this.props} />
 
         {!iframe.loaded && <Startup />}
 

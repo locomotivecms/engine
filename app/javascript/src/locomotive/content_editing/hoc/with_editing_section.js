@@ -41,7 +41,7 @@ const withEditingSection = Component => {
   const isEditingSection  = props => props.sectionId && props.sectionContent
   const isEditingBlock    = props => props.blockId && props.blockContent
   const isEditingSetting  = props => props.settingType && props.settingId
-  const isEditing         = props => isEditingSection(props) || isEditingBlock(props)
+  const isEditing         = props => isEditingSection(props) && (props.blockId === undefined || isEditingBlock(props))
   const editingType = props => {
     if (isEditingSetting(props) && isEditingBlock(props))   return 'block_setting';
     if (isEditingSetting(props) && isEditingSection(props)) return 'section_setting';

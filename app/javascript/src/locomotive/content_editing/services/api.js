@@ -59,6 +59,11 @@ export function saveContent(url, site, page) {
   return jsonPut(url, {
     site: { sections_content: JSON.stringify(site.sectionsContent) },
     page: {
+      title: page.title,
+      slug: page.slug,
+      seo_title: page.seo_title,
+      meta_keywords: page.meta_keywords,
+      meta_description: page.meta_description,
       sections_content: JSON.stringify(page.sectionsContent),
       sections_dropzone_content: JSON.stringify(page.sectionsDropzoneContent)
     }

@@ -1,9 +1,14 @@
 import React from 'react';
 
-const TextInput = ({ setting, getValue, handleChange }) => (
+const TextInput = ({ label, setting, getValue, handleChange, error }) => (
   <div className="editor-input editor-input-text">
     <label className="editor-input--label">
-      {setting.label}
+      {label || setting.label}
+      {error && (
+        <span className="editor-input--error">
+          {error[0]}
+        </span>
+      )}
     </label>
     <input
       type="text"

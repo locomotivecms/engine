@@ -1,32 +1,56 @@
 import ApiFactory from '../services/api';
 import { waitUntil } from '../utils/misc';
 
+// Services
+import * as Preview from '../services/preview_service';
+
+// Actions
+export * from './page_actions';
 export * from './section_actions';
 export * from './section_block_actions';
 export * from './dropzone_actions';
 
 // GLOBAL
 
-const _persistChanges = success => {
+const _persistChanges = isSuccess => {
   return {
-    type: 'PERSIST_CHANGES',
-    success
+    type:     'PERSIST_CHANGES',
+    success:  isSuccess
+  }
+}
+
+const _persistPageChanges = (isSuccess, errors) => {
+  return {
+    type:     'PAGE::PERSIST_CHANGES',
+    success:  isSuccess,
+    errors
   }
 }
 
 export function persistChanges(result, data) {
   return (dispatch, getState) => {
     const { notify, i18n } = window.Locomotive;
-    const { editor: { api }, content: { site, page } } = getState();
+    const { editor: { api, pageChanged }, content: { site, page }, iframe: { _window } } = getState();
 
     api.saveContent(site, page)
-    .then((data) => {
+    .then(data => {
       notify(i18n.success, 'success')
+
       dispatch(_persistChanges(true))
+
+      if (pageChanged) {
+        Preview.reload(_window, data.previewPath);
+        dispatch(_persistPageChanges(true));
+      }
     })
-    .catch((errors) => {
+    .catch(errors => {
       notify(i18n.fail, 'danger')
+
       dispatch(_persistChanges(false))
+
+      if (pageChanged) {
+        dispatch(_persistPageChanges(false, errors));
+      }
     });
 
   }
@@ -43,6 +67,9 @@ function loadEditor(data, urls) {
       sections:           data.sections,
       sectionDefinitions: data.sectionDefinitions,
       editableElements:   data.editableElements,
+      changed:            false,
+      pageChanged:        false,
+      formErrors:         {},
       api:                ApiFactory(urls),
       urls
     }

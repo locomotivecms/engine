@@ -1006,6 +1006,12 @@
   height: calc(100% - 4rem);
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.1), 0 0 12px rgba(0, 0, 0, 0.1); }
 
+.editor-page-settings {
+  padding: 2rem 2rem 2rem; }
+  .editor-page-settings-more {
+    margin-top: 2rem;
+    text-align: right; }
+
 .editor-all-sections {
   padding: 2rem; }
 
@@ -1155,6 +1161,10 @@
     text-transform: uppercase;
     color: #474b51;
     margin-bottom: 0.8rem; }
+  .editor-input--error {
+    display: inline-block;
+    margin-left: 1rem;
+    color: #d9684c; }
   .editor-input--text {
     display: block;
     width: 100%;

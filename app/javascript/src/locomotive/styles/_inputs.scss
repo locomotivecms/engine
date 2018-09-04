@@ -14,6 +14,12 @@
     margin-bottom: 0.8rem;
   }
 
+  &--error {
+    display: inline-block;
+    margin-left: 1rem;
+    color: $brand-danger;
+  }
+
   &--text {
     display: block;
     width: 100%;

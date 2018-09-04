@@ -10,7 +10,9 @@ const { site, page, sectionDefinitions, sections, editableElements, locale } = d
 
 const defaultState = {
   editor: {
-    changed: false,
+    changed:      false,
+    pageChanged:  false, // Page Settings & SEO
+    formErrors:   {},
     sectionDefinitions,
     sections,
     editableElements,

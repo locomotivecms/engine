@@ -27,10 +27,10 @@ describe Locomotive::EditorService do
       let(:query) { 'Hello' }
 
       it 'returns the pages whose titles match the query' do
-        expect(subject.count).to eq 2
+        expect(subject.count).to eq 3
         expect(subject.first[:type]).to eq('page')
         expect(subject.first[:label][0]).to eq('Pages')
-        expect(subject.first[:label][1]).to eq('Hello world 0')
+        expect(subject.first[:label][1]).to eq('Hello')
       end
 
     end

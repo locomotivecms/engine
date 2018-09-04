@@ -50,6 +50,11 @@ const pokeSection = (_window, action, sectionId, blockId) => {
 
 // General
 
+export function reload(_window, location) {
+  // console.log(reload, _window, location);
+  _window.document.location.href = location;
+}
+
 export function prepareIframe(_window) {
   _window.document.body.addEventListener('click', event => {
     var link = findParentElement('a', event.target);
@@ -63,7 +68,7 @@ export function prepareIframe(_window) {
         return;
 
       // second case: don't handle urls to an external site
-      if (url[0] !== '/') {
+      if (url[0] !== '/' && url[0] !== '#') {
         alert("This link cannot be opened inside the editor.");
         return stopPropagation(event);
       }

@@ -2,11 +2,18 @@ import update from '../utils/immutable_update';
 
 function editor(state = {}, action) {
   switch(action.type) {
+
     case 'EDITOR::LOAD':
       return action.editor;
 
     case 'PERSIST_CHANGES':
       return action.success ? update(state, { changed: { $set: false } }) : state;
+
+    case 'PAGE::PERSIST_CHANGES':
+      return update(state, {
+        pageChanged: { $set: !action.success },
+        formErrors: { $set: action.success ? {} : action.errors }
+      });
 
     case 'DROPZONE::SECTION::ADD':
       return update(state, {
@@ -18,6 +25,12 @@ function editor(state = {}, action) {
       return update(state, {
         changed: { $set: true },
         sections: { all: { $unset: [action.section.uuid] } }
+      });
+
+    case 'PAGE::SETTING::UPDATE':
+      return update(state, {
+        changed: { $set: true },
+        pageChanged: { $set: true }
       });
 
     case 'SITE::SECTION::UPDATE_INPUT':
