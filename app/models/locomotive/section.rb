@@ -91,13 +91,20 @@ module Locomotive
             },
             required: [:type, :name]
           },
+          preset_blocks: {
+            type: 'object',
+            properties: {
+              type:       { type: 'string' }
+            },
+            required: [:type]
+          },
           preset: {
             type: 'object',
             properties: {
               name:       { type: 'string' },
               category:   { type: 'string' },
               settings:   { type: 'object' },
-              blocks:     { type: 'array' }
+              blocks:     { type: 'array', items: { '$ref': '#/definitions/preset_blocks'} }
             },
             required: [:name, :category]
           }
