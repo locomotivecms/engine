@@ -95,7 +95,7 @@ export function updateSection(_window, section, html) {
 
 // Refresh the HTML of any text input elements, no matter if it belongs to a section
 export function updateSectionText(_window, section, blockId, settingId, value) {
-  return new Promise(resolve => {
+  return new Promise((resolve, reject) => {
     var dataValue = `section-${section.id}`;
 
     if (blockId)
@@ -103,11 +103,14 @@ export function updateSectionText(_window, section, blockId, settingId, value) {
     else
       dataValue = `${dataValue}.${settingId}`;
 
-    $(_window.document)
+    var $elem = $(_window.document)
       .find(`[data-locomotive-editor-setting='${dataValue}']`)
       .html(value);
 
-    resolve(true);
+    if ($elem.size() > 0)
+      resolve(true);
+    else
+      reject();
   });
 }
 

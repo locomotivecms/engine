@@ -4,6 +4,9 @@ import { upperCase } from 'lodash';
 import * as Preview from '../services/preview_service';
 import { fetchSectionContent } from '../services/sections_service';
 
+// Constants
+const DEBOUNCE_DELAY = 300; // in milliseconds
+
 // Helpers
 const actionName = (name, section) => {
   return `${upperCase(section.source)}::${name}`;
@@ -21,6 +24,23 @@ const _updateSectionInput = (section, blockId, fieldType, id, newValue) => {
   }
 }
 
+const reloadSectionHTML = (getState, section, blockId) => {
+  const { editor: { api }, iframe: { _window }, content } = getState();
+
+  // now, get the fresh content
+  const sectionContent = fetchSectionContent(content, section);
+
+  return api.loadSectionHTML(section, sectionContent)
+  .then(html => {
+    Preview.updateSection(_window, section, html);
+
+    Preview.selectSection(_window, section, blockId);
+  });
+}
+
+// FIXME: we don't want the update of the section to happen too frequently
+const debouncedReloadSectionHTML = _.debounce(reloadSectionHTML, DEBOUNCE_DELAY);
+
 export function updateSectionInput(section, blockId, fieldType, id, newValue) {
   return (dispatch, getState) => {
     const { editor: { api }, iframe: { _window } } = getState();
@@ -29,18 +49,13 @@ export function updateSectionInput(section, blockId, fieldType, id, newValue) {
     dispatch(_updateSectionInput(section, blockId, fieldType, id, newValue));
 
     if (fieldType === 'text')
-      Preview.updateSectionText(_window, section, blockId, id, newValue);
+      Preview.updateSectionText(_window, section, blockId, id, newValue)
+      .catch(() => {
+        // FIXME: the text wasn't wrapped directly in a HTML tag
+        debouncedReloadSectionHTML(getState, section, blockId);
+      })
     else {
-      // now, get the fresh content
-      const { content } = getState();
-      const sectionContent = fetchSectionContent(content, section);
-
-      return api.loadSectionHTML(section, sectionContent)
-      .then(html => {
-        Preview.updateSection(_window, section, html);
-
-        Preview.selectSection(_window, section, blockId);
-      });
+      debouncedReloadSectionHTML(getState, section, blockId);
     }
   }
 }
