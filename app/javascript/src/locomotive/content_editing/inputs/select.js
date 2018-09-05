@@ -8,7 +8,7 @@ const SelectInput = ({ setting, getValue, handleChange }) => (
       value={getValue(null)}
       onChange={e => handleChange(e.target.value)}
     >
-      {setting.options.map((option, index) =>
+      {(setting.options || []).map((option, index) =>
         <option key={index} value={option.value}>
           {option.label}
         </option>
