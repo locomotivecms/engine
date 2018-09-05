@@ -1,4 +1,4 @@
-import { upperCase } from 'lodash';
+import { upperCase, debounce } from 'lodash';
 
 // Services
 import * as Preview from '../services/preview_service';
@@ -39,7 +39,7 @@ const reloadSectionHTML = (getState, section, blockId) => {
 }
 
 // FIXME: we don't want the update of the section to happen too frequently
-const debouncedReloadSectionHTML = _.debounce(reloadSectionHTML, DEBOUNCE_DELAY);
+const debouncedReloadSectionHTML = debounce(reloadSectionHTML, DEBOUNCE_DELAY);
 
 export function updateSectionInput(section, blockId, fieldType, id, newValue) {
   return (dispatch, getState) => {
