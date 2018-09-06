@@ -3,9 +3,6 @@ import update from '../utils/immutable_update';
 function iframe(state = {}, action) {
   switch (action.type) {
 
-    case 'EDITOR::LOAD':
-      return update(state, { loaded: { $set: true } });
-
     // IFRAME
 
     case 'IFRAME::NEW_SOURCE':

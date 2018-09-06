@@ -38,8 +38,8 @@ const withEditingSection = Component => {
   }
 
   // Helpers
-  const isEditingSection  = props => props.sectionId && props.sectionContent
-  const isEditingBlock    = props => props.blockId && props.blockContent
+  const isEditingSection  = props => !!(props.sectionId && props.sectionContent)
+  const isEditingBlock    = props => !!(props.blockId && props.blockContent)
   const isEditingSetting  = props => props.settingType && props.settingId
   const isEditing         = props => isEditingSection(props) && (props.blockId === undefined || isEditingBlock(props))
   const editingType = props => {
@@ -90,7 +90,12 @@ const withEditingSection = Component => {
     }
 
     componentDidMount() {
-      notifyOnEnter(this.props);
+      if (isEditing(this.props)) {
+        notifyOnEnter(this.props);
+      } else {
+        // unknown section and/or block, go back to the sections view
+        this.props.redirectTo(this.props.sectionsPath());
+      }
     }
 
     leaveView() {
@@ -103,27 +108,20 @@ const withEditingSection = Component => {
     }
 
     render() {
-      return (
+      return isEditing(this.props) ? (
         <Component
           leaveView={this.leaveView}
           handleChange={this.handleChange}
           {...this.props}
         />
-      )
+      ) : null;
     }
 
   }
 
   return function WithEditingSection(props) {
     const newProps = buildNewProps(props);
-
-    return isEditing(newProps) ? (
-      <WrappedComponent
-        {...newProps}
-      />
-    ) : (
-      <Redirect to={{ pathname: '/' }} />
-    )
+    return <WrappedComponent {...newProps} />
   }
 
 }

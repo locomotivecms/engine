@@ -55,7 +55,7 @@ export function reload(_window, location) {
   _window.document.location.href = location;
 }
 
-export function prepareIframe(_window) {
+export function prepareIframe(_window, onPageChange) {
   _window.document.body.addEventListener('click', event => {
     var link = findParentElement('a', event.target);
 
@@ -72,6 +72,10 @@ export function prepareIframe(_window) {
         alert("This link cannot be opened inside the editor.");
         return stopPropagation(event);
       }
+
+      if (onPageChange) { onPageChange(); }
+
+      return true;
     }
   })
 }

@@ -39,7 +39,7 @@ class Gallery extends Component {
     this.props.addSection(section);
 
     // Go directly to the section edit page
-    this.props.redirectTo(this.props.editSectionPath(section));
+    this.props.redirectTo(this.props.editSectionPath(section), 'left');
   }
 
   previewPreset(category, preset) {

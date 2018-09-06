@@ -24,14 +24,14 @@ class Preview extends React.Component {
   componentDidMount() {
     this.iframe.onload = () => {
       // bring some modifications to the iframe
-      prepareIframe(this.iframe.contentWindow);
+      prepareIframe(this.iframe.contentWindow, () => this.props.startLoadingIframe(this.iframe.contentWindow));
 
       // don't allow to go to another page if the changes have not been saved
       this.iframe.contentWindow.onbeforeunload = () => {
         return this.props.changed ? 'Changes unsaved!' : null;
       }
 
-      if (!this.props.iframeState.loaded) {
+      if (this.props.iframeState.loaded === null) {
         // alright, we are all good to display the first screen
         waitUntil(this.createdAt, null, () => this.props.onIframeLoaded(this.iframe.contentWindow))
       } else {

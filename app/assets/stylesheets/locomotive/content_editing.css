@@ -894,12 +894,15 @@
 .editor-header {
   display: -ms-flexbox;
   display: flex;
-  padding: 3rem 2rem;
+  padding: 0rem 2rem;
+  min-height: 10rem;
   -ms-flex-align: center;
       align-items: center;
   -ms-flex-pack: justify;
       justify-content: space-between;
   background: #33373B; }
+  .editor-header--navinfo {
+    padding: 2rem 0; }
   .editor-header .navinfo--path {
     color: #adb1b7;
     font-size: 1.4rem; }
@@ -924,12 +927,12 @@
     margin-right: 0.8rem; }
 
 .editor-view {
-  -ms-flex-positive: 1;
-      flex-grow: 1;
+  height: 100%;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: column;
-      flex-direction: column; }
+      flex-direction: column;
+  background: #fff; }
   .editor-view--header {
     display: -ms-flexbox;
     display: flex;
@@ -962,7 +965,8 @@
 .preview {
   background: #f1f1f1;
   box-sizing: border-box;
-  padding: 2rem 4rem; }
+  padding: 2rem 4rem;
+  z-index: 999; }
 
 .preview-inner {
   height: 100%;
@@ -1375,4 +1379,47 @@
       align-items: center;
   -ms-flex-pack: center;
       justify-content: center; }
+
+.editor-route-wrapper {
+  position: relative;
+  -ms-flex-positive: 1;
+      flex-grow: 1; }
+
+.editor-route-wrapper > div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 998; }
+
+.editor-route-wrapper > .editor-view.slide-up-enter,
+.editor-route-wrapper > .editor-view.slide-right-enter,
+.editor-route-wrapper > .editor-view.slide-left-enter {
+  opacity: 0; }
+
+.editor-route-wrapper > .editor-view.slide-up-enter {
+  transform: translate(0, 40px); }
+
+.editor-route-wrapper > .editor-view.slide-right-enter {
+  transform: translate(-40px, 0); }
+
+.editor-route-wrapper > .editor-view.slide-left-enter {
+  transform: translate(40px, 0); }
+
+.editor-route-wrapper > .editor-view.slide-up-enter.slide-up-enter-active,
+.editor-route-wrapper > .editor-view.slide-right-enter.slide-right-enter-active,
+.editor-route-wrapper > .editor-view.slide-left-enter.slide-left-enter-active {
+  opacity: 1;
+  transform: translate(0, 0);
+  transition: opacity 300ms ease-in, transform 300ms ease-in-out; }
+
+.editor-route-wrapper > .slide-up-exit,
+.editor-route-wrapper > .slide-right-exit,
+.editor-route-wrapper > .slide-left-exit {
+  opacity: 1; }
+
+.editor-route-wrapper > .slide-up-exit.slide-up-exit-active,
+.editor-route-wrapper > .slide-right-exit.slide-right-exit-active,
+.editor-route-wrapper > .slide-left-exit.slide-left-exit-active {
+  opacity: 0;
+  transition: opacity 200ms ease-in; }
 

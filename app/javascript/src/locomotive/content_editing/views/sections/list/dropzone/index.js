@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { SortableContainer, SortableElement, SortableHandle } from 'react-sortable-hoc';
 import { bindAll } from 'lodash';
 
@@ -7,6 +6,7 @@ import { bindAll } from 'lodash';
 import { findBetterImageAndText } from '../../../../services/sections_service';
 
 // Components
+import { SlideLeftLink } from '../../../../components/links';
 import Section from './section';
 
 const DragHandle      = SortableHandle(() => (
@@ -65,7 +65,9 @@ export class Dropzone extends Component {
         />
 
         <div className="editor-list-add">
-          <Link to={this.props.newSectionPath()} className="editor-list-add--button">+ add section</Link>
+          <SlideLeftLink to={this.props.newSectionPath()} className="editor-list-add--button">
+            + add section
+          </SlideLeftLink>
         </div>
       </div>
     )

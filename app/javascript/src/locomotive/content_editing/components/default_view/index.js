@@ -3,6 +3,7 @@ import { bindAll, truncate } from 'lodash';
 import { isBlank } from '../../utils/misc';
 import classnames from 'classnames';
 
+// Components
 const DefaultView = ({ title, subTitle, onLeave, renderAction, ...props }) => (
   <div className={classnames('editor-view', title ? 'editor-view--with-nav' : null)}>
     {title && (

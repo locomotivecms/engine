@@ -1,8 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { truncate } from 'lodash';
 
 // Components
+import { SlideLeftLink } from '../../../../components/links';
 import Icons from '../../../../components/icons';
 import EditIcon from '../../../../components/icons/edit';
 
@@ -24,9 +24,9 @@ const Section = ({ image, text, section, definition, ...props })=> {
         {truncate(text || section.label || definition.name, { length: 32 })}
       </div>
       <div className="editor-list-item--actions">
-        <Link to={props.editPath} className="editor-section--edit-button">
+        <SlideLeftLink to={props.editPath} className="editor-section--edit-button">
           <EditIcon />
-        </Link>
+        </SlideLeftLink>
       </div>
     </div>
   )

@@ -25,7 +25,7 @@ const defaultState = {
     page: page
   },
   iframe: {
-    loaded:   false,
+    loaded:   null, // null => when the editor is displayed for the first time
     _window:  null
   }
 };

@@ -57,24 +57,22 @@ export default function withRoutes(Component) {
 
     constructor(props) {
       super(props);
-      this.state = {};
       bindAll(this, 'redirectTo');
     }
 
-    redirectTo(pathname) {
-      this.setState({ redirectTo: pathname })
+    // FIXME: slideDirection is the direction where the new view will move to
+    redirectTo(pathname, slideRediction) {
+      this.props.history.push({ pathname, state: { slideDirection: slideRediction || 'right' } });
     }
 
     render() {
-      return this.state.redirectTo === undefined ? (
+      return (
         <Component
           redirectTo={this.redirectTo}
           {...buildRoutes(this.props.pageId, this.props.contentEntryId)}
           {...this.props}
         />
-      ) : (
-        <Redirect to={{ pathname: this.state.redirectTo }} />
-      );
+      )
     }
 
   }

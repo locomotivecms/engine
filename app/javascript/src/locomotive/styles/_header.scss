@@ -1,9 +1,14 @@
 .editor-header {
   display: flex;
-  padding: 3rem 2rem;
+  padding: 0rem 2rem;
+  min-height: 10rem;
   align-items: center;
   justify-content: space-between;
   background: #33373B;
+
+  &--navinfo {
+    padding: 2rem 0;
+  }
 
   .navinfo {
     &--path {

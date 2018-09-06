@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { compose } from 'redux';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { compact } from 'lodash';
 import routes from '../../routes';
 
@@ -24,39 +25,41 @@ class Main extends Component {
     }
   }
 
-  togglePreview(event) {
-    $('.content-main').toggleClass('actionbar-closed');
-  }
-
   render() {
-    const { pageId, iframe } = this.props;
+    const { pageId, iframeLoaded, location } = this.props;
+    const currentKey      = iframeLoaded ? location.pathname : 'startup';
+    const slideDirection  = !iframeLoaded ? 'up' : (location.state || {}).slideDirection || 'up';
+
+    console.log(location.pathname);
 
     return (
       <div className="actionbar">
         <Header />
-
         <Menu {...this.props} />
+        <TransitionGroup className="editor-route-wrapper">
+          <CSSTransition
+            key={currentKey}
+            classNames={`slide-${slideDirection}`}
+            timeout={{ enter: 300, exit: 200 }}
+            mountOnEnter={true}
+            unmountOnExit={true}
+          >
+            <Switch location={location}>
+              {!iframeLoaded && <Route path={`/${pageId}/content/edit/`} component={Startup} />}
 
-        {!iframe.loaded && <Startup />}
+              {routes.map(route => (
+                <Route
+                  key={route.path}
+                  exact={route.exact === true}
+                  path={route.path}
+                  component={route.component}
+                />
+              ))}
 
-        {iframe.loaded && (
-         <Switch>
-            <Route exact path={`/${pageId}/content/edit/`} render={() => (
-              <Redirect to={`/${pageId}/content/edit/sections`} />
-            )} />
-
-            {routes.map(route => (
-              <Route
-                key={route.path}
-                exact={route.exact === true}
-                path={route.path}
-                component={route.component}
-              />
-            ))}
-
-            <Route render={() => <Redirect to={`/${pageId}/content/edit/sections`} />} />
-          </Switch>
-        )}
+              <Route render={() => <Redirect to={`/${pageId}/content/edit/sections`} />} />
+            </Switch>
+          </CSSTransition>
+        </TransitionGroup>
       </div>
     )
   }
@@ -69,6 +72,6 @@ export default compose(
   withRedux(state => ({
     pageId:         state.content.page.id,
     contentEntryId: state.content.page.contentEntryId,
-    iframe:         state.iframe
+    iframeLoaded:   state.iframe.loaded
   }))
 )(Main);

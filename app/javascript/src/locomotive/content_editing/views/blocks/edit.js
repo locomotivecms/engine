@@ -8,10 +8,10 @@ import asView from '../../hoc/as_view';
 import View from '../../components/default_view';
 import Input from '../../inputs/base';
 
-const removeBlock = ({ section, blockId, history, editSectionPath, removeSectionBlock }) => {
+const removeBlock = ({ section, blockId, history, redirectTo, editSectionPath, removeSectionBlock }) => {
   if (confirm('Are you sure?')) {
-    history.push(editSectionPath(section));
     removeSectionBlock(section, blockId);
+    redirectTo(editSectionPath(section));
   }
 }
 

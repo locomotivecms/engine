@@ -42,8 +42,10 @@ class Edit extends Component {
   }
 
   removeSection() {
-    if (confirm('Are you sure?'))
+    if (confirm('Are you sure?')) {
       this.props.removeSection(this.props.section);
+      this.props.redirectTo(this.props.sectionsPath());
+    }
   }
 
   render() {

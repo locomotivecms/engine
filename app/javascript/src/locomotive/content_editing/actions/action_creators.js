@@ -81,18 +81,27 @@ export function reloadEditor(pageId, contentEntryId, locale) {
     const { editor: { api } } = getState();
     const now = new Date().getMilliseconds();
 
-    // Display the startup screen
-    dispatch({ type: 'IFRAME::NEW_SOURCE' });
-
     // load the new data + wait a little bit to avoid a flickering
     api.loadContent(pageId, contentEntryId, locale)
     .then(response => waitUntil(now, null, () => {
       dispatch(loadEditor(response.data, response.urls));
+
+      // little hack to get a smooth transition
+      setTimeout(() => {
+        dispatch({ type: 'IFRAME::LOADED', _window: getState().iframe._window });
+      }, 300); // 300ms => delay of the page view animation
     }));
   };
 }
 
 // PREVIEW / IFRAME
+
+export function startLoadingIframe(contentWindow) {
+  return {
+    type:         'IFRAME::NEW_SOURCE',
+    _window:      contentWindow
+  }
+}
 
 export function onIframeLoaded(contentWindow) {
   return {

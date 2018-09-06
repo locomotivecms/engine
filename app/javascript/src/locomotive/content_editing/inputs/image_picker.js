@@ -12,7 +12,7 @@ const openLibrary = props => {
     props.blockId,
     props.setting.type,
     props.setting.id
-  ));
+  ), 'left');
 }
 
 const ImagePickerInput = ({ setting, getValue, handleChange, ...props }) => {

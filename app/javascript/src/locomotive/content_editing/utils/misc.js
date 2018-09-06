@@ -1,7 +1,7 @@
 import striptags from 'striptags';
 
 // Constants
-const WAIT_UNTIL_MIN_DELAY  = 1000; // we want to avoid the flickering if the iframe is loaded too quickly
+const WAIT_UNTIL_MIN_DELAY  = 2000; // we want to avoid the flickering if the iframe is loaded too quickly
 const LINK_REGEXP           = /\/_locomotive-link\/(.+)/;
 
 export function waitUntil(startedAt, minDelay, callback) {

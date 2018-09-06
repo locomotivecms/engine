@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { compose } from 'redux';
-import { Link } from 'react-router-dom';
 import classnames from 'classnames';
 
 // Components
+import { SlideUpLink } from '../../components/links';
 import SectionIcon from '../../components/icons/sections';
 import SettingsIcon from '../../components/icons/settings';
 import BarChartIcon from '../../components/icons/bar_chart';
@@ -34,22 +34,22 @@ const Menu = props => (
   <div className="editor-menu">
     <ul className="nav nav-tabs" role="tablist">
       <li className={menuItemClassname('sections', props)}>
-        <Link to={props.sectionsPath()}>
+        <SlideUpLink to={props.sectionsPath()}>
           <SectionIcon color={Style.navTabActiveColor} />
           Content
-        </Link>
+        </SlideUpLink>
       </li>
       <li className={menuItemClassname('settings', props)}>
-        <Link to={props.settingsPath()}>
+        <SlideUpLink to={props.settingsPath()}>
           <SettingsIcon color={Style.navTabColor} />
           Settings
-        </Link>
+        </SlideUpLink>
       </li>
       <li className={menuItemClassname('seo', props)}>
-        <Link to={props.seoPath()}>
+        <SlideUpLink to={props.seoPath()}>
           <BarChartIcon color={Style.navTabColor} />
           SEO
-        </Link>
+        </SlideUpLink>
       </li>
     </ul>
   </div>
