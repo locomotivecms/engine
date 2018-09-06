@@ -30,7 +30,7 @@ class Gallery extends Component {
 
   cancel() {
     this.props.cancelPreviewSection();
-    this.props.redirectTo(this.props.sectionsPath());
+    this.props.redirectTo(this.props.rootPath());
   }
 
   selectPreset() {

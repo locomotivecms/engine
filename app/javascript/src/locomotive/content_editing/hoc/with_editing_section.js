@@ -65,7 +65,7 @@ const withEditingSection = Component => {
   const parentPath = props => {
     switch(editingType(props)) {
       case 'section':
-        return props.sectionsPath();
+        return props.rootPath();
       case 'section_setting':
       case 'block':
         return props.editSectionPath(props.section);
@@ -93,8 +93,8 @@ const withEditingSection = Component => {
       if (isEditing(this.props)) {
         notifyOnEnter(this.props);
       } else {
-        // unknown section and/or block, go back to the sections view
-        this.props.redirectTo(this.props.sectionsPath());
+        // unknown section and/or block, go back to the root view
+        this.props.redirectTo(this.props.rootPath());
       }
     }
 

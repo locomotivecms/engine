@@ -5,17 +5,15 @@ import { bindAll, compact } from 'lodash';
 export default function withRoutes(Component) {
 
   const buildRoutes = (pageId, contentEntryId) => {
-    const _pageId   = compact([pageId, contentEntryId]).join('-');
-    const basePath  = `/${_pageId}/content/edit`;
+    const _pageId       = compact([pageId, contentEntryId]).join('-');
+    const basePath      = `/${_pageId}/content/edit`;
+    const sectionsPath  = `${basePath}/sections`;
 
-    const settingsPath          = () => `${basePath}/settings`;
-    const seoPath               = () => `${basePath}/seo`;
-
-    const sectionsPath          = () => `${basePath}/sections`;
+    const rootPath              = () => basePath;
     const newSectionPath        = () => `${basePath}/sections/dropzone/new`;
 
     const sectionPath = (section) => {
-      return `${sectionsPath()}/${section.uuid}`;
+      return `${sectionsPath}/${section.uuid}`;
     }
     const editSectionPath = (section) => {
       return `${sectionPath(section)}/edit`;
@@ -42,9 +40,7 @@ export default function withRoutes(Component) {
     }
 
     return {
-      settingsPath,
-      seoPath,
-      sectionsPath,
+      rootPath,
       editSectionPath,
       newSectionPath,
       editBlockPath,

@@ -10,6 +10,7 @@
 
     a {
       margin-right: 0;
+      cursor: pointer;
     }
 
     svg {
@@ -17,4 +18,8 @@
     }
   }
 
+}
+
+.editor-tabpanes-wrapper {
+  height: 100%;
 }

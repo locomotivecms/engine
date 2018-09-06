@@ -4,8 +4,9 @@ import { isBlank } from '../../utils/misc';
 import classnames from 'classnames';
 
 // Components
-const DefaultView = ({ title, subTitle, onLeave, renderAction, ...props }) => (
+const DefaultView = ({ title, subTitle, renderMenu, onLeave, renderAction, ...props }) => (
   <div className={classnames('editor-view', title ? 'editor-view--with-nav' : null)}>
+    {renderMenu && renderMenu()}
     {title && (
       <div className="editor-view--header">
         <div className="editor-view--header-back-btn">

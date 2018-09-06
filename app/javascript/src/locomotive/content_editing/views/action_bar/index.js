@@ -11,17 +11,17 @@ import { withRouter } from 'react-router';
 
 // Components
 import Header from './header';
-import Menu from './menu';
 
 // Views
 import Startup from '../startup';
+import Main from './main';
 
-class Main extends Component {
+class ActionBar extends Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.pageId !== this.props.pageId) {
       const pageId = compact([this.props.pageId, this.props.contentEntryId]).join('-');
-      this.props.history.replace(`/${pageId}/content/edit/sections`);
+      this.props.history.replace(`/${pageId}/content/edit`);
     }
   }
 
@@ -30,12 +30,10 @@ class Main extends Component {
     const currentKey      = iframeLoaded ? location.pathname : 'startup';
     const slideDirection  = !iframeLoaded ? 'up' : (location.state || {}).slideDirection || 'up';
 
-    console.log(location.pathname);
-
     return (
       <div className="actionbar">
         <Header />
-        <Menu {...this.props} />
+
         <TransitionGroup className="editor-route-wrapper">
           <CSSTransition
             key={currentKey}
@@ -56,7 +54,8 @@ class Main extends Component {
                 />
               ))}
 
-              <Route render={() => <Redirect to={`/${pageId}/content/edit/sections`} />} />
+              <Route render={() => <Redirect to={`/${pageId}/content/edit`} />} />
+
             </Switch>
           </CSSTransition>
         </TransitionGroup>
@@ -65,7 +64,7 @@ class Main extends Component {
   }
 }
 
-export { Main };
+export { ActionBar };
 
 export default compose(
   withRouter,
@@ -74,4 +73,4 @@ export default compose(
     contentEntryId: state.content.page.contentEntryId,
     iframeLoaded:   state.iframe.loaded
   }))
-)(Main);
+)(ActionBar);
