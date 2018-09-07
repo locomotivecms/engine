@@ -18,7 +18,7 @@ class Edit extends Component {
 
   constructor(props) {
     super(props);
-    bindAll(this, 'addBlock', 'moveBlock', 'removeSection');
+    bindAll(this, 'addBlock', 'moveBlock', 'removeSection', 'renderRemoveButton');
   }
 
   // Called when an editor adds a new block
@@ -48,16 +48,23 @@ class Edit extends Component {
     }
   }
 
+  renderRemoveButton() {
+    // don't display the button for non-dropable sections
+    if (this.props.section.source !== 'dropzone') return null;
+
+    return (
+      <button className="btn btn-primary btn-sm" onClick={this.removeSection}>
+        <i className="far fa-trash-alt"></i>
+      </button>
+    )
+  }
+
   render() {
     return (
       <View
         title={presence(this.props.sectionLabel) || this.props.sectionDefinition.name}
         onLeave={this.props.leaveView}
-        renderAction={() => (
-          <button className="btn btn-primary btn-sm" onClick={this.removeSection}>
-            Remove
-          </button>
-        )}
+        renderAction={this.renderRemoveButton}
       >
         <div className="editor-edit-section">
 
