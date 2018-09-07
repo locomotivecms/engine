@@ -66,7 +66,7 @@
 .preview-iframe {
   position: relative;
   height: calc(100% - 4rem); // hack
-  box-shadow: 0 0 3px rgba(0,0,0,0.1), 0 0 12px rgba(0,0,0,0.1);
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1), 0 0 12px rgba(0, 0, 0, 0.1);
 
   & > .scrollable, & > &-loader {
     transition: opacity 100ms ease-in;
@@ -89,6 +89,7 @@
     bottom: 0;
     z-index: 998;
     opacity: 0;
+
     img {
       display: block;
       width: 12rem;

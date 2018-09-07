@@ -24,7 +24,10 @@ class Preview extends React.Component {
   componentDidMount() {
     this.iframe.onload = () => {
       // bring some modifications to the iframe
-      prepareIframe(this.iframe.contentWindow, () => this.props.startLoadingIframe(this.iframe.contentWindow));
+      prepareIframe(this.iframe.contentWindow, () => {
+        this.createdAt = new Date().getMilliseconds();
+        this.props.startLoadingIframe(this.iframe.contentWindow)
+      });
 
       // don't allow to go to another page if the changes have not been saved
       this.iframe.contentWindow.onbeforeunload = () => {
@@ -33,14 +36,16 @@ class Preview extends React.Component {
 
       if (this.props.iframeState.loaded === null) {
         // alright, we are all good to display the first screen
-        waitUntil(this.createdAt, null, () => this.props.onIframeLoaded(this.iframe.contentWindow))
+        waitUntil(this.createdAt, null, () => this.props.onIframeLoaded(this.iframe.contentWindow));
       } else {
-        // the user clicks on a link in the iframe.
-        this.props.reloadEditor(
-          getMetaContentFromIframe(this.iframe, 'locomotive-page-id'),
-          getMetaContentFromIframe(this.iframe, 'locomotive-content-entry-id'),
-          getMetaContentFromIframe(this.iframe, 'locomotive-locale')
-        )
+        waitUntil(this.createdAt, null, () => {
+          // the user clicks on a link in the iframe.
+          this.props.reloadEditor(
+            getMetaContentFromIframe(this.iframe, 'locomotive-page-id'),
+            getMetaContentFromIframe(this.iframe, 'locomotive-content-entry-id'),
+            getMetaContentFromIframe(this.iframe, 'locomotive-locale')
+          )
+        });
       }
     }
   }
@@ -50,7 +55,6 @@ class Preview extends React.Component {
   }
 
   render() {
-    // <div className={classnames('content-preview preview', this.iframeState.loaded !== true ? 'preview--loading' : null)}>
     return (
       <div className="content-preview preview">
         <div className={classnames('preview-inner', this.state.screensize)}>
@@ -71,9 +75,11 @@ class Preview extends React.Component {
               </div>
             </div>
 
-            <div className="preview-iframe-loader">
-              <img src={this.props.loaderImage} />
-            </div>
+            {!this.props.iframeState.loaded && (
+              <div className="preview-iframe-loader">
+                <img src={this.props.loaderImage} />
+              </div>
+            )}
           </div>
         </div>
       </div>
