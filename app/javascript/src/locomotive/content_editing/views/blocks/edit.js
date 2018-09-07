@@ -21,9 +21,9 @@ const Edit = props => (
     subTitle={props.sectionLabel || props.sectionDefinition.name}
     onLeave={props.leaveView}
     renderAction={() => (
-      <button className="btn btn-primary btn-sm" onClick={() => removeBlock(props)}>
-        Remove
-      </button>
+      <a href="#" onClick={() => removeBlock(props)}>
+        <i className="far fa-trash-alt"></i>
+      </a>
     )}
   >
     <div className="editor-edit-block">

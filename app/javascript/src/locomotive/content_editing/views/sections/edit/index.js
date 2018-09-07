@@ -53,9 +53,9 @@ class Edit extends Component {
     if (this.props.section.source !== 'dropzone') return null;
 
     return (
-      <button className="btn btn-primary btn-sm" onClick={this.removeSection}>
+      <a href="#" onClick={this.removeSection}>
         <i className="far fa-trash-alt"></i>
-      </button>
+      </a>
     )
   }
 
