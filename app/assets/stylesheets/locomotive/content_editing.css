@@ -1063,6 +1063,35 @@
   position: relative;
   height: calc(100% - 4rem);
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.1), 0 0 12px rgba(0, 0, 0, 0.1); }
+  .preview-iframe > .scrollable, .preview-iframe > .preview-iframe-loader {
+    transition: opacity 100ms ease-in; }
+  .preview-iframe > .scrollable {
+    z-index: 999;
+    opacity: 1; }
+  .preview-iframe > .preview-iframe-loader {
+    background: #fff;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+        align-items: center;
+    -ms-flex-pack: center;
+        justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 998;
+    opacity: 0; }
+    .preview-iframe > .preview-iframe-loader img {
+      display: block;
+      width: 12rem; }
+  .preview-iframe--loading > .scrollable {
+    opacity: 0;
+    z-index: 998; }
+  .preview-iframe--loading > .preview-iframe-loader {
+    opacity: 1;
+    z-index: 999; }
 
 .editor-page-settings {
   padding: 2rem 2rem 2rem; }

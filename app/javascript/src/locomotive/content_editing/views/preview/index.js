@@ -50,6 +50,7 @@ class Preview extends React.Component {
   }
 
   render() {
+    // <div className={classnames('content-preview preview', this.iframeState.loaded !== true ? 'preview--loading' : null)}>
     return (
       <div className="content-preview preview">
         <div className={classnames('preview-inner', this.state.screensize)}>
@@ -59,7 +60,7 @@ class Preview extends React.Component {
             {...this.props}
           />
 
-          <div className="preview-iframe">
+          <div className={classnames('preview-iframe', this.props.iframeState.loaded !== true ? 'preview-iframe--loading' : null)}>
             <div className="scrollable">
               <div className="embed-responsive embed-page">
                 <iframe
@@ -68,6 +69,10 @@ class Preview extends React.Component {
                   ref={el => this.iframe = el}>
                 </iframe>
               </div>
+            </div>
+
+            <div className="preview-iframe-loader">
+              <img src={this.props.loaderImage} />
             </div>
           </div>
         </div>
@@ -80,5 +85,6 @@ class Preview extends React.Component {
 export default withRedux(state => ({
   iframeState:        state.iframe,
   changed:            state.editor.changed,
-  previewPath:        state.editor.urls.preview
+  previewPath:        state.editor.urls.preview,
+  loaderImage:        state.editor.urls.loaderImage
 }))(Preview);
