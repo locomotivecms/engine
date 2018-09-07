@@ -2,6 +2,7 @@
 
   .nav-tabs {
     display: flex;
+    min-height: 5rem;
   }
 
   .nav-tab {
@@ -9,6 +10,11 @@
     text-align: center;
 
     a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 5rem;
+      padding: 0;
       margin-right: 0;
       cursor: pointer;
     }

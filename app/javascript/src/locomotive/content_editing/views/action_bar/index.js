@@ -38,7 +38,7 @@ class ActionBar extends Component {
           <CSSTransition
             key={currentKey}
             classNames={`slide-${slideDirection}`}
-            timeout={{ enter: 300, exit: 200 }}
+            timeout={{ enter: 150, exit: 100 }}
             mountOnEnter={true}
             unmountOnExit={true}
           >

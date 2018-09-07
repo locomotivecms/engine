@@ -915,13 +915,22 @@
 
 .editor-menu .nav-tabs {
   display: -ms-flexbox;
-  display: flex; }
+  display: flex;
+  min-height: 5rem; }
 
 .editor-menu .nav-tab {
   -ms-flex-positive: 1;
       flex-grow: 1;
   text-align: center; }
   .editor-menu .nav-tab a {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+        justify-content: center;
+    -ms-flex-align: center;
+        align-items: center;
+    min-height: 5rem;
+    padding: 0;
     margin-right: 0;
     cursor: pointer; }
   .editor-menu .nav-tab svg {
@@ -944,12 +953,14 @@
         justify-content: flex-start;
     -ms-flex-align: center;
         align-items: center;
-    padding: 1.5rem 2rem;
+    padding: 0rem 2rem;
+    min-height: 5rem;
     border-bottom: 1px solid #e3e4e7; }
     .editor-view--header-title {
       margin-left: 2rem;
       font-size: 2.1rem;
-      color: #666; }
+      color: #666;
+      padding: 1rem 0; }
     .editor-view--header-subTitle {
       font-size: 1.4rem;
       color: #91979f; }
@@ -973,16 +984,16 @@
   opacity: 0; }
 
 .editor-view.slide-up-enter {
-  transform: translate(0, 40px); }
+  transform: translate(0, 20px); }
 
 .editor-view.slide-down-enter {
-  transform: translate(0, -40px); }
+  transform: translate(0, -20px); }
 
 .editor-view.slide-right-enter {
-  transform: translate(-40px, 0); }
+  transform: translate(-20px, 0); }
 
 .editor-view.slide-left-enter {
-  transform: translate(40px, 0); }
+  transform: translate(20px, 0); }
 
 .editor-view.slide-up-enter.slide-up-enter-active,
 .editor-view.slide-down-enter.slide-down-enter-active,
@@ -990,7 +1001,7 @@
 .editor-view.slide-left-enter.slide-left-enter-active {
   opacity: 1;
   transform: translate(0, 0);
-  transition: opacity 300ms ease-in, transform 300ms ease-in-out; }
+  transition: opacity 150ms ease-in, transform 150ms ease-in-out; }
 
 .editor-view.slide-up-exit,
 .editor-view.slide-down-exit,
@@ -1003,7 +1014,7 @@
 .editor-view.slide-right-exit.slide-right-exit-active,
 .editor-view.slide-left-exit.slide-left-exit-active {
   opacity: 0;
-  transition: opacity 200ms ease-in; }
+  transition: opacity 100ms ease-in; }
 
 .preview {
   background: #f1f1f1;

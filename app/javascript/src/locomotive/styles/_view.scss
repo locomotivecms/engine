@@ -8,13 +8,15 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding: 1.5rem 2rem;
+    padding: 0rem 2rem;
+    min-height: 5rem;
     border-bottom: 1px solid $gray-lighter;
 
     &-title {
       margin-left: 2rem;
       font-size: 2.1rem;
       color: #666;
+      padding: 1rem 0;
     }
 
     &-subTitle {
