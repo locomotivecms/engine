@@ -30,16 +30,16 @@ class Uploader extends Component {
   render() {
     return (
       <div className="editor-image-uploader">
-        {this.state.uploading ? (
-          <div>
-            <p>Uploading...</p>
-          </div>
-        ) : (
-          <div>
-            <input type="file" ref={el => this.input = el} onChange={this.handleUpload} />
-            <button className="btn btn-primary btn-sm" onClick={this.openDialog}>
-              Upload
-            </button>
+        <input type="file" ref={el => this.input = el} onChange={this.handleUpload} />
+        {!this.state.uploading && (
+          <a className="editor-image-uploader--button" onClick={this.openDialog}>
+            + add
+          </a>
+        )}
+
+        {this.state.uploading && (
+          <div className="editor-image-uploader--uploading">
+            Uploading...
           </div>
         )}
       </div>

@@ -38,17 +38,18 @@ class Index extends Component {
         title="Images"
         subTitle={this.props.blockLabel || this.props.sectionLabel}
         onLeave={this.props.leaveView}
-        renderAction={() => <Uploader handleUpload={this.handleUpload} uploadAssets={this.props.api.uploadAssets} />}
       >
         {this.props.isLoading ? (
           <div className="editor-image-list--loading">
             <div className="editor-image-list--loading-text">
-              Loading the images
+              Loading the images. Please wait!
             </div>
           </div>
         ) : (
           <div className="editor-image-list">
             <div className="editor-image-list--container">
+              <Uploader handleUpload={this.handleUpload} uploadAssets={this.props.api.uploadAssets} />
+
               {this.props.list.map(image =>
                 <Image
                   key={image.id}
@@ -79,5 +80,5 @@ class Index extends Component {
 
 export default compose(
   asView,
-  withApiFetching('loadAssets', { pagination: true, perPage: 18 })
+  withApiFetching('loadAssets', { pagination: true, perPage: 11 })
 )(Index);

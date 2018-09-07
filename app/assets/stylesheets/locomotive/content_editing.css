@@ -1321,8 +1321,24 @@
   height: auto;
   box-shadow: none; }
 
-.editor-image-uploader input[type=file] {
-  display: none; }
+.editor-image-uploader {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  width: calc(100% / 3 - 0.5rem);
+  background: #fff;
+  border: dashed 1px #e3e4e7;
+  border-radius: 3px;
+  margin-bottom: 0.5rem;
+  padding: 1rem 1.2rem; }
+  .editor-image-uploader input[type=file] {
+    display: none; }
+  .editor-image-uploader--button {
+    text-transform: uppercase;
+    cursor: pointer; }
 
 .editor-image-list {
   margin: 2rem; }
@@ -1361,7 +1377,9 @@
     position: relative;
     overflow: hidden;
     transition: all 0.2s ease;
-    cursor: pointer; }
+    cursor: pointer;
+    min-height: 12rem;
+    background: #e3e4e7; }
     .editor-image--inner img {
       display: block;
       border: none;

@@ -1,6 +1,29 @@
 .editor-image-uploader {
+
   input[type=file] {
     display: none;
+  }
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(100% / 3 - 0.5rem);
+  background: $white;
+
+  border: dashed 1px #e3e4e7;
+  border-radius: 3px;
+
+  margin-bottom: 0.5rem;
+  padding: 1rem 1.2rem;
+
+
+  &--button {
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  &--uploading {
+
   }
 }
 
@@ -43,6 +66,8 @@
     overflow: hidden;
     transition: all 0.2s ease;
     cursor: pointer;
+    min-height: 12rem;
+    background: $gray-lighter;
 
     img {
       display: block;
