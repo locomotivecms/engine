@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="10px" height="5px" viewBox="0 0 10 5" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>texte</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
+        <g id="Desktop_Section-Desktop_9" transform="translate(-209.000000, -257.000000)">
+            <g id="texte" transform="translate(209.000000, 256.000000)">
+                <path d="M0.714285714,3.5 L9.28571429,3.5" id="Line-4" stroke="#35373B"></path>
+                <path d="M0.714285714,5.5 L9.28571429,5.5" id="Line-4" stroke="#35373B"></path>
+                <path d="M0.7,1.5 L5.5,1.5" id="Line-4" stroke="#1C77C3"></path>
+            </g>
+        </g>
+    </g>
+</svg>

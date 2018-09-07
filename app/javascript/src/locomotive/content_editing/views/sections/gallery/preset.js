@@ -29,7 +29,7 @@ class Preset extends Component {
   }
 
   render() {
-    const Icon = Icons[this.props.preset.icon || this.props.definition.icon];
+    const Icon = Icons[this.props.preset.icon || this.props.definition.icon] || Icons.default;
 
     return (
       <div className="editor-list-item">

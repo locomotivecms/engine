@@ -8,7 +8,7 @@ import EditIcon from '../../../../components/icons/edit';
 
 const Section = ({ image, text, ...props }) => {
   const Handle  = props.handleComponent;
-  const Icon    = Icons[props.definition.icon];
+  const Icon    = Icons[props.definition.icon] || Icons.default;
 
   return (
     <div className="editor-list-item editor-dropzone-section">
