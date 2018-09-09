@@ -891,6 +891,25 @@
   left: 20px !important;
 }
 
+@keyframes final-text {
+  0% {
+    opacity: 0;
+    transform: translate(-2rem, 0); }
+  100% {
+    opacity: 1;
+    transform: translate(0px, 0); } }
+
+@keyframes final-icon {
+  0% {
+    opacity: 0;
+    transform: scale(0); }
+  50% {
+    opacity: 1;
+    transform: scale(2); }
+  100% {
+    opacity: 1;
+    transform: scale(1); } }
+
 .editor-header {
   display: -ms-flexbox;
   display: flex;
@@ -911,7 +930,26 @@
     font-weight: bold;
     color: #f9f9fa; }
   .editor-header--savebtn .btn {
-    padding: 0.8rem 2rem; }
+    padding: 0.8rem 2rem;
+    transition: all 0.7s ease;
+    outline: none; }
+    .editor-header--savebtn .btn i {
+      margin-right: 0.8rem;
+      display: none; }
+    .editor-header--savebtn .btn-save--in-progress i {
+      display: inline-block; }
+    .editor-header--savebtn .btn-save--success i, .editor-header--savebtn .btn-save--error i {
+      display: inline-block;
+      animation: final-icon 0.3s ease-out alternate; }
+    .editor-header--savebtn .btn-save--success span, .editor-header--savebtn .btn-save--error span {
+      display: inline-block;
+      animation: final-text 0.3s ease-out alternate; }
+    .editor-header--savebtn .btn-save--success {
+      background: #31BD9C;
+      border-color: #27957b; }
+    .editor-header--savebtn .btn-save--error {
+      background: #F34748;
+      border-color: #f01718; }
 
 .editor-menu .nav-tabs {
   display: -ms-flexbox;

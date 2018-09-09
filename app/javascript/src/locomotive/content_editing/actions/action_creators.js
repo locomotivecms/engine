@@ -32,25 +32,25 @@ export function persistChanges(result, data) {
     const { notify, i18n } = window.Locomotive;
     const { editor: { api, pageChanged }, content: { site, page }, iframe: { _window } } = getState();
 
-    api.saveContent(site, page)
+    return api.saveContent(site, page)
     .then(data => {
-      notify(i18n.success, 'success')
-
       dispatch(_persistChanges(true))
 
       if (pageChanged) {
         Preview.reload(_window, data.previewPath);
         dispatch(_persistPageChanges(true));
       }
+
+      return true;
     })
     .catch(errors => {
-      notify(i18n.fail, 'danger')
-
       dispatch(_persistChanges(false))
 
       if (pageChanged) {
         dispatch(_persistPageChanges(false, errors));
       }
+
+      return false;
     });
 
   }

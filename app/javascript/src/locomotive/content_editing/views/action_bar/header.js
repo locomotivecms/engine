@@ -3,6 +3,9 @@ import React, { Component } from 'react';
 // HOC
 import withRedux from '../../hoc/with_redux';
 
+// Components
+import Button from '../../components/button';
+
 const Header = props => (
   <div className="editor-header">
     <div className="editor-header--navinfo">
@@ -15,13 +18,16 @@ const Header = props => (
     </div>
 
     <div className="editor-header--savebtn">
-      <button
+      <Button
+        mainClassName="btn-save"
         className="btn btn-primary"
         onClick={props.persistChanges}
         disabled={!props.changed}
-      >
-        Save
-      </button>
+        label="Save"
+        inProgressLabel="Saving..."
+        successLabel="Changes saved"
+        errorLabel="Error :-("
+      />
     </div>
   </div>
 )
