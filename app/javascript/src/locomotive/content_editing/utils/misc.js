@@ -126,6 +126,10 @@ export function findParentElement(tagName, el) {
 }
 
 export function stopPropagation(event) {
+  event.stopPropagation();
+}
+
+export function cancelEvent(event) {
   event.preventDefault() & event.stopPropagation();
   return false;
 }

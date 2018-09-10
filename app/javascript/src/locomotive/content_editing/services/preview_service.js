@@ -1,4 +1,4 @@
-import { decodeLinkResource, findParentElement, stopPropagation } from '../utils/misc';
+import { decodeLinkResource, findParentElement, cancelEvent } from '../utils/misc';
 import { startsWith } from 'lodash';
 
 const sendEvent = (elem, type, data) => {
@@ -70,7 +70,7 @@ export function prepareIframe(_window, onPageChange) {
       // second case: don't handle urls to an external site
       if (url[0] !== '/' && url[0] !== '#') {
         alert("This link cannot be opened inside the editor.");
-        return stopPropagation(event);
+        return cancelEvent(event);
       }
 
       if (onPageChange) { onPageChange(); }

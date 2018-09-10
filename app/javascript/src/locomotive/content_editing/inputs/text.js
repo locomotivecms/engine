@@ -16,6 +16,7 @@ const TextInput = ({ label, setting, getValue, handleChange, error }) => (
       onChange={e => handleChange(e.target.value)}
       className="editor-input--text"
     />
+
   </div>
 )
 
