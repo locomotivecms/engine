@@ -73,7 +73,7 @@ export function prepareIframe(_window, onPageChange) {
         return cancelEvent(event);
       }
 
-      if (url && onPageChange) { onPageChange(); }
+      if (url && url[0] !== '#' && onPageChange) { onPageChange(); }
 
       return true;
     }
