@@ -68,12 +68,12 @@ export function prepareIframe(_window, onPageChange) {
         return;
 
       // second case: don't handle urls to an external site
-      if (url[0] !== '/' && url[0] !== '#') {
+      if (url && url[0] !== '/' && url[0] !== '#') {
         alert("This link cannot be opened inside the editor.");
         return cancelEvent(event);
       }
 
-      if (onPageChange) { onPageChange(); }
+      if (url && onPageChange) { onPageChange(); }
 
       return true;
     }

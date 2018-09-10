@@ -38,7 +38,7 @@ module Locomotive
                     }
                     if (index > -1) {
                       var url = el.getAttribute('href');
-                      if (url[0] == '/' && url.indexOf('#{mounted_on}') == -1 && url.indexOf('/sites/') == -1) {
+                      if (url && url[0] == '/' && url.indexOf('#{mounted_on}') == -1 && url.indexOf('/sites/') == -1) {
                         el.setAttribute('href', '#{mounted_on}' + url);
                       }
                     }

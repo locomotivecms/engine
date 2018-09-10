@@ -102,6 +102,8 @@ export function encodeLinkResource(resource) {
 }
 
 export function decodeLinkResource(url) {
+  if (_isBlank(url)) return null;
+
   const matches = url.match(LINK_REGEXP);
 
   if (matches && matches.length > 1)
