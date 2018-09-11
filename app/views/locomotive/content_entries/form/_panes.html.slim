@@ -1,4 +1,8 @@
 .tab-content
-  - %w(main seo advanced).each_with_index do |name, index|
-    = form_tab_pane name.to_sym, index == 0 do
-      = render "locomotive/content_entries/form/#{name}", f: f
+  - @content_type.entries_custom_fields.pluck(:group).uniq.each_with_index do |group, index|
+    = form_tab_pane (group || 'main').to_sym, index == 0 do
+      = render "locomotive/content_entries/form/main", f: f, group: group
+  = form_tab_pane :seo do
+    = render "locomotive/content_entries/form/seo", f: f
+  = form_tab_pane :advanced do
+    = render "locomotive/content_entries/form/advanced", f: f

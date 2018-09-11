@@ -1,13 +1,9 @@
 ul.nav.nav-tabs role='tablist'
-  = form_nav_tab :main, true do
-    = link_to t('simple_form.titles.locomotive.content_entry.content'), '#main', role: 'tab', data: { toggle: 'tab' }
+  - tabs = @content_type.entries_custom_fields.pluck(:group).push('main').compact.uniq
+  - tabs.push('seo') if display_content_entry_tab?(@content_type, :seo)
+  - tabs.push('advanced') if display_content_entry_tab?(@content_type, :advanced)
 
-  - if display_content_entry_tab?(@content_type, :seo)
-
-    = form_nav_tab :seo do
-      = link_to t('simple_form.titles.locomotive.content_entry.seo'), '#seo', role: 'tab', data: { toggle: 'tab' }
-
-  - if display_content_entry_tab?(@content_type, :advanced)
-
-    = form_nav_tab :advanced do
-      = link_to t('simple_form.titles.locomotive.content_entry.advanced'), '#advanced', role: 'tab', data: { toggle: 'tab' }
+  - tabs.each_with_index do |tab_name, i|
+    - activeTab = (i == 0)
+    = form_nav_tab tab_name, activeTab do
+      = link_to t("simple_form.titles.locomotive.content_entry.#{tab_name}"), "##{tab_name}", role: 'tab', data: { toggle: 'tab' }

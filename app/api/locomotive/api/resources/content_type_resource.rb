@@ -54,6 +54,7 @@ module Locomotive
                 optional :inverse_of
                 optional :order_by
                 optional :ui_enabled
+                optional :group
               end
               optional :order_by
               optional :order_direction
@@ -100,6 +101,7 @@ module Locomotive
                 optional :inverse_of
                 optional :order_by
                 optional :ui_enabled
+                optional :group
                 optional :_destroy
               end
               optional :order_by
