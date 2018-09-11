@@ -4,7 +4,7 @@ module Locomotive
 
       class ContentTypeFieldEntity < BaseEntity
 
-        expose :name, :type, :label, :hint, :required, :localized, :unique, :default, :position
+        expose :name, :type, :label, :hint, :required, :localized, :unique, :default, :position, :group
 
         # text type field
         expose :text_formatting, if: ->(field, _) { field.type.to_s == 'text' }

@@ -1,16 +1,17 @@
 module Locomotive
   module CustomFieldsHelper
 
-    # Render all the form inputs based on the fields of a content type.
+    # Render all the form inputs of a given group based on the fields of a content type.
     #
     # @param [ Object ] content_type The content type the fields belong to
     # @param [ Object ] form The SimpleForm form instance
+    # @param [ Object ] group The group that will be rendered
     #
     # @return [ String ] The form inputs
     #
-    def render_custom_fields(content_type, form)
+    def render_custom_fields(content_type, form, group)
       html = content_type.ordered_entries_custom_fields.map do |field|
-        if field.ui_enabled? || field.name == content_type.label_field_name
+        if (field.ui_enabled? || field.name == content_type.label_field_name) && field.group == group
           render_custom_field(field, form)
         else
           ''
