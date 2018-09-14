@@ -45,7 +45,7 @@ describe Locomotive::PageContentController  do
 
     subject { put :update, params: simple_params, format: :json }
 
-    it 'should update static site sections' do
+    it 'should update global site sections' do
       is_expected.to have_http_status :success
       expect(site.sections_content['header']['settings']['title']).to eq 'Locomotive Sections System !'
     end
