@@ -114,6 +114,12 @@ export function loadAssets(url, options) {
   });
 }
 
+export function getThumbnail(url, imageUrl, format) {
+  var _imageUrl = new URL(imageUrl, window.location.origin);
+  return get(url, { image: _imageUrl, format }).
+  then(response => response.text())
+}
+
 // RESOURCES
 
 export function searchForResources(url, query) {
@@ -128,6 +134,7 @@ export default function ApiFactory(urls) {
 
     loadAssets:         (options) => loadAssets(urls.assets, options),
     uploadAssets:       (assets) => uploadAssets(urls.bulkAssetUpload, assets),
+    getThumbnail:       (imageUrl, format) => getThumbnail(urls.thumbnail, imageUrl, format),
 
     searchForResources: (query) => searchForResources(urls.resources, query),
 

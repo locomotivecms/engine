@@ -14,7 +14,7 @@ module Locomotive
 
         # no content yet? take the default one from the section definition
         if content[key].blank?
-          definition = definitions.find { |definition| definition['type'] == type }
+          definition = definitions.find { |definition| definition['type'] == type } || {}
 
           content[key] = definition['default'] || { 'settings' => {}, 'blocks' => [] }
         else

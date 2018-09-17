@@ -23,7 +23,11 @@ class Index extends Component {
   handleSelect(image) {
     this.setState({ imageId: image.id }, () => {
       const { handleChange, settingType, settingId } = this.props;
-      handleChange(settingType, settingId, image.source.url);
+      handleChange(settingType, settingId, {
+        source: image.source.url,
+        width:  image.width,
+        height: image.height
+      });
     });
   }
 

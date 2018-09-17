@@ -22,6 +22,7 @@ class Base extends Component {
 
   handleChange(value) {
     const { setting, handleChange } = this.props;
+    console.log(value);
     handleChange(setting.type, setting.id, value);
   }
 

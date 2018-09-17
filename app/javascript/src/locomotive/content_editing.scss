@@ -1,4 +1,6 @@
 @import "~react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+// @import "~cropperjs/dist/cropper.css";
+@import "~react-image-crop/lib/ReactCrop.scss";
 
 @import "./styles/variables";
 
@@ -11,6 +13,7 @@
 @import "./styles/sections";
 @import "./styles/section_gallery";
 
+@import "./styles/modal";
 @import "./styles/list";
 @import "./styles/popover";
 @import "./styles/sections";
