@@ -82,9 +82,9 @@ class Zero7 extends Component {
     return <div className="zero7">
       <AvatarEditor
         image={image.source}
-        width={500}
-        height={(500 / size.width) * size.height}
-        border={100}
+        width={850}
+        height={(750 / size.width) * size.height}
+        border={[150,250]}
         color={[200, 200, 200, 0.6]} // RGBA
         position={this.state.position}
         scale={this.state.scale}
