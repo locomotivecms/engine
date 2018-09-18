@@ -98,7 +98,7 @@ class RichTextInput extends Component {
 
 RichTextInput.mytoolbar = extended => {
   const options = extended ?
-    ['inline', 'textAlign', 'list', 'link'] :
+    ['inline', 'textAlign', 'blockType', 'list', 'link'] :
     ['inline', 'link'];
 
   return Object.assign({
