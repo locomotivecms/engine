@@ -4,7 +4,7 @@ import { EditorState, convertToRaw, ContentState, SelectionState } from 'draft-j
 import { Editor, defaultToolbar } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
-import { formatLineBreak } from '../utils/misc';
+import { formatLineBreak, stripHTML } from '../utils/misc';
 
 // Components
 import Link from '../components/draft/link.jsx';
@@ -73,14 +73,19 @@ class RichTextInput extends Component {
           {setting.label}
         </label>
           {setting.html ? (
-            <Editor
-              editorState={this.state.editorState}
-              wrapperClassName="draftjs-wrapper"
-              editorClassName="draftjs-editor"
-              toolbarClassName="draftjs-toolbar"
-              toolbar={RichTextInput.mytoolbar(setting.line_break !== true)}
-              onEditorStateChange={this.editorOnChangeSanitizer}
-            />
+            <div>
+              <Editor
+                editorState={this.state.editorState}
+                wrapperClassName="draftjs-wrapper"
+                editorClassName="draftjs-editor"
+                toolbarClassName="draftjs-toolbar"
+                toolbar={RichTextInput.mytoolbar(setting.line_break !== true)}
+                onEditorStateChange={this.editorOnChangeSanitizer}
+              />
+              <small>
+                {stripHTML(draftToHtml(convertToRaw(this.state.editorState.getCurrentContent()))).length}
+              </small>
+            </div>
           ) : (
             <div>
               <input type="text" value={this.state.value} onChange={this.inputOnChangeSanitizer} />
