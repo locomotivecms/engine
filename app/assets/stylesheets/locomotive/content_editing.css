@@ -1359,6 +1359,11 @@
   height: auto;
   box-shadow: none; }
 
+.editor-input-rich-text .editor-counter {
+  opacity: 0.4;
+  float: right;
+  margin-right: 2rem; }
+
 .editor-image-uploader {
   display: -ms-flexbox;
   display: flex;

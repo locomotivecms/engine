@@ -82,7 +82,7 @@ class RichTextInput extends Component {
                 toolbar={RichTextInput.mytoolbar(setting.line_break !== true)}
                 onEditorStateChange={this.editorOnChangeSanitizer}
               />
-              <small>
+              <small className="editor-counter">
                 {stripHTML(draftToHtml(convertToRaw(this.state.editorState.getCurrentContent()))).length}
               </small>
             </div>
