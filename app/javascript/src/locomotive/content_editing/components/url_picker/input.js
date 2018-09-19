@@ -73,11 +73,11 @@ class UrlInput extends Component {
         </div>
         <div className="url-picker-input--actions">
           {!isBlank(this.state.input) && isBlank(this.state.results) && (
-            <button className="btn btn-sm btn-primary" onClick={this.handleChange}>
+            <button className="btn btn-sm btn-default" onClick={this.handleChange}>
               Select
             </button>
           )}
-          <button className="btn btn-sm btn-primary" onClick={handleCancel}>
+          <button className="btn btn-sm btn-default" onClick={handleCancel}>
             Cancel
           </button>
         </div>

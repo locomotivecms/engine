@@ -48,6 +48,13 @@
         display: none;
       }
 
+      &[disabled] {
+        background-color: #ddd;
+        border-color: darken(#ddd, 20%);
+        color: #fff;
+        opacity: 1;
+      }
+
       &-save {
 
         &--in-progress {

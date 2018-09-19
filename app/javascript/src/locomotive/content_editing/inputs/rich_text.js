@@ -53,7 +53,7 @@ class RichTextInput extends Component {
     var value = draftToHtml(convertToRaw(editorState.getCurrentContent()));
 
     if (this.props.setting.line_break)
-      value = formatLineBreak(value)
+      value = formatLineBreak(value);
 
     this.updateSectionValue(value);
   };
@@ -72,25 +72,19 @@ class RichTextInput extends Component {
         <label className="editor-input--label">
           {setting.label}
         </label>
-          {setting.html ? (
-            <div>
-              <Editor
-                editorState={this.state.editorState}
-                wrapperClassName="draftjs-wrapper"
-                editorClassName="draftjs-editor"
-                toolbarClassName="draftjs-toolbar"
-                toolbar={RichTextInput.mytoolbar(setting.line_break !== true)}
-                onEditorStateChange={this.editorOnChangeSanitizer}
-              />
-              <small className="editor-counter">
-                {stripHTML(draftToHtml(convertToRaw(this.state.editorState.getCurrentContent()))).length}
-              </small>
-            </div>
-          ) : (
-            <div>
-              <input type="text" value={this.state.value} onChange={this.inputOnChangeSanitizer} />
-            </div>
-          )}
+        <div>
+          <Editor
+            editorState={this.state.editorState}
+            wrapperClassName="draftjs-wrapper"
+            editorClassName="draftjs-editor"
+            toolbarClassName="draftjs-toolbar"
+            toolbar={RichTextInput.mytoolbar(setting.line_break !== true)}
+            onEditorStateChange={this.editorOnChangeSanitizer}
+          />
+          <div className="editor-input-rich-text-counter">
+            {stripHTML(this.state.value).length}
+          </div>
+        </div>
       </div>
     );
   }

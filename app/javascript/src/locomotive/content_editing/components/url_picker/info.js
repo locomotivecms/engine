@@ -13,11 +13,11 @@ const UrlInfo = ({ value, handleEditing, handleDone }) => (
       </div>
     )}
     <div className="url-picker-info--actions">
-      <button className="btn btn-sm btn-primary" onClick={handleEditing}>
+      <button className="btn btn-sm btn-default" onClick={handleEditing}>
         Change
       </button>
       {handleDone && (
-        <button className="btn btn-sm btn-primary" onClick={handleDone}>
+        <button className="btn btn-sm btn-default" onClick={handleDone}>
           Done
         </button>
       )}
