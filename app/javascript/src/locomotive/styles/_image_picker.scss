@@ -97,3 +97,49 @@
   }
 
 }
+
+.editor-image-cropper {
+  padding-bottom: 2rem;
+
+  &-tool {
+    max-height: 75rem;
+  }
+
+  &-preview {
+    display: none;
+  }
+
+  &-action {
+    margin-top: 1rem;
+    text-align: right;
+
+    i {
+      margin-right: 0.8rem;
+    }
+  }
+}
+
+@media (max-height: 900px) {
+
+  .editor-image-cropper-tool {
+    max-height: 55rem;
+  }
+
+}
+
+@media (max-height: 700px) {
+
+  .editor-image-cropper-tool {
+    max-height: 42rem;
+  }
+
+}
+
+@media (max-height: 500px) {
+
+  .editor-image-cropper-tool {
+    max-height: 30rem;
+  }
+
+}
+

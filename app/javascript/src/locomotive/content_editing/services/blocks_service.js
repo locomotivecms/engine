@@ -42,9 +42,12 @@ export function findBetterText(blockContent, definition) {
   return stripHTML(findFirstSettingValueOf('text', blockContent, definition));
 }
 
-export function findBetterImageAndText(blockCotnent, definition) {
-  return {
-    image:  findFirstSettingValueOf('image_picker', blockCotnent, definition),
-    text:   findBetterText(blockCotnent, definition)
-  }
+export function findBetterImageAndText(blockContent, definition) {
+  const text  = findBetterText(blockContent, definition);
+  var image   = findFirstSettingValueOf('image_picker', blockContent, definition);
+
+  // use the cropped version?
+  image = image && typeof(image) === 'object' ? image.cropped || image.source : image;
+
+  return { image, text };
 }

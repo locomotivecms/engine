@@ -23,7 +23,12 @@ class Modal extends React.Component {
       (
         <div className={classnames('modal-window', this.props.isOpen ? 'modal-open' : null)}>
           <div>
-            <a onClick={this.props.onClose} title="Close" className="modal-close">Close</a>
+            <a onClick={this.props.onClose} title="Close" className="modal-close">
+              <i className="fas fa-times"></i>
+            </a>
+            {this.props.title && (
+              <div className="modal-window-header">{this.props.title}</div>
+            )}
             {this.props.children}
           </div>
         </div>

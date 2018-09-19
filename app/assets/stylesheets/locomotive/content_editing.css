@@ -1349,16 +1349,17 @@
     opacity: 1;
     pointer-events: auto; }
   .modal-window > div {
-    width: 700px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 2em;
+    padding: 0rem 2rem;
     background: #ffffff;
     color: #333333; }
-  .modal-window header {
-    font-weight: bold; }
+  .modal-window-header {
+    font-size: 2.1rem;
+    color: #666;
+    margin: 1rem 0; }
   .modal-window h1 {
     font-size: 150%;
     margin: 0 0 15px;
@@ -1367,13 +1368,14 @@
 .modal-close {
   color: #aaa;
   line-height: 50px;
-  font-size: 80%;
+  font-size: 2rem;
   position: absolute;
   right: 0;
   text-align: center;
   top: 0;
   width: 70px;
-  text-decoration: none; }
+  text-decoration: none;
+  cursor: pointer; }
   .modal-close:hover {
     color: #000; }
 
@@ -1647,6 +1649,30 @@
     transform: scale(0.9); }
     .editor-image.active .editor-image--inner:before {
       box-shadow: inset 0 0 0 5px #1c77c3; }
+
+.editor-image-cropper {
+  padding-bottom: 2rem; }
+  .editor-image-cropper-tool {
+    max-height: 75rem; }
+  .editor-image-cropper-preview {
+    display: none; }
+  .editor-image-cropper-action {
+    margin-top: 1rem;
+    text-align: right; }
+    .editor-image-cropper-action i {
+      margin-right: 0.8rem; }
+
+@media (max-height: 900px) {
+  .editor-image-cropper-tool {
+    max-height: 55rem; } }
+
+@media (max-height: 700px) {
+  .editor-image-cropper-tool {
+    max-height: 42rem; } }
+
+@media (max-height: 500px) {
+  .editor-image-cropper-tool {
+    max-height: 30rem; } }
 
 .url-picker {
   width: 100%; }

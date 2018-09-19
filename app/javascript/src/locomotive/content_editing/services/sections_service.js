@@ -134,8 +134,10 @@ const findFirstSettingValueOf = (type, sectionContent, definition) => {
 export function findBetterImageAndText(sectionContent, definition) {
   var image = null, text = null;
 
-  if (!definition.keep_icon)
+  if (!definition.keep_icon) {
     image = findFirstSettingValueOf('image_picker', sectionContent, definition);
+    image = image && typeof(image) === 'object' ? image.cropped || image.source : image;
+  }
 
   if (!definition.keep_name)
     text = stripHTML(findFirstSettingValueOf('text', sectionContent, definition));

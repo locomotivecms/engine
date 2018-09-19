@@ -10,7 +10,7 @@ describe Locomotive::PageParsingService do
 
     context 'with sections' do
 
-      let(:home_template) { %({% static_section nav, placement: 'top' %}{% section title, id: 'page_title', placement: 'top' %} {% block body %}{% section random_section %}{% endblock %}{% static_section footer, placement: 'bottom' %}) }
+      let(:home_template) { %({% global_section nav, placement: 'top' %}{% section title, id: 'page_title', placement: 'top' %} {% block body %}{% section random_section %}{% endblock %}{% global_section footer, placement: 'bottom' %}) }
       let(:page_template) { '{% extends parent %}{% block body %}{% sections_dropzone %}{% endblock %}' }
 
       before { home.update_attributes(raw_template: home_template) }

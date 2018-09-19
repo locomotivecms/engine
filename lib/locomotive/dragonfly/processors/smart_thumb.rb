@@ -31,7 +31,7 @@ module Locomotive
         private
 
         def smart_resize_and_crop_args(opts)
-          "-resize #{opts[:width]}x#{opts[:height]}^^ -gravity Center -crop #{opts[:crop_width]}x#{opts[:crop_height]}#{opts[:x]}#{opts[:y]} +repage"
+          "-resize #{opts[:width]}x#{opts[:height]}^^ -gravity Northwest -crop #{opts[:crop_width]}x#{opts[:crop_height]}#{opts[:x]}#{opts[:y]} +repage"
         end
 
       end
