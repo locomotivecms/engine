@@ -33,7 +33,7 @@ module Locomotive
       .first(max_results)
     end
 
-    # Save sections for both the current site (static versions) and the page
+    # Save sections for both the current site (global versions) and the page
     def save(site_attributes, page_attributes)
       site_attributes[:sections_content] = parse_sections_content(site_attributes[:sections_content])
       site.update_attributes(site_attributes)
