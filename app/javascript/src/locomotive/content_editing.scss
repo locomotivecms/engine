@@ -52,3 +52,33 @@
   height: 100%;
   z-index: 998;
 }
+
+.editor-error {
+
+  &-container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &-message {
+    margin-top: 4rem;
+    padding: 2rem 0;
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+
+    & > * {
+      text-align: center;
+    }
+  }
+
+  &-title {
+    color: #721c24;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+  }
+
+}

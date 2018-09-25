@@ -40,4 +40,5 @@ json.urls do
   json.bulkAssetUpload  bulk_create_content_assets_path(current_site, :json)
   json.resources        search_for_resources_path(current_site, format: :json)
   json.loaderImage      image_url('locomotive/editor_loader.gif')
+  json.deadendImage     image_url('locomotive/deadend.png')
 end

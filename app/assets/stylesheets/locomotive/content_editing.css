@@ -1782,3 +1782,27 @@
   height: 100%;
   z-index: 998; }
 
+.editor-error-container {
+  height: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center; }
+
+.editor-error-message {
+  margin-top: 4rem;
+  padding: 2rem 0;
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb; }
+  .editor-error-message > * {
+    text-align: center; }
+
+.editor-error-title {
+  color: #721c24;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 2rem; }
+
