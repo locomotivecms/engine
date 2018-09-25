@@ -52,7 +52,7 @@ fr:
             upload_in_progress: "Téléchargement en cours..."
 
         preview:
-          view: "Pré-visualisation"
+          view: "Aperçu"
 
         sections:
           edit:
