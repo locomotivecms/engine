@@ -1,5 +1,6 @@
 import React from 'react';
 import { truncate } from 'lodash';
+import i18n from '../../i18n';
 
 // HOC
 import asView from '../../hoc/as_view';
@@ -9,7 +10,7 @@ import View from '../../components/default_view';
 import Input from '../../inputs/base';
 
 const removeBlock = ({ section, blockId, history, redirectTo, editSectionPath, removeSectionBlock }) => {
-  if (confirm('Are you sure?')) {
+  if (confirm(i18n.t('shared.confirm'))) {
     removeSectionBlock(section, blockId);
     redirectTo(editSectionPath(section));
   }

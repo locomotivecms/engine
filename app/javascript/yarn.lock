@@ -1992,10 +1992,6 @@ create-hmac@^1.1.0, create-hmac@^1.1.2, create-hmac@^1.1.4:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-cropperjs@v1.0.0-rc.3:
-  version "1.0.0-rc.3"
-  resolved "https://registry.yarnpkg.com/cropperjs/-/cropperjs-1.0.0-rc.3.tgz#50a7c7611befc442702f845ede77d7df4572e82b"
-
 cross-spawn@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-3.0.1.tgz#1256037ecb9f0c5f79e3d6ef135e30770184b982"
@@ -3533,6 +3529,10 @@ http-signature@~1.2.0:
 https-browserify@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/https-browserify/-/https-browserify-1.0.0.tgz#ec06c10e0a34c0f2faf199f7fd7fc78fffd03c73"
+
+i18next@^11.9.0:
+  version "11.9.0"
+  resolved "https://registry.yarnpkg.com/i18next/-/i18next-11.9.0.tgz#c30c0a5e0a857124923a8dd1ce8f1df603e30c70"
 
 iconv-lite@0.4.19:
   version "0.4.19"
@@ -6195,7 +6195,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-"prop-types@15.x.x - 16.x.x", prop-types@^15.5.8, prop-types@^15.6.2:
+"prop-types@15.x.x - 16.x.x", prop-types@^15.6.2:
   version "15.6.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.2.tgz#05d5ca77b4453e985d60fc7ff8c859094a497102"
   dependencies:
@@ -6349,12 +6349,6 @@ rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-avatar-editor@^11.0.4:
-  version "11.0.4"
-  resolved "https://registry.yarnpkg.com/react-avatar-editor/-/react-avatar-editor-11.0.4.tgz#a32e2e10f1edc8480b1b852f3ab287c7b56c7ced"
-  dependencies:
-    prop-types "^15.5.8"
-
 react-awesome-popover@^2.0.5:
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/react-awesome-popover/-/react-awesome-popover-2.0.5.tgz#4f728027a1d2629b80a235f36b36fad2670802a6"
@@ -6362,13 +6356,6 @@ react-awesome-popover@^2.0.5:
     random-id "^0.0.2"
     react "^16.2.0"
     react-popper "^0.7.4"
-
-react-cropper@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/react-cropper/-/react-cropper-1.0.1.tgz#6e5595abb8576088ab3e51ecfdcfe5f865d0340f"
-  dependencies:
-    cropperjs v1.0.0-rc.3
-    prop-types "^15.5.8"
 
 react-dom@^16.3.2:
   version "16.4.1"

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { compose } from 'redux';
 import ReactCrop from 'react-image-crop';
 import { bindAll } from 'lodash';
+import i18n from '../i18n';
 
 // HOC
 import { withRouter } from 'react-router-dom';
@@ -57,7 +58,7 @@ class ImagePickerInput extends Component {
 
         {this.isCroppable(image, setting) && (
           <Modal
-            title="Crop image"
+            title={i18n.t('components.cropper.title')}
             isOpen={this.state.isModalOpened}
             onClose={() => this.setState({ isModalOpened: false })}
           >
@@ -78,7 +79,7 @@ class ImagePickerInput extends Component {
 
           <div className="editor-input-image-picker--actions">
             <button className="btn btn-default btn-sm" onClick={e => openLibrary({ setting, ...this.props})}>
-              {value === null ? 'Select' : 'Change'}
+              {i18n.t(value === null ? 'inputs.image_picker.select_button' : 'inputs.image_picker.change_button')}
             </button>
             &nbsp;
             {value !== null && (
@@ -86,7 +87,7 @@ class ImagePickerInput extends Component {
                 className="btn btn-default btn-sm"
                 onClick={e => handleChange(null)}
               >
-                Remove
+                {i18n.t('inputs.image_picker.remove_button')}
               </button>
             )}
             &nbsp;
@@ -95,7 +96,7 @@ class ImagePickerInput extends Component {
                 className="btn btn-default btn-sm"
                 onClick={e => this.setState({ isModalOpened: true })}
               >
-                Crop
+                {i18n.t('inputs.image_picker.crop_button')}
               </button>
             )}
           </div>

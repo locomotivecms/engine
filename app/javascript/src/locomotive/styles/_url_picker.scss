@@ -70,9 +70,12 @@
 
   &--type {
     margin-right: 1rem;
-    span {
+
+    .label {
       position: relative;
       top: -2px;
+      border-radius: 0px;
+      background-color: rgba(#333, 1);
     }
   }
 

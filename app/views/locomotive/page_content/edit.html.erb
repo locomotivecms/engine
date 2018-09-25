@@ -9,10 +9,7 @@
     window.Locomotive.data = _json.data;
     window.Locomotive.urls = _json.urls;
 
-    window.Locomotive.i18n = {
-      success:  "<%= h t('flash.locomotive.pages.update.notice') %>",
-      fail:     "<%= h t('flash.locomotive.pages.update.alert') %>"
-    }
+    window.Locomotive.i18n = <%= h I18n.t('locomotive.editor').to_json.html_safe %>;
 
   </script>
 

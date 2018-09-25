@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import classnames from 'classnames';
+import i18n from '../../i18n';
 
 const IconBtn = ({ screensize, icon, changeScreensize, currentScreensize, ...props }) => (
   <a
@@ -19,7 +20,7 @@ const ActionBar = ({ previewPath, changed, ...props }) => (
         target="_blank"
       >
         <i className="fas fa-eye"></i>
-        View
+        {i18n.t('views.preview.view')}
       </a>
     </div>
 

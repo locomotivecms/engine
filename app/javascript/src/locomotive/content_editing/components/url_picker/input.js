@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { bindAll, debounce } from 'lodash';
 import Popover from 'react-awesome-popover';
 import { isBlank } from '../../utils/misc';
+import i18n from '../../i18n';
 
 // Components
 import UrlPickerResource from './resource';
@@ -57,7 +58,7 @@ class UrlInput extends Component {
               type="text"
               onKeyUp={this.handleKeyUp}
               defaultValue={this.getDefaultValue()}
-              placeholder="Please type the label of a resource"
+              placeholder={i18n.t('components.url_picker.placeholder')}
               className="editor-input--text"
             />
             <div className="rap-popover-pad">
@@ -74,11 +75,11 @@ class UrlInput extends Component {
         <div className="url-picker-input--actions">
           {!isBlank(this.state.input) && isBlank(this.state.results) && (
             <button className="btn btn-sm btn-default" onClick={this.handleChange}>
-              Select
+              {i18n.t('components.url_picker.select_button')}
             </button>
           )}
           <button className="btn btn-sm btn-default" onClick={handleCancel}>
-            Cancel
+            {i18n.t('components.url_picker.cancel_button')}
           </button>
         </div>
       </div>

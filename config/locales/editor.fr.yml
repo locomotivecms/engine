@@ -1,0 +1,80 @@
+fr:
+  locomotive:
+    editor:
+      shared:
+        confirm: "Êtes-vous sûr(e) ?"
+
+      components:
+        cropper:
+          title: "Rogner image"
+          action: "Appliquer"
+          action_in_progress: "Rognage..."
+
+        url_picker:
+          no_url: "Aucune URL pour le moment"
+          placeholder: "Veuillez taper le titre d'une ressource"
+          open_new_window: "Ouvrir dans une nouvelle fenêtre ?"
+          select_button: "Sélectionner"
+          cancel_button: "Annuler"
+          change_button: "Changer"
+          done_button: "Finir"
+          types:
+            external: "Externe"
+            pages: "Page"
+
+      inputs:
+        image_picker:
+          select_button: "Sélectionner"
+          change_button: "Changer"
+          remove_button: "Enlever"
+          crop_button: "Rogner"
+
+      views:
+        action_bar:
+          header:
+            no_title: "Aucun titre"
+            save_button:
+              label: "Enregistrer"
+              in_progress: "Enregistrement en cours..."
+              success: "Enregistrement effectué !"
+              error: "Enregistrement non effectué"
+
+          menu:
+            content: "Contenu"
+            settings: "Paramètres"
+            seo: "SEO"
+
+        assets:
+          images:
+            title: "Images"
+            loading: "Chargement des images en cours !"
+            add: "+ ajouter"
+            upload_in_progress: "Téléchargement en cours..."
+
+        preview:
+          view: "Pré-visualisation"
+
+        sections:
+          edit:
+            default_block_label: "Contenu"
+            add_block: "+ ajouter"
+
+          gallery:
+            title: "Ajouter une nouvelle section"
+            add: "Ajouter"
+
+          dropzone:
+            add: "+ ajouter section"
+
+        seo:
+          title_label: "Titre SEO"
+          meta_keywords_label: "Mots-clés META"
+          meta_description_label: "Description META"
+
+        settings:
+          title_label: "Titre"
+          slug_label: "Permalink"
+          more: "Plus de paramètres..."
+
+        startup:
+          waiting: "Chargement en cours de l'interface d'édition"

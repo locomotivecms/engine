@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactCrop from 'react-image-crop';
 import { bindAll } from 'lodash';
+import i18n from '../../i18n';
 
 class Cropper extends Component {
 
@@ -105,7 +106,7 @@ class Cropper extends Component {
         <div className="editor-image-cropper-action">
           <button className="btn btn-primary btn-sm" onClick={this.apply} disabled={this.state.applyCrop}>
             {this.state.applyCrop && <i className="fas fa-circle-notch fa-spin"></i>}
-            {this.state.applyCrop ? 'Cropping...' : 'Apply'}
+            {i18n(this.state.applyCrop ? 'components.cropper.action_in_progress' : 'components.cropper.action')}
           </button>
         </div>
         <img className="editor-image-cropper-preview" src={this.state.croppedImageUrl} onLoad={this.handleCroppedImageLoaded} />

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Pagination from 'react-js-pagination';
 import { compose } from 'redux';
 import { bindAll } from 'lodash';
+import i18n from '../../../i18n';
 
 // HOC
 import asView from '../../../hoc/as_view';
@@ -39,14 +40,14 @@ class Index extends Component {
   render() {
     return (
       <View
-        title="Images"
+        title={i18n.t('views.assets.images.title')}
         subTitle={this.props.blockLabel || this.props.sectionLabel}
         onLeave={this.props.leaveView}
       >
         {this.props.isLoading ? (
           <div className="editor-image-list--loading">
             <div className="editor-image-list--loading-text">
-              Loading the images. Please wait!
+              {i18n.t('views.assets.images.loading')}
             </div>
           </div>
         ) : (

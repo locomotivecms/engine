@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import i18n from '../../i18n';
 
 // HOC
 import withRedux from '../../hoc/with_redux';
@@ -12,7 +13,7 @@ const SettingsForm = ({ page, errors, updatePageSetting, moreSettingPath, ...pro
     <View>
       <div className="editor-page-settings">
         <TextInput
-          label="Title"
+          label={i18n.t('views.settings.title_label')}
           getValue={() => page.title}
           handleChange={value => updatePageSetting('title', value)}
           error={errors.title}
@@ -20,7 +21,7 @@ const SettingsForm = ({ page, errors, updatePageSetting, moreSettingPath, ...pro
 
         {page.slug !== undefined && (
           <TextInput
-            label="Slug"
+            label={i18n.t('views.settings.slug_label')}
             getValue={() => page.slug}
             handleChange={value => updatePageSetting('slug', value)}
             error={errors.slug}
@@ -28,7 +29,9 @@ const SettingsForm = ({ page, errors, updatePageSetting, moreSettingPath, ...pro
         )}
 
         <div className="editor-page-settings-more">
-          <a href={moreSettingPath}>More settings...</a>
+          <a href={moreSettingPath}>
+            {i18n.t('views.settings.more')}
+          </a>
         </div>
       </div>
     </View>

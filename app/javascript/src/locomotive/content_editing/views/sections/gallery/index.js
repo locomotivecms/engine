@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { compose } from 'redux';
 import { bindAll } from 'lodash';
+import i18n from '../../../i18n';
 
 // HOC
 import withRoutes from '../../../hoc/with_routes';
@@ -56,7 +57,7 @@ class Gallery extends Component {
 
   render() {
     return (
-      <View title="Add a new section" onLeave={this.cancel}>
+      <View title={i18n.t('views.sections.gallery.title')} onLeave={this.cancel}>
         <div className="editor-section-gallery">
 
           <div className="editor-section-gallery--list">

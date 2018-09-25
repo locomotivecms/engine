@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import i18n from '../../i18n';
 
 // HOC
 import withRedux from '../../hoc/with_redux';
@@ -13,7 +14,7 @@ const Header = props => (
         {props.page.fullpath}
       </div>
       <div className="navinfo--title">
-        {props.page.title || 'No title'}
+        {props.page.title || i18n.t('views.action_bar.header.no_title')}
       </div>
     </div>
 
@@ -23,10 +24,10 @@ const Header = props => (
         className="btn btn-primary"
         onClick={props.persistChanges}
         disabled={!props.changed}
-        label="Save"
-        inProgressLabel="Saving..."
-        successLabel="Changes saved"
-        errorLabel="Error :-("
+        label={i18n.t('views.action_bar.header.save_button.label')}
+        inProgressLabel={i18n.t('views.action_bar.header.save_button.in_progress')}
+        successLabel={i18n.t('views.action_bar.header.save_button.success')}
+        errorLabel={i18n.t('views.action_bar.header.save_button.error')}
       />
     </div>
   </div>

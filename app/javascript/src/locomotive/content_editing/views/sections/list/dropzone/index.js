@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { SortableContainer, SortableElement, SortableHandle } from 'react-sortable-hoc';
 import { bindAll } from 'lodash';
+import i18n from '../../../../i18n';
 
 // Services
 import { findBetterImageAndText } from '../../../../services/sections_service';
@@ -66,7 +67,7 @@ export class Dropzone extends Component {
 
         <div className="editor-list-add">
           <SlideLeftLink to={this.props.newSectionPath()} className="editor-list-add--button">
-            + add section
+            {i18n.t('views.sections.dropzone.add')}
           </SlideLeftLink>
         </div>
       </div>

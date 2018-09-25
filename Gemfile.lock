@@ -251,6 +251,8 @@ GEM
       multi_xml (>= 0.5.2)
     i18n (1.0.1)
       concurrent-ruby (~> 1.0)
+    i18n-js (3.0.11)
+      i18n (>= 0.6.6, < 2)
     ice_nine (0.11.2)
     io-like (0.3.0)
     jbuilder (2.7.0)
@@ -484,6 +486,7 @@ DEPENDENCIES
   email_spec (~> 2.1.1)
   factory_bot_rails (~> 4.8.2)
   grape-entity-matchers!
+  i18n-js
   json_spec (~> 1.1.4)
   locomotivecms!
   locomotivecms_steam!

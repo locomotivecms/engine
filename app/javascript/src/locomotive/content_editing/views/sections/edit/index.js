@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { isBlank, presence } from '../../../utils/misc';
 import { bindAll } from 'lodash';
+import i18n from '../../../i18n';
 
 // HOC
 import asView from '../../../hoc/as_view';
@@ -42,7 +43,7 @@ class Edit extends Component {
   }
 
   removeSection() {
-    if (confirm('Are you sure?')) {
+    if (confirm(i18n.t('shared.confirm'))) {
       this.props.removeSection(this.props.section);
       this.props.redirectTo(this.props.rootPath());
     }
@@ -83,7 +84,7 @@ class Edit extends Component {
           {!isBlank(this.props.sectionDefinition.blocks) && (
             <div className="editor-section-blocks">
               <h3 className="editor-section-blocks--title">
-                {this.props.sectionDefinition.blocks_label || 'Content'}
+                {this.props.sectionDefinition.blocks_label || i18n.t('views.sections.edit.default_block_label')}
               </h3>
 
               <div className="editor-section-blocks--list">

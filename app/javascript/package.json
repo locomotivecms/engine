@@ -49,6 +49,7 @@
     "draft-js": "^0.10.5",
     "draftjs-to-html": "^0.8.4",
     "html-to-draftjs": "^1.4.0",
+    "i18next": "^11.9.0",
     "immutability-helper": "^2.7.0",
     "immutable": "^3.8.2",
     "lodash": "^4.17.10",

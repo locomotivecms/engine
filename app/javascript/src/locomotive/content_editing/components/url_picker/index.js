@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { bindAll } from 'lodash';
 import PropTypes from 'prop-types';
 import { isBlank } from '../../utils/misc';
+import i18n from '../../i18n';
 
 // Components
 import UrlInput from './input';
@@ -78,7 +79,7 @@ class UrlPicker extends Component {
             type="checkbox"
             checked={this.state.value.new_window}
             onChange={this.handleChangeCheckbox}
-          /> Open in a new window?
+          /> {i18n.t('components.url_picker.open_new_window')}
         </div>
       </div>
     )

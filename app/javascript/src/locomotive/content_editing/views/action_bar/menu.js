@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import classnames from 'classnames';
+import i18n from '../../i18n';
 
 // Components
 import SectionIcon from '../../components/icons/sections';
@@ -8,8 +9,8 @@ import BarChartIcon from '../../components/icons/bar_chart';
 
 // FIXME: Unfortunately, we can't use CSS in that case.
 const Style = {
-  navTabColor: '#a6a6a6',
-  navTabActiveColor: '#595959'
+  navTabColor:        '#a6a6a6',
+  navTabActiveColor:  '#595959'
 }
 
 const menuItemClassname = (tab, selectedTab) => {
@@ -22,19 +23,19 @@ const Menu = ({ selectedTab, onSelectTab }) => (
       <li className={menuItemClassname('sections', selectedTab)}>
         <a onClick={() => onSelectTab('sections')}>
           <SectionIcon color={Style.navTabActiveColor} />
-          Content
+          {i18n.t('views.action_bar.menu.content')}
         </a>
       </li>
       <li className={menuItemClassname('settings', selectedTab)}>
         <a onClick={() => onSelectTab('settings')}>
           <SettingsIcon color={Style.navTabColor} />
-          Settings
+          {i18n.t('views.action_bar.menu.settings')}
         </a>
       </li>
       <li className={menuItemClassname('seo', selectedTab)}>
         <a onClick={() => onSelectTab('seo')}>
           <BarChartIcon color={Style.navTabColor} />
-          SEO
+          {i18n.t('views.action_bar.menu.seo')}
         </a>
       </li>
     </ul>

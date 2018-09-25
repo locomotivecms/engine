@@ -1744,9 +1744,11 @@
   border-bottom: 1px solid #e3e4e7; }
   .url-picker-resource--type {
     margin-right: 1rem; }
-    .url-picker-resource--type span {
+    .url-picker-resource--type .label {
       position: relative;
-      top: -2px; }
+      top: -2px;
+      border-radius: 0px;
+      background-color: #333333; }
   .url-picker-resource--label {
     cursor: pointer; }
 

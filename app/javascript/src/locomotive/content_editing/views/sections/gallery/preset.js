@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { bindAll } from 'lodash';
+import i18n from '../../../i18n';
 
 // Components
 import Icons from '../../../components/icons';
@@ -42,7 +43,7 @@ class Preset extends Component {
         <div className="editor-list-item--actions">
           {this.isSelected() &&
             <button className="btn btn-primary btn-sm" onClick={this.selectPreset}>
-              Add
+              {i18n.t('views.sections.gallery.add')}
             </button>
           }
         </div>

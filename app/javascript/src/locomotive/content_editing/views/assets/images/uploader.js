@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { bindAll } from 'lodash';
+import i18n from '../../../i18n';
 
 class Uploader extends Component {
 
@@ -33,13 +34,13 @@ class Uploader extends Component {
         <input type="file" ref={el => this.input = el} onChange={this.handleUpload} />
         {!this.state.uploading && (
           <a className="editor-image-uploader--button" onClick={this.openDialog}>
-            + add
+            {i18n.t('views.assets.images.add')}
           </a>
         )}
 
         {this.state.uploading && (
           <div className="editor-image-uploader--uploading">
-            Uploading...
+            {i18n.t('views.assets.images.upload_in_progress')}
           </div>
         )}
       </div>
