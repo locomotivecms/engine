@@ -129,7 +129,7 @@ export function searchForResources(url, query) {
 
 export default function ApiFactory(urls) {
   return {
-    loadContent:        (pageId, locale) => loadContent(urls.load, pageId, locale),
+    loadContent:        (pageId, contentEntryId, locale) => loadContent(urls.load, pageId, contentEntryId, locale),
     saveContent:        (site, page) => saveContent(urls.save, site, page),
 
     loadAssets:         (options) => loadAssets(urls.assets, options),

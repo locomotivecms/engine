@@ -71,7 +71,7 @@ class Preview extends React.Component {
               <div className="embed-responsive embed-page">
                 <iframe
                   className="embed-responsive-item"
-                  src={this.props.src}
+                  src={this.props.previewPath}
                   ref={el => this.iframe = el}>
                 </iframe>
               </div>

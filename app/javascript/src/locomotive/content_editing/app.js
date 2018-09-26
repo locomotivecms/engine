@@ -15,7 +15,7 @@ const App = props => (
       <Shield image={store.getState().editor.urls.deadendImage}>
         <div>
           <ActionBar />
-          <Preview src={props.previewPath} />
+          <Preview />
         </div>
       </Shield>
     </Router>

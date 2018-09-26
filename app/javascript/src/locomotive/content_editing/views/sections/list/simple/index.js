@@ -9,7 +9,11 @@ import Section from './section';
 const List = props => (
   <div className="editor-section-list">
     {props.list.map(section => {
-      const definition        = props.findSectionDefinition(section.type);
+      const definition = props.findSectionDefinition(section.type);
+
+      // Don't let the app crash if we don't have the definition of a section
+      if (definition === undefined) return null;
+
       const sectionContent    = fetchSectionContent(props.globalContent, section);
       const { image, text }   = findBetterImageAndText(sectionContent, definition)
 

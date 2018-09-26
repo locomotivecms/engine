@@ -70,37 +70,55 @@ function loadEditor(data, urls) {
       changed:            false,
       pageChanged:        false,
       formErrors:         {},
+      locale:             data.locale,
+      locales:            data.locales,
       api:                ApiFactory(urls),
       urls
     }
   }
 }
 
+const _reloadEditor = (dispatch, getState, pageId, contentEntryId, locale) => {
+  const { editor: { api } } = getState();
+  const now = new Date().getMilliseconds();
+
+  // load the new data + wait a little bit to avoid a flickering
+  api.loadContent(pageId, contentEntryId, locale)
+  .then(response => waitUntil(now, null, () => {
+    dispatch(loadEditor(response.data, response.urls));
+
+    // little hack to get a smooth transition
+    setTimeout(() => {
+      dispatch({ type: 'IFRAME::LOADED', _window: getState().iframe._window });
+    }, 300); // 300ms => delay of the page view animation
+  }));
+}
+
 export function reloadEditor(pageId, contentEntryId, locale) {
   return (dispatch, getState) => {
-    const { editor: { api } } = getState();
-    const now = new Date().getMilliseconds();
+    _reloadEditor(dispatch, getState, pageId, contentEntryId, locale);
+  };
+}
 
-    // load the new data + wait a little bit to avoid a flickering
-    api.loadContent(pageId, contentEntryId, locale)
-    .then(response => waitUntil(now, null, () => {
-      dispatch(loadEditor(response.data, response.urls));
+export function changeLocale(pageId, contentEntryId, locale) {
+  return (dispatch, getState) => {
+    dispatch(_startLoadingIframe(null));
 
-      // little hack to get a smooth transition
-      setTimeout(() => {
-        dispatch({ type: 'IFRAME::LOADED', _window: getState().iframe._window });
-      }, 300); // 300ms => delay of the page view animation
-    }));
+    _reloadEditor(dispatch, getState, pageId, contentEntryId, locale);
   };
 }
 
 // PREVIEW / IFRAME
 
-export function startLoadingIframe(contentWindow) {
+const _startLoadingIframe = contentWindow => {
   return {
     type:         'IFRAME::NEW_SOURCE',
     _window:      contentWindow
   }
+}
+
+export function startLoadingIframe(contentWindow) {
+  return _startLoadingIframe(contentWindow);
 }
 
 export function onIframeLoaded(contentWindow) {

@@ -25,7 +25,8 @@ json.data do
     json.dropzone @sections[:dropzone]
   end
 
-  json.locale current_content_locale
+  json.locale   current_content_locale
+  json.locales  current_site.locales
 end
 
 json.urls do
