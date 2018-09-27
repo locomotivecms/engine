@@ -1,6 +1,6 @@
 # Locomotive
 
-[![Build Status](https://travis-ci.org/locomotivecms/engine.svg?branch=master)](https://travis-ci.org/locomotivecms/engine) [![Code Climate](https://codeclimate.com/github/locomotivecms/engine/badges/gpa.svg)](https://codeclimate.com/github/locomotivecms/engine) [![Dependency Status](https://gemnasium.com/locomotivecms/engine.svg)](https://gemnasium.com/locomotivecms/engine) [![Coverage Status](https://img.shields.io/coveralls/locomotivecms/engine.svg)](https://coveralls.io/r/locomotivecms/engine?branch=master) [![Join the chat at https://gitter.im/locomotivecms/engine](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/locomotivecms/engine?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Build Status](https://travis-ci.org/locomotivecms/engine.svg?branch=master)](https://travis-ci.org/locomotivecms/engine) [![Code Climate](https://codeclimate.com/github/locomotivecms/engine/badges/gpa.svg)](https://codeclimate.com/github/locomotivecms/engine) [![Coverage Status](https://img.shields.io/coveralls/locomotivecms/engine.svg)](https://coveralls.io/r/locomotivecms/engine?branch=master) [![Join the chat at https://gitter.im/locomotivecms/engine](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/locomotivecms/engine?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Locomotive is an open source platform to create, publish and edit sites (CMS). It is designed to save time and help you focus on what matters: front-end technology, standard development process and a very low learning curve for your clients.
 
@@ -12,8 +12,7 @@ Locomotive relies on a **very original workflow**:
 
 ![Locomotive](http://i.imgur.com/iRG1gWA.jpg)
 
-Visit the Locomotive official website [here](http://
-locomotive.works) for more information.
+Visit the Locomotive official website [here](https://www.locomotivecms.com) for more information.
 
 ## Features
 
@@ -67,8 +66,6 @@ Locomotive is an open source project, we encourage contributions. If you have fo
 - Write your failing tests
 - Make the tests pass
 - [Create a GitHub pull request](http://help.github.com/send-pull-requests)
-
-For new features (especially large ones) it is best to create a topic on the [Google group](https://groups.google.com/forum/?fromgroups#!forum/locomotivecms) first to make sure it fits into the goals of the project.
 
 ### Contact
 
