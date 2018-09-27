@@ -128,7 +128,7 @@ describe Locomotive::ContentEntry do
 
         subject { build_content_entry.to_values(host: 'example.com') }
 
-        it { expect(subject.size).to eq(6) }
+        it { expect(subject.size).to eq(7) }
         it { expect(subject.first).to eq('Locomotive') }
         it { expect(subject.last).to eq('July 05, 2013 00:00') }
 
@@ -154,8 +154,8 @@ describe Locomotive::ContentEntry do
       subject { content_type.ordered_entries.to_csv(host: 'example.com').split("\n") }
 
       it { expect(subject.size).to eq(4) }
-      it { expect(subject.first).to eq("Title,Description,Visible ?,File,Published at,Created at") }
-      it { expect(subject.last).to match(/^Locomotive,Lorem ipsum....,false,http:\/\/example.com\/sites\/[0-9a-f]+\/content_entry[0-9a-f]+\/[0-9a-f]+\/files\/5k.png,\"\",\"July 05, 2013 00:00\"$/) }
+      it { expect(subject.first).to eq("Title,Description,Visible ?,File,Another file,Published at,Created at") }
+      it { expect(subject.last).to match(/^Locomotive,Lorem ipsum....,false,http:\/\/example.com\/sites\/[0-9a-f]+\/content_entry[0-9a-f]+\/[0-9a-f]+\/files\/5k.png,\"\",\"\",\"July 05, 2013 00:00\"$/) }
 
     end
 
