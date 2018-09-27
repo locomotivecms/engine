@@ -17,6 +17,7 @@ FactoryBot.define do
         content_type.entries_custom_fields.build label: 'Description', type: 'text'
         content_type.entries_custom_fields.build label: 'Visible ?', type: 'boolean', name: 'visible'
         content_type.entries_custom_fields.build label: 'File', type: 'file'
+        content_type.entries_custom_fields.build label: 'Another file', type: 'file'
         content_type.entries_custom_fields.build label: 'Published at', type: 'date'
         content_type.valid?
         content_type.send(:set_label_field)

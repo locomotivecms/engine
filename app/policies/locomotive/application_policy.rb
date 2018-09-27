@@ -23,12 +23,6 @@ module Locomotive
 
       raise Pundit::NotAuthorizedError, 'must be logged in' unless account
       raise Pundit::NotAuthorizedError, 'should have a resource' unless resource
-
-      # if site.nil?
-      #   unless account.super_admin? || resource.is_a?(Locomotive::Account)
-      #     raise Pundit::NotAuthorizedError, 'should have a site'
-      #   end
-      # end
     end
 
     def index?
