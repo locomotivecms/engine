@@ -21,7 +21,7 @@ module Locomotive
               media:      [/^video/, 'application/x-shockwave-flash', 'application/x-flash-video', 'application/x-swf', /^audio/, 'application/ogg', 'application/x-mp3'],
               pdf:        ['application/pdf', 'application/x-pdf'],
               stylesheet: ['text/css'],
-              javascript: ['text/javascript', 'text/js', 'application/x-javascript', 'application/javascript', 'text/x-component'],
+              javascript: ['text/javascript', 'text/js', 'application/x-javascript', 'application/javascript', 'text/x-component', 'application/ecmascript'],
               font:       [/^application\/.*font/, 'application/x-font-ttf', 'application/vnd.ms-fontobject', 'application/x-woff', 'application/x-woff2', 'application/x-font-truetype', 'application/x-font-woff', 'application/x-font-woff2']
             }
           end
