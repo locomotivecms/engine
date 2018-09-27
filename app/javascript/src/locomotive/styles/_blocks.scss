@@ -1,11 +1,19 @@
 .editor-section-blocks {
+  &:before {
+    content: " ";
+    display: block;
+    width: 100%;
+    margin: 4rem auto 2.5rem;
+    height: 1px;
+    background-color: $gray-lighter;
+  }
 
   &--title {
     font-size: 1.8rem;
     font-family: "Muli", sans-serif;
     font-weight: 200;
     color: #6a707a;
-    margin-bottom: 1rem;
+    margin-bottom: 2.5rem;
   }
 
   &--list {

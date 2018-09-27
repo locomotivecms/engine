@@ -77,6 +77,8 @@ fr:
         settings:
           title_label: "Titre"
           slug_label: "Permalink"
+          published: "Publiée ?"
+          listed: "Affichée dans le menu ?"
           more: "Plus de paramètres..."
 
         startup:

@@ -4,7 +4,7 @@ json.data do
   end
 
   json.page do
-    json.(@page, :id, :title, :seo_title, :meta_description, :meta_keywords)
+    json.(@page, :id, :title, :seo_title, :meta_description, :meta_keywords, :listed, :published)
 
     json.slug @page.slug if !@page.index? && !@page.not_found? && !@page.templatized?
 

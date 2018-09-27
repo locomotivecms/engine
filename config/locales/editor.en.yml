@@ -77,6 +77,8 @@ en:
         settings:
           title_label: "Title"
           slug_label: "Slug"
+          published: "Published?"
+          listed: "Listed in the menu?"
           more: "More settings..."
 
         startup:

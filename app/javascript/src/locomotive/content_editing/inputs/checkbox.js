@@ -1,15 +1,19 @@
 import React from 'react';
 
-const CheckboxInput = ({ setting, getValue, handleChange }) => (
+// Components
+import Switch from '../components/switch';
+
+const CheckboxInput = ({ label, setting, getValue, handleChange }) => (
   <div className="editor-input editor-input-checkbox">
-    <input
-      type="checkbox"
-      checked={getValue(false)}
-      onChange={e => handleChange(e.target.checked)}
-    />
     <label className="editor-input--label">
-      {setting.label}
+      {label || setting.label}
     </label>
+    <div className="editor-input--button">
+      <Switch
+        checked={getValue(false)}
+        onChange={value => handleChange(value)}
+      />
+    </div>
   </div>
 )
 

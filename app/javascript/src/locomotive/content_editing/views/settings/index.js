@@ -6,7 +6,7 @@ import withRedux from '../../hoc/with_redux';
 
 // Components
 import View from '../../components/default_view';
-import { TextInput } from '../../inputs';
+import { TextInput, CheckboxInput } from '../../inputs';
 
 const SettingsForm = ({ page, errors, updatePageSetting, moreSettingPath, ...props }) => {
   return (
@@ -25,6 +25,24 @@ const SettingsForm = ({ page, errors, updatePageSetting, moreSettingPath, ...pro
             getValue={() => page.slug}
             handleChange={value => updatePageSetting('slug', value)}
             error={errors.slug}
+          />
+        )}
+
+        {page.slug !== undefined && (
+          <CheckboxInput
+            label={i18n.t('views.settings.published')}
+            getValue={() => page.published}
+            handleChange={value => updatePageSetting('published', value)}
+            error={errors.published}
+          />
+        )}
+
+        {page.slug !== undefined && (
+          <CheckboxInput
+            label={i18n.t('views.settings.listed')}
+            getValue={() => page.listed}
+            handleChange={value => updatePageSetting('listed', value)}
+            error={errors.listed}
           />
         )}
 

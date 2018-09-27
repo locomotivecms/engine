@@ -3,7 +3,7 @@
 }
 
 .editor-input {
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
 
   &--label {
     display: block;
@@ -74,14 +74,19 @@
 // CHECKBOX
 
 .editor-input-checkbox {
+  display: flex;
+  align-items: center;
 
   .editor-input {
     &--label {
-      display: inline-block;
-      margin-left: 1rem;
+      display: block;
+      margin: 0 1rem 0 0;
+    }
+
+    &--button {
+      margin-left: auto;
     }
   }
-
 }
 
 // RICH TEXT EDITOR

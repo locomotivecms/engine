@@ -54,6 +54,7 @@
     "immutable": "^3.8.2",
     "lodash": "^4.17.10",
     "prop-types": "^15.6.2",
+    "rc-switch": "^1.8.0",
     "react": "^16.3.2",
     "react-awesome-popover": "^2.0.5",
     "react-dom": "^16.3.2",

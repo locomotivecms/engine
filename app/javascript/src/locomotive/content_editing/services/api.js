@@ -61,6 +61,8 @@ export function saveContent(url, site, page) {
     page: {
       title: page.title,
       slug: page.slug,
+      listed: page.listed,
+      published: page.published,
       seo_title: page.seo_title,
       meta_keywords: page.meta_keywords,
       meta_description: page.meta_description,
