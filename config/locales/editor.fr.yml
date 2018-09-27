@@ -22,6 +22,9 @@ fr:
             external: "Externe"
             pages: "Page"
 
+        locale_switcher:
+          locale: 'version <strong>{{locale}}</strong>'
+
       inputs:
         image_picker:
           select_button: "Sélectionner"
@@ -35,8 +38,8 @@ fr:
             no_title: "Aucun titre"
             save_button:
               label: "Enregistrer"
-              in_progress: "Enregistrement en cours..."
-              success: "Enregistrement effectué !"
+              in_progress: "En cours..."
+              success: "Enregistré !"
               error: "Enregistrement non effectué"
 
           menu:

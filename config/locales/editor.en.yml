@@ -22,6 +22,9 @@ en:
             external: "External"
             pages: "Page"
 
+        locale_switcher:
+          locale: "<strong>{{locale}}</strong> version"
+
       inputs:
         image_picker:
           select_button: "Select"

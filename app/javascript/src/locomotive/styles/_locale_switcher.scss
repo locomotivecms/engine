@@ -2,15 +2,13 @@
   margin-top: 0.2rem;
 
   &-button {
-    color: #fff;
-    opacity: 0.2;
+    color: #adb1b7;
     transition: opacity 100ms linear;
     text-transform: uppercase;
     user-select: none;
 
     &:hover {
       color: #fff;
-      opacity: 1;
       transition: opacity 100ms linear;
       text-decoration: none;
     }
@@ -37,14 +35,17 @@
 
     a {
       display: block;
-      padding: 0.4rem 1rem;
+      padding: 0.8rem 1rem;
       font-size: 1.2rem;
       color: #6a707a;
       white-space: nowrap;
       transition: all 0.1s linear;
-      text-transform: uppercase;
       cursor: pointer;
       user-select: none;
+
+      strong {
+        text-transform: uppercase;
+      }
 
       &:hover {
         background: #e3e4e7;

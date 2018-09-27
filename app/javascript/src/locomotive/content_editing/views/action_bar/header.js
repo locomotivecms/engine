@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import i18n from '../../i18n';
+import { truncate } from 'lodash';
 
 // HOC
 import withRedux from '../../hoc/with_redux';
@@ -12,10 +13,10 @@ const Header = props => (
   <div className="editor-header">
     <div className="editor-header--navinfo">
       <div className="navinfo--path">
-        {props.page.fullpath}
+        {truncate(props.page.fullpath, { length: 33 })}
       </div>
       <div className="navinfo--title">
-        {props.page.title || i18n.t('views.action_bar.header.no_title')}
+        {truncate(props.page.title, { length: 26 }) || i18n.t('views.action_bar.header.no_title')}
       </div>
       <div className="navinfo-locale">
         {props.locales.length > 1 && (

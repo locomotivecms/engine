@@ -1755,8 +1755,7 @@
 .locale-switcher {
   margin-top: 0.2rem; }
   .locale-switcher-button {
-    color: #fff;
-    opacity: 0.2;
+    color: #adb1b7;
     transition: opacity 100ms linear;
     text-transform: uppercase;
     -webkit-user-select: none;
@@ -1765,7 +1764,6 @@
             user-select: none; }
     .locale-switcher-button:hover {
       color: #fff;
-      opacity: 1;
       transition: opacity 100ms linear;
       text-decoration: none; }
   .locale-switcher-content {
@@ -1783,17 +1781,18 @@
     margin: 0; }
   .locale-switcher-locale a {
     display: block;
-    padding: 0.4rem 1rem;
+    padding: 0.8rem 1rem;
     font-size: 1.2rem;
     color: #6a707a;
     white-space: nowrap;
     transition: all 0.1s linear;
-    text-transform: uppercase;
     cursor: pointer;
     -webkit-user-select: none;
        -moz-user-select: none;
         -ms-user-select: none;
             user-select: none; }
+    .locale-switcher-locale a strong {
+      text-transform: uppercase; }
     .locale-switcher-locale a:hover {
       background: #e3e4e7;
       color: #5f646c;
