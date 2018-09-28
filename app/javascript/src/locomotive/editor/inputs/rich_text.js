@@ -9,7 +9,7 @@ import { formatLineBreak, stripHTML } from '../utils/misc';
 // Components
 import Link from '../components/draft/link.jsx';
 
-const MIN_ROWS    = 5;
+const MIN_ROWS    = 8;
 const LINE_HEIGHT = 20;
 
 class RichTextInput extends Component {
