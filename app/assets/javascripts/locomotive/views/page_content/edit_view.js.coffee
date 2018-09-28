@@ -13,7 +13,7 @@ class Locomotive.Views.PageContent.EditView extends Backbone.View
   render: ->
     super()
 
-    # FIXME: the real magic happens in the app/javascript/src/locomotive/content_editing.es6 file
+    # FIXME: the real magic happens in the app/javascript/src/locomotive/editor.es6 file
 
   shrink_preview: (event) ->
     $(@el).removeClass('actionbar-closed')

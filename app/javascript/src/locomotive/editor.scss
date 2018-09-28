@@ -1,27 +1,25 @@
 @import "~react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 @import "~react-image-crop/lib/ReactCrop.scss";
 
-@import "./styles/variables";
+@import "./editor/styles/variables";
+@import "./editor/styles/list";
+@import "./editor/styles/inputs";
 
-@import "./styles/header";
-@import "./styles/menu";
-@import "./styles/view";
-@import "./styles/preview";
-@import "./styles/page";
+@import "./editor/styles/views/base";
+@import "./editor/styles/views/menu";
+@import "./editor/styles/views/header";
+@import "./editor/styles/views/preview";
+@import "./editor/styles/views/page";
+@import "./editor/styles/views/sections";
+@import "./editor/styles/views/section_gallery";
+@import "./editor/styles/views/blocks";
 
-@import "./styles/sections";
-@import "./styles/section_gallery";
-
-@import "./styles/modal";
-@import "./styles/list";
-@import "./styles/popover";
-@import "./styles/sections";
-@import "./styles/blocks";
-@import "./styles/inputs";
-@import "./styles/image_picker";
-@import "./styles/url_picker";
-@import "./styles/locale_switcher";
-@import "./styles/switch";
+@import "./editor/styles/components/modal";
+@import "./editor/styles/components/popover";
+@import "./editor/styles/components/image_picker";
+@import "./editor/styles/components/url_picker";
+@import "./editor/styles/components/locale_switcher";
+@import "./editor/styles/components/switch";
 
 #editor-app, #editor-app .container-fluid {
   height: 100%;

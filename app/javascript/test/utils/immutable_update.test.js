@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import update from '../../src/locomotive/content_editing/utils/immutable_update';
+import update from '../../src/locomotive/editor/utils/immutable_update';
 
 describe('locomotive/editor/utils/immutable_update', function() {
 
