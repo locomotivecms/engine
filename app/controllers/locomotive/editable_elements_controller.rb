@@ -1,3 +1,4 @@
+# @deprecated
 module Locomotive
   class EditableElementsController < BaseController
 
@@ -13,7 +14,7 @@ module Locomotive
     def index
       authorize @page
 
-      @editable_elements = parsing_service.find_or_create_editable_elements(@page)
+      @editable_elements = parsing_service.find_all_elements(@page)[:elements]
 
       respond_with(@page) do |format|
         format.html { render_index }

@@ -1,0 +1,31 @@
+.editor-menu {
+
+  .nav-tabs {
+    display: flex;
+    min-height: 5rem;
+  }
+
+  .nav-tab {
+    flex-grow: 1;
+    text-align: center;
+
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 5rem;
+      padding: 0;
+      margin-right: 0;
+      cursor: pointer;
+    }
+
+    svg {
+      margin-right: 0.8rem;
+    }
+  }
+
+}
+
+.editor-tabpanes-wrapper {
+  height: 100%;
+}

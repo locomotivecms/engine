@@ -41,7 +41,7 @@ Here is a list of the main gems used to power the Locomotive platform:
 
 - Rails 5     - *web framework*
 - Bootstrap   - *UI framework*
-- Mongoid 6   - *Object-Document-Mapper for MongoDB 2/3*
+- Mongoid 6   - *Object-Document-Mapper for MongoDB 3*
 - Devise 4    - *Authentication*
 - Carrierwave - *Upload*
 - Pundit      - *Permissions*
@@ -60,7 +60,7 @@ Locomotive is an open source project, we encourage contributions. If you have fo
 
 - Install ruby, mongoDB and phantomjs
 - Clone the project <code>git clone git@github.com:locomotivecms/engine.git</code>
-- Setup a virtual host entry for <code>test.example.com</code> to point to localhost
+- Setup a virtual host entry for <code>locomotive.local</code> to point to localhost
 - Start mongodb if it is not already running
 - Run the tests <code>bundle exec rake</code>
 - Write your failing tests

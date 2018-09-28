@@ -95,7 +95,7 @@ describe Locomotive::API::Resources::SnippetResource do
       context 'JSON' do
         let(:delete_request) { delete("#{url_prefix}/#{snippet.id}.json") }
 
-        it 'deletes the translation' do
+        it 'deletes the snippet' do
           expect { delete_request }.to change { Locomotive::Snippet.count }.by(-1)
         end
 

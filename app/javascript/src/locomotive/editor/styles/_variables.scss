@@ -1,0 +1,35 @@
+// =============================================================================
+// Variables
+// =============================================================================
+
+// Shades of gray
+
+$black: #000;
+$gray-darkest: #232528;
+$gray-darker: lighten($gray-darkest, 15);
+$gray-dark: lighten($gray-darkest, 30);
+$gray: lighten($gray-darkest, 45);
+$gray-light: lighten($gray-darkest, 65);
+$gray-lighter: lighten($gray-darkest, 75);
+$gray-lightest: lighten($gray-darkest, 83);
+$white: #fff;
+
+// Colors
+
+$brand-primary: #1c77c3;
+$brand-primary-alt: lighten($brand-primary, 20);
+$brand-success: #00aa8f;
+$brand-warning: #f0ad4e;
+$brand-danger: #d9684c;
+
+// Common
+
+$border-radius-base: 3px;
+$border-color-base: $gray-lighter;
+$padding-base-vertical: 12px;
+$padding-base-horizontal: 15px;
+$base-transition-speed: .3s;
+
+$slide-effect-offset: 20px;
+$slide-effect-enter-delay: 150ms;
+$slide-effect-exit-delay: 100ms;

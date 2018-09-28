@@ -1,7 +1,7 @@
 ul.nav.nav-tabs role='tablist'
   - unless @page.redirect?
     = form_nav_tab :content do
-      = link_to t('simple_form.titles.locomotive.page.content'), editable_elements_path(current_site, @page)
+      = link_to t('simple_form.titles.locomotive.page.content'), edit_page_content_path(current_site, @page)
 
   = form_nav_tab :main, true do
     = link_to t('simple_form.titles.locomotive.page.settings'), '#main', role: 'tab', data: { toggle: 'tab' }

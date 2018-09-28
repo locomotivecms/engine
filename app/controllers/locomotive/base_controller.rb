@@ -3,7 +3,6 @@ module Locomotive
 
     include Locomotive::Concerns::SslController
     include Locomotive::Concerns::RedirectToMainHostController
-    include Locomotive::Concerns::UrlHelpersController
     include Locomotive::Concerns::AccountController
     include Locomotive::Concerns::ExceptionController
     include Locomotive::Concerns::AuthorizationController

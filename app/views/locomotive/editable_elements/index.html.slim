@@ -2,7 +2,7 @@
 
 - content_for :preview do
   .embed-responsive.embed-page
-    iframe.embed-responsive-item src=(preview_path(current_site) + '/' + (params[:preview_path] || current_site.localized_page_fullpath(@page, current_content_locale))) data-redirection-error=t('.redirection_error') data-style-path=stylesheet_path('locomotive/live_editing_iframe') data-edit-label=t('.iframe.buttons.edit')
+    iframe.embed-responsive-item src=(preview_page_path(@page, mounted_on: true)) data-redirection-error=t('.redirection_error') data-style-path=stylesheet_path('locomotive/live_editing_iframe') data-edit-label=t('.iframe.buttons.edit')
 
 
 

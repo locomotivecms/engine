@@ -33,6 +33,7 @@ module Locomotive
       app.config.assets.precompile += %w(
         locomotive/icons/flags/*.png
         locomotive/*.png
+        locomotive/*.gif
         locomotive/bootstrap-colorpicker/saturation.png
         locomotive/bootstrap-colorpicker/alpha-horizontal.png
         locomotive/bootstrap-colorpicker/alpha.png
@@ -44,6 +45,8 @@ module Locomotive
         locomotive.css
         locomotive/account.js
         locomotive/account.css
+        locomotive/editor.js
+        locomotive/editor.css
         locomotive/live_editing_iframe.css
         locomotive/live_editing_error.css
         locomotive/error.css)

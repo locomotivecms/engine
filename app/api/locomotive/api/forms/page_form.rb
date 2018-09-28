@@ -24,6 +24,9 @@ module Locomotive
         # Editable elements
         attrs :editable_elements_attributes
 
+        # Sections
+        attrs :sections_content, :sections_dropzone_content
+
         # Display settings
         attrs :display_settings
 
@@ -51,6 +54,14 @@ module Locomotive
 
             EditableElementForm.new(attrs).serializable_hash
           end
+        end
+
+        def sections_content=(value)
+          set_attribute(:sections_content, JSON.parse(value))
+        end
+
+        def sections_dropzone_content=(value)
+          set_attribute(:sections_dropzone_content, JSON.parse(value))
         end
 
         def content_type=(value)

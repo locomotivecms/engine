@@ -1,0 +1,12 @@
+.editor-all-sections {
+  padding: 2rem;
+}
+
+.editor-section-list {
+  margin-bottom: 4rem;
+
+  & > div {
+    height: 100%
+  }
+}
+

@@ -1,0 +1,34 @@
+.editor-section-gallery {
+  padding: 2rem;
+}
+
+.editor-section {
+  &--category {
+
+    &-name {
+      font-size: 1.8rem;
+      font-family: "Muli", sans-serif;
+      font-weight: 200;
+      line-height: 1.1;
+      color: #6a707a;
+      margin-bottom: 1rem;
+    }
+
+    &-list {
+      margin-bottom: 3rem;
+      padding: 0 4rem;
+    }
+
+  }
+}
+
+.editor-category-section {
+
+  &--icon {
+    cursor: pointer;
+  }
+
+  &--label {
+    cursor: pointer;
+  }
+}

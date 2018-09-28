@@ -17,6 +17,7 @@ module Locomotive
     include Concerns::Page::Redirect
     include Concerns::Page::Listed
     include Concerns::Page::ToSteam
+    include Concerns::Page::Sections
 
     ## fields ##
     field :title,               localize: true

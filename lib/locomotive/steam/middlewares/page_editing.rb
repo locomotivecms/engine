@@ -22,13 +22,14 @@ module Locomotive
               <meta name="locomotive-locale" content="#{locale}" />
               <meta name="locomotive-editable-elements-path" content="#{editable_elements_path(site, page, locale, env)}" />
               <meta name="locomotive-page-id" content="#{page._id}" />
+              <meta name="locomotive-content-entry-id" content="#{content_entry_id(env)}" />
               <meta name="locomotive-mounted-on" content="#{mounted_on}" />
 
               <link href='https://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
 
               <!-- [Locomotive] fix absolute links to inner pages in preview mode-->
               <script>
-                window.document.addEventListener('click', function (event) {
+                window.document.addEventListener('click', function(event) {
                   var qs = document.querySelectorAll('a');
                   if (qs) {
                     var el = event.target, index = -1;
@@ -37,7 +38,7 @@ module Locomotive
                     }
                     if (index > -1) {
                       var url = el.getAttribute('href');
-                      if (url[0] == '/' && url.indexOf('#{mounted_on}') == -1 && url.indexOf('/sites/') == -1) {
+                      if (url && url[0] == '/' && url.indexOf('#{mounted_on}') == -1 && url.indexOf('/sites/') == -1) {
                         el.setAttribute('href', '#{mounted_on}' + url);
                       }
                     }
@@ -68,7 +69,7 @@ module Locomotive
         def editable_elements_path(site, page, locale, env)
           options = {}
 
-          if content_entry_id = env['steam.content_entry'].try(:_id)
+          if content_entry_id = content_entry_id(env)
             options = {
               content_entry_id: content_entry_id,
               preview_path:     env['steam.path'],
@@ -78,6 +79,10 @@ module Locomotive
           options[:content_locale] = locale if site.locales.size > 1
 
           super(site.handle, page._id, options)
+        end
+
+        def content_entry_id(env)
+          env['steam.content_entry']&._id
         end
 
       end

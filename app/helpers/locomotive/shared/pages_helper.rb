@@ -2,13 +2,24 @@ module Locomotive
   module Shared
     module PagesHelper
 
-      def preview_page_path(page)
-        _path = params[:preview_path] || current_site.localized_page_fullpath(page, current_content_locale)
-        _path = 'index' if _path.blank?
+      def nice_preview_page_path(page)
+        path = preview_page_path(page)
+        path = '/index' if path.last == '/'
+        path += response_type_name(page)
 
-        _path += response_type_name(page)
+        truncate(path, length: 50)
+      end
 
-        truncate('/' + _path, length: 50)
+      def preview_page_path(page, locale: nil, mounted_on: false)
+        _page = decorated_steam_page(page)
+
+        if page.content_entry
+          _page.content_entry = decorated_steam_content_entry(page.content_entry)
+        end
+
+        steam_url_builder.mounted_on = mounted_on ? preview_path(current_site) : nil
+
+        steam_url_builder.url_for(_page, locale || current_content_locale)
       end
 
       def response_type_name(page)

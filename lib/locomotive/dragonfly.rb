@@ -1,3 +1,5 @@
+require 'locomotive/dragonfly/processors/smart_thumb'
+
 module Locomotive
   module Dragonfly
 

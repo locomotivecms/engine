@@ -1,0 +1,84 @@
+@import "~react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+@import "~react-image-crop/lib/ReactCrop.scss";
+
+@import "./editor/styles/variables";
+@import "./editor/styles/list";
+@import "./editor/styles/inputs";
+
+@import "./editor/styles/views/base";
+@import "./editor/styles/views/menu";
+@import "./editor/styles/views/header";
+@import "./editor/styles/views/preview";
+@import "./editor/styles/views/page";
+@import "./editor/styles/views/sections";
+@import "./editor/styles/views/section_gallery";
+@import "./editor/styles/views/blocks";
+
+@import "./editor/styles/components/modal";
+@import "./editor/styles/components/popover";
+@import "./editor/styles/components/image_picker";
+@import "./editor/styles/components/url_picker";
+@import "./editor/styles/components/locale_switcher";
+@import "./editor/styles/components/switch";
+
+#editor-app, #editor-app .container-fluid {
+  height: 100%;
+
+  .actionbar {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .actionbar .scrollable {
+    margin-top: 0;
+  }
+}
+
+.editor-startup {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.editor-route-wrapper {
+  position: relative;
+  flex-grow: 1;
+}
+
+.editor-route-wrapper > div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 998;
+}
+
+.editor-error {
+
+  &-container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &-message {
+    margin-top: 4rem;
+    padding: 2rem 0;
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+
+    & > * {
+      text-align: center;
+    }
+  }
+
+  &-title {
+    color: #721c24;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+  }
+
+}

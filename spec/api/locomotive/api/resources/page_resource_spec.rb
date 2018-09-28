@@ -87,7 +87,10 @@ describe Locomotive::API::Resources::PageResource do
 
     describe "PUT update" do
       context 'JSON' do
-        let(:page_params) { page.serializable_hash.merge(title: 'changed title').tap { |p| p.delete('target_klass_name') } }
+        let(:page_params) { page.serializable_hash.merge(title: 'changed title').tap { |params|
+          params['sections_content']           = params['sections_content'].to_json
+          params['sections_dropzone_content']  = params['sections_dropzone_content'].to_json
+        } }
         let(:put_request) { put("#{url_prefix}/#{page.id}.json", page: page_params) }
 
         it 'changes the page title' do

@@ -3,7 +3,7 @@ module Locomotive
 
     account_required & within_site
 
-    respond_to :json, only: [:create, :bulk_create]
+    respond_to :json, only: [:index, :create, :bulk_create]
 
     before_action :load_content_assets, only: :index
     before_action :load_content_asset,  only: [:edit, :update, :destroy]

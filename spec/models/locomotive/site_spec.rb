@@ -201,4 +201,33 @@ describe Locomotive::Site do
 
   end
 
+
+  describe 'sections_content validation' do
+    describe 'invalid' do
+      it 'require to be a Hash' do
+        expect { build(:site, sections_content: []) }.to raise_error
+
+        site = build(:site, sections_content: {})
+        expect(site).to be_valid
+      end
+
+      it 'should contains Hashs' do
+        site = build(:site, sections_content: { "id": "myId" })
+        expect(site).not_to be_valid
+      end
+
+      it 'should invalid additional properties' do
+        site = build(:site, sections_content: { "id": { "not": "good" }})
+        expect(site).not_to be_valid
+        expect(site.errors[:sections_content]).to eq(["The property '#/id' contains additional properties [\"not\"] outside of the schema when none are allowed"])
+      end
+    end
+
+    describe 'valid' do
+      it 'should be valid' do
+        site = build(:site, sections_content: { "theHeaderOfWonder": { "settings": { "title": "wonderfull title" }}})
+        expect(site).to be_valid
+      end
+    end
+  end
 end

@@ -26,8 +26,8 @@ group :development do
   # gem 'locomotivecms_common', path: '../common', require: false
   # gem 'locomotivecms_common', github: 'locomotivecms/common', ref: '257047b', require: false
 
-  # gem 'locomotivecms_steam', path: '../steam', require: false
-  # gem 'locomotivecms_steam', github: 'locomotivecms/steam', ref: 'f8d9607', require: false
+  gem 'locomotivecms_steam', path: '../steam', require: false
+  # gem 'locomotivecms_steam', git: 'https://github.com/locomotivecms/steam.git', branch: 'sections', ref: '6d7e97e', require: false
 
   # gem 'locomotive_liquid', path: '../gems/liquid' # for Developers
   # gem 'locomotivecms_solid', path: '../gems/solid' # for Developers
@@ -36,9 +36,10 @@ group :development do
 end
 
 group :test do
-  gem 'capybara',                 '~> 2.18'
-  gem 'selenium-webdriver',       '~> 3.11.0'
-  gem 'puma',                     '~> 3.11.3'
+  gem 'capybara',                 '~> 2.18.0'
+  gem 'selenium-webdriver',       '~> 3.14.0'
+  gem 'puma',                     '~> 3.12.0'
+  gem 'chromedriver-helper',      '~> 1.2.0'
 
   gem 'grape-entity-matchers',    github: 'salsify/grape-entity-matchers', branch: 'grape-entity-exposures'
   gem 'shoulda-matchers',         '~> 3.1.2'

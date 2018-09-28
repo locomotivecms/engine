@@ -37,5 +37,11 @@ module Locomotive
       File.extname(self.source_filename).gsub(/^\./, '')
     end
 
+    def as_json(options = nil)
+      super.merge(
+        thumbnail_url: self.big_vignette_url
+      )
+    end
+
   end
 end

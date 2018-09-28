@@ -285,5 +285,29 @@ module Locomotive
       base_cache_key_for_sidebar + ['content_types', count, max_updated_at]
     end
 
+    # Steam helpers
+
+    def decorated_steam_content_entry(content_entry)
+      Locomotive::Steam::Decorators::I18nDecorator.new(
+        content_entry.to_steam,
+        current_content_locale,
+        current_site.default_locale
+      )
+    end
+
+    def decorated_steam_page(page)
+      Locomotive::Steam::Decorators::PageDecorator.new(
+        page.to_steam,
+        current_content_locale,
+        current_site.default_locale
+      )
+    end
+
+    def steam_url_builder
+      return @steam_url_builder if @steam_url_builder
+
+      @steam_url_builder = Locomotive::Steam::Services.build_simple_instance(current_site).url_builder
+    end
+
   end
 end

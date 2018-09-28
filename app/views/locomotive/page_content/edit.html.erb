@@ -1,0 +1,18 @@
+ <div id="editor-app"></div>
+
+<% content_for :head do %>
+  <script>
+    const _json = <%== render template: 'locomotive/page_content/edit.json.jbuilder' %>;
+
+    window.Locomotive.previewBaseUrl = "<%= preview_path(current_site) %>";
+
+    window.Locomotive.data = _json.data;
+    window.Locomotive.urls = _json.urls;
+
+    window.Locomotive.i18n = <%= h I18n.t('locomotive.editor').to_json.html_safe %>;
+
+  </script>
+
+  <%= javascript_include_tag  'locomotive/editor' %>
+  <%= stylesheet_link_tag     'locomotive/editor', media: 'screen' %>
+<% end %>

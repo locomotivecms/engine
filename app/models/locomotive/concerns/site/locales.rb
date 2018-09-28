@@ -31,33 +31,6 @@ module Locomotive
           self.locales.size > 1
         end
 
-        # TODO: use the Steam service instead
-        #
-        # Returns the fullpath of a page in the context of the current locale (I18n.locale)
-        # or the one passed in parameter. It also depends on the default site locale.
-        #
-        # Ex:
-        #   For a site with its default site locale to 'en'
-        #   # context 1: i18n.locale is 'en'
-        #   contact_us.fullpath <= 'contact_us'
-        #
-        #   # context 2: i18n.locale is 'fr'
-        #   contact_us.fullpath <= 'fr/nous_contacter'
-        #
-        # @param [ Page ] page The page we want the localized fullpath
-        # @param [ String ] locale The optional locale in place of the current one
-        #
-        # @return [ String ] The localized fullpath according to the current locale
-        #
-        def localized_page_fullpath(page, locale = nil)
-          return nil if page.fullpath_translations.blank?
-
-          locale    = (locale || I18n.locale).to_s
-          fullpath  = page.index? ? nil : (page.fullpath_translations[locale] || page.fullpath_translations[self.default_locale])
-          locale_prefix = is_default_locale?(locale) && !prefix_default_locale ? nil : locale
-          [locale_prefix, fullpath].compact.join '/'
-        end
-
         def locales=(array)
           super((array || []).reject(&:blank?).map(&:to_s))
         end

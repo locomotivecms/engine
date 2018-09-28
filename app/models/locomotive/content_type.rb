@@ -131,15 +131,11 @@ module Locomotive
     def bubble_fields_errors_up
       return if self.errors[:entries_custom_fields].empty?
 
-      hash = { base: self.errors[:entries_custom_fields] }
-
       self.entries_custom_fields.each do |field|
-        next if field.valid?
+        next if field.errors.blank?
         key = field.persisted? ? field._id.to_s : field.position.to_i
-        hash[key] = field.errors.to_a
+        self.errors.add(:entries_custom_fields, :invalid, message: "##{key}: #{field.errors.full_messages.first}")
       end
-
-      self.errors.add(:entries_custom_fields, hash)
     end
 
     # Makes sure the class_name filled in a belongs_to or has_many field

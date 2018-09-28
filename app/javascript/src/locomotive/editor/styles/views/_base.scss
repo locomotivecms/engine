@@ -1,0 +1,96 @@
+.editor-view {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+
+  &--header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0rem 2rem;
+    min-height: 5rem;
+    border-bottom: 1px solid $gray-lighter;
+
+    &-title {
+      margin-left: 2rem;
+      font-size: 2.1rem;
+      color: #666;
+      padding: 1rem 0;
+    }
+
+    &-subTitle {
+      font-size: 1.4rem;
+      color: $gray;
+    }
+
+    &-mainTitle {
+      font-size: 2.1rem;
+      color: #666;
+    }
+
+    &-back-btn {
+      cursor: pointer;
+      font-size: 2.4rem;
+    }
+
+    &-action {
+      margin-left: auto;
+    }
+  }
+
+  &--scrollable {
+    position: relative;
+    flex-grow: 1;
+  }
+
+}
+
+// Animations
+
+.editor-view.slide-up-enter,
+.editor-view.slide-down-enter,
+.editor-view.slide-right-enter,
+.editor-view.slide-left-enter {
+  opacity: 0;
+}
+
+.editor-view.slide-up-enter {
+  transform: translate(0, $slide-effect-offset);
+}
+
+.editor-view.slide-down-enter {
+  transform: translate(0, -$slide-effect-offset);
+}
+
+.editor-view.slide-right-enter {
+  transform: translate($slide-effect-offset * -1, 0);
+}
+
+.editor-view.slide-left-enter {
+  transform: translate($slide-effect-offset, 0);
+}
+
+.editor-view.slide-up-enter.slide-up-enter-active,
+.editor-view.slide-down-enter.slide-down-enter-active,
+.editor-view.slide-right-enter.slide-right-enter-active,
+.editor-view.slide-left-enter.slide-left-enter-active {
+  opacity: 1;
+  transform: translate(0, 0);
+  transition: opacity $slide-effect-enter-delay ease-in, transform $slide-effect-enter-delay ease-in-out;
+}
+
+.editor-view.slide-up-exit,
+.editor-view.slide-down-exit,
+.editor-view.slide-right-exit,
+.editor-view.slide-left-exit {
+  opacity: 1;
+}
+
+.editor-view.slide-up-exit.slide-up-exit-active,
+.editor-view.slide-down-exit.slide-up-exit-active,
+.editor-view.slide-right-exit.slide-right-exit-active,
+.editor-view.slide-left-exit.slide-left-exit-active {
+  opacity: 0;
+  transition: opacity $slide-effect-exit-delay ease-in;
+}

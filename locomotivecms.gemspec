@@ -46,7 +46,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'bootstrap-sass',                  '~> 3.3.7'
   s.add_dependency 'autoprefixer-rails',              '~> 8.0.0'
 
-  s.add_dependency 'font-awesome-sass',               '~> 5.0.9'
+  s.add_dependency 'font-awesome-sass',               '~> 5.2.0'
 
   s.add_dependency 'highline',                        '~> 1.7.10'
   s.add_dependency 'bazaar',                          '~> 0.0.2'
@@ -57,6 +57,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'rack-cache',                      '~> 1.7.1'
 
   s.add_dependency 'multi_json',                      '~> 1.13.1'
+  s.add_dependency 'jbuilder',                        '~> 2.5'
+  s.add_dependency 'yajl-ruby',                       '~> 1.3.1'
   s.add_dependency 'actionmailer-with-request',       '~> 0.5.0'
 
   s.add_dependency 'grape',                           '~> 1.1.0'

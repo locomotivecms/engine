@@ -35,6 +35,9 @@ Locomotive::Engine.routes.draw do
     resources :pages do
       put :sort, on: :member
       get :get_path, on: :collection
+
+      resource :content, controller: 'page_content', only: [:edit, :update]
+      get 'content/edit/*nav', to: 'page_content#edit'
     end
 
     resources :editable_elements, only: [:index, :update_all], path: 'pages/:page_id/editable_elements' do
@@ -50,6 +53,8 @@ Locomotive::Engine.routes.draw do
     resources :memberships
 
     resources :translations
+
+    resources :search_for_resources, only: [:index]
 
     resources :content_assets do
       post :bulk_create, on: :collection

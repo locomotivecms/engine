@@ -6,23 +6,37 @@ module Locomotive
 
     include ActiveSupport::Benchmarkable
 
+    def find_all_elements(page)
+      find_or_create_editable_elements(page)&.slice(:elements, :sections)
+    end
+
     def find_or_create_editable_elements(page)
       benchmark "Parse page #{page._id} find_or_create_editable_elements" do
-        parsed = { extends: {}, blocks: {}, super_blocks: {}, elements: [] }
+        parsed = {
+          extends:                  {},
+          blocks:                   {},
+          super_blocks:             {},
+          elements:                 [],
+          sections:                 { top: [], bottom: [], dropzone: false }
+        }
 
         subscribe(parsed) do
           parse(page)
 
-          persist_editable_elements(page, parsed).tap do |elements|
-            # FIXME (Did): do not remove "useless" editable elements since
-            # they might have become orphaned because of a typo for instance.
-            # Instead, we should warn the Wagon developer (TODO).
-            # remove_useless_editable_elements(page, elements)
-          end
+          # remove the sections if hidden (sections might be hidden by an overidding block).
+          # also sort them by their placement.
+          # finally, only return their types (+ sectionId)
+          extract_section_attributes!(page, parsed)
+
+          # !Important! Non visible editable elements are not removed
+          persist_editable_elements!(page, parsed)
         end
+
+        parsed
       end
     rescue Exception => e
       logger.error "[PageParsing] " + e.message + "\n\t" + e.backtrace.join("\n\t")
+      puts "[PageParsing] " + e.message + "\n\t" + e.backtrace.join("\n\t")
       nil
     end
 
@@ -51,7 +65,8 @@ module Locomotive
       subscribers = [
         subscribe_to_extends(parsed[:extends]),
         subscribe_to_blocks(parsed[:blocks], parsed[:super_blocks]),
-        subscribe_to_editable_elements(parsed[:elements])
+        subscribe_to_editable_elements(parsed[:elements]),
+        subscribe_to_sections(parsed[:sections])
       ]
 
       yield.tap do
@@ -85,6 +100,20 @@ module Locomotive
       end
     end
 
+    def subscribe_to_sections(sections)
+      ActiveSupport::Notifications.subscribe('steam.parse.section') do |name, start, finish, id, payload|
+        page, block, attributes = payload[:page], payload[:block], payload[:attributes]
+
+        if attributes[:is_dropzone]
+          sections[:dropzone] ||= [page, block, attributes]
+        else
+          placement = attributes[:placement] || :top
+          attributes[:position] ||= block.blank? ? 0 : block.split('/').size
+          sections[placement].push([page, block, attributes])
+        end
+      end
+    end
+
     def parse(page)
       entity = repository.build(page.attributes.dup)
       decorated_page = Locomotive::Steam::Decorators::TemplateDecorator.new(entity, self.locale, self.site.default_locale)
@@ -93,13 +122,34 @@ module Locomotive
       parser.parse(decorated_page)
     end
 
-    def persist_editable_elements(page, parsed)
+    # Remove sections from hidden blocks.
+    # It also tells if there is a visible sections dropzone.
+    def extract_section_attributes!(page, parsed)
+      [:top, :bottom].each do |placement|
+        parsed[:sections][placement] = parsed[:sections][placement].map do |(_page, block, attributes)|
+          # we don't want hidden sections
+          next unless is_element_visible?(page, parsed, _page, block)
+
+          attributes.slice(:source, :type, :key, :id, :label, :position)
+        end.compact.sort_by { |attributes| attributes[:position] }
+      end
+
+      if parsed[:sections][:dropzone]
+        # we don't want a hidden dropzone
+        _page, block, _ = parsed[:sections][:dropzone]
+        parsed[:sections][:dropzone] = is_element_visible?(page, parsed, _page, block)
+      else
+        parsed[:sections][:dropzone] = false
+      end
+    end
+
+    def persist_editable_elements!(page, parsed)
       modified_pages, pages = [], { page._id => page } # group modifications by page
 
-      elements = parsed[:elements].map do |couple|
+      parsed[:elements].map! do |couple|
         _page, attributes = couple
 
-        next if !persist_editable_element?(page, parsed, _page, attributes)
+        next if !is_element_visible?(page, parsed, _page, attributes[:block])
 
         # Note: _page is a Steam entity but we need a Mongoid document to save the elements
         _page = attributes[:fixed] ? find_page(_page._id, pages) : page
@@ -112,22 +162,18 @@ module Locomotive
         modified_pages << _page
 
         couple
-      end.compact
+      end.compact!
 
       modified_pages.uniq.map(&:save!)
-
-      elements
     end
 
-    def persist_editable_element?(page, parsed, _page, attributes)
-      page_id, block_name = _page._id, attributes[:block]
-
-      if page._id == _page._id  # same page
+    def is_element_visible?(page, parsed, _page, block)
+      if page._id == _page._id # same page, we are sure that it's visible
         true
-      elsif block_name.blank?   # an editable_element out of a block (impossible to remove it in pages extending this template)
+      elsif block.blank? # Ex: an editable_element outside a block (impossible to remove it in pages extending this template)
         true
       else
-        block_visible?(_page._id, parsed, attributes)
+        block_visible?(_page._id, parsed, { block: block })
       end
     end
 
@@ -172,13 +218,6 @@ module Locomotive
         page.editable_elements.build(attributes, klass)
       end
     end
-
-    # FIXME (Did): see comment on line 17.
-    # def remove_useless_editable_elements(page, elements)
-    #   if _elements = (elements.map { |p, _elements| p._id == page._id ? _elements : nil }.flatten.compact)
-    #     page.editable_elements.where(:_id.nin => _elements.map(&:_id)).destroy_all
-    #   end
-    # end
 
     def assign_block_information(element, blocks)
       if element.block && (options = blocks[element.block])
