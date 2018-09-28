@@ -11,7 +11,9 @@ gemspec
 # your gem to rubygems.org.
 
 group :test, :development do
-  gem 'rspec-rails', '~> 3.7.2'
+  gem 'ffi',          '~> 1.9.24'
+  gem 'rubyzip',      '~> 1.2.2'
+  gem 'rspec-rails',  '~> 3.7.2'
 
   # To use a debugger
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
