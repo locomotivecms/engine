@@ -861,23 +861,13 @@
   z-index: 2;
   cursor: pointer;
 }
+
 .rap-manager,
 .rap-target-container {
   display: inline-block;
-  height: 100%;
   position: relative;
 }
-.rap-popover-content {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  height: auto;
-  display: inline-block;
-  background: white;
-}
+
 .rap-left {
   left: -20px !important;
 }
