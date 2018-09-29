@@ -417,7 +417,7 @@ describe Locomotive::Page do
 
       it 'updates the template_version attribute of the site' do
         model.raw_template = 'new one'
-        Timecop.freeze(date) do
+        travel_to(date) do
           expect { model.save! }.to change { model_site.template_version }.to date
         end
       end

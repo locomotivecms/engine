@@ -4,9 +4,9 @@ FactoryBot.define do
 
   ## Sections ##
   factory :section, class: Locomotive::Section do
-    name 'Header'
-    slug 'header'
-    template %{<title>{{ section.settings.title }}</title>}
+    name { 'Header' }
+    slug { 'header' }
+    template { %{<title>{{ section.settings.title }}</title>} }
     definition { {
       name:     'header',
       settings: [

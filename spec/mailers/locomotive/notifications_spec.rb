@@ -25,7 +25,7 @@ describe Locomotive::Notifications do
     end
 
     it 'outputs the current time in the correct time zone' do
-      Timecop.freeze(now) do
+      travel_to(now) do
         expect(set_timezone { mail.body.encoded }).to match('a new instance has been created on 09/16/1982 21:00')
       end
     end

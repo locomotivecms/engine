@@ -4,9 +4,9 @@ FactoryBot.define do
 
   ## Pages ##
   factory :page, class: Locomotive::Page do
-    title 'A simple page'
-    slug 'simple'
-    published true
+    title { 'A simple page' }
+    slug { 'simple' }
+    published { true }
     site { Locomotive::Site.where(handle: 'acme').first || create(:site) }
 
     trait :index do
@@ -17,16 +17,16 @@ FactoryBot.define do
     end
 
     factory :sub_page do
-      title 'Subpage'
-      slug 'subpage'
-      published true
+      title { 'Subpage' }
+      slug { 'subpage' }
+      published { true }
       site { Locomotive::Site.where(handle: 'acme').first || create(:site) }
       parent { Locomotive::Page.where(slug: 'index').first || create(:page) }
-      raw_template '<html><body><h1>Hello world</h1></body></html>'
+      raw_template { '<html><body><h1>Hello world</h1></body></html>' }
     end
 
     factory :page_with_editable_element do
-      slug 'with_editable_element'
+      slug { 'with_editable_element' }
       after(:build) do |page, _|
         page.editable_elements << build(:editable_element)
         page.raw_template = '<a>a</a>'

@@ -4,7 +4,7 @@ describe Locomotive::API::Resources::TranslationResource do
 
   include_context 'api site setup'
 
-  let!(:translation) { Timecop.freeze(Time.zone.local(2015, 4, 1, 12, 0, 0)) { create(:translation, site: site) } }
+  let!(:translation) { travel_to(Time.zone.local(2015, 4, 1, 12, 0, 0)) { create(:translation, site: site) } }
   let(:params) { { locale: :en } }
   let(:url_prefix) { '/locomotive/acmi/api/v3/translations' }
 

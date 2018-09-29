@@ -45,7 +45,7 @@ describe Locomotive::API::Entities::ThemeAssetEntity do
 
     describe 'updated_at' do
       it 'runs updated_at through #iso_timestamp' do
-        Timecop.freeze(Time.zone.local(2015, 4, 1, 12, 0, 0)) do
+        travel_to(Time.zone.local(2015, 4, 1, 12, 0, 0)) do
           expect(exposure[:updated_at]).to eq '2015-04-01T12:00:00Z'
         end
       end

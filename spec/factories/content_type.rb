@@ -7,14 +7,14 @@ FactoryBot.define do
 
     sequence(:slug) { |n| "slug_of_content_type_#{n*rand(10_000)}" }
 
-    name 'My project'
-    description 'The list of my projects'
+    name { 'My project' }
+    description { 'The list of my projects' }
     site { Locomotive::Site.where(handle: 'acme').first || create(:site) }
 
     trait :article do
-      name 'Articles'
-      label_field_name 'title'
-      slug 'articles'
+      name { 'Articles' }
+      label_field_name { 'title' }
+      slug { 'articles' }
       after(:build) do |content_type, _|
         content_type.entries_custom_fields.build label: 'Title', type: 'string'
         content_type.entries_custom_fields.build label: 'Description', type: 'text'
@@ -28,15 +28,15 @@ FactoryBot.define do
     end
 
     factory 'tasks content type' do
-      name 'Tasks'
-      description 'The list of my tasks'
+      name { 'Tasks' }
+      description { 'The list of my tasks' }
     end
 
     factory 'message content type' do
-      name 'Messages'
-      slug 'messages'
-      description 'Messages posted from the contact form'
-      public_submission_enabled true
+      name { 'Messages' }
+      slug { 'messages' }
+      description { 'Messages posted from the contact form' }
+      public_submission_enabled { true }
       after(:build) do |content_type, _|
         content_type.entries_custom_fields.build label: 'Name', name: 'name', type: 'string', required: true
         content_type.entries_custom_fields.build label: 'Message', name: 'message', type: 'text'
@@ -44,8 +44,8 @@ FactoryBot.define do
     end
 
     factory 'article content type' do
-      name 'Articles'
-      description 'The list of articles'
+      name { 'Articles' }
+      description { 'The list of articles' }
       after(:build) do |content_type, _|
         content_type.entries_custom_fields.build label: 'Title', name: 'title', type: 'string'
         content_type.entries_custom_fields.build label: 'Body', name: 'body', type: 'text'
@@ -63,8 +63,8 @@ FactoryBot.define do
     end
 
     factory 'localized article content type' do
-      name 'Articles'
-      description 'The list of articles'
+      name { 'Articles' }
+      description { 'The list of articles' }
       after(:build) do |content_type, _|
         content_type.entries_custom_fields.build label: 'Title', name: 'title', type: 'string', localized: true
         content_type.entries_custom_fields.build label: 'Body', name: 'body', type: 'text', localized: true
@@ -81,8 +81,8 @@ FactoryBot.define do
     end
 
     factory 'photo content type' do
-      name 'Photos'
-      description 'The list of photos'
+      name { 'Photos' }
+      description { 'The list of photos' }
       after(:build) do |content_type, _|
         content_type.entries_custom_fields.build label: 'Title', name: 'title', type: 'string'
         content_type.entries_custom_fields.build label: 'Photo', name: 'photo', type: 'file'
@@ -142,16 +142,16 @@ FactoryBot.define do
   end
 
   factory :custom_field, class: CustomFields::Field do
-    name 'a_field'
-    label 'A field'
+    name { 'a_field' }
+    label { 'A field' }
 
     factory 'text field' do
-      type 'text'
-      text_formatting 'html'
+      type { 'text' }
+      text_formatting { 'html' }
     end
 
     factory 'select field' do
-      type 'select'
+      type { 'select' }
 
       factory 'select field with options' do
         after(:build) do |field|
@@ -162,11 +162,11 @@ FactoryBot.define do
     end
 
     factory 'has_many field' do
-      type        'has_many'
-      class_name  'Locomotive::ContentType42'
-      inverse_of  'somefield'
-      order_by    'someotherfield'
-      ui_enabled  true
+      type        { 'has_many' }
+      class_name  { 'Locomotive::ContentType42' }
+      inverse_of  { 'somefield' }
+      order_by    { 'someotherfield' }
+      ui_enabled  { true }
     end
 
   end

@@ -50,7 +50,7 @@ describe Locomotive::Concerns::Site::Cache do
 
     it 'bumps content_version' do
       site.name = 'New name'
-      Timecop.freeze(date) do
+      travel_to(date) do
         expect { site.save! }.to change { site.content_version }.to date
       end
     end
