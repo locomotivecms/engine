@@ -11,7 +11,8 @@ module Locomotive
       end
 
       def preview_page_path(page, locale: nil, mounted_on: false)
-        _page = decorated_steam_page(page)
+        locale = locale || current_content_locale.to_s
+        _page  = decorated_steam_page(page)
 
         if page.content_entry
           _page.content_entry = decorated_steam_content_entry(page.content_entry)
@@ -19,7 +20,7 @@ module Locomotive
 
         steam_url_builder.mounted_on = mounted_on ? preview_path(current_site) : nil
 
-        steam_url_builder.url_for(_page, locale || current_content_locale)
+        steam_url_builder.url_for(_page, locale)
       end
 
       def response_type_name(page)

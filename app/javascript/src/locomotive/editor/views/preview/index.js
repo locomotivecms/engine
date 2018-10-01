@@ -56,6 +56,14 @@ class Preview extends React.Component {
     this.setState({ screensize });
   }
 
+  // If no locale is included in the path (ex.: /index), Steam will use the
+  // locale sent by the browser. We don't want this behavior when previewing the site
+  // in the back-office, so we have to force the locale.
+  getPreviewPath() {
+    const { previewPath, currentLocale, defaultLocale } = this.props;
+    return currentLocale === defaultLocale ? `${previewPath}?locale=${locale}` : previewPath;
+  }
+
   render() {
     return (
       <div className="content-preview preview">
@@ -71,7 +79,7 @@ class Preview extends React.Component {
               <div className="embed-responsive embed-page">
                 <iframe
                   className="embed-responsive-item"
-                  src={this.props.previewPath}
+                  src={this.getPreviewPath()}
                   ref={el => this.iframe = el}>
                 </iframe>
               </div>
@@ -94,5 +102,7 @@ export default withRedux(state => ({
   iframeState:        state.iframe,
   changed:            state.editor.changed,
   previewPath:        state.editor.urls.preview,
-  loaderImage:        state.editor.urls.loaderImage
+  loaderImage:        state.editor.urls.loaderImage,
+  currentLocale:      state.editor.locale,
+  defaultLocale:      state.editor.locales[0]
 }))(Preview);

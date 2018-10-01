@@ -77,7 +77,7 @@ module Locomotive
     end
 
     def remove_blocks_ids(list)
-      list.each { |block| block.delete('id') }
+      (list || []).each { |block| block.delete('id') }
     end
 
   end

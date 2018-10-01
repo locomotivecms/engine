@@ -1569,8 +1569,13 @@
   .modal-close:hover {
     color: #000; }
 
-.rap-popover-content {
-  box-shadow: 0 0 0 1px rgba(16, 22, 26, 0.1), 0 2px 4px rgba(16, 22, 26, 0.2), 0 8px 24px rgba(16, 22, 26, 0.2); }
+.rap-popover-pad {
+  box-shadow: 0 0 0 1px rgba(16, 22, 26, 0.1), 0 2px 4px rgba(16, 22, 26, 0.2), 0 8px 24px rgba(16, 22, 26, 0.2);
+  box-sizing: border-box;
+  border-radius: 3px;
+  height: auto;
+  display: inline-block;
+  background: #fff; }
 
 .rap-popover-pad {
   padding: 10px;
@@ -1766,16 +1771,19 @@
   .locale-switcher-content {
     margin-top: 0.6rem;
     width: 10rem;
-    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(0, 0, 0, 0.15);
-    border-radius: 3px;
     z-index: 999 !important; }
+    .locale-switcher-content > span {
+      z-index: 1000; }
   .locale-switcher-locales {
     position: relative;
     z-index: 100;
     list-style: none;
     padding: 0;
-    margin: 0; }
+    margin: 0;
+    background: #fff;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 3px; }
   .locale-switcher-locale a {
     display: block;
     padding: 0.8rem 1rem;

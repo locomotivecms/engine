@@ -116,7 +116,8 @@ export function decodeLinkResource(url) {
 
 // get the content of a meta tag inside an iframe
 export function getMetaContentFromIframe(iframe, name) {
-  return iframe.contentWindow.document.head.querySelector(`meta[name=${name}]`).content;
+  const meta = iframe.contentWindow.document.head.querySelector(`meta[name=${name}]`);
+  return meta ? meta.content : null;
 }
 
 export function findParentElement(tagName, el) {

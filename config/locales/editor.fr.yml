@@ -40,7 +40,7 @@ fr:
               label: "Enregistrer"
               in_progress: "En cours..."
               success: "Enregistré !"
-              error: "Enregistrement non effectué"
+              error: "Pas enregistré"
 
           menu:
             content: "Contenu"
