@@ -32,6 +32,9 @@ en:
           remove_button: "Remove"
           crop_button: "Crop"
 
+        content_type:
+          show: "Show"
+
       views:
         action_bar:
           header:

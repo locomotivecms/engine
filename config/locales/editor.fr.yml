@@ -32,6 +32,9 @@ fr:
           remove_button: "Enlever"
           crop_button: "Rogner"
 
+        content_type:
+          show: "Voir"
+
       views:
         action_bar:
           header:
