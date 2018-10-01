@@ -1,15 +1,15 @@
 import React from 'react';
 
-const HintInput = ({ label, setting, getValue, handleChange }) => (
-  <div className="editor-input editor-input-text">
+const HintInput = ({ label, setting, getValue, handleChange }) => {
+  console.log(getValue())
+  return (<div className="editor-input editor-input-text">
     <label className="editor-input--label">
       {label || setting.label}
     </label>
-    <h2 className='hint'>
+    <p>
       {getValue('')}
-    </h2>
-
+    </p>
   </div>
-)
+)}
 
 export default HintInput;
