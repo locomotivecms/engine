@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { arrayMove, isBlank, presence, stripHTML } from '../../src/locomotive/content_editing/utils/misc';
+import { arrayMove, isBlank, presence, stripHTML } from '../../src/locomotive/editor/utils/misc';
 
 describe('locomotive/editor/utils/misc', function() {
 

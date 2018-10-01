@@ -55,6 +55,9 @@ RSpec.configure do |config|
     helper.class.include Locomotive::Engine.routes.url_helpers
   end
 
+  # Replace Timecop
+  config.include ActiveSupport::Testing::TimeHelpers
+
   config.include Features::SessionHelpers,  type: :system
   config.include Features::SiteHelpers,     type: :system
   config.include EmailSpec::Helpers,        type: :system

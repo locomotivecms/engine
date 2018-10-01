@@ -40,7 +40,7 @@ module Locomotive
           if image.starts_with?('data') # base64
             file.apply.content.process!(:thumb, format).b64_data
           else
-            file.thumb(format).url # url
+            file.thumb(format).url
           end
         rescue ArgumentError => e
           Locomotive.log "[image thumbnail] error = #{e.message}"

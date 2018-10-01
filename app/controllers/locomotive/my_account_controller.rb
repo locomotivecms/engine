@@ -21,6 +21,7 @@ module Locomotive
       else
         @account.update_attributes(account_params)
       end
+      params[:active_tab] = 'credentials' if @account.errors.include?(:current_password)
       respond_with @account, location: edit_my_account_path(anchor: params[:active_tab])
     end
 
@@ -44,7 +45,12 @@ module Locomotive
     end
 
     def needs_password?
-      params[:account][:email].present? || params[:account][:password].present?
+      email_update_requested? || params[:account][:password].present?
+    end
+
+    def email_update_requested?
+      params[:account][:email].present? &&
+      params[:account][:email] != current_locomotive_account.email
     end
 
   end

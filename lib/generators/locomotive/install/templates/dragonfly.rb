@@ -1,8 +1,12 @@
+require 'dragonfly'
+
 # Configure
 Dragonfly.app(:engine).configure do
   plugin :imagemagick,
     convert_command:  `which convert`.strip.presence || '/usr/local/bin/convert',
     identify_command: `which identify`.strip.presence || '/usr/local/bin/identify'
+
+  processor :thumb, Locomotive::Dragonfly::Processors::SmartThumb.new
 
   verify_urls true
 

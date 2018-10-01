@@ -6,8 +6,8 @@ import Adapter from 'enzyme-adapter-react-16';
 import { expect } from 'chai';
 import { Route } from 'react-router';
 
-import { ActionBar } from '../../../javascript/src/locomotive/content_editing/views/action_bar'; //should put in tests utils
-import Startup from '../../../javascript/src/locomotive/content_editing/views/startup'; //should put in tests utils
+import { ActionBar } from '../../../javascript/src/locomotive/editor/views/action_bar'; //should put in tests utils
+import Startup from '../../../javascript/src/locomotive/editor/views/startup'; //should put in tests utils
 
 import { buildProps } from '../utils'
 Enzyme.configure({ adapter: new Adapter() });

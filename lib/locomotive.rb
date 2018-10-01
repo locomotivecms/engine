@@ -42,12 +42,6 @@ module Locomotive
     mail_address = self.config.mailer_sender
     ::Devise.mailer_sender = mail_address =~ /.+@.+/ ? mail_address : "#{mail_address}@#{Locomotive.config.domain}"
 
-    # cookies stored in mongodb (mongoid_store)
-    Rails.application.config.session_store :mongoid_store, {
-      key:    self.config.cookie_key,
-      domain: :all
-    }
-
     # Check for outdated Dragonfly config
     if ::Dragonfly::VERSION =~ /^0\.9\.([0-9]+)/
       Locomotive.log :error, "WARNING: Old Dragonfly config detected, image uploads might be broken. Use 'rails g locomotive:install' to get the latest configuration files."

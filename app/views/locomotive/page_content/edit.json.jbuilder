@@ -4,7 +4,7 @@ json.data do
   end
 
   json.page do
-    json.(@page, :id, :title, :seo_title, :meta_description, :meta_keywords)
+    json.(@page, :id, :title, :seo_title, :meta_description, :meta_keywords, :listed, :published)
 
     json.slug @page.slug if !@page.index? && !@page.not_found? && !@page.templatized?
 
@@ -25,7 +25,8 @@ json.data do
     json.dropzone @sections[:dropzone]
   end
 
-  json.locale current_content_locale
+  json.locale   current_content_locale
+  json.locales  current_site.locales
 end
 
 json.urls do
@@ -40,4 +41,5 @@ json.urls do
   json.bulkAssetUpload  bulk_create_content_assets_path(current_site, :json)
   json.resources        search_for_resources_path(current_site, format: :json)
   json.loaderImage      image_url('locomotive/editor_loader.gif')
+  json.deadendImage     image_url('locomotive/deadend.png')
 end

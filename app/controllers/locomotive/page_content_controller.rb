@@ -66,7 +66,9 @@ module Locomotive
     end
 
     def page_params
-      params.require(:page).permit(:title, :slug, :seo_title, :meta_keywords, :meta_description, :sections_content, :sections_dropzone_content)
+      params.require(:page).permit(:title, :slug, :published, :listed,
+        :seo_title, :meta_keywords, :meta_description,
+        :sections_content, :sections_dropzone_content)
     end
 
     def only_if_sections

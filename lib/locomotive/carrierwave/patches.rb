@@ -90,4 +90,46 @@ module CarrierWave
 
   end
 
+  # FIXME: The carrierwave store_dir of the ContentEntry model was not correctly set up.
+  #
+  # The consequence is the following bug:
+  #
+  # - context: a content entry has 2 file fields with 2 uploaded files sharing the same filename
+  # - action: we delete one of the 2 files.
+  # - result: the second file will be erased too.
+  #
+  # The solution is to not delete a file if inside the same model, we find another file field
+  # sharing the same file identifier.
+  #
+  module SafeRemove
+
+    def remove!
+      record.class.uploaders.each do |_column, _|
+        next if _column == column
+
+        _mounter    = self.record.send(:_mounter, _column)
+        _uploader   = self.record.send(column)
+        _identifier = _uploader.identifier
+
+        if _mounter.remove.blank? && self.identifiers.include?(_identifier)
+          uploaders.reject(&:blank?).each do |uploader|
+            uploader.instance_variable_set(:@file, nil)
+            uploader.instance_variable_set(:@cache_id, nil)
+          end
+
+          return false
+        end
+      end
+
+      super
+    end
+
+  end
+
+  class Mounter
+
+    prepend SafeRemove
+
+  end
+
 end

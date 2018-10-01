@@ -1,0 +1,85 @@
+en:
+  locomotive:
+    editor:
+      shared:
+        confirm: "Are you sure?"
+
+      components:
+        cropper:
+          title: "Crop image"
+          action: "Apply"
+          action_in_progress: "Cropping..."
+
+        url_picker:
+          no_url: "No URL for now"
+          placeholder: "Please type the label of a resource"
+          open_new_window: "Open in a new window?"
+          select_button: "Select"
+          cancel_button: "Cancel"
+          change_button: "Change"
+          done_button: "Done"
+          types:
+            external: "External"
+            pages: "Page"
+
+        locale_switcher:
+          locale: "<strong>{{locale}}</strong> version"
+
+      inputs:
+        image_picker:
+          select_button: "Select"
+          change_button: "Change"
+          remove_button: "Remove"
+          crop_button: "Crop"
+
+      views:
+        action_bar:
+          header:
+            no_title: "No title"
+            save_button:
+              label: "Save"
+              in_progress: "Saving..."
+              success: "Changes saved"
+              error: "Changes not saved"
+
+          menu:
+            content: "Content"
+            settings: "Settings"
+            seo: "SEO"
+
+        assets:
+          images:
+            title: "Images"
+            loading: "Loading the images. Please wait!"
+            add: "+ add"
+            upload_in_progress: "Uploading..."
+
+        preview:
+          view: "View"
+
+        sections:
+          edit:
+            default_block_label: "Content"
+            add_block: "+ add"
+
+          gallery:
+            title: "Add a new section"
+            add: "Add"
+
+          dropzone:
+            add: "+ add section"
+
+        seo:
+          title_label: "SEO title"
+          meta_keywords_label: "META keywords"
+          meta_description_label: "META description"
+
+        settings:
+          title_label: "Title"
+          slug_label: "Slug"
+          published: "Published?"
+          listed: "Listed in the menu?"
+          more: "More settings..."
+
+        startup:
+          waiting: "Waiting for the preview pane to be ready"

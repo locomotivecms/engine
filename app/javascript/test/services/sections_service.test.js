@@ -4,7 +4,7 @@ import {
   buildSection,
   buildCategories,
   findBetterImageAndText
-} from '../../src/locomotive/content_editing/services/sections_service';
+} from '../../src/locomotive/editor/services/sections_service';
 
 describe('locomotive/editor/services/sections_service', function() {
 

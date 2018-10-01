@@ -1,5 +1,6 @@
 require 'selenium-webdriver'
 
+Capybara.server = :webrick
 Capybara.app_host = 'http://locomotive.local'
 Capybara.server_host = '0.0.0.0'
 Capybara.server_port = 9886

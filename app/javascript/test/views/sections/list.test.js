@@ -4,9 +4,9 @@ import Adapter from 'enzyme-adapter-react-16';
 import * as redux from 'redux'
 import { connect } from 'react-redux';
 
-import { Index } from '../../../../javascript/src/locomotive/content_editing/views/sections/list'; //should put in tests utils
-import SimpleList from '../../../../javascript/src/locomotive/content_editing/views/sections/list/simple';
-import Dropzone from '../../../../javascript/src/locomotive/content_editing/views/sections/list/dropzone';
+import { Index } from '../../../../javascript/src/locomotive/editor/views/sections/list'; //should put in tests utils
+import SimpleList from '../../../../javascript/src/locomotive/editor/views/sections/list/simple';
+import Dropzone from '../../../../javascript/src/locomotive/editor/views/sections/list/dropzone';
 import { buildProps } from '../../utils'
 
 Enzyme.configure({ adapter: new Adapter() });

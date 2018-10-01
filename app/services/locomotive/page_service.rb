@@ -78,14 +78,21 @@ module Locomotive
         next if locale == default_locale
 
         ::Mongoid::Fields::I18n.with_locale(locale) do
-          page.slug     ||= slug
-          page.fullpath ||= page.depth > 1 ? parent_fullpaths[page.parent_id][locale] + '/' + slug : slug
+          page.slug         ||= slug
+          page.fullpath     ||= page.depth > 1 ? parent_fullpaths[page.parent_id][locale] + '/' + slug : slug
+          page.raw_template ||= page.raw_template_translations[default_locale]
 
           if page.depth == 0 && (slug == 'index' || slug == '404')
             page.title ||= ::I18n.t("attributes.defaults.pages.#{slug}.title", locale: locale)
+          else
+            page.title ||= "#{page.title_translations[default_locale]} [#{locale.upcase}]"
           end
 
           (parent_fullpaths[page._id] ||= {})[locale] = page.fullpath
+
+          # finally, take care of the sections (inside the dropzone and the others)
+          page.sections_content           = page.sections_content || page.sections_content_translations[default_locale] || {}
+          page.sections_dropzone_content  = page.sections_dropzone_content || page.sections_dropzone_content_translations[default_locale] || []
         end
       end
     end
