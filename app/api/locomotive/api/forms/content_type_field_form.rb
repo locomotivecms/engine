@@ -10,7 +10,7 @@ module Locomotive
               :required, :localized, :unique, :position,
               :text_formatting, :select_options_attributes,
               :target, :inverse_of, :order_by, :ui_enabled,
-              :default, :class_name, :_destroy
+              :group, :default, :class_name, :_destroy
 
         def initialize(content_type_service, existing_field, attributes)
           self.content_type_service = content_type_service

@@ -15,6 +15,7 @@ describe Locomotive::API::Entities::ContentTypeFieldEntity do
       localized
       unique
       position
+      group
     )
 
   attributes.each do |exposure|

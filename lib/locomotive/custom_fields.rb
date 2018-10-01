@@ -8,6 +8,7 @@ module CustomFields
   class Field
 
     field :ui_enabled, type: Boolean, default: true
+    field :group
 
     def class_name_to_content_type
       self._parent.send :class_name_to_content_type, self.class_name
