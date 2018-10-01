@@ -57,6 +57,13 @@ module Locomotive
       end
     end
 
+    # Paths to the list of content entries grouped by content type slug
+    def content_entries_paths_by_slug(site)
+      site.content_types.pluck(:slug).map do |slug|
+        [slug, content_entries_path(site, slug)]
+      end.to_h
+    end
+
     def can_edit_public_submission_accounts?(content_type)
       policy(content_type).update? && content_type.public_submission_enabled?
     end

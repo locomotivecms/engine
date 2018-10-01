@@ -89,6 +89,37 @@
   }
 }
 
+// CONTENT TYPE
+
+.editor-input-content-type {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  .editor-input {
+    &--label {
+      margin: 0;
+    }
+
+    &--action {
+      margin-left: auto;
+    }
+  }
+}
+
+// HINT
+.editor-input-hint {
+
+  .editor-input {
+    &--label {
+      font-weight: normal;
+      font-size: 1.3rem;
+      text-transform: inherit;
+    }
+  }
+
+}
+
 // RICH TEXT EDITOR
 
 .DraftEditor-editorContainer, .DraftEditor-root, .public-DraftEditor-content {

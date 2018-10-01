@@ -1185,6 +1185,23 @@
   .editor-input-checkbox .editor-input--button {
     margin-left: auto; }
 
+.editor-input-content-type {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-align: center;
+      align-items: center; }
+  .editor-input-content-type .editor-input--label {
+    margin: 0; }
+  .editor-input-content-type .editor-input--action {
+    margin-left: auto; }
+
+.editor-input-hint .editor-input--label {
+  font-weight: normal;
+  font-size: 1.3rem;
+  text-transform: inherit; }
+
 .DraftEditor-editorContainer, .DraftEditor-root, .public-DraftEditor-content {
   height: 100%; }
 

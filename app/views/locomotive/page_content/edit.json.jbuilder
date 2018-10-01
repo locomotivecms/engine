@@ -42,5 +42,5 @@ json.urls do
   json.resources        search_for_resources_path(current_site, format: :json)
   json.loaderImage      image_url('locomotive/editor_loader.gif')
   json.deadendImage     image_url('locomotive/deadend.png')
-  json.contentEntries   current_site.content_types.map{|c| [(c.slug), content_entries_path(current_site, c.slug)]}.to_h
+  json.contentEntries   content_entries_paths_by_slug(current_site)
 end

@@ -12,6 +12,8 @@ module Locomotive
 
     respond_to :json, only: [:edit, :update]
 
+    helper Locomotive::ContentEntriesHelper
+
     def edit
       authorize @page
 
