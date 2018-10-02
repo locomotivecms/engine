@@ -52,6 +52,11 @@ class Base extends Component {
   render() {
     const Input = this.getInput(this.props.setting);
 
+    //Show settings in the editor only_if an other setting is true
+    if(this.props.data.settings[this.props.setting.only_if] === false ){
+      return null;
+    }
+
     return Input !== null ? (
       <Input
         getValue={this.getValue}
