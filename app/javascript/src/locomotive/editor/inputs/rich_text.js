@@ -17,7 +17,7 @@ class RichTextInput extends Component {
   constructor(props) {
     super(props);
 
-    var value = props.data.settings[props.setting.id];
+    var value = props.value;
     if (value === undefined) value = props.setting.default || '';
 
     this.state = {
