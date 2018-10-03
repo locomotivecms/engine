@@ -17,7 +17,7 @@ class RichTextInput extends Component {
   constructor(props) {
     super(props);
 
-    var value = props.data.settings[props.setting.id];
+    var value = props.value;
     if (value === undefined) value = props.setting.default || '';
 
     this.state = {
@@ -80,6 +80,7 @@ class RichTextInput extends Component {
             toolbarClassName="draftjs-toolbar"
             toolbar={RichTextInput.mytoolbar(setting.line_break !== true)}
             onEditorStateChange={this.editorOnChangeSanitizer}
+            stripPastedStyles={true}
           />
           <div className="editor-input-rich-text-counter">
             {stripHTML(this.state.value).length}
