@@ -1,8 +1,8 @@
 import React from 'react';
 
-const SelectInput = ({ setting, getValue, handleChange }) => (
+const SelectInput = ({ setting, getValue, getLabel, handleChange }) => (
   <div className="editor-input editor-input-select">
-    <label>{setting.label}</label>
+    <label>{getLabel(null)}</label>
     <br/>
     <select
       value={getValue(null)}

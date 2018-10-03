@@ -46,14 +46,14 @@ class ImagePickerInput extends Component {
   }
 
   render() {
-    const { setting, getValue, handleChange } = this.props;
+    const { setting, getValue, getLabel, handleChange } = this.props;
     const value = getValue(null);
     const image = value && typeof(value) === 'object' ? value : { source: value };
 
     return (
       <div className="editor-input editor-input-image-picker">
         <label className="editor-input--label">
-          {setting.label}
+          {getLabel(null)}
         </label>
 
         {this.isCroppable(image, setting) && (

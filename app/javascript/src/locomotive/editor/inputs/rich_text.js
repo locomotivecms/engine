@@ -65,12 +65,12 @@ class RichTextInput extends Component {
   }
 
   render() {
-    const { setting } = this.props;
+    const { setting, getLabel } = this.props;
 
     return (
       <div className="editor-input editor-input-rich-text" ref={el => this.input = el}>
         <label className="editor-input--label">
-          {setting.label}
+          {getLabel(null)}
         </label>
         <div>
           <Editor
