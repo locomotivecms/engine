@@ -4,7 +4,7 @@ module Locomotive
 
       def nice_preview_page_path(page)
         path = preview_page_path(page)
-        path = '/index' if path.last == '/'
+        path = '/index' if path == '/' || path == "/#{current_site.default_locale}"
         path += response_type_name(page)
 
         truncate(path, length: 50)
