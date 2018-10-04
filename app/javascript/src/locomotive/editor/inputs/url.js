@@ -3,16 +3,16 @@ import React, { Component } from 'react';
 // Components
 import UrlPicker from '../components/url_picker';
 
-const UrlInput = props => (
+const UrlInput = ({ label, getValue, handleChange, api, locale }) => (
   <div className="editor-input editor-input-url">
     <label className="editor-input--label">
-      {props.getLabel()}
+      {label}
     </label>
     <UrlPicker
-      value={props.getValue(null)}
-      handleChange={props.handleChange}
-      searchForResources={props.api.searchForResources}
-      locale={props.locale}
+      value={getValue(null)}
+      handleChange={handleChange}
+      searchForResources={api.searchForResources}
+      locale={locale}
     />
   </div>
 )

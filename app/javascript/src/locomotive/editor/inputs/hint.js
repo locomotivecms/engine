@@ -1,9 +1,9 @@
 import React from 'react';
 
-const HintInput = ({ setting, getValue, getLabel, handleChange }) => (
+const HintInput = ({ label }) => (
   <div className="editor-input editor-input-hint">
     <label className="editor-input--label">
-      {getLabel(setting.label)}
+      {label}
     </label>
   </div>
 )

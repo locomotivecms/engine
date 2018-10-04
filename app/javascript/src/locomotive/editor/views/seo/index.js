@@ -13,23 +13,20 @@ const SeoForm = ({ page, errors, updatePageSetting, moreSettingPath, ...props })
     <View>
       <div className="editor-page-settings">
         <TextInput
-          setting={() => null}
-          getLabel={() => i18n.t('views.seo.title_label')}
+          label={i18n.t('views.seo.title_label')}
           getValue={() => page.seo_title || ''}
           handleChange={value => updatePageSetting('seo_title', value)}
         />
 
         <TextInput
-          setting={() => null}
-          getLabel={() => i18n.t('views.seo.meta_keywords_label')}
+          label={i18n.t('views.seo.meta_keywords_label')}
           getValue={() => page.meta_keywords || ''}
           handleChange={value => updatePageSetting('meta_keywords', value)}
           error={errors.slug}
         />
 
         <TextInput
-          setting={() => null}
-          getLabel={() => i18n.t('views.seo.meta_description_label')}
+          label={i18n.t('views.seo.meta_description_label')}
           getValue={() => page.meta_description || ''}
           handleChange={value => updatePageSetting('meta_description', value)}
         />

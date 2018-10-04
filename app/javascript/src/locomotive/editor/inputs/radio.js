@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-const RadioInput = ({ setting, getValue, getLabel, getLocalizedOptionLabel, handleChange, uiLocale }) => (
+const RadioInput = ({ setting, getValue, label, getLabel, handleChange }) => (
   <div className="editor-input editor-input-radio">
     <label className="editor-input--label">
-      {getLabel(setting.label)}
+      {label}
     </label>
     <div className="editor-input--radio">
       {setting.options.map((option, index) =>

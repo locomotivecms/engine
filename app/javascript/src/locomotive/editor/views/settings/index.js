@@ -13,8 +13,7 @@ const SettingsForm = ({ page, errors, updatePageSetting, moreSettingPath, ...pro
     <View>
       <div className="editor-page-settings">
         <TextInput
-          setting={() => null}
-          getLabel={() => i18n.t('views.settings.title_label')}
+          label={i18n.t('views.settings.title_label')}
           getValue={() => page.title}
           handleChange={value => updatePageSetting('title', value)}
           error={errors.title}
@@ -22,8 +21,7 @@ const SettingsForm = ({ page, errors, updatePageSetting, moreSettingPath, ...pro
 
         {page.slug !== undefined && (
           <TextInput
-            setting={() => null}
-            getLabel={() => i18n.t('views.settings.slug_label')}
+            label={i18n.t('views.settings.slug_label')}
             getValue={() => page.slug}
             handleChange={value => updatePageSetting('slug', value)}
             error={errors.slug}
@@ -32,8 +30,7 @@ const SettingsForm = ({ page, errors, updatePageSetting, moreSettingPath, ...pro
 
         {page.slug !== undefined && (
           <CheckboxInput
-            setting={() => null}
-            getLabel={() => i18n.t('views.settings.published')}
+            label={i18n.t('views.settings.published')}
             getValue={() => page.published}
             handleChange={value => updatePageSetting('published', value)}
             error={errors.published}
@@ -42,8 +39,7 @@ const SettingsForm = ({ page, errors, updatePageSetting, moreSettingPath, ...pro
 
         {page.slug !== undefined && (
           <CheckboxInput
-            setting={() => null}
-            getLabel={() => i18n.t('views.settings.listed')}
+            label={i18n.t('views.settings.listed')}
             getValue={() => page.listed}
             handleChange={value => updatePageSetting('listed', value)}
             error={errors.listed}

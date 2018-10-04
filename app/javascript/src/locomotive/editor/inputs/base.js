@@ -34,10 +34,9 @@ class Base extends Component {
   }
 
   getLabel(label) {
-    if (typeof(label) === "object")
-      label = label[this.props.uiLocale] ||
-        values(label)[0]
-    return label
+    if (typeof(label) === 'object')
+      label = label[this.props.uiLocale] || values(label)[0];
+    return label;
   }
 
   getInput(setting) {
@@ -64,6 +63,7 @@ class Base extends Component {
 
     return Input !== null ? (
       <Input
+        label={this.getLabel(this.props.setting.label)}
         getLabel={this.getLabel}
         getValue={this.getValue}
         {...this.props}

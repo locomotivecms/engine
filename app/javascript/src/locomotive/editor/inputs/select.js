@@ -1,10 +1,10 @@
 import React from 'react';
 
-const SelectInput = ({ setting, getValue, getLabel, handleChange }) => {
+const SelectInput = ({ label, setting, getValue, getLabel, handleChange }) => {
 
   return (
     <div className="editor-input editor-input-select">
-      <label>{getLabel(setting.label)}</label>
+      <label>{label}</label>
       <br/>
       <select
         value={getValue(null)}
