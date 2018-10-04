@@ -28,8 +28,7 @@ class Base extends Component {
   }
 
   getValue(undefinedValue) {
-    const { setting, data } = this.props;
-    var value = data.settings[setting.id];
+    const { setting, value } = this.props;
     return value === undefined ? setting.defaultValue || undefinedValue : value;
   }
 
@@ -51,6 +50,9 @@ class Base extends Component {
 
   render() {
     const Input = this.getInput(this.props.setting);
+
+    if (this.props.isVisible === false )
+      return null;
 
     return Input !== null ? (
       <Input

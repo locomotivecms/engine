@@ -33,8 +33,9 @@ const Edit = props => (
           <Input
             key={`section-section-input-${setting.id}-${index}`}
             setting={setting}
-            data={props.blockContent}
+            value={props.blockContent.settings[setting.id]}
             onChange={props.handleChange}
+            isVisible={props.blockContent.settings[setting.only_if]}
             {...props}
           />
         )}

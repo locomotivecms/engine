@@ -74,8 +74,9 @@ class Edit extends Component {
               <Input
                 key={`section-section-input-${setting.id}-${index}`}
                 setting={setting}
-                data={this.props.sectionContent}
+                value={this.props.sectionContent.settings[setting.id]}
                 onChange={this.props.handleChange}
+                isVisible={this.props.sectionContent.settings[setting.only_if]}
                 {...this.props}
               />
             )}
