@@ -1,10 +1,10 @@
 import React from 'react';
 
-const SelectInput = ({ setting, getValue, getLabel, getLocalizedOptionLabel, handleChange, uiLocale }) => {
+const SelectInput = ({ setting, getValue, getLabel, handleChange }) => {
 
   return (
     <div className="editor-input editor-input-select">
-      <label>{getLabel(null)}</label>
+      <label>{getLabel(setting.label)}</label>
       <br/>
       <select
         value={getValue(null)}
@@ -12,7 +12,7 @@ const SelectInput = ({ setting, getValue, getLabel, getLocalizedOptionLabel, han
       >
         {(setting.options || []).map((option, index) =>
           <option key={index} value={option.value}>
-            { getLocalizedOptionLabel(option, uiLocale) }
+            { getLabel(option.label) }
           </option>
         )}
       </select>

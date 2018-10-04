@@ -3,10 +3,10 @@ import React from 'react';
 // Components
 import Switch from '../components/switch';
 
-const CheckboxInput = ({ label, setting, getValue, getLabel, handleChange }) => (
+const CheckboxInput = ({ setting, getValue, getLabel, handleChange }) => (
   <div className="editor-input editor-input-checkbox">
     <label className="editor-input--label">
-      {getLabel(null)}
+      {getLabel(setting.label)}
     </label>
     <div className="editor-input--button">
       <Switch

@@ -53,7 +53,7 @@ class ImagePickerInput extends Component {
     return (
       <div className="editor-input editor-input-image-picker">
         <label className="editor-input--label">
-          {getLabel(null)}
+          {getLabel(setting.label)}
         </label>
 
         {this.isCroppable(image, setting) && (

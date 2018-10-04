@@ -70,7 +70,7 @@ class RichTextInput extends Component {
     return (
       <div className="editor-input editor-input-rich-text" ref={el => this.input = el}>
         <label className="editor-input--label">
-          {getLabel(null)}
+          {getLabel(setting.label)}
         </label>
         <div>
           <Editor

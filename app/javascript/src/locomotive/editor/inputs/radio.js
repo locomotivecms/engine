@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 const RadioInput = ({ setting, getValue, getLabel, getLocalizedOptionLabel, handleChange, uiLocale }) => (
   <div className="editor-input editor-input-radio">
     <label className="editor-input--label">
-      {getLabel(null)}
+      {getLabel(setting.label)}
     </label>
     <div className="editor-input--radio">
       {setting.options.map((option, index) =>
@@ -14,7 +14,7 @@ const RadioInput = ({ setting, getValue, getLabel, getLocalizedOptionLabel, hand
             onChange={e => handleChange(e.target.id)}
             checked={getValue(null) === option.value}
           />
-          {getLocalizedOptionLabel(option, uiLocale)}
+          {getLabel(option.label)}
         </div>
       )}
     </div>
