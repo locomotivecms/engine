@@ -20,7 +20,7 @@ class Base extends Component {
 
   constructor(props) {
     super(props);
-    bindAll(this, 'getValue', 'handleChange', 'getLabel');
+    bindAll(this, 'getValue', 'handleChange', 'getLocalizedLabel');
   }
 
   handleChange(value) {
@@ -33,7 +33,7 @@ class Base extends Component {
     return value === undefined ? setting.defaultValue || undefinedValue : value;
   }
 
-  getLabel(label) {
+  getLocalizedLabel(label) {
     if (typeof(label) === 'object')
       label = label[this.props.uiLocale] || values(label)[0];
     return label;
@@ -63,8 +63,8 @@ class Base extends Component {
 
     return Input !== null ? (
       <Input
-        label={this.getLabel(this.props.setting.label)}
-        getLabel={this.getLabel}
+        label={this.getLocalizedLabel(this.props.setting.label)}
+        getLocalizedLabel={this.getLocalizedLabel}
         getValue={this.getValue}
         {...this.props}
         handleChange={this.handleChange}

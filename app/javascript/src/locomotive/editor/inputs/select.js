@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SelectInput = ({ label, setting, getValue, getLabel, handleChange }) => {
+const SelectInput = ({ label, setting, getValue, getLocalizedLabel, handleChange }) => {
 
   return (
     <div className="editor-input editor-input-select">
@@ -12,7 +12,7 @@ const SelectInput = ({ label, setting, getValue, getLabel, handleChange }) => {
       >
         {(setting.options || []).map((option, index) =>
           <option key={index} value={option.value}>
-            { getLabel(option.label) }
+            { getLocalizedLabel(option.label) }
           </option>
         )}
       </select>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-const RadioInput = ({ setting, getValue, label, getLabel, handleChange }) => (
+const RadioInput = ({ setting, getValue, label, getLocalizedLabel, handleChange }) => (
   <div className="editor-input editor-input-radio">
     <label className="editor-input--label">
       {label}
@@ -14,7 +14,7 @@ const RadioInput = ({ setting, getValue, label, getLabel, handleChange }) => (
             onChange={e => handleChange(e.target.id)}
             checked={getValue(null) === option.value}
           />
-          {getLabel(option.label)}
+          {getLocalizedLabel(option.label)}
         </div>
       )}
     </div>
