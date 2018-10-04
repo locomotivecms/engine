@@ -36,9 +36,17 @@ class Base extends Component {
     const { setting, label } = this.props;
     let localized_label = label || setting.label
     if(typeof(localized_label) === "object")
-      localized_label = localized_label[this.props.uiLocale]
+      localized_label = localized_label[this.props.uiLocale] ||
+        _.values(localized_label)[0]
     return localized_label
   }
+
+  getLocalizedOptionLabel(option, local) {
+    if (typeof(option.label) === 'object')
+      return option.label[local] || _.values(option.label)[0]
+    return option.label
+  }
+
 
   getInput(setting) {
     switch (setting.type) {
@@ -66,6 +74,7 @@ class Base extends Component {
       <Input
         getLabel={this.getLabel}
         getValue={this.getValue}
+        getLocalizedOptionLabel={this.getLocalizedOptionLabel}
         {...this.props}
         handleChange={this.handleChange}
       />
