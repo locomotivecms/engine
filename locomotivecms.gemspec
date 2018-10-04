@@ -38,6 +38,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'bootstrap-kaminari-views',        '~> 0.0.5'
   s.add_dependency 'responders',                      '~> 2.4.0'
   s.add_dependency 'rails-i18n',                      '~> 5.1.1'
+  s.add_dependency 'jbuilder',                        '~> 2.7'
 
   s.add_dependency 'jquery-rails',                    '~> 4.3.1'
   s.add_dependency 'jquery-ui-rails',                 '~> 6.0.1'
@@ -57,7 +58,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'rack-cache',                      '~> 1.7.1'
 
   s.add_dependency 'multi_json',                      '~> 1.13.1'
-  s.add_dependency 'jbuilder',                        '~> 2.5'
   s.add_dependency 'yajl-ruby',                       '~> 1.3.1'
   s.add_dependency 'actionmailer-with-request',       '~> 0.5.0'
 

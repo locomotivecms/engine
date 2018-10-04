@@ -81,7 +81,7 @@ PATH
       grape (~> 1.1.0)
       grape-entity (= 0.7.1)
       highline (~> 1.7.10)
-      jbuilder (~> 2.5)
+      jbuilder (~> 2.7)
       jquery-rails (~> 4.3.1)
       jquery-ui-rails (~> 6.0.1)
       json-schema (~> 2.8.0)
