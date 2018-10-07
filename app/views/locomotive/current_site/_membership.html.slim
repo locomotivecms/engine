@@ -11,7 +11,7 @@
         | &nbsp;
         small
           span.label.label-default
-            = t(membership.role, scope: 'locomotive.memberships.roles')
+            = membership.role.name.capitalize
         br
         small
           = membership.account.email

@@ -12,7 +12,7 @@ module Locomotive
     #
     # @return [ Object ] A new membership (with errors or not) or nil (no account found)
     #
-    def create(email_or_account)
+    def create(email_or_account,role_id)
       _account = if email_or_account.respond_to?(:email)
         email_or_account
       else
@@ -20,7 +20,7 @@ module Locomotive
       end
 
       if _account
-        site.memberships.create(account: _account, email: _account.email).tap do |success|
+        site.memberships.create(account: _account, email: _account.email,role_id: role_id).tap do |success|
           if success
             track_activity 'membership.created', parameters: { name: _account.name, email: _account.email }
           end
@@ -42,15 +42,15 @@ module Locomotive
     #
     # @return [ Boolean] True if everything went well
     #
-    def change_role(membership, role)
-      membership.role = role if role.present?
-
-      if role.present? && policy.change_role?
+    def change_role(membership, role_id)
+      if site.roles.where(id:role_id).present? && policy.change_role?
+        membership.role_id = role_id
         membership.save
       else
         membership.errors.add(:role, :invalid)
         false
       end
+
     end
 
     def account

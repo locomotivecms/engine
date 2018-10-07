@@ -1,0 +1,10 @@
+.item.row
+  .inner-row.col-md-12
+    .text
+      strong= role.name.to_s.titleize
+    .buttons
+        - if policy(role).edit?
+          = link_to t(:edit, scope: 'locomotive.inputs.array'), edit_role_path(current_site, role), class: 'choose btn btn-primary btn-sm'
+          | &nbsp;
+          = link_to role_path(current_site, role), class: 'delete', data: { confirm: t('locomotive.messages.confirm') }, method: :delete do
+            i.far.fa-trash-alt

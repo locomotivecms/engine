@@ -1,0 +1,11 @@
+.item.row data-id=role_model
+
+  = hidden_field_tag 'role[role_models][]', role_model
+
+  .inner-row.col-md-12
+
+    .text
+      = role_model.titleize
+    .buttons
+      = link_to '#', class: 'delete' do
+        i.fa.fa-trash-o

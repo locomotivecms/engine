@@ -265,6 +265,8 @@ en:
         advanced:
           destroy: "Destroy this site"
           confirm_destroy: "Please confirm by typing the site name in the following input"
+        role:
+          new_role: "Add role"
 
     current_site_metafields:
       index:
@@ -283,6 +285,14 @@ en:
       edit:
         title: "Edit membership for <b>%{name}</b>"
         back: "Back to your site settings"
+
+    roles:
+      new:
+          title: 'Add a new role'
+          back: "Back to your site settings"
+      edit:
+          title: "Edit role for <b>%{name}</b>"
+          back: "Back to your site settings"
 
     accounts:
       new:

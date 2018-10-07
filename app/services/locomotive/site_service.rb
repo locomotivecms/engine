@@ -31,8 +31,10 @@ module Locomotive
 
       Site.new(attributes).tap do |site|
         site.created_by = account
-        site.memberships.build account: account, role: 'admin'
-
+        admin_role = site.roles.build name: 'admin'
+        site.memberships.build account: account, role: admin_role
+        site.roles.build name: 'author'
+        site.roles.build name: 'designer'
         success = raise_if_not_valid ? site.save! : site.save
 
         ActiveSupport::Notifications.instrument 'locomotive.site.created', account: account, site: site

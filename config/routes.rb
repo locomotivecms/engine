@@ -52,6 +52,11 @@ Locomotive::Engine.routes.draw do
 
     resources :memberships
 
+    resources :roles, controller: 'roles' do
+      collection do
+        get :new_model
+      end
+    end
     resources :translations
 
     resources :search_for_resources, only: [:index]

@@ -6,6 +6,7 @@
 
   = f.inputs :membership_email, class: 'inputs email' do
     = f.input :email, input_html: { class: 'input-lg' }
+    = f.association :role, collection: options_for_membership_roles, include_blank: false
 
   = f.actions do
     .row

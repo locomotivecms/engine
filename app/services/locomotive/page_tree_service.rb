@@ -1,6 +1,6 @@
 module Locomotive
 
-  class PageTreeService < Struct.new(:site)
+  class PageTreeService < Struct.new(:site,:membership)
 
     # Returns the tree of pages from the site with the most minimal amount of queries.
     # This method should only be used for read-only purpose since
@@ -10,7 +10,7 @@ module Locomotive
     # @return [ Array ] The first array of pages (index + page not found + pages with depth == 1)
     #
     def build_tree
-      pages, page_not_found = pages_with_minimun_attributes, nil
+      pages, page_not_found = pages_with_minimun_attributes, site.pages.where(:title.in => ["Page not found"]).first
 
       [].tap do |tree|
         while page = pages.shift
@@ -33,10 +33,11 @@ module Locomotive
 
     #:nodoc:
     def pages_with_minimun_attributes
-      site.pages.unscoped.
-        minimal_attributes.
-        order_by_depth_and_position.
-        to_a
+      if membership.role.is_admin?
+        site.pages.unscoped.minimal_attributes.order_by_depth_and_position.to_a
+      else
+        site.pages.unscoped.in(id:membership.role.role_pages).minimal_attributes.order_by_depth_and_position.to_a
+      end
     end
 
     #:nodoc:

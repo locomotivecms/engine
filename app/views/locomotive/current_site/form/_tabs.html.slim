@@ -15,3 +15,7 @@ ul.nav.nav-tabs role='tablist'
   - if policy(@site).update_advanced?
     = form_nav_tab :advanced do
       = link_to t('simple_form.titles.locomotive.site.advanced'), '#advanced', role: 'tab', data: { toggle: 'tab' }
+
+  - if policy(@site).update_role?
+    = form_nav_tab :role do
+      = link_to t('simple_form.titles.locomotive.site.role'), '#role', role: 'tab', data: { toggle: 'tab' }

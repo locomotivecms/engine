@@ -22,6 +22,11 @@ module Locomotive
         end
       end
 
+      def current_role
+        return nil if current_membership.nil?
+        current_membership.role
+      end
+
       def validate_site_membership
         return true if current_membership.try(:site).present?
 

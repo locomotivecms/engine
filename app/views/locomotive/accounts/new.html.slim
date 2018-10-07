@@ -12,6 +12,7 @@
 
     - if f.object.respond_to?(:password)
       = f.input :email
+      = f.input :role_id, as: :select, collection: options_for_membership_roles, selected: params[:role_id] ,include_blank: false
       = f.input :password, input_html: { autocomplete: 'off' }
       = f.input :password_confirmation, input_html: { autocomplete: 'off' }
 

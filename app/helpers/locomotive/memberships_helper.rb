@@ -1,18 +1,13 @@
 module Locomotive
   module MembershipsHelper
 
-    def options_for_membership_roles(membership)
-      current_role = membership.role
-
-      [].tap do |options|
-        Locomotive::Membership::ROLES.each do |role|
-          membership.role = role
-          if policy(membership).change_role?
-            options << [t("locomotive.memberships.roles.#{role}"), role.to_s]
-          end
+    def options_for_membership_roles
+      roles_arr = [].tap do |options|
+        current_site.roles.each do |role|
+          options << [role.name.capitalize, role.id.to_s]
         end
-        membership.role = current_role
       end
+      roles_arr.sort!
     end
 
   end

@@ -41,6 +41,10 @@ module Locomotive
       super_admin? || site_admin?
     end
 
+    def update_role?
+      super_admin? || site_admin?
+    end
+
     def show_developers_documentation?
       super_admin? || site_admin?
     end
