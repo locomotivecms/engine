@@ -28,7 +28,8 @@ describe Locomotive::SiteService do
     it { expect { subject }.to change { Locomotive::Site.count }.by(1) }
     it { expect(subject.handle).not_to eq nil }
     it { expect(subject.created_by).not_to eq nil }
-
+    it { expect(subject.roles.size).to eq(3) }
+    
   end
 
   describe '#create!' do

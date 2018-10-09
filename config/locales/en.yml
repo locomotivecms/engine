@@ -117,6 +117,9 @@ en:
         created: 'added %{name} to the site'
       site_metafields:
         updated: 'updated %{label}'
+      role:
+        created: 'created the %{name} role'
+        updated: 'updated the %{name} role'
 
     pagination:
       first: "&laquo;"

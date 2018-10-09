@@ -7,7 +7,7 @@ module Locomotive
       attributes[:name] = attributes[:name].to_s.downcase
       site.roles.new(attributes).tap do |role|
         success = raise_if_not_valid ? role.save! : role.save
-        track_activity 'role.created', parameters: { name: role.name } if success
+        track_activity 'role.created', parameters: { name: role.name.capitalize } if success
       end
     end
 
@@ -19,7 +19,7 @@ module Locomotive
       attributes[:name] = attributes[:name].to_s.downcase
       role.attributes = attributes
       success = raise_if_not_valid ? role.save! : role.save
-      track_activity 'role.updated', parameters: { name: role.name } if success
+      track_activity 'role.updated', parameters: { name: role.name.capitalize } if success
     end
 
     def update!(role, attributes)
