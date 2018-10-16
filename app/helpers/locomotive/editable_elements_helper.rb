@@ -52,20 +52,20 @@ module Locomotive
         end)
     end
 
+    # FIXME: editable elements will disappear so this method will
     def page_locale_picker_link(page, content_entry)
-      raise 'TODO'
-      # service = Locomotive::Steam::Services.build_instance
-      # _page   = Locomotive::Steam::Decorators::PageDecorator.new(page.to_steam, current_content_locale, current_site.default_locale)
+      service = Locomotive::Steam::Services.build_instance
+      _page   = Locomotive::Steam::Decorators::PageDecorator.new(page.to_steam, current_content_locale, current_site.default_locale)
 
-      # _page.content_entry   = content_entry
-      # service.current_site  = current_site
+      _page.content_entry   = content_entry
+      service.current_site  = current_site
 
-      # base_params = @content_entry ? "content_entry_id=#{@content_entry.try(:_id)}" : ""
+      base_params = @content_entry ? "content_entry_id=#{@content_entry.try(:_id)}" : ""
 
-      # locale_picker_link do |locale|
-      #   url = service.url_builder.url_for(_page, locale)[1..-1]
-      #   "?content_locale=#{locale}&preview_path=#{url}&#{base_params}"
-      # end
+      locale_picker_link do |locale|
+        url = service.url_builder.url_for(_page, locale)[1..-1]
+        "?content_locale=#{locale}&preview_path=#{url}&#{base_params}"
+      end
     end
 
   end
