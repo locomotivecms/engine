@@ -11,8 +11,8 @@ Locomotive::Steam.configure do |config|
 
   if asset_host = CarrierWave::Uploader::Base.asset_host # CDN?
     config.asset_host = asset_host
-  elsif asset_host = CarrierWave.base_host # Example: AWS storage
-    config.asset_host = asset_host
+  elsif asset_host = CarrierWave.base_host # Example: AWS S3 / Google Cloud storage
+    config.asset_host = asset_host.ends_with?('/') ? asset_host : "#{asset_host}/"
   else # Example: File storage
     config.asset_path = Rails.root.join('public').to_s
   end
