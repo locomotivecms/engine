@@ -14,6 +14,8 @@ import ImagePickerInput from './image_picker';
 import UrlInput from './url';
 import ContentTypeInput from './content_type';
 import HintInput from './hint';
+import SliderInput from './slider';
+import RefreshInput from './refresh';
 
 class Base extends Component {
 
@@ -42,6 +44,8 @@ class Base extends Component {
       case 'url':           return UrlInput;
       case 'content_type':  return ContentTypeInput;
       case 'hint':          return HintInput;
+      case 'slider':        return SliderInput;
+      case 'refresh':       return RefreshInput;
       default:
         console.log(`[Editor] Warning! Unknown input type: "${setting.type}"`);
         return null;
