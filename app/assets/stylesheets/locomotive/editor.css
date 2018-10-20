@@ -1913,7 +1913,8 @@
     display: -ms-flexbox;
     display: flex;
     -ms-flex-direction: column;
-        flex-direction: column; }
+        flex-direction: column;
+    width: 400px; }
   #editor-app .actionbar .scrollable, #editor-app .container-fluid .actionbar .scrollable {
     margin-top: 0; }
 

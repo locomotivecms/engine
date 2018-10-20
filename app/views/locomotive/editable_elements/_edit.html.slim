@@ -6,7 +6,7 @@
         h1= truncate(@content_entry.try(:_label) || @page.title, length: 50)
 
     .row.info-row
-      .col-sm-8.col-xs-8
+      .col-sm-7.col-xs-7
         span.fullpath= nice_editable_elements_path
 
         | &nbsp;
@@ -18,7 +18,7 @@
           | &nbsp;
           = t('.settings_link')
 
-      .col-sm-4.col-xs-4
+      .col-sm-5.col-xs-5
         .text-right
           - if current_site.localized?
             = page_locale_picker_link(@page, @content_entry)

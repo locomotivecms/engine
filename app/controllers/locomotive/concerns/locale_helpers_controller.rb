@@ -1,4 +1,4 @@
-module Locomotive
+ module Locomotive
   module Concerns
     module LocaleHelpersController
 
@@ -22,6 +22,10 @@ module Locomotive
         end
 
         ::Mongoid::Fields::I18n.locale = session[:content_locale]
+
+        # set also the locale in the session steam uses for the preview
+        # This is important because all the sites in preview mode belong to the same domain
+        session["steam-locale-#{current_site.handle}"] = session[:content_locale]
 
         self.setup_i18n_fallbacks
 
