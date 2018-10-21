@@ -129,7 +129,6 @@ module Locomotive
 
     # Make sure the content entries has a non-blank slug in the new locales.
     # We take the slug in the default locale or the previous default locale (if provided)
-    # in the other locales.
     #
     def localize(new_locales, previous_default_locale)
       default_locale = previous_default_locale || content_type.site.default_locale

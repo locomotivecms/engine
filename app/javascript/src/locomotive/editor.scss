@@ -28,7 +28,7 @@
   .actionbar {
     display: flex;
     flex-direction: column;
-    width: 400px;
+    width: $actionbar-width;
   }
 
   .actionbar .scrollable {

@@ -1407,7 +1407,8 @@
   background: #f1f1f1;
   box-sizing: border-box;
   padding: 2rem 4rem;
-  z-index: 999; }
+  z-index: 999;
+  left: 400px; }
 
 .preview-inner {
   height: 100%;
