@@ -64,4 +64,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'grape',                           '~> 1.1.0'
   s.add_dependency 'grape-entity',                    '0.7.1'
 
+  s.add_dependency 'carrierwave-imageoptim',          '0.1.5'
+  s.add_dependency 'image_optim',                     '0.26.3'
+  s.add_dependency 'image_optim_pack',                '0.5.1'
+
 end
