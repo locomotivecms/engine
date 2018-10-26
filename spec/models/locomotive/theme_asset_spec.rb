@@ -104,7 +104,7 @@ describe Locomotive::ThemeAsset do
     it 'sets the checksum when it is saved' do
       asset.source = FixturedAsset.open('5k.png')
       asset.save
-      expect(asset.checksum).to eq('f1af16493e6cba9eaed7bc8a8643246e')
+      expect(asset.checksum).to eq('84206de5f020901a31c5e45f4e462609')
     end
 
   end
