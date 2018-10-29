@@ -75,7 +75,7 @@ module Locomotive
             type: 'object',
             properties: {
               id:       { type: 'string' },
-              label:    { '$ref': '#/definitions/local_string' },
+              label:    { '$ref': '#/definitions/locale_string' },
               type:     { enum: ['text', 'image_picker', 'checkbox', 'select', 'url', 'radio', 'content_type', 'hint'] },
               default:  {}
             },
@@ -108,13 +108,13 @@ module Locomotive
             },
             required: [:name, :category]
           },
-          local_string: {
+          locale_string: {
              anyOf: [
               { type: 'string' },
               {
                 type: 'object',
                 patternProperties: {
-                  "^[a-z]*(-[A-z]*)*$": { "type": "string" }
+                  '^[a-z]*(-[A-z]*)*$': { 'type': 'string' }
                 },
                 additionalProperties: false
               }

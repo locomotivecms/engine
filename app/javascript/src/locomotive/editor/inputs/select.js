@@ -12,7 +12,7 @@ const SelectInput = ({ label, setting, getValue, getLocalizedLabel, handleChange
       >
         {(setting.options || []).map((option, index) =>
           <option key={index} value={option.value}>
-            { getLocalizedLabel(option.label) }
+            {getLocalizedLabel(option.label)}
           </option>
         )}
       </select>
