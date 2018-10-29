@@ -75,7 +75,7 @@ module Locomotive
             type: 'object',
             properties: {
               id:       { type: 'string' },
-              label:    { type: 'string' },
+              label:    { '$ref': '#/definitions/locale_string' },
               type:     { enum: ['text', 'image_picker', 'checkbox', 'select', 'url', 'radio', 'content_type', 'hint'] },
               default:  {}
             },
@@ -107,6 +107,18 @@ module Locomotive
               blocks:     { type: 'array', items: { '$ref': '#/definitions/preset_blocks'} }
             },
             required: [:name, :category]
+          },
+          locale_string: {
+             anyOf: [
+              { type: 'string' },
+              {
+                type: 'object',
+                patternProperties: {
+                  '^[a-z]*(-[A-z]*)*$': { 'type': 'string' }
+                },
+                additionalProperties: false
+              }
+            ]
           }
         },
         type: 'object',

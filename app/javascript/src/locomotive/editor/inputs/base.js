@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { bindAll } from 'lodash';
+import { values } from 'lodash';
 
 // HOC
 import withRedux from '../hoc/with_redux';
@@ -19,7 +20,7 @@ class Base extends Component {
 
   constructor(props) {
     super(props);
-    bindAll(this, 'getValue', 'handleChange');
+    bindAll(this, 'getValue', 'handleChange', 'getLocalizedLabel');
   }
 
   handleChange(value) {
@@ -30,6 +31,12 @@ class Base extends Component {
   getValue(undefinedValue) {
     const { setting, value } = this.props;
     return value === undefined ? setting.defaultValue || undefinedValue : value;
+  }
+
+  getLocalizedLabel(label) {
+    if (typeof(label) === 'object')
+      label = label[this.props.uiLocale] || values(label)[0];
+    return label;
   }
 
   getInput(setting) {
@@ -56,6 +63,8 @@ class Base extends Component {
 
     return Input !== null ? (
       <Input
+        label={this.getLocalizedLabel(this.props.setting.label)}
+        getLocalizedLabel={this.getLocalizedLabel}
         getValue={this.getValue}
         {...this.props}
         handleChange={this.handleChange}

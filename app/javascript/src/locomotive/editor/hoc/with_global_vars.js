@@ -38,7 +38,8 @@ export default compose(
     urls:               state.editor.urls,
     sections:           state.editor.sections,
     sectionDefinitions: state.editor.sectionDefinitions,
-    editableElements:   state.editor.editableElements
+    editableElements:   state.editor.editableElements,
+    uiLocale:           state.editor.uiLocale
   } }),
   withGlobalVars
 );
