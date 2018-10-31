@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { isBlank, presence } from '../../../utils/misc';
 import { bindAll } from 'lodash';
+import classnames from 'classnames';
 import i18n from '../../../i18n';
 
 // HOC
@@ -83,7 +84,7 @@ class Edit extends Component {
           </div>
 
           {!isBlank(this.props.sectionDefinition.blocks) && (
-            <div className="editor-section-blocks">
+            <div className={classnames('editor-section-blocks', this.props.sectionDefinition.settings.length === 0 && 'editor-section-blocks-standalone')}>
               <h3 className="editor-section-blocks--title">
                 {this.props.sectionDefinition.blocks_label || i18n.t('views.sections.edit.default_block_label')}
               </h3>

@@ -1542,6 +1542,9 @@
 .editor-section-blocks .rap-manager, .editor-section-blocks .rap-target-container {
   width: 100%; }
 
+.editor-section-blocks-standalone:before {
+  display: none; }
+
 .modal-window {
   position: fixed;
   background-color: rgba(0, 0, 0, 0.8);

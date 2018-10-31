@@ -32,3 +32,11 @@
     width: 100%;
   }
 }
+
+.editor-section-blocks-standalone {
+
+  &:before {
+    display: none;
+  }
+
+}
