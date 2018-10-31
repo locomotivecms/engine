@@ -149,3 +149,6 @@ export function findBetterText(sectionContent, definition) {
   return definition.keep_name ? null : stripHTML(findFirstSettingValueOf('text', sectionContent, definition));
 }
 
+export function isEditable(definition) {
+  return !(isBlank(definition.settings) && isBlank(definition.blocks));
+}

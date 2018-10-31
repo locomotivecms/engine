@@ -3,7 +3,8 @@ import { omit } from 'lodash';
 import {
   buildSection,
   buildCategories,
-  findBetterImageAndText
+  findBetterImageAndText,
+  isEditable
 } from '../../src/locomotive/editor/services/sections_service';
 
 describe('locomotive/editor/services/sections_service', function() {
@@ -200,6 +201,38 @@ describe('locomotive/editor/services/sections_service', function() {
 
   });
 
+  describe('#isEditable', function() {
 
+    it('returns true if the definition does not define blocks or settings', function() {
+      const definition = {
+        keep_icon:  true,
+        keep_name:  true,
+        settings:   []
+      };
+      expect(isEditable(definition)).to.equal(false);
+    });
+
+    it('returns true if the definition does not define blocks or settings', function() {
+      const definition = {
+        keep_icon:  true,
+        keep_name:  true,
+        settings:   [],
+        blocks:     [
+          {
+            type:     'button',
+            settings: [
+              {
+                id:       'label',
+                type:     'text',
+                default:  'CTA'
+              }
+            ]
+          }
+        ]
+      };
+      expect(isEditable(definition)).to.equal(true);
+    });
+
+  });
 
 });
