@@ -6,16 +6,19 @@ const SelectInput = ({ label, setting, getValue, getLocalizedLabel, handleChange
     <div className="editor-input editor-input-select">
       <label>{label}</label>
       <br/>
-      <select
-        value={getValue(null)}
-        onChange={e => handleChange(e.target.value)}
-      >
-        {(setting.options || []).map((option, index) =>
-          <option key={index} value={option.value}>
-            {getLocalizedLabel(option.label)}
-          </option>
-        )}
-      </select>
+      <div className="editor-input-select-wrapper">
+        <select
+          value={getValue(null)}
+          onChange={e => handleChange(e.target.value)}
+          className="editor-input--select"
+        >
+          {(setting.options || []).map((option, index) =>
+            <option key={index} value={option.value}>
+              {getLocalizedLabel(option.label)}
+            </option>
+          )}
+        </select>
+      </div>
     </div>
   )
 }

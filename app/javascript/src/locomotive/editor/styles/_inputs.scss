@@ -28,6 +28,21 @@
     border: 1px solid $gray-lighter;
   }
 
+  &--select {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    display: block;
+    width: 100%;
+    padding: 0rem 0.8rem;
+    border-radius: 3px;
+    border: 1px solid $gray-lighter;
+    height: 3.4rem;
+    outline: none;
+    background: transparent;
+    padding-right: 2.5rem;
+    cursor: pointer;
+  }
+
   &--image-picker {
     display: flex;
     align-items: center;
@@ -67,6 +82,35 @@
 
   &--option input {
     margin-right: 1rem;
+  }
+
+}
+
+// SELECT
+
+.editor-input-select {
+
+  &-wrapper {
+    position: relative;
+    cursor: pointer;
+
+    &:after {
+      position: absolute;
+      top: 0.5rem;
+      right: 1rem;
+      content: "\f107";
+      font-family: 'Font Awesome 5 Free';
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: $gray;
+      pointer-events: none;
+    }
+
+    &:hover {
+      &:after {
+        color: $brand-primary;
+      }
+    }
   }
 
 }

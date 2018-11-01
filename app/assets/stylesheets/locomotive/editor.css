@@ -1142,6 +1142,19 @@
     padding: 0.5rem 0.8rem;
     border-radius: 3px;
     border: 1px solid #e3e4e7; }
+  .editor-input--select {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    display: block;
+    width: 100%;
+    padding: 0rem 0.8rem;
+    border-radius: 3px;
+    border: 1px solid #e3e4e7;
+    height: 3.4rem;
+    outline: none;
+    background: transparent;
+    padding-right: 2.5rem;
+    cursor: pointer; }
   .editor-input--image-picker {
     display: -ms-flexbox;
     display: flex;
@@ -1173,6 +1186,22 @@
 
 .editor-input-radio--option input {
   margin-right: 1rem; }
+
+.editor-input-select-wrapper {
+  position: relative;
+  cursor: pointer; }
+  .editor-input-select-wrapper:after {
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+    content: "\F107";
+    font-family: 'Font Awesome 5 Free';
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #91979f;
+    pointer-events: none; }
+  .editor-input-select-wrapper:hover:after {
+    color: #1c77c3; }
 
 .editor-input-checkbox {
   display: -ms-flexbox;
