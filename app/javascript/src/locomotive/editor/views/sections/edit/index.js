@@ -62,9 +62,11 @@ class Edit extends Component {
   }
 
   render() {
+    const { translate } = this.props;
+
     return (
       <View
-        title={presence(this.props.sectionLabel) || this.props.sectionDefinition.name}
+        title={translate(presence(this.props.sectionLabel) || this.props.sectionDefinition.name)}
         onLeave={this.props.leaveView}
         renderAction={this.renderRemoveButton}
       >
@@ -86,7 +88,7 @@ class Edit extends Component {
           {!isBlank(this.props.sectionDefinition.blocks) && (
             <div className={classnames('editor-section-blocks', this.props.sectionDefinition.settings.length === 0 && 'editor-section-blocks-standalone')}>
               <h3 className="editor-section-blocks--title">
-                {this.props.sectionDefinition.blocks_label || i18n.t('views.sections.edit.default_block_label')}
+                {translate(this.props.sectionDefinition.blocks_label, i18n.t('views.sections.edit.default_block_label'))}
               </h3>
 
               <div className="editor-section-blocks--list">

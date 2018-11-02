@@ -6,6 +6,7 @@ import { isBlank } from '../../../utils/misc';
 import withRedux from '../../../hoc/with_redux';
 import withRoutes from '../../../hoc/with_routes';
 import withGlobalVars from '../../../hoc/with_global_vars';
+import withTranslating from '../../../hoc/with_translating';
 
 // Components
 import View from '../../../components/default_view';
@@ -34,5 +35,6 @@ export default compose(
     dropzoneContent:  state.content.page.sectionsDropzoneContent
   })),
   withGlobalVars,
+  withTranslating,
   withRoutes
 )(Index);

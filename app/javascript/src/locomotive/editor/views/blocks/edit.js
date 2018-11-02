@@ -16,10 +16,10 @@ const removeBlock = ({ section, blockId, history, redirectTo, editSectionPath, r
   }
 }
 
-const Edit = props => (
+const Edit = ({ translate, ...props }) => (
   <View
-    title={props.blockLabel || props.blockDefinition.name}
-    subTitle={props.sectionLabel || props.sectionDefinition.name}
+    title={translate(props.blockLabel || props.blockDefinition.name)}
+    subTitle={translate(props.sectionLabel || props.sectionDefinition.name)}
     onLeave={props.leaveView}
     renderAction={() => (
       <a href="#" onClick={() => removeBlock(props)}>

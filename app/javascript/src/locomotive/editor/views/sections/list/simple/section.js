@@ -9,7 +9,7 @@ import EditIcon from '../../../../components/icons/edit';
 // Services
 import { isEditable } from '../../../../services/sections_service';
 
-const Section = ({ image, text, section, definition, ...props })=> {
+const Section = ({ image, text, section, definition, translate, ...props })=> {
   const Icon = Icons[definition.icon];
 
   return (
@@ -24,7 +24,7 @@ const Section = ({ image, text, section, definition, ...props })=> {
         </div>
       )}
       <div className="editor-list-item--label">
-        {truncate(text || section.label || definition.name, { length: 32 })}
+        {truncate(text || section.label || translate(definition.name), { length: 32 })}
       </div>
       <div className="editor-list-item--actions">
         {isEditable(definition) && (

@@ -84,7 +84,7 @@ module Locomotive
           blocks: {
             type: 'object',
             properties: {
-              name:       { type: 'string' },
+              name:       { '$ref': '#/definitions/locale_string' },
               type:       { type: 'string' },
               limit:      { type: 'integer' },
               settings:   { type: 'array', items: { '$ref': '#/definitions/settings' }, default: [] }
@@ -101,8 +101,8 @@ module Locomotive
           preset: {
             type: 'object',
             properties: {
-              name:       { type: 'string' },
-              category:   { type: 'string' },
+              name:       { '$ref': '#/definitions/locale_string' },
+              category:   { '$ref': '#/definitions/locale_string' },
               settings:   { type: 'object' },
               blocks:     { type: 'array', items: { '$ref': '#/definitions/preset_blocks'} }
             },
@@ -123,7 +123,7 @@ module Locomotive
         },
         type: 'object',
         properties: {
-          name:             { type: 'string' },
+          name:             { '$ref': '#/definitions/locale_string' },
           class:            { type: 'string' },
           settings:         { type: 'array', items: { '$ref': '#/definitions/settings' } },
           presets:          { type: 'array', items: { '$ref': '#/definitions/preset' } },

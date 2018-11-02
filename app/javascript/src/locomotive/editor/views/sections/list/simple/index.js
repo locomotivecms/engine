@@ -26,6 +26,7 @@ const List = props => (
           sectionContent={sectionContent}
           definition={definition}
           editPath={props.editSectionPath(section)}
+          {...props}
         />
       )
     })}

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { bindAll } from 'lodash';
-import { values } from 'lodash';
+import { bindAll, values } from 'lodash';
 
 // HOC
 import withRedux from '../hoc/with_redux';
