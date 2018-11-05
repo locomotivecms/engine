@@ -67,4 +67,8 @@ Locomotive.configure do |config|
   # to false the registration page will not be shown. (Default: true)
   # config.enable_registration = true
 
+  # By default, Locomotive doesn't try to optimize the assets uploaded by the editors.
+  # If true, it will use imageoptim to decrease the size of an image without losing (too much of) quality.
+  # config.optimize_uploaded_files = false
+
 end

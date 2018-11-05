@@ -21,6 +21,7 @@ module Locomotive
       mailer_sender:                'support@example.com',
       unsafe_token_authentication:  false,
       enable_registration:          true,
+      optimize_uploaded_files:      false,
       ui:                     {
         per_page:     10
       },
