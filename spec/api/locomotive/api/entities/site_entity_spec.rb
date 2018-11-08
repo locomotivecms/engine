@@ -52,6 +52,7 @@ describe Locomotive::API::Entities::SiteEntity do
         expect(exposure[:sign_in_url]).to eq 'http://locomotive.works:8080/locomotive/sign_in'
       end
     end
+
   end
 
 end

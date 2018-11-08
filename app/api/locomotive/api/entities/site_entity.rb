@@ -51,6 +51,14 @@ module Locomotive
           site.metafields_ui.to_json
         end
 
+        expose :sections_content do |site, opts|
+          site.sections_content&.to_json
+        end
+
+        expose :routes do |site, opts|
+          site.routes&.to_json
+        end
+
       end
 
     end

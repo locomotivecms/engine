@@ -13,6 +13,7 @@ module Locomotive
     include Concerns::Site::PrivateAccess
     include Concerns::Site::Metafields
     include Concerns::Site::Sections
+    include Concerns::Site::Routes
 
     ## fields ##
     field :name
