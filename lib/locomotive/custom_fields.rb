@@ -27,6 +27,7 @@ module CustomFields
 
       class FileUploader < ::CarrierWave::Uploader::Base
 
+        # TODO: (Did), not needed anymore? issue?
         # include ::CarrierWave::MimeTypes
 
         # process :set_content_type

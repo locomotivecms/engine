@@ -22,6 +22,7 @@ module Locomotive
     field :slug
     field :label_field_id,              type: BSON::ObjectId
     field :label_field_name
+    field :tree_parent_field_name
     field :group_by_field_id,           type: BSON::ObjectId
     field :order_by # either a BSON::ObjectId (field id) or a String (:_position, ...etc)
     field :order_direction,             default: 'asc'

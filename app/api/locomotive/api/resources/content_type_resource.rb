@@ -60,6 +60,7 @@ module Locomotive
               optional :order_direction
               optional :group_by
               optional :label_field_name
+              optional :tree_parent_field_name
               optional :entry_template
               optional :raw_item_template # deprecated
               optional :display_settings
@@ -108,6 +109,7 @@ module Locomotive
               optional :order_direction
               optional :group_by
               optional :label_field_name
+              optional :tree_parent_field_name
               optional :entry_template
               optional :raw_item_template # deprecated
               optional :display_settings
