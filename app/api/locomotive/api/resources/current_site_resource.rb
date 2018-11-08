@@ -45,6 +45,8 @@ module Locomotive
               optional :metafields
               optional :metafields_ui
               optional :asset_host
+              optional :sections_content
+              optional :routes
             end
           end
           put do
