@@ -88,6 +88,7 @@ module Locomotive
               "^[a-z][a-z0-9_]+$" => {
                 type: 'object',
                 properties: {
+                  type:     { type: 'string' },
                   settings: { type: 'object' },
                   blocks:   { type: 'array' }
                 },

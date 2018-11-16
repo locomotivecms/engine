@@ -16,8 +16,9 @@ module Locomotive
         if content[key].blank?
           definition = definitions.find { |definition| definition['type'] == type } || {}
 
-          content[key] = definition['default'] || { 'settings' => {}, 'blocks' => [] }
+          content[key] = definition['default'] || { 'settings' => {}, 'blocks' => [], 'type' => type }
         else
+          content[key]['type'] = type
           content[key]['settings'] ||= {}
           content[key]['blocks']   ||= []
         end
