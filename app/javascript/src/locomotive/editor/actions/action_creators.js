@@ -104,7 +104,11 @@ export function changeLocale(pageId, contentEntryId, locale) {
   return (dispatch, getState) => {
     dispatch(_startLoadingIframe(null));
 
-    _reloadEditor(dispatch, getState, pageId, contentEntryId, locale);
+    // just change the url of the iframe, the unload trigger of the iframe
+    // will take care of the rest
+    const { editor: { urls }, iframe: { _window } } = getState();
+
+    _window.location.href = urls.localized_previews[locale];
   };
 }
 

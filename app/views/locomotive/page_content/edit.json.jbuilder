@@ -31,17 +31,18 @@ json.data do
 end
 
 json.urls do
-  json.base             pages_path(current_site)
-  json.load             edit_page_content_path(current_site, @page)
-  json.save             page_content_path(current_site, @page, format: :json)
-  json.editableElements editable_elements_path(current_site, @page)
-  json.settings         edit_page_path(current_site, @page)
-  json.preview          preview_page_path(@page, mounted_on: true)
-  json.thumbnail        root_path + '_image_thumbnail'
-  json.assets           content_assets_path(current_site, format: :json)
-  json.bulkAssetUpload  bulk_create_content_assets_path(current_site, :json)
-  json.resources        search_for_resources_path(current_site, format: :json)
-  json.loaderImage      image_url('locomotive/editor_loader.gif')
-  json.deadendImage     image_url('locomotive/deadend.png')
-  json.contentEntries   content_entries_paths_by_slug(current_site)
+  json.base               pages_path(current_site)
+  json.load               edit_page_content_path(current_site, @page)
+  json.save               page_content_path(current_site, @page, format: :json)
+  json.editableElements   editable_elements_path(current_site, @page)
+  json.settings           edit_page_path(current_site, @page)
+  json.preview            preview_page_path(@page, mounted_on: true)
+  json.localized_previews localized_preview_page_paths(@page, mounted_on: true)
+  json.thumbnail          root_path + '_image_thumbnail'
+  json.assets             content_assets_path(current_site, format: :json)
+  json.bulkAssetUpload    bulk_create_content_assets_path(current_site, :json)
+  json.resources          search_for_resources_path(current_site, format: :json)
+  json.loaderImage        image_url('locomotive/editor_loader.gif')
+  json.deadendImage       image_url('locomotive/deadend.png')
+  json.contentEntries     content_entries_paths_by_slug(current_site)
 end

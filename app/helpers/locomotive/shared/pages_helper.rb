@@ -23,6 +23,13 @@ module Locomotive
         steam_url_builder.url_for(_page, locale)
       end
 
+      def localized_preview_page_paths(page, mounted_on: false)
+        current_site.locales.inject({}) do |memo, locale|
+          memo[locale] = preview_page_path(page, locale: locale, mounted_on: mounted_on)
+          memo
+        end
+      end
+
       def response_type_name(page)
         if page.default_response_type?
           ''
