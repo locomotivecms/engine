@@ -1061,6 +1061,8 @@
   background: #f7f7f7;
   box-shadow: 0 0 0 1px rgba(63, 63, 68, 0.05), 0 1px 3px 0 rgba(63, 63, 68, 0.15);
   min-height: 4rem; }
+  .editor-list-item.with-separator {
+    margin-top: 4rem; }
   .editor-list-item--icon, .editor-list-item--image {
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;
