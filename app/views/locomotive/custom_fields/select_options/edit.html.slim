@@ -1,4 +1,8 @@
-- title t('.title', type: @content_type.name.capitalize, name: @custom_field.name)
+- title t('.title', type: @content_type.name.capitalize, name: @custom_field.label)
+
+- content_for :actions do
+  - if current_site.localized?
+    = locale_picker_link
 
 = locomotive_form_for @custom_field, method: :put, url: custom_fields_select_options_path(current_site, @content_type.slug, @custom_field.name) do |f|
 
@@ -6,7 +10,7 @@
     = f.input :select_options,
       as:             :array,
       collection:     @custom_field.ordered_select_options,
-      label:          @custom_field.name,
+      label:          @custom_field.label,
       placeholder:    true,
       template:       :option,
       template_url:   new_option_custom_fields_select_options_path(current_site, @content_type.slug, @custom_field.name)

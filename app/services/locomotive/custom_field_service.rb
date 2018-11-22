@@ -20,6 +20,7 @@ module Locomotive
       # save the content type so that all the content entries get a fresh version
       # of the custom fields rules
       self.field._parent.save
+      self.field.save
 
       self.field.select_options
     end
