@@ -108,10 +108,13 @@ module CarrierWave
         next if _column == column
 
         _mounter    = self.record.send(:_mounter, _column)
-        _uploader   = self.record.send(column)
+        _uploader   = self.record.send(_column)
         _identifier = _uploader.identifier
 
-        if _mounter.remove.blank? && self.identifiers.include?(_identifier)
+        # different uploaders, same file identifiers, we have to know if this file was aimed to be deleted too
+        # if not, we disable the deletion of the original uploader
+        if self.identifiers.include?(_identifier) && !_mounter.remove?
+          # no idea why there might be more than one uploader
           uploaders.reject(&:blank?).each do |uploader|
             uploader.instance_variable_set(:@file, nil)
             uploader.instance_variable_set(:@cache_id, nil)
@@ -131,5 +134,4 @@ module CarrierWave
     prepend SafeRemove
 
   end
-
 end

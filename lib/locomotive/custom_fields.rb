@@ -39,6 +39,8 @@ module CustomFields
 
         def image?
           !(content_type =~ /image/).nil?
+        rescue Exception => e
+          Rails.logger.error("[CustomFields][FileUploader][#{model._id}] can't access the uploaded file, reason: #{e.message}")
         end
 
         # In some situations, for instance, for the notification email when a content entry is created,
