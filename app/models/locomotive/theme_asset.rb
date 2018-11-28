@@ -76,7 +76,7 @@ module Locomotive
       self.folder = ActiveSupport::Inflector.transliterate(self.folder).gsub(/(\s)+/, '_').gsub(/^\//, '').gsub(/\/$/, '')
 
       # folder should begin by a root folder
-      if (self.folder =~ /^(stylesheets|javascripts|images|media|fonts|pdfs|others)($|\/)+/).nil?
+      if (self.folder =~ /^(stylesheets|javascripts|images|media|fonts|pdfs|others|misc)($|\/)+/).nil?
         self.folder = File.join(self.content_type.to_s.pluralize, self.folder)
       end
     end
