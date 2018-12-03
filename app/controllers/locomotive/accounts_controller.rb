@@ -12,7 +12,7 @@ module Locomotive
     def create
       authorize Membership
       @account = Account.create(account_params)
-      service.create(@account) if @account.errors.empty?
+      service.create(@account,params[:account][:role_id]) if @account.errors.empty?
       respond_with @account, location: edit_current_site_path(current_site)
     end
 

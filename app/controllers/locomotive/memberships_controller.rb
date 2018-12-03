@@ -13,10 +13,10 @@ module Locomotive
 
     def create
       authorize Membership
-      if @membership = service.create(membership_params[:email])
+      if @membership = service.create(membership_params[:email],membership_params[:role_id])
         respond_with @membership, location: edit_current_site_path(current_site), flash: true
       else
-        redirect_to new_account_path(email: membership_params[:email])
+        redirect_to new_account_path(email: membership_params[:email],role_id: membership_params[:role_id])
       end
     end
 
@@ -26,7 +26,7 @@ module Locomotive
 
     def update
       authorize @membership
-      self.service.change_role(@membership, membership_params[:role])
+      self.service.change_role(@membership, membership_params[:role_id])
       respond_with @membership, location: edit_current_site_path
     end
 

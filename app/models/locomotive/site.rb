@@ -33,6 +33,7 @@ module Locomotive
     has_many    :content_entries, class_name: 'Locomotive::ContentEntry',   dependent: :destroy, validate: false, autosave: false
     has_many    :translations,    class_name: 'Locomotive::Translation',    dependent: :destroy, validate: false, autosave: false
     has_many    :activities,      class_name: 'Locomotive::Activity',       dependent: :destroy, validate: false, autosave: false
+    has_many    :roles,           class_name: 'Locomotive::Role',           dependent: :destroy, validate: false, order: :name.asc
 
     ## validations ##
     validates_presence_of :name
@@ -42,7 +43,7 @@ module Locomotive
     before_destroy      :destroy_pages
 
     ## behaviours ##
-    accepts_nested_attributes_for :memberships, allow_destroy: true
+    accepts_nested_attributes_for :memberships, :roles, allow_destroy: true
 
     ## methods ##
 

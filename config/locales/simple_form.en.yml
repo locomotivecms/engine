@@ -14,6 +14,7 @@ en:
           seo: SEO
           advanced: Advanced
           url_redirections: URL redirections
+          role: Role
         page:
           content: Content
           settings: Settings
@@ -22,6 +23,9 @@ en:
           content: Content
           advanced: Advanced
           seo: SEO
+        role:
+          models_access: Models Access
+          pages_access: Pages Access
 
     labels:
       locomotive:

@@ -5,7 +5,7 @@
 = locomotive_form_for @membership, url: membership_path(current_site, @membership) do |f|
 
   = f.inputs :membership_email, class: 'inputs email' do
-    = f.input :role, as: :select, collection: options_for_membership_roles(@membership), include_blank: false
+    = f.association :role, collection: options_for_membership_roles, include_blank: false
 
   = f.actions do
     .row

@@ -15,6 +15,7 @@ FactoryBot.define do
 
       after(:build) do |site_test|
         site_test.memberships.build account: Locomotive::Account.where(name: 'Admin').first || create('admin user'), role: 'admin'
+        
       end
 
       factory 'another site' do

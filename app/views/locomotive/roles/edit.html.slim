@@ -1,0 +1,20 @@
+link rel="stylesheet" media="screen, projection" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+link rel="stylesheet" media="screen, projection" href="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/css/gijgo.min.css"
+script src='https://cdnjs.cloudflare.com/ajax/libs/gijgo/1.9.6/combined/js/gijgo.min.js'
+
+- title t('.title', name: @role.name.titleize)
+
+= help t('.help', default: '')
+
+= locomotive_form_for @role, url: role_path(current_site, @role) do |f|
+  = f.inputs :role, class: 'inputs' do
+    = f.input :name
+    = f.input :role_models, as: :array, label: t('.models_access'), template: :role_models, select_options: options_for_role_models, template_url: new_model_roles_path(current_site)
+    = f.input :role_pages, as: :tree_view, label: t('.pages_access'), source_options: options_for_role_pages(f.object,current_site.pages.where(depth:0).where(:title.nin => ["Page not found"]).order_by(name: 'asc')), template: :role_pages
+
+  = f.actions do
+  .row
+    .col-md-6.text-left
+      = link_to "&larr;&nbsp;#{t('.back')}".html_safe, edit_current_site_path(current_site)
+    .col-md-6.text-right
+      = f.action

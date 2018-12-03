@@ -1,0 +1,4 @@
+= f.inputs :information do
+    = f.input :roles, as: :array, template: :role, new_item: policy(Locomotive::Role).create? ? { label: t('.new_role'), url: new_role_path(current_site) } : nil, wrapper_html: { class: 'roles' }
+= f.actions do
+  = f.action

@@ -8,6 +8,7 @@ module Locomotive
 
     before_action :load_page
     after_action  :store_location_if_content_entry
+    before_action :validate_pages_access, only: [:index]
 
     layout :editable_elements_layout
 
@@ -70,6 +71,15 @@ module Locomotive
 
     def store_location_if_content_entry
       store_location if @content_entry
+    end
+
+    protected 
+    def validate_pages_access
+        return true if current_role.is_admin?
+        if current_role.role_pages.exclude? @page.id.to_s
+          flash[:alert] = "You have no access to #{ @page.title.to_s.titleize }"
+          redirect_to dashboard_url(current_site) and return false
+        end
     end
 
   end
