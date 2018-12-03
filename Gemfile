@@ -22,13 +22,13 @@ end
 
 group :development do
   # gem 'custom_fields', path: '../custom_fields' # for Developers
-  gem 'custom_fields', github: 'locomotivecms/custom_fields', ref: '123e4fe'
+  gem 'custom_fields', github: 'locomotivecms/custom_fields', ref: '0275b70'
 
   # gem 'locomotivecms_common', path: '../common', require: false
   gem 'locomotivecms_common', github: 'locomotivecms/common', ref: '4d1bd56', require: false
 
   # gem 'locomotivecms_steam', path: '../steam', require: false
-  gem 'locomotivecms_steam', github: 'locomotivecms/steam', ref: '9838311', require: false
+  gem 'locomotivecms_steam', github: 'locomotivecms/steam', ref: '6819bb6', require: false
 
   # gem 'locomotive_liquid', path: '../gems/liquid' # for Developers
   # gem 'locomotivecms_solid', path: '../gems/solid' # for Developers

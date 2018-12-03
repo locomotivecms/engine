@@ -53,7 +53,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'bazaar',                          '~> 0.0.2'
   s.add_dependency 'json-schema',                     '~> 2.8.0'
 
-  s.add_dependency 'carrierwave-mongoid',             '~> 1.0.0'
+  s.add_dependency 'carrierwave-mongoid',             '~> 1.1.0'
   s.add_dependency 'dragonfly',                       '~> 1.1.4'
   s.add_dependency 'rack-cache',                      '~> 1.7.1'
 

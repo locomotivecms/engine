@@ -30,7 +30,7 @@ module Locomotive
           get '/' do
             authorize ContentEntry, :index?
 
-            @content_entries = service.all(params.slice(:page, :per_page, :q, :where))
+            @content_entries = service.all(params.slice(:page, :per_page, :q, :where, :order_by))
 
             add_pagination_header(@content_entries)
 
