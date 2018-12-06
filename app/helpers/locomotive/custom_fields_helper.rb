@@ -161,6 +161,7 @@ module Locomotive
     def select_custom_field_options(field, entry)
       {
         name:         "#{field.name}_id",
+        error_name:   field.name,
         as:           :editable_select,
         wrapper_html: { class: 'select' },
         collection:   field.ordered_select_options.map { |option| [option.name, option.id] },

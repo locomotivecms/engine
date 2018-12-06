@@ -42,6 +42,7 @@ SimpleForm.setup do |config|
       end
       h.use :label, class: 'control-label'
       h.use :hint, wrap_with: { tag: 'span', class: 'help-inline' }
+      h.use :error, wrap_with: { tag: 'span', class: 'help-inline error-inline' }
     end
 
     b.wrapper tag: :span, class: 'form-wrapper' do |c|

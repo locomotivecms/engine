@@ -23,6 +23,15 @@ $nav-tabs-link-color: #a6a6a6;
       &:hover {
         border-color: $nav-tabs-link-hover-border-color $nav-tabs-link-hover-border-color $nav-tabs-border-color;
       }
+
+      &.has-errors {
+        span:after {
+          content: "*";
+          display: inline-block;
+          margin-left: 2px;
+          color: $state-danger-text;
+        }
+      }
     }
 
     &.active > a {

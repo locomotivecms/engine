@@ -184,8 +184,8 @@ module Locomotive
       referenced  = {}
 
       # has_many
-      has_many = _entry.has_many_custom_fields.each do |n, inverse_of|
-        referenced["#{n}_attributes"] = [:_id, :_destroy, :"position_in_#{inverse_of}"]
+      has_many = _entry.has_many_custom_fields.each do |name, inverse_of|
+        referenced["#{name}_attributes"] = [:_id, :_destroy, :"position_in_#{inverse_of}"]
       end
 
       # many_to_many

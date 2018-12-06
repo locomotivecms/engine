@@ -101,7 +101,7 @@ module Locomotive
     end
 
     def content_entry_params
-      params.require(:content_entry).permit(service.permitted_attributes)
+      params.require(:content_entry).permit(service.permitted_attributes).tap { |o| puts o.inspect }
     end
 
     def location_after_persisting

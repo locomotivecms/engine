@@ -55,7 +55,7 @@ module Locomotive
     end
 
     def filename_or_image
-      if persisted_file?
+      if object.persisted? && persisted_file?
         css = "current-file #{persisted_file.image? ? 'image' : ''}"
         template.content_tag :span, (image_html + filename_html).html_safe, class: css
       else
@@ -72,7 +72,7 @@ module Locomotive
     end
 
     def image_html
-      if persisted_file.image?
+      if object.persisted? && persisted_file.image?
         url = Locomotive::Dragonfly.resize_url persisted_file.url, '60x60#'
         template.image_tag(url)
       else
@@ -101,7 +101,7 @@ module Locomotive
     def hidden_css(name)
       displayed = case name
       when :choose, :no_file then !object.persisted? || !persisted_file?
-      when :change, :delete then persisted_file?
+      when :change, :delete then object.persisted? && persisted_file?
       else false
       end
 
