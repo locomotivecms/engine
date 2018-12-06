@@ -77,6 +77,13 @@ class Locomotive.Views.Inputs.RteView extends Backbone.View
     @$('.wysihtml5-sandbox').contents().find('body').on 'keyup', =>
       @on_content_change()
 
+    # Counter
+    count = @editor.currentView.doc.body.innerText.length
+    @$counter = $("<div class='wysihtml5-counter'>#{count}</div>").insertAfter(@$('.form-wrapper'))
+
+    $(@editor.currentView.doc.body).on 'keyup', (event) =>
+      @$counter.html(event.currentTarget.innerText.length)
+
     # double click (links)
     @$('.wysihtml5-sandbox').contents().find('body').on 'dblclick', =>
       selectedNode = @editor.composer.selection.getSelectedNode()
@@ -114,7 +121,6 @@ class Locomotive.Views.Inputs.RteView extends Backbone.View
     else
       for $el in [$iframe, $textarea]
         $el.css('min-height', $el.data('height'))
-
 
   remove: ->
     _.invoke @views, 'remove'
