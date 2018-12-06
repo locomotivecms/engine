@@ -53,9 +53,10 @@ module Locomotive
 
     def default_custom_field_options(field, form, highlighted)
       {
-        name:   field.name,
-        label:  label_for_custom_field(form.object, field),
-        hint:   field.hint,
+        name:     field.name,
+        label:    label_for_custom_field(form.object, field),
+        hint:     field.hint,
+        required: field.required,
         input_html: {
           class: "#{'input-lg' if highlighted}"
         }

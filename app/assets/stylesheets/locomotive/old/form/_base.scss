@@ -39,6 +39,12 @@
         abbr {
           margin-right: 5px;
         }
+
+        &.required:after {
+          display: inline-block;
+          content: "*";
+          margin-left: 3px;
+        }
       }
 
       .help-inline, .error-inline {

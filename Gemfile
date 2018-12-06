@@ -14,7 +14,7 @@ group :test, :development do
   gem 'ffi',          '~> 1.9.24'
   gem 'rubyzip',      '~> 1.2.2'
   gem 'rspec-rails',  '~> 3.8.0'
-  gem 'capybara',                 '~> 3.8.2'
+  gem 'capybara',     '~> 3.8.2'
 
   # To use a debugger
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -28,7 +28,7 @@ group :development do
   gem 'locomotivecms_common', github: 'locomotivecms/common', ref: '4d1bd56', require: false
 
   # gem 'locomotivecms_steam', path: '../steam', require: false
-  gem 'locomotivecms_steam', github: 'locomotivecms/steam', ref: '6819bb6', require: false
+  gem 'locomotivecms_steam', github: 'locomotivecms/steam', ref: '5c076ae', require: false
 
   # gem 'locomotive_liquid', path: '../gems/liquid' # for Developers
   # gem 'locomotivecms_solid', path: '../gems/solid' # for Developers

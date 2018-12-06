@@ -11,7 +11,6 @@ module Locomotive
         EXTENDS_FULLPATH_REGEX  = /\{%\s+extends\s"?(\S+)"?\s%}/o.freeze
         BLOCK_REGEX             = /\{%\s+block\s/o.freeze
 
-
         included do
 
           ## fields ##

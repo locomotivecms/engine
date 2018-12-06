@@ -90,6 +90,10 @@ module Locomotive
 
           (parent_fullpaths[page._id] ||= {})[locale] = page.fullpath
 
+          if page.redirect?
+            page.redirect_url ||= page.redirect_url_translations[default_locale]
+          end
+
           # finally, take care of the sections (inside the dropzone and the others)
           page.sections_content           = page.sections_content || page.sections_content_translations[default_locale] || {}
           page.sections_dropzone_content  = page.sections_dropzone_content || page.sections_dropzone_content_translations[default_locale] || []
