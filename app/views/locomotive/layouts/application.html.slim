@@ -5,7 +5,7 @@ html xmlns='http://www.w3.org/1999/xhtml'
     = render 'locomotive/shared/head'
 
   body class="sidebar-open on-main #{body_class}"
-    = render 'locomotive/shared/navigation'
+    = render 'locomotive/shared/navigation', with_preview_link: true
     = render 'locomotive/shared/sidebar'
 
     .content-main

@@ -10,8 +10,10 @@ nav.navigation.navigation-app
   - else
     .navigation-middle
       = link_to current_site.name_was, dashboard_path(current_site)
-      = link_to preview_path(current_site), target: 'blank' do
-        i.fas.fa-external-link-alt
+
+      - if with_preview_link
+        = link_to preview_path(current_site), target: 'blank' do
+          i.fas.fa-external-link-alt
 
   = render 'locomotive/shared/account/navigation'
 
