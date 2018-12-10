@@ -95,8 +95,13 @@ module Locomotive
           end
 
           # finally, take care of the sections (inside the dropzone and the others)
-          page.sections_content           = page.sections_content || page.sections_content_translations[default_locale] || {}
-          page.sections_dropzone_content  = page.sections_dropzone_content || page.sections_dropzone_content_translations[default_locale] || []
+          if page.sections_content.blank?
+            page.sections_content = page.sections_content_translations[default_locale] || {}
+          end
+
+          if page.sections_dropzone_content.blank?
+            page.sections_dropzone_content = page.sections_dropzone_content_translations[default_locale] || []
+          end
         end
       end
     end
