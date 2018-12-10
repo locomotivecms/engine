@@ -14,7 +14,8 @@ Gem::Specification.new do |s|
   s.summary     = 'A platform to create, publish and edit sites'
   s.description = 'Locomotive is designed to save your time and help you focus on what matters: front-end technology, standard development process and no learning time for your client.'
 
-  s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
+  s.files = Dir['{app,config,db,lib,vendor}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
+  s.files.reject! { |fn| fn.include?('app/javascript') }
 
   s.add_dependency 'rails',                           '~> 5.1.6'
 
