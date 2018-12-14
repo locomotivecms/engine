@@ -1,60 +1,4 @@
 GIT
-  remote: git://github.com/locomotivecms/common.git
-  revision: 4d1bd565246262ab4b1b824e21c7847846f4cc5c
-  ref: 4d1bd56
-  specs:
-    locomotivecms_common (0.3.1)
-      activesupport (>= 5.1.5, < 6.0)
-      attr_extras (~> 5.2.0)
-      colorize
-      stringex (~> 2.8.2)
-
-GIT
-  remote: git://github.com/locomotivecms/custom_fields.git
-  revision: 0275b70fcbdfe8e9e42711f5f22b8d11015a5149
-  ref: 0275b70
-  specs:
-    custom_fields (2.10.0.beta1)
-      activesupport (>= 5.1, < 6.0)
-      bcrypt (~> 3.1.11)
-      carrierwave-mongoid (~> 1.1.0)
-      monetize (~> 1.9.0)
-      mongoid (>= 6.2, < 7.0)
-
-GIT
-  remote: git://github.com/locomotivecms/steam.git
-  revision: 5c076ae4e926bbabf685690e35a8d65c62fa548d
-  ref: 5c076ae
-  specs:
-    locomotivecms_steam (1.5.0.beta1)
-      RedCloth (~> 4.3.2)
-      autoprefixer-rails (~> 8.0.0)
-      bcrypt (~> 3.1.11)
-      chronic (~> 0.10.2)
-      coffee-script (~> 2.4.1)
-      compass (~> 1.0.3)
-      dragonfly (~> 1.1.4)
-      duktape (~> 1.6.1.0)
-      httparty (~> 0.16.0)
-      kramdown (~> 1.16.2)
-      locomotivecms-solid (~> 4.0.1)
-      locomotivecms_common (~> 0.3.1)
-      mime-types (~> 3.1.0)
-      mimetype-fu (~> 0.1.2)
-      moneta (~> 1.0.0)
-      morphine (~> 0.1.1)
-      multi_json (~> 1.13.1)
-      nokogiri (~> 1.8.2)
-      pony (~> 1.12)
-      rack-cache (~> 1.7.0)
-      rack-rewrite (~> 1.5.1)
-      rack_csrf (~> 2.6.0)
-      sanitize (~> 4.6.4)
-      sass (~> 3.4.25)
-      sprockets (~> 3.7.1)
-      uglifier (~> 4.1.3)
-
-GIT
   remote: git://github.com/salsify/grape-entity-matchers.git
   revision: 43dea6d1327d86e97fe54242296728cd05e71e5c
   branch: grape-entity-exposures
@@ -66,7 +10,7 @@ GIT
 PATH
   remote: .
   specs:
-    locomotivecms (4.0.0.alpha1)
+    locomotivecms (4.0.0.alpha2)
       actionmailer-with-request (~> 0.5.0)
       autoprefixer-rails (~> 8.0.0)
       bazaar (~> 0.0.2)
@@ -75,6 +19,7 @@ PATH
       carrierwave-imageoptim (= 0.1.5)
       carrierwave-mongoid (~> 1.1.0)
       codemirror-rails (~> 5.16.0)
+      custom_fields (~> 2.10.0.beta2)
       devise (~> 4.4.1)
       devise-encryptable (~> 0.2.0)
       dragonfly (~> 1.1.4)
@@ -91,6 +36,7 @@ PATH
       json-schema (~> 2.8.0)
       kaminari-actionview (~> 1.1.1)
       kaminari-mongoid (~> 1.0.1)
+      locomotivecms_steam (~> 1.5.0.beta2)
       mongoid (~> 6.4.0)
       mongoid-tree (~> 2.1.0)
       multi_json (~> 1.13.1)
@@ -220,6 +166,12 @@ GEM
       sass (>= 3.2, < 3.5)
     concurrent-ruby (1.1.3)
     crass (1.0.4)
+    custom_fields (2.10.0.beta2)
+      activesupport (>= 5.1, < 6.0)
+      bcrypt (~> 3.1.11)
+      carrierwave-mongoid (~> 1.1.0)
+      monetize (~> 1.9.0)
+      mongoid (>= 6.2, < 7.0)
     database_cleaner (1.6.2)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
@@ -324,6 +276,38 @@ GEM
     locomotivecms-liquid (4.0.0)
     locomotivecms-solid (4.0.1)
       locomotivecms-liquid (~> 4.0.0)
+    locomotivecms_common (0.3.1)
+      activesupport (>= 5.1.5, < 6.0)
+      attr_extras (~> 5.2.0)
+      colorize
+      stringex (~> 2.8.2)
+    locomotivecms_steam (1.5.0.beta2)
+      RedCloth (~> 4.3.2)
+      autoprefixer-rails (~> 8.0.0)
+      bcrypt (~> 3.1.11)
+      chronic (~> 0.10.2)
+      coffee-script (~> 2.4.1)
+      compass (~> 1.0.3)
+      dragonfly (~> 1.1.4)
+      duktape (~> 1.6.1.0)
+      httparty (~> 0.16.0)
+      kramdown (~> 1.16.2)
+      locomotivecms-solid (~> 4.0.1)
+      locomotivecms_common (~> 0.3.1)
+      mime-types (~> 3.1.0)
+      mimetype-fu (~> 0.1.2)
+      moneta (~> 1.0.0)
+      morphine (~> 0.1.1)
+      multi_json (~> 1.13.1)
+      nokogiri (~> 1.8.2)
+      pony (~> 1.12)
+      rack-cache (~> 1.7.0)
+      rack-rewrite (~> 1.5.1)
+      rack_csrf (~> 2.6.0)
+      sanitize (~> 4.6.4)
+      sass (~> 3.4.25)
+      sprockets (~> 3.7.1)
+      uglifier (~> 4.1.3)
     loofah (2.2.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -510,7 +494,6 @@ DEPENDENCIES
   byebug
   capybara (~> 3.8.2)
   codeclimate-test-reporter (~> 1.0.7)
-  custom_fields!
   database_cleaner (~> 1.6.2)
   email_spec (~> 2.2.0)
   factory_bot_rails (~> 4.11.1)
@@ -518,8 +501,6 @@ DEPENDENCIES
   grape-entity-matchers!
   json_spec (~> 1.1.5)
   locomotivecms!
-  locomotivecms_common!
-  locomotivecms_steam!
   puma (~> 3.12.0)
   rails-controller-testing (~> 1.0.2)
   rspec-rails (~> 3.8.0)

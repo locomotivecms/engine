@@ -48,7 +48,7 @@ class Iframe extends React.Component {
   // in the back-office, so we have to force the locale.
   getPreviewPath() {
     const { previewPath, currentLocale, defaultLocale } = this.props;
-    return currentLocale === defaultLocale ? `${previewPath}?locale=${locale}` : previewPath;
+    return currentLocale === defaultLocale ? `${previewPath}?locale=${currentLocale}` : previewPath;
   }
 
   shouldComponentUpdate() {

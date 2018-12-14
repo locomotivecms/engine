@@ -10,7 +10,7 @@ module Locomotive
         truncate(path, length: 50)
       end
 
-      def preview_page_path(page, locale: nil, mounted_on: false)
+      def preview_page_path(page, locale: nil, mounted_on: false, prefix_default_locale: nil)
         locale = locale || current_content_locale.to_s
         _page  = decorated_steam_page(page)
 
@@ -20,12 +20,16 @@ module Locomotive
 
         steam_url_builder.mounted_on = mounted_on ? preview_path(current_site) : nil
 
-        steam_url_builder.url_for(_page, locale)
+        steam_url_builder.url_for(_page, locale, prefix_default_locale)
       end
 
       def localized_preview_page_paths(page, mounted_on: false)
         current_site.locales.inject({}) do |memo, locale|
-          memo[locale] = preview_page_path(page, locale: locale, mounted_on: mounted_on)
+          memo[locale] = preview_page_path(page,
+            locale:     locale,
+            mounted_on: mounted_on,
+            prefix_default_locale: true
+          )
           memo
         end
       end

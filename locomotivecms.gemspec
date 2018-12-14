@@ -14,7 +14,8 @@ Gem::Specification.new do |s|
   s.summary     = 'A platform to create, publish and edit sites'
   s.description = 'Locomotive is designed to save your time and help you focus on what matters: front-end technology, standard development process and no learning time for your client.'
 
-  s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
+  s.files = Dir['{app,config,db,lib,vendor}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
+  s.files.reject! { |fn| fn.include?('app/javascript') }
 
   s.add_dependency 'rails',                           '>= 5.2.1', '< 6.0'
 
@@ -28,8 +29,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'mongoid-tree',                    '~> 2.1.0'
   s.add_dependency 'origin',                          '~> 2.3.1'
 
-  # s.add_dependency 'custom_fields',                   '~> 2.9.0'
-  # s.add_dependency 'locomotivecms_steam',             '~> 1.4.0'
+  s.add_dependency 'custom_fields',                   '~> 2.10.0.beta2'
+  s.add_dependency 'locomotivecms_steam',             '~> 1.5.0.beta2'
 
   s.add_dependency 'slim',                            '~> 3.0.9'
   s.add_dependency 'simple_form',                     '~> 4.0.1'
