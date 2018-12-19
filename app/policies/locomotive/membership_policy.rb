@@ -2,7 +2,7 @@ module Locomotive
   class MembershipPolicy < ApplicationPolicy
 
     def index?
-      site_admin?
+      site_admin_or_designer?
     end
 
     def create?
@@ -14,7 +14,7 @@ module Locomotive
     end
 
     def destroy?
-      site_admin? && change_role?
+      site_admin_or_designer? && change_role?
     end
 
     # The role cannot be set higher than the current one (we use the index in
@@ -25,11 +25,7 @@ module Locomotive
     end
 
     def permitted_attributes
-      if site_admin?
-        [:email, :role]
-      else
-        []
-      end
+      [:email, :role]
     end
 
   end
