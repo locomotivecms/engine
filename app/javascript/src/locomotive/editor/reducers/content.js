@@ -8,6 +8,7 @@ function content(state = {}, action) {
     // EDITOR
     case 'EDITOR::LOAD':
       return update(state, {
+        site: { $set: action.content.site },
         page: { $set: action.content.page }
       });
 
