@@ -12,7 +12,7 @@ module Locomotive
 
       def preview_page_path(page, locale: nil, mounted_on: false, prefix_default_locale: nil)
         locale = locale || current_content_locale.to_s
-        _page  = decorated_steam_page(page)
+        _page  = decorated_steam_page(page, locale)
 
         if page.content_entry
           _page.content_entry = decorated_steam_content_entry(page.content_entry)

@@ -295,10 +295,10 @@ module Locomotive
       )
     end
 
-    def decorated_steam_page(page)
+    def decorated_steam_page(page, locale = nil)
       Locomotive::Steam::Decorators::PageDecorator.new(
         page.to_steam,
-        current_content_locale,
+        locale || current_content_locale,
         current_site.default_locale
       )
     end
