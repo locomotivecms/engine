@@ -18,7 +18,11 @@ module Locomotive
         private
 
         def sync_file_size
-          self._file_size = self.file_custom_fields.inject(0) { |sum,field| send(field).size + sum }
+          self._file_size = self.file_custom_fields.inject(0) do |sum, field|
+            file = send(field)&.file
+            _size = file&.exists? ? file.size : 0
+            _size + sum
+          end
         end
 
       end
