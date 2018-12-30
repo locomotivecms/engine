@@ -55,8 +55,9 @@ const jsonGet = (url, query, headers) => {
 
 // CONTENT
 
-export function saveContent(url, site, page) {
+export function saveContent(url, site, page, locale) {
   return jsonPut(url, {
+    content_locale: locale,
     site: { sections_content: JSON.stringify(site.sectionsContent) },
     page: {
       title: page.title,
@@ -132,7 +133,7 @@ export function searchForResources(url, query) {
 export default function ApiFactory(urls) {
   return {
     loadContent:        (pageId, contentEntryId, locale) => loadContent(urls.load, pageId, contentEntryId, locale),
-    saveContent:        (site, page) => saveContent(urls.save, site, page),
+    saveContent:        (site, page, locale) => saveContent(urls.save, site, page, locale),
 
     loadAssets:         (options) => loadAssets(urls.assets, options),
     uploadAssets:       (assets) => uploadAssets(urls.bulkAssetUpload, assets),

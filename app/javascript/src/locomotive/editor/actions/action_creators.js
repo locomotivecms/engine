@@ -30,9 +30,9 @@ const _persistPageChanges = (isSuccess, errors) => {
 export function persistChanges(result, data) {
   return (dispatch, getState) => {
     const { notify, i18n } = window.Locomotive;
-    const { editor: { api, pageChanged }, content: { site, page }, iframe: { _window } } = getState();
+    const { editor: { api, pageChanged, locale }, content: { site, page }, iframe: { _window } } = getState();
 
-    return api.saveContent(site, page)
+    return api.saveContent(site, page, locale)
     .then(data => {
       dispatch(_persistChanges(true))
 
