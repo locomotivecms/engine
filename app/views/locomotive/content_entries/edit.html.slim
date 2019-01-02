@@ -11,6 +11,7 @@
 
 = locomotive_form_for @content_entry, as: :content_entry, url: content_entry_path(current_site, @content_type.slug, @content_entry), html: { multipart: true, novalidate: true } do |f|
 
+  = hidden_field_tag :content_locale, current_content_locale
   = hidden_field_tag :active_tab, ''
   = hidden_field_tag :_location,  params[:_location]
 
