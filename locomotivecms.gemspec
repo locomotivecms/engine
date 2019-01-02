@@ -30,7 +30,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'origin',                          '~> 2.3.1'
 
   # s.add_dependency 'custom_fields',                   '~> 2.10.0.beta2'
-  s.add_dependency 'locomotivecms_steam',             '~> 1.5.0.beta2'
+  # s.add_dependency 'locomotivecms_steam',             '~> 1.5.0.beta2'
 
   s.add_dependency 'slim',                            '~> 3.0.9'
   s.add_dependency 'simple_form',                     '~> 4.0.1'

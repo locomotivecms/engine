@@ -55,6 +55,7 @@ en:
             title: "Images"
             loading: "Loading the images. Please wait!"
             add: "+ add"
+            too_big: "Your image is too big: Maximum file size is 2MB"
             upload_in_progress: "Uploading..."
 
         preview:

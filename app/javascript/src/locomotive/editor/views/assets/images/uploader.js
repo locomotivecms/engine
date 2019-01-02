@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { bindAll } from 'lodash';
+import { bindAll, map, compact } from 'lodash';
 import i18n from '../../../i18n';
+
+const MAX_FILE_SIZE = 2048000;
 
 class Uploader extends Component {
 
@@ -15,17 +17,21 @@ class Uploader extends Component {
   }
 
   handleUpload(event) {
-    const files = event.target.files;
+    const files = compact(map(event.target.files, file => file.size > MAX_FILE_SIZE ? null : file));
 
-    this.setState({ uploading: true }, () => {
-      this.props.uploadAssets(files)
-      .then((assets) => {
-        this.setState({ uploading: false }, () => {
-          this.props.handleUpload(assets[0]);
-        });
-      })
-      .catch(error => { alert('error!', error) })
-    });
+    if (files.length != event.target.files.length)
+      alert(i18n.t('views.assets.images.too_big'));
+
+    if (files.length > 0)
+      this.setState({ uploading: true }, () => {
+        this.props.uploadAssets(files)
+        .then((assets) => {
+          this.setState({ uploading: false }, () => {
+            this.props.handleUpload(assets[0]);
+          });
+        })
+        .catch(error => { alert('error!', error) })
+      });
   }
 
   render() {
