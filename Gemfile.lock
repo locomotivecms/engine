@@ -1,7 +1,7 @@
 GIT
   remote: git://github.com/locomotivecms/custom_fields.git
-  revision: 89bce0a3a7a7b193f7b6a26c3836873a46843ae0
-  ref: 89bce0a
+  revision: 6a19a4d4a321a80b046a2aca8fc140387e56b8aa
+  ref: 6a19a4d
   specs:
     custom_fields (2.10.0.beta2)
       activesupport (>= 5.1, < 6.0)
@@ -12,8 +12,8 @@ GIT
 
 GIT
   remote: git://github.com/locomotivecms/steam.git
-  revision: 4fd6fea78167be9c2d7e112bf3621325d616471c
-  ref: 4fd6fea
+  revision: 25e5db6ee66431fadf51bc9930bc6ccbfa099bc1
+  ref: 25e5db6
   specs:
     locomotivecms_steam (1.5.0.beta2)
       RedCloth (~> 4.3.2)
@@ -80,7 +80,6 @@ PATH
       json-schema (~> 2.8.0)
       kaminari-actionview (~> 1.1.1)
       kaminari-mongoid (~> 1.0.1)
-      locomotivecms_steam (~> 1.5.0.beta2)
       mongoid (~> 6.4.0)
       mongoid-tree (~> 2.1.0)
       multi_json (~> 1.13.1)

@@ -21,7 +21,11 @@ module Locomotive
 
       def create_entry(attributes)
         ::Mongoid::Fields::I18n.with_locale(locale) do
-          entry = engine_service.public_create(attributes, { ip_address: ip_address })
+          entry = engine_service.public_create(attributes, {
+            ip_address: self.request.ip,
+            user_agent: self.request.user_agent,
+            referer:    self.request.referer
+          })
 
           entity = entry.to_steam(@content_type)
           Locomotive::Steam::Decorators::I18nDecorator.new(entity, locale)
@@ -30,10 +34,6 @@ module Locomotive
 
       def site
         self.request.env['locomotive.site']
-      end
-
-      def ip_address
-        self.request.ip
       end
 
       def locale

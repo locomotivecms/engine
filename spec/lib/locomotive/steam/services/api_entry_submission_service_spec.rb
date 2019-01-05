@@ -5,7 +5,7 @@ describe Locomotive::Steam::APIEntrySubmissionService do
   let(:site)          { create(:site) }
   let(:steam_service) { instance_double('SteamContentEntryService', locale: 'en') }
   let(:request_env)   { instance_double('RequestEnv') }
-  let(:request)       { instance_double('Request', ip: '127.0.0.1', env: request_env) }
+  let(:request)       { instance_double('Request', ip: '127.0.0.1', user_agent: 'Rspec', referer: 'https://www.locomotivecms.com', env: request_env) }
   let(:enabled)       { true }
   let!(:content_type) { create('message content type', site: site, public_submission_enabled: enabled).reload }
   let(:service)       { described_class.new(steam_service, request) }
