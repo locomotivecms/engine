@@ -116,8 +116,8 @@ FactoryBot.define do
     trait :with_select_field_and_options do
       after(:build) do |content_type, evaluator|
         field = content_type.entries_custom_fields.build(label: 'Category', type: 'select')
-        field.select_options.build name: 'Development'
-        field.select_options.build name: 'Design'
+        field.select_options.build name: 'Development', position: 0
+        field.select_options.build name: 'Design', position: 1
       end
     end
 

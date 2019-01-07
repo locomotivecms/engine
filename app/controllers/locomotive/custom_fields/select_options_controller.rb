@@ -38,7 +38,7 @@ module Locomotive
       end
 
       def service
-        @service ||= Locomotive::CustomFieldService.new(@custom_field)
+        @service ||= Locomotive::CustomFieldService.new(@custom_field, current_content_locale)
       end
 
       def options_params
