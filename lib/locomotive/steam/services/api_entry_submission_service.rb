@@ -41,7 +41,7 @@ module Locomotive
       end
 
       def engine_service
-        Locomotive::ContentEntryService.new(@content_type, nil)
+        Locomotive::ContentEntryService.new(@content_type, nil, locale)
       end
 
     end

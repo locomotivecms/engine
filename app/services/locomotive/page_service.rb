@@ -1,6 +1,6 @@
 module Locomotive
 
-  class PageService < Struct.new(:site, :account)
+  class PageService < Struct.new(:site, :account, :locale)
 
     include Locomotive::Concerns::ActivityService
 
@@ -41,7 +41,7 @@ module Locomotive
         page.updated_by = account if account
 
         if page.save
-          track_activity 'page.updated', parameters: { title: page.title, _id: page._id }
+          track_activity 'page.updated', locale: locale, parameters: { title: page.title, _id: page._id }
         end
       end
     end

@@ -5,7 +5,8 @@ describe Locomotive::EditableElementService do
   let(:site)    { create(:site) }
   let(:home)    { site.pages.root.first }
   let(:account) { create(:account) }
-  let(:service) { described_class.new(site, account) }
+  let(:locale)  { :en }
+  let(:service) { described_class.new(site, account, locale) }
 
   describe '#update_all' do
 

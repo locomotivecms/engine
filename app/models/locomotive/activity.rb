@@ -6,6 +6,7 @@ module Locomotive
     ## fields ##
     field :key
     field :parameters,  type: Hash
+    field :locale
 
     ## associations ##
     belongs_to :site,       class_name: 'Locomotive::Site', validate: false, autosave: false

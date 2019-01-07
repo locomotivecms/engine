@@ -21,7 +21,7 @@ module Locomotive
             end
 
             def service
-              @service ||= Locomotive::ContentEntryService.new(parent_content_type, current_account)
+              @service ||= Locomotive::ContentEntryService.new(parent_content_type, current_account, current_content_locale)
             end
 
           end

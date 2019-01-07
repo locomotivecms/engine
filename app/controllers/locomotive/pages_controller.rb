@@ -58,7 +58,7 @@ module Locomotive
     end
 
     def service
-      @service ||= Locomotive::PageService.new(current_site, current_locomotive_account)
+      @service ||= Locomotive::PageService.new(current_site, current_locomotive_account, current_content_locale)
     end
 
     def edit_content_path(page)

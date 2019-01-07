@@ -89,7 +89,7 @@ module Locomotive
     end
 
     def service
-      @service ||= Locomotive::ContentEntryService.new(load_content_type, current_locomotive_account)
+      @service ||= Locomotive::ContentEntryService.new(load_content_type, current_locomotive_account, current_content_locale)
     end
 
     def list_params

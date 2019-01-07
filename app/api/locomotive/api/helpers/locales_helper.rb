@@ -9,6 +9,10 @@ module Locomotive
           ::Mongoid::Fields::I18n.locale = current_site.default_locale
         end
 
+        def current_content_locale
+          ::Mongoid::Fields::I18n.locale
+        end
+
       end
     end
   end

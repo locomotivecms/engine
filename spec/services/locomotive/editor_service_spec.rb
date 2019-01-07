@@ -4,7 +4,8 @@ describe Locomotive::EditorService do
 
   let(:account)     { double(:account) }
   let(:page)        { double(:page) }
-  let(:service)     { described_class.new(site, account, page) }
+  let(:locale)      { :en }
+  let(:service)     { described_class.new(site, account, page, locale) }
 
   describe '#find_resources' do
 

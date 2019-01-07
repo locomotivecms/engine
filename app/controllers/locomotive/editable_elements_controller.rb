@@ -65,7 +65,7 @@ module Locomotive
     end
 
     def persisting_service
-      @persisting_service ||= Locomotive::EditableElementService.new(current_site, current_locomotive_account)
+      @persisting_service ||= Locomotive::EditableElementService.new(current_site, current_locomotive_account, current_content_locale)
     end
 
     def store_location_if_content_entry

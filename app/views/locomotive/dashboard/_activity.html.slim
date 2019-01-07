@@ -17,6 +17,9 @@ ul.activity-feed
         | &middot;
         | &nbsp;
         span.sentence= render_activity_sentence(activity)
+        - if activity.locale && activity.locale.to_s != current_site.default_locale.to_s
+          span.locale
+            = activity.locale.to_s
 
       - if info = render_activity_additional_information(activity)
         .additional-information= info

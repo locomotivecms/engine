@@ -1,5 +1,5 @@
 module Locomotive
-  class ContentEntryService < Struct.new(:content_type, :account)
+  class ContentEntryService < Struct.new(:content_type, :account, :locale)
 
     include Locomotive::Concerns::ActivityService
 
@@ -85,7 +85,7 @@ module Locomotive
           # send an email to selected local accounts
           send_notifications(entry)
 
-          track_activity 'content_entry.created_public', parameters: activity_parameters(entry)
+          track_activity 'content_entry.created_public', locale: locale, parameters: activity_parameters(entry)
         end
       end
     end
@@ -106,7 +106,7 @@ module Locomotive
         entry.updated_by = account
 
         if entry.save
-          track_activity 'content_entry.updated', parameters: activity_parameters(entry)
+          track_activity 'content_entry.updated', locale: locale, parameters: activity_parameters(entry)
         end
       end
     end

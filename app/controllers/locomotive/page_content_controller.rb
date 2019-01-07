@@ -56,7 +56,7 @@ module Locomotive
     end
 
     def persisting_service
-      @persisting_service ||= Locomotive::EditorService.new(current_site, current_locomotive_account, @page)
+      @persisting_service ||= Locomotive::EditorService.new(current_site, current_locomotive_account, @page, current_content_locale)
     end
 
     def editable_elements_layout

@@ -1,5 +1,5 @@
 module Locomotive
-  class EditorService < Struct.new(:site, :account, :page)
+  class EditorService < Struct.new(:site, :account, :page, :locale)
 
     include Locomotive::Concerns::ActivityService
 
@@ -42,9 +42,9 @@ module Locomotive
       page_attributes[:sections_dropzone_content] = parse_sections_dropzone_content(page_attributes[:sections_dropzone_content])
       page.update_attributes(page_attributes)
 
-      track_activity 'editable_element.updated_bulk', parameters: {
-        pages: [page].map { |p| { title: p.title, _id: p._id } }
-      }
+      track_activity 'page_content.updated',
+        parameters: { _id: page._id, title: page.title },
+        locale: locale
     end
 
     private

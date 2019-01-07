@@ -1,5 +1,5 @@
 module Locomotive
-  class EditableElementService < Struct.new(:site, :account)
+  class EditableElementService < Struct.new(:site, :account, :locale)
 
     include Locomotive::Concerns::ActivityService
 
@@ -25,7 +25,7 @@ module Locomotive
 
         save_all_pages(pages.values)
 
-        track_activity 'editable_element.updated_bulk', parameters: {
+        track_activity 'editable_element.updated_bulk', locale: locale, parameters: {
           pages: modified_pages.values.map { |p| { title: p.title, _id: p._id } }
         } unless modified_pages.empty?
       end

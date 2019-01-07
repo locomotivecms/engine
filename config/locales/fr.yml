@@ -86,6 +86,8 @@ fr:
         updated: 'a mis à jour la page %{page} '
         destroyed: 'a supprimé la page %{page} '
         sorted: 'a trié les pages'
+      page_content:
+        updated: 'a modifié le contenu de %{page}'
       editable_element:
         updated_bulk: 'a modifié le contenu de %{pages} '
       content_entry:

@@ -102,6 +102,8 @@ en:
         updated: 'updated the %{page} page'
         destroyed: 'deleted the %{page} page'
         sorted: 'sorted pages'
+      page_content:
+        updated: 'modified the content of %{page}'
       editable_element:
         updated_bulk: 'modified the content of %{pages}'
       content_entry:

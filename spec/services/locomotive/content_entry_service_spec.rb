@@ -5,7 +5,8 @@ describe Locomotive::ContentEntryService do
   let(:site)          { create('test site') }
   let(:account)       { create(:account) }
   let(:content_type)  { create_content_type }
-  let(:service)       { described_class.new(content_type, account) }
+  let(:locale)        { :en }
+  let(:service)       { described_class.new(content_type, account, locale) }
 
   describe '#all' do
 
@@ -138,6 +139,16 @@ describe Locomotive::ContentEntryService do
 
     it { expect(subject.title).to eq 'Goodbye' }
     it { expect(subject.updated_by).to eq account }
+
+    it 'tracks the operation as an activity' do
+      expect(service).to receive(:track_activity).with('content_entry.updated', locale: :en, parameters: {
+        _id:                entry._id,
+        content_type:       'Articles',
+        content_type_slug:  content_type.slug,
+        label:              'Goodbye'
+      })
+      subject
+    end
 
   end
 

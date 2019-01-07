@@ -1,6 +1,7 @@
 $activity_feed_icon_bg_color: $brand-primary;
 $activity_feed_title_color: #595959;
 $activity_feed_time_color: #949999;
+$activity_feed_locale_bg_color: #1E2022;
 
 .activity-feed {
   padding-top: 1px;
@@ -35,6 +36,15 @@ $activity_feed_time_color: #949999;
       }
       span.sentence {
         font-weight: normal;
+      }
+      span.locale {
+        display: inline-block;
+        background: $activity_feed_locale_bg_color;
+        padding: 2px 4px;
+        margin-left: 10px;
+        font-weight: normal;
+        text-transform: uppercase;
+        color: #fff;
       }
     }
     .additional-information {
