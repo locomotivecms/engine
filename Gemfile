@@ -20,7 +20,7 @@ group :test, :development do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
-group :development do
+group :development, :test do
   # gem 'custom_fields', path: '../custom_fields' # for Developers
   gem 'custom_fields', github: 'locomotivecms/custom_fields', ref: '6a19a4d'
 
