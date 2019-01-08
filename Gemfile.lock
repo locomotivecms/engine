@@ -453,7 +453,7 @@ GEM
     sassc (2.0.0)
       ffi (~> 1.9.6)
       rake
-    selenium-webdriver (3.14.1)
+    selenium-webdriver (3.141.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.2, >= 1.2.2)
     shoulda-matchers (3.1.2)
@@ -524,7 +524,7 @@ DEPENDENCIES
   rails-controller-testing (~> 1.0.2)
   rspec-rails (~> 3.8.0)
   rubyzip (~> 1.2.2)
-  selenium-webdriver (~> 3.14.0)
+  selenium-webdriver (~> 3.141.0)
   shoulda-matchers (~> 3.1.2)
   simplecov
 

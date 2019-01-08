@@ -30,6 +30,9 @@ task :travis do
   system('bundle binstubs chromedriver-helper')
   system("./bin/chromedriver-update #{ENV['CHROMEDRIVER_VERSION']}")
 
+  puts "Install Yarn packages"
+  system('cd app/javascript && yarn install && cd ../..')
+
   puts "Precompile assets first to avoid potential time outs"
   system("cd spec/dummy && bundle exec rails assets:precompile")
   ["rspec spec"].each do |cmd|
