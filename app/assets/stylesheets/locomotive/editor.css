@@ -1060,7 +1060,11 @@
   margin: 1rem 0rem;
   background: #f7f7f7;
   box-shadow: 0 0 0 1px rgba(63, 63, 68, 0.05), 0 1px 3px 0 rgba(63, 63, 68, 0.15);
-  min-height: 4rem; }
+  min-height: 4rem;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none; }
   .editor-list-item.with-separator {
     margin-top: 4rem; }
   .editor-list-item--icon, .editor-list-item--image {
