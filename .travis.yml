@@ -6,6 +6,8 @@ after_failure: ./bin/ci/after_failure.sh
 services: mongodb
 rvm:
   - 2.5.0
+env:
+  - CHROMEDRIVER_VERSION=2.35
 notifications:
   email:
     - didier@nocoffee.fr

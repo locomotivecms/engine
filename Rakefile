@@ -26,6 +26,10 @@ end
 
 # === Travis ===
 task :travis do
+  puts "Install CHROMEDRIVER #{ENV['CHROMEDRIVER_VERSION']}"
+  system('bundle binstubs chromedriver-helper')
+  system("./bin/chromedriver-update #{ENV['CHROMEDRIVER_VERSION']}")
+
   puts "Precompile assets first to avoid potential time outs"
   system("cd spec/dummy && bundle exec rails assets:precompile")
   ["rspec spec"].each do |cmd|

@@ -1,5 +1,9 @@
 require 'selenium-webdriver'
 
+if chromedriver_version = ENV['CHROMEDRIVER_VERSION']
+  Chromedriver.set_version chromedriver_version
+end
+
 Capybara.server = :webrick
 Capybara.app_host = 'http://locomotive.local'
 Capybara.server_host = '0.0.0.0'
