@@ -10,6 +10,7 @@ rvm:
   - 2.5.0
 env:
   - CHROMEDRIVER_VERSION=2.35
+  - RAILS_EAGER_LOAD=1
 notifications:
   email:
     - didier@nocoffee.fr

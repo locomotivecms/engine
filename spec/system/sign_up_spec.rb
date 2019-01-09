@@ -2,8 +2,8 @@ describe 'User signs up' do
 
   it 'with valid email and password'  do
     sign_up_with 'John Doe', 'john@doe.net', 'password'
-    puts "YEAH!!!"
-    print page.html
+    STDERR.puts "YEAH!!!"
+    STDERR.puts page.html
     expect(page).to have_content('My sites')
     expect(page).to have_content('You have signed up successfully.')
   end
