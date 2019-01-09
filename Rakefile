@@ -39,7 +39,7 @@ task :travis do
   # Only a single test
   output = `bundle exec rspec spec/system/sign_up_spec.rb:3`
 
-  puts output.inspect
+  puts output
 
   raise "TEST failed!"
 

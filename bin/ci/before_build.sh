@@ -14,9 +14,13 @@
 # echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 # sudo apt-get update && sudo apt-get install yarn
 
+
 sleep 3
+export CHROMEDRIVER_VERSION=2.35
+export RAILS_EAGER_LOAD=1
 export DISPLAY=:99.0
-sh -e /etc/init.d/xvfb start
+# sh -e /etc/init.d/xvfb start
+/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1600x768x24
 export TZ=America/Chicago
 sleep 3
 date
