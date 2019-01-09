@@ -37,7 +37,11 @@ task :travis do
   system("cd spec/dummy && bundle exec rails assets:precompile")
 
   # Only a single test
-  system("bundle exec rspec spec/system/sign_up_spec.rb:3")
+  output = `bundle exec rspec spec/system/sign_up_spec.rb:3`
+
+  puts output.inspect
+
+  raise "TEST failed!"
 
   # ["rspec spec"].each do |cmd|
   #   puts "Starting to run #{cmd}..."

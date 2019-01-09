@@ -8,7 +8,7 @@ Capybara.server = :webrick
 Capybara.app_host = 'http://locomotive.local'
 Capybara.server_host = '0.0.0.0'
 Capybara.server_port = 9886
-Capybara.default_max_wait_time = 30
+Capybara.default_max_wait_time = 60
 
 Capybara.register_driver(:locomotive_headless_chrome) do |app|
   options = Selenium::WebDriver::Chrome::Options.new(
