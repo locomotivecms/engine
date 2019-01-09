@@ -26,6 +26,9 @@ end
 
 # === Travis ===
 task :travis do
+  # CHROMEDRIVER_VERSION & RAILS_EAGER_LOADER env variables are defined
+  # in the TravisCI settings page of the repository locomotivecms/engine
+
   puts "Install CHROMEDRIVER #{ENV['CHROMEDRIVER_VERSION']}"
   system('bundle binstubs chromedriver-helper')
   system("./bin/chromedriver-update #{ENV['CHROMEDRIVER_VERSION']}")
