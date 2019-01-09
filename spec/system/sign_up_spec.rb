@@ -1,12 +1,7 @@
 describe 'User signs up' do
 
   it 'with valid email and password'  do
-    puts "YEAH! (1)"
     sign_up_with 'John Doe', 'john@doe.net', 'password'
-    STDERR.puts "YEAH (2.0) !!!"
-    STDERR.puts page.html
-    puts "YEAH! (2)"
-    puts page.html
     expect(page).to have_content('My sites')
     expect(page).to have_content('You have signed up successfully.')
   end
