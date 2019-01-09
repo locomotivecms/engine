@@ -12,7 +12,7 @@ module Locomotive
 
     respond_to :json, only: [:edit, :update]
 
-    helper Locomotive::ContentEntriesHelper
+    helper Locomotive::ContentEntriesHelper, Locomotive::PagesHelper
 
     def edit
       authorize @page

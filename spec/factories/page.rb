@@ -16,6 +16,16 @@ FactoryBot.define do
       end
     end
 
+    trait :templatized do
+      templatized { true }
+      templatized_from_parent { false }
+    end
+
+    trait :templatized_from_parent do
+      templatized { true }
+      templatized_from_parent { true }
+    end
+
     factory :sub_page do
       title { 'Subpage' }
       slug { 'subpage' }

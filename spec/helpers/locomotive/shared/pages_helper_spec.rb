@@ -4,11 +4,12 @@ describe Locomotive::Shared::PagesHelper do
 
   include Locomotive::BaseHelper
 
-  describe 'localized_preview_page_paths' do
+  let(:current_site)  { create(:site, locales: [:en, :fr, :es]) }
+  let(:current_content_locale) { 'en' }
 
-    let(:current_site)  { create(:site, locales: [:en, :fr, :es]) }
-    let(:page)          { current_site.pages.root.first }
-    let(:current_content_locale) { 'en' }
+  describe '#localized_preview_page_paths' do
+
+    let(:page) { current_site.pages.root.first }
 
     subject { localized_preview_page_paths(page, mounted_on: mounted_on) }
 
@@ -17,7 +18,6 @@ describe Locomotive::Shared::PagesHelper do
       let(:mounted_on) { true }
 
       it 'renders the urls for each locale' do
-        puts subject.inspect
         expect(subject['en']).to eq('/locomotive/my-site/en')
         expect(subject['es']).to eq('/locomotive/my-site/es')
         expect(subject['fr']).to eq('/locomotive/my-site/fr')

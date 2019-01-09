@@ -6,7 +6,7 @@ json.data do
   json.page do
     json.(@page, :id, :title, :seo_title, :meta_description, :meta_keywords, :listed, :published)
 
-    json.slug @page.slug if !@page.index? && !@page.not_found? && !@page.templatized?
+    json.slug @page.slug if display_slug?(@page)
 
     json.fullpath nice_preview_page_path(@page)
     json.contentEntryId @page.content_entry&.id

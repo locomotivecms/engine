@@ -25,6 +25,10 @@ module Locomotive
       list
     end
 
+    def display_slug?(page)
+      !page.index? && !page.not_found? && (!page.templatized? || page.templatized_from_parent?)
+    end
+
     def display_page_layouts?
       ((@page.persisted? && @page.allow_layout? && @page.use_layout?) || !@page.persisted?) &&
       !current_site.pages.layouts.empty?

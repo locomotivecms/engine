@@ -5,7 +5,7 @@
   - if display_page_layouts?
     = f.input :layout_id, as: :select, collection: options_for_page_layouts, include_blank: false
 
-  - if !@page.index? && !@page.not_found? && !@page.templatized?
+  - if display_slug?(@page)
 
     = f.input :slug
 
