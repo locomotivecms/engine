@@ -10,17 +10,13 @@ gemspec
 # Git. Remember to move these dependencies to your gemspec before releasing
 # your gem to rubygems.org.
 
-group :test, :development do
-  gem 'ffi',          '~> 1.9.24'
-  gem 'rubyzip',      '~> 1.2.2'
+group :development, :test do
   gem 'rspec-rails',  '~> 3.8.0'
   gem 'capybara',     '~> 3.8.2'
 
   # To use a debugger
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-end
 
-group :development, :test do
   # gem 'custom_fields', path: '../custom_fields' # for Developers
   gem 'custom_fields', github: 'locomotivecms/custom_fields', ref: '6a19a4d'
 
@@ -37,7 +33,6 @@ group :development, :test do
 end
 
 group :test do
-  # gem 'capybara',                 '~> 3.8.2'
   gem 'selenium-webdriver',       '~> 3.141.0'
   gem 'puma',                     '~> 3.12.0'
   gem 'chromedriver-helper',      '~> 2.1.0'

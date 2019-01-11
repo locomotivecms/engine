@@ -33,7 +33,7 @@ task :travis do
   system("./bin/chromedriver-update #{ENV['CHROMEDRIVER_VERSION']}")
 
   puts "Install Yarn packages"
-  system('cd app/javascript && yarn install && cd ../..')
+  system('yarn install')
 
   puts "Precompile assets first to avoid potential time outs"
   system("cd spec/dummy && bundle exec rails assets:precompile && cd ..")
