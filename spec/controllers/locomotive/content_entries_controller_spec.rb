@@ -28,7 +28,7 @@ module Locomotive
         expect(content_type.entries.count).to eq(1)
       end
       subject { get :index, params: { site_handle: site, locale: :en, slug: content_type.slug } }
-      it { is_expected.to be_success }
+      it { is_expected.to be_successful }
       specify do
         subject
         expect(assigns(:content_entries)).to eq([content_entry])
@@ -39,7 +39,7 @@ module Locomotive
 
       subject { get :export, params: { site_handle: site, locale: :en, slug: content_type.slug }, format: :csv }
 
-      it { is_expected.to be_success }
+      it { is_expected.to be_successful }
 
     end
 

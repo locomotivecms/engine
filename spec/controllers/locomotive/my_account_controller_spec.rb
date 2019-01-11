@@ -15,7 +15,7 @@ describe Locomotive::MyAccountController do
 
   describe "#GET edit" do
     subject { get :edit, params: { site_handle: site, id: account.id, locale: :en } }
-    it { is_expected.to be_success }
+    it { is_expected.to be_successful }
     specify do
       subject
       expect(assigns(:account)).to be_present
@@ -38,6 +38,6 @@ describe Locomotive::MyAccountController do
     subject do
       put :regenerate_api_key, format: :json
     end
-    it { is_expected.to be_success }
+    it { is_expected.to be_successful }
   end
 end

@@ -15,7 +15,7 @@ describe Locomotive::SitesController do
 
   describe "#GET new" do
     subject { get :new, params: { locale: :en } }
-    it { is_expected.to be_success }
+    it { is_expected.to be_successful }
   end
 
   describe "#POST create" do
