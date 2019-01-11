@@ -1,13 +1,13 @@
 {
-  "name": "locomotive-content-editing-ui",
+  "name": "locomotivecms-ui",
   "version": "1.0.0",
-  "description": "ReactJS UI to edit the content of the sections",
+  "description": "ReactJS components to power the UI of LocomotiveCMS",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --mode development --watch",
-    "build": "webpack --mode production",
-    "build:svg": "svgr -d ./src/locomotive/svg/generated ./src/locomotive/svg",
-    "test": "jest",
+    "dev": "webpack --config ./config/webpack/development.js --mode development --watch",
+    "build": "webpack --config ./config/webpack/production.js --mode production",
+    "build:svg": "svgr -d ./app/javascript/src/locomotive/svg/generated ./app/javascript/src/locomotive/svg",
+    "test": "jest ./app/javascript/test",
     "test:watch": "npm test -- --watch"
   },
   "keywords": [
@@ -74,7 +74,7 @@
   },
   "jest": {
     "setupFiles": [
-      "./test/setupTests.js"
+      "./app/javascript/test/setupTests.js"
     ],
     "moduleFileExtensions": [
       "js",

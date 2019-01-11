@@ -15,7 +15,7 @@ describe Locomotive::CurrentSiteController do
 
   describe "#GET edit" do
     subject { get :edit, params: { site_handle: site, locale: :en } }
-    it { is_expected.to be_success }
+    it { is_expected.to be_successful }
     specify do
       subject
       expect(assigns(:site)).to be_present

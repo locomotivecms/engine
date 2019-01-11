@@ -22,7 +22,7 @@ describe Locomotive::PagesController do
 
   describe "#GET new" do
     subject { get :new, params: { site_handle: site, locale: :en } }
-    it { is_expected.to be_success }
+    it { is_expected.to be_successful }
   end
 
   describe "#POST create" do
@@ -40,7 +40,7 @@ describe Locomotive::PagesController do
 
   describe "#GET edit" do
     subject { get :edit, params: { site_handle: site, id: page.id, locale: :en } }
-    it { is_expected.to be_success }
+    it { is_expected.to be_successful }
     specify do
       subject
       expect(assigns(:page)).to be_present
@@ -81,7 +81,7 @@ describe Locomotive::PagesController do
       subject do
         put :sort, params: { site_handle: site, id: page.id, children: [child_page.id], locale: :en, format: :json }
       end
-      it { is_expected.to be_success }
+      it { is_expected.to be_successful }
     end
 
   end

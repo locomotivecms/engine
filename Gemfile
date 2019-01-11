@@ -10,9 +10,7 @@ gemspec
 # Git. Remember to move these dependencies to your gemspec before releasing
 # your gem to rubygems.org.
 
-group :test, :development do
-  # gem 'ffi',          '~> 1.9.24'
-  # gem 'rubyzip',      '~> 1.2.2'
+group :development, :test do
   gem 'rspec-rails',  '~> 3.8.0'
   gem 'capybara',     '~> 3.8.2'
 
@@ -37,7 +35,6 @@ group :development, :test do
 end
 
 group :test do
-  # gem 'capybara',                 '~> 3.8.2'
   gem 'selenium-webdriver',       '~> 3.141.0'
   gem 'puma',                     '~> 3.12.0'
   gem 'chromedriver-helper',      '~> 2.1.0'
@@ -48,9 +45,8 @@ group :test do
   gem 'factory_bot_rails',        '~> 4.11.1'
   gem 'json_spec',                '~> 1.1.5'
   gem 'database_cleaner',         '~> 1.6.2'
-  # gem 'timecop',                  '~> 0.9.1'
   gem 'email_spec',               '~> 2.2.0'
 
-  # gem 'codeclimate-test-reporter',  '~> 1.0.7',  require: false
-  # gem 'simplecov',                  require: false
+  gem 'codeclimate-test-reporter',  '~> 1.0.7',  require: false
+  gem 'simplecov',                  require: false
 end

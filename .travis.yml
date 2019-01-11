@@ -13,8 +13,9 @@ notifications:
 branches:
   only:
     - master
+    - debug-travis-ci
 addons:
-  - chrome: stable
-  - hosts:
+  chrome: stable
+  hosts:
     - locomotive.local
 

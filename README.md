@@ -1,6 +1,6 @@
 # Locomotive
 
-[![Build Status](https://travis-ci.org/locomotivecms/engine.svg?branch=master)](https://travis-ci.org/locomotivecms/engine) [![Code Climate](https://codeclimate.com/github/locomotivecms/engine/badges/gpa.svg)](https://codeclimate.com/github/locomotivecms/engine) [![Coverage Status](https://img.shields.io/coveralls/locomotivecms/engine.svg)](https://coveralls.io/r/locomotivecms/engine?branch=master) [![Join the chat at https://gitter.im/locomotivecms/engine](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/locomotivecms/engine?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Build Status](https://travis-ci.com/locomotivecms/engine.svg?branch=master)](https://travis-ci.org/locomotivecms/engine) [![Code Climate](https://codeclimate.com/github/locomotivecms/engine/badges/gpa.svg)](https://codeclimate.com/github/locomotivecms/engine) [![Coverage Status](https://img.shields.io/coveralls/locomotivecms/engine.svg)](https://coveralls.io/r/locomotivecms/engine?branch=master) [![Join the chat at https://gitter.im/locomotivecms/engine](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/locomotivecms/engine?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Locomotive is an open source platform to create, publish and edit sites (CMS). It is designed to save time and help you focus on what matters: front-end technology, standard development process and a very low learning curve for your clients.
 
@@ -23,7 +23,7 @@ Visit the Locomotive official website [here](https://www.locomotivecms.com) for 
 - Can fully localize all the content and pages
 - Embed a Restful API to manage every site
 - Develop and preview sites locally with your favorite tools **(Wagon)**
-- Support for SASS, HAML and Coffee Script **(Wagon)**
+- Support for Webpack, SASS, HAML and Coffee Script **(Wagon)**
 
 ## Instructions and help
 
@@ -71,4 +71,4 @@ Locomotive is an open source project, we encourage contributions. If you have fo
 
 Feel free to contact me at didier at nocoffee dot fr.
 
-Copyright (c) 2018 NoCoffee, released under the MIT license
+Copyright (c) 2019 NoCoffee, released under the MIT license

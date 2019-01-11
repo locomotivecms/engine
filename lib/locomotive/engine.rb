@@ -83,5 +83,6 @@ module Locomotive
     initializer 'steam' do |app|
       require 'locomotive/steam_adaptor'
     end
+
   end
 end
