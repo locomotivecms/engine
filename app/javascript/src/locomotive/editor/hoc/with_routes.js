@@ -30,8 +30,17 @@ export default function withRoutes(Component) {
       return `${sectionPath(section)}/edit`;
     }
 
-    const imagesPath = (section, blockType, blockId, settingType, settingId) => {
+    const pickImagePath = (section, blockType, blockId, settingType, settingId) => {
       const postfix = `setting/${settingType}/${settingId}/images`;
+
+      if (blockType && blockId)
+        return `${blockPath(section, blockType, blockId)}/${postfix}`;
+      else
+        return `${sectionPath(section)}/${postfix}`;
+    }
+
+    const pickUrlPath = (section, blockType, blockId, settingType, settingId) => {
+      const postfix = `setting/${settingType}/${settingId}/pick-url`;
 
       if (blockType && blockId)
         return `${blockPath(section, blockType, blockId)}/${postfix}`;
@@ -45,7 +54,8 @@ export default function withRoutes(Component) {
       newSectionPath,
       editBlockPath,
       blockParentPath,
-      imagesPath
+      pickImagePath,
+      pickUrlPath
     }
   }
 

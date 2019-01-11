@@ -32,6 +32,8 @@ const withEditingSection = Component => {
       )
       newProps.blockContent       = fetchBlockContent(newProps.sectionContent, newProps.blockId);
       newProps.blockLabel         = findBetterTextForBlock(newProps.blockContent, newProps.blockDefinition);
+
+      newProps.currentContent     = newProps.blockContent || newProps.sectionContent;
     }
 
     return Object.assign({}, props, newProps);

@@ -40,14 +40,14 @@ class Index extends Component {
   render() {
     return (
       <View
-        title={i18n.t('views.assets.images.title')}
+        title={i18n.t('views.pickers.images.title')}
         subTitle={this.props.blockLabel || this.props.sectionLabel}
         onLeave={this.props.leaveView}
       >
         {this.props.isLoading ? (
           <div className="editor-image-list--loading">
             <div className="editor-image-list--loading-text">
-              {i18n.t('views.assets.images.loading')}
+              {i18n.t('views.pickers.images.loading')}
             </div>
           </div>
         ) : (

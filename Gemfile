@@ -11,8 +11,8 @@ gemspec
 # your gem to rubygems.org.
 
 group :test, :development do
-  gem 'ffi',          '~> 1.9.24'
-  gem 'rubyzip',      '~> 1.2.2'
+  # gem 'ffi',          '~> 1.9.24'
+  # gem 'rubyzip',      '~> 1.2.2'
   gem 'rspec-rails',  '~> 3.8.0'
   gem 'capybara',     '~> 3.8.2'
 
@@ -21,14 +21,14 @@ group :test, :development do
 end
 
 group :development, :test do
-  # gem 'custom_fields', path: '../custom_fields' # for Developers
-  gem 'custom_fields', github: 'locomotivecms/custom_fields', ref: '6a19a4d'
+  gem 'custom_fields', path: '../custom_fields' # for Developers
+  # gem 'custom_fields', github: 'locomotivecms/custom_fields', ref: '6a19a4d'
 
   # gem 'locomotivecms_common', path: '../common', require: false
   # gem 'locomotivecms_common', github: 'locomotivecms/common', ref: '4d1bd56', require: false
 
-  # gem 'locomotivecms_steam', path: '../steam', require: false
-  gem 'locomotivecms_steam', github: 'locomotivecms/steam', ref: '25e5db6', require: false
+  gem 'locomotivecms_steam', path: '../steam', require: false
+  # gem 'locomotivecms_steam', github: 'locomotivecms/steam', ref: '25e5db6', require: false
 
   # gem 'locomotive_liquid', path: '../gems/liquid' # for Developers
   # gem 'locomotivecms_solid', path: '../gems/solid' # for Developers
@@ -51,6 +51,6 @@ group :test do
   # gem 'timecop',                  '~> 0.9.1'
   gem 'email_spec',               '~> 2.2.0'
 
-  gem 'codeclimate-test-reporter',  '~> 1.0.7',  require: false
-  gem 'simplecov',                  require: false
+  # gem 'codeclimate-test-reporter',  '~> 1.0.7',  require: false
+  # gem 'simplecov',                  require: false
 end

@@ -14,7 +14,7 @@ import Modal from '../components/modal';
 import Cropper from '../components/cropper';
 
 const openLibrary = props => {
-  props.redirectTo(props.imagesPath(
+  props.redirectTo(props.pickImagePath(
     props.section,
     props.blockType,
     props.blockId,

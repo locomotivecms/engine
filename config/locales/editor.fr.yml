@@ -50,13 +50,15 @@ fr:
             settings: "Paramètres"
             seo: "SEO"
 
-        assets:
+        pickers:
           images:
             title: "Images"
             loading: "Chargement des images en cours !"
             too_big: "Votre image est trop lourde : la taille maximale pour un fichier est de 2Mo"
             add: "+ ajouter"
             upload_in_progress: "Téléchargement en cours..."
+          urls:
+            title: "Sélectionner une URL"
 
         preview:
           view: "Aperçu"
