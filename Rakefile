@@ -26,28 +26,21 @@ end
 
 # === Travis ===
 task :travis do
+  # FIXME: CHROMEDRIVER_VERSION & RAILS_EAGER_LOADER env variables are defined
+  # in the TravisCI settings page of the repository locomotivecms/engine
   puts "Install CHROMEDRIVER #{ENV['CHROMEDRIVER_VERSION']}"
   system('bundle binstubs chromedriver-helper')
   system("./bin/chromedriver-update #{ENV['CHROMEDRIVER_VERSION']}")
 
-  # puts "Install Yarn packages"
-  # system('cd app/javascript && yarn install && cd ../..')
+  puts "Install Yarn packages"
+  system('yarn install')
 
   puts "Precompile assets first to avoid potential time outs"
-  system("cd spec/dummy && bundle exec rails assets:precompile")
+  system("cd spec/dummy && bundle exec rails assets:precompile && cd ..")
 
-  # Only a single test
-  output = `bundle exec rspec spec/system/sign_up_spec.rb:3`
-
-  puts output
-
-  raise "TEST failed!"
-
-  # ["rspec spec"].each do |cmd|
-  #   puts "Starting to run #{cmd}..."
-  #   system("export DISPLAY=:99.0 && bundle exec #{cmd}")
-  #   raise "#{cmd} failed!" unless $?.exitstatus == 0
-  # end
+  puts "Starting to run RSpec..."
+  system("export DISPLAY=:99.0 && bundle exec rspec spec")
+  raise "RSpec failed!" unless $?.exitstatus == 0
 end
 
 task default: :spec
