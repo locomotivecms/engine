@@ -17,6 +17,17 @@ module Locomotive
           json_attribute  :sections_content
         end
 
+        def group_all_sections_by_id
+          self.sections_dropzone_content.map.each_with_index do |section, index|
+            {
+              id:       "#{section['type']}-#{index}",
+              type:     section['type'],
+              content:  section
+            }
+          end
+          # TODO: sections_content + Rspec
+        end
+
         private
 
         # Example:

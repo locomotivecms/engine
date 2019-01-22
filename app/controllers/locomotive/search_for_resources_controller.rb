@@ -6,7 +6,7 @@ module Locomotive
     respond_to :json, only: [:index]
 
     def index
-      resources = service.find_resources(params[:q])
+      resources = service.find_resources(params[:type], params[:q], params[:scope])
       respond_with resources
     end
 

@@ -3,6 +3,40 @@ require 'digest'
 module Locomotive
   module PageContentHelper
 
+    def content_types_with_templates(site)
+      site.content_types.order_by(title: 1).map do |content_type|
+        pages = site.pages
+          .only(:_id, :site_id, :title, :target_klass_name, :sections_dropzone_content, :sections_content)
+          .where(target_klass_name: content_type.entries_class_name)
+          .map do |page|
+            {
+              id:       page._id,
+              title:    page.title,
+              sections: page.group_all_sections_by_id
+            }
+          end
+
+        next if pages.empty?
+
+        {
+          name:   content_type.name,
+          slug:   content_type.slug,
+          pages:  pages
+        }
+      end.compact
+      # site.pages
+      # .only(:_id, :site_id, :title, :target_klass_name, :sections_dropzone_content, :sections_content)
+      # .where(:target_klass_name.ne => nil).map do |page|
+      #   {
+      #     page_id:            page._id,
+      #     page_title:         page.title,
+      #     sections:           page.group_all_sections_by_id,
+      #     content_type_slug:  page.content_type.slug,
+      #     content_type_name:  page.content_type.name
+      #   }
+      # end
+    end
+
     def sections_content(model, sections, definitions)
       source  = model.respond_to?(:title) ? :page : :site
       content = model.sections_content || {}

@@ -28,6 +28,8 @@ json.data do
   json.locale   current_content_locale
   json.locales  current_site.locales
   json.uiLocale I18n.locale
+
+  json.contentTypes content_types_with_templates(current_site)
 end
 
 json.urls do

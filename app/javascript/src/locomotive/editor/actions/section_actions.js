@@ -38,7 +38,7 @@ const reloadSectionHTML = (getState, section, blockId) => {
   });
 }
 
-// FIXME: we don't want the update of the section to happen too frequently
+// FIXME: we don't want the section to be updated too frequently
 const debouncedReloadSectionHTML = debounce(reloadSectionHTML, DEBOUNCE_DELAY);
 
 export function updateSectionInput(section, blockId, fieldType, id, newValue) {

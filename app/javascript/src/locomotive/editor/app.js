@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, browserHistory } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 import store from './store';
 
@@ -11,14 +11,14 @@ import Preview from './views/preview';
 
 const App = props => (
   <Provider store={store}>
-    <Router history={browserHistory} basename={props.basePath}>
+    <BrowserRouter basename={props.basePath}>
       <Shield image={store.getState().editor.urls.deadendImage}>
         <div>
           <ActionBar />
           <Preview />
         </div>
       </Shield>
-    </Router>
+    </BrowserRouter>
   </Provider>
 )
 

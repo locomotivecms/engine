@@ -108,7 +108,6 @@
   display: flex;
   align-items: center;
   margin-bottom: 6px;
-  flex-wrap: wrap
 }
 .rdw-inline-dropdown {
   width: 50px;
@@ -122,7 +121,6 @@
   display: flex;
   align-items: center;
   margin-bottom: 6px;
-  flex-wrap: wrap
 }
 .rdw-block-dropdown {
   width: 110px;
@@ -131,7 +129,6 @@
   display: flex;
   align-items: center;
   margin-bottom: 6px;
-  flex-wrap: wrap
 }
 .rdw-fontsize-dropdown {
   min-width: 40px;
@@ -144,7 +141,6 @@
   display: flex;
   align-items: center;
   margin-bottom: 6px;
-  flex-wrap: wrap
 }
 .rdw-fontfamily-dropdown {
   width: 115px;
@@ -162,7 +158,6 @@
   display: flex;
   align-items: center;
   margin-bottom: 6px;
-  flex-wrap: wrap
 }
 .rdw-list-dropdown {
   width: 50px;
@@ -177,7 +172,6 @@
   display: flex;
   align-items: center;
   margin-bottom: 6px;
-  flex-wrap: wrap
 }
 .rdw-text-align-dropdown {
   width: 50px;
@@ -217,7 +211,6 @@
   align-items: center;
   margin-bottom: 6px;
   position: relative;
-  flex-wrap: wrap
 }
 .rdw-colorpicker-modal {
   position: absolute;
@@ -285,7 +278,6 @@
   align-items: center;
   margin-bottom: 6px;
   position: relative;
-  flex-wrap: wrap
 }
 .rdw-link-dropdown {
   width: 50px;
@@ -371,7 +363,6 @@
   align-items: center;
   margin-bottom: 6px;
   position: relative;
-  flex-wrap: wrap
 }
 .rdw-embedded-modal {
   position: absolute;
@@ -475,7 +466,6 @@
   align-items: center;
   margin-bottom: 6px;
   position: relative;
-  flex-wrap: wrap
 }
 .rdw-emoji-modal {
   overflow: auto;
@@ -546,7 +536,6 @@
   align-items: center;
   margin-bottom: 6px;
   position: relative;
-  flex-wrap: wrap
 }
 .rdw-image-modal {
   position: absolute;
@@ -716,13 +705,11 @@
   align-items: center;
   margin-bottom: 6px;
   position: relative;
-  flex-wrap: wrap
 }
 .rdw-history-wrapper {
   display: flex;
   align-items: center;
   margin-bottom: 6px;
-  flex-wrap: wrap
 }
 .rdw-history-dropdownoption {
   height: 40px;
@@ -778,7 +765,7 @@
   border-radius: 2px;
 }
 .rdw-image-alignment-options-popup {
-  position: absolute;
+  position: absolute;;
   background: white;
   display: flex;
   padding: 5px 2px;
@@ -1305,10 +1292,10 @@
       font-size: 2.1rem;
       color: #666;
       padding: 1rem 0; }
-    .editor-view--header-subTitle {
+    .editor-view--header-sub-title {
       font-size: 1.4rem;
       color: #91979f; }
-    .editor-view--header-mainTitle {
+    .editor-view--header-main-title {
       font-size: 2.1rem;
       color: #666; }
     .editor-view--header-back-btn {
@@ -1757,71 +1744,20 @@
     max-height: 30rem; } }
 
 .url-picker {
-  width: 100%; }
-
-.url-picker-info {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-align: center;
-      align-items: center;
-  margin-bottom: 1rem; }
-  .url-picker-info--value {
-    -ms-flex-positive: 1;
-        flex-grow: 1; }
-    .url-picker-info--value .label {
-      position: relative;
-      top: -2px;
-      border-radius: 0px;
-      background-color: #333333; }
-  .url-picker-info--actions {
+  padding: 2rem; }
+  .url-picker-type-list {
     display: -ms-flexbox;
     display: flex;
-    margin-left: 1rem; }
-    .url-picker-info--actions .btn {
-      margin-left: 0.5rem; }
-
-.url-picker-input {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-align: center;
-      align-items: center;
-  margin-bottom: 1rem; }
-  .url-picker-input--autocomplete {
-    -ms-flex-positive: 1;
-        flex-grow: 1; }
-    .url-picker-input--autocomplete .rap-manager, .url-picker-input--autocomplete .rap-target-container {
-      width: 100%; }
-    .url-picker-input--autocomplete .rap-popover-pad {
-      width: 30rem;
-      padding: 0; }
-  .url-picker-input--actions {
-    display: -ms-flexbox;
-    display: flex;
-    margin-left: 1rem; }
-    .url-picker-input--actions .btn {
-      margin-left: 0.5rem; }
-
-.url-picker-new-window {
-  font-size: 1.2rem;
-  color: #91979f;
-  text-align: right; }
-
-.url-picker-resource {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-align: center;
-      align-items: center;
-  padding: 0.7rem 1rem;
-  border-bottom: 1px solid #e3e4e7; }
-  .url-picker-resource--type {
-    margin-right: 1rem; }
-    .url-picker-resource--type .label {
-      position: relative;
-      top: -2px;
-      border-radius: 0px;
-      background-color: #333333; }
-  .url-picker-resource--label {
-    cursor: pointer; }
+    margin-bottom: 2rem; }
+  .url-picker-type-option {
+    -ms-flex: 1 1;
+        flex: 1 1; }
+    .url-picker-type-option input {
+      margin-right: 1rem; }
+    .url-picker-type-option label {
+      font-weight: normal;
+      color: #91979f;
+      margin-bottom: 0; }
 
 .locale-switcher {
   margin-top: 0.2rem; }
@@ -1958,6 +1894,59 @@
     transform: scale(1.1); }
   100% {
     transform: scale(1); } }
+
+.react-autosuggest {
+  position: relative; }
+  .react-autosuggest--loading .react-autosuggest__spinner {
+    display: block; }
+  .react-autosuggest--loading .react-autosuggest__suggestions-container {
+    display: none; }
+  .react-autosuggest__container {
+    position: relative; }
+  .react-autosuggest__spinner {
+    display: none;
+    position: absolute;
+    right: 1rem;
+    top: 0.5rem;
+    z-index: 2; }
+  .react-autosuggest__input {
+    width: 100%;
+    padding: 0.5rem 0.8rem;
+    border: 1px solid #e3e4e7;
+    border-radius: 3px;
+    -webkit-appearance: none; }
+    .react-autosuggest__input::-ms-clear {
+      display: none; }
+    .react-autosuggest__input--open {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0; }
+    .react-autosuggest__input--focused {
+      outline: none; }
+  .react-autosuggest__suggestions-container {
+    display: none; }
+    .react-autosuggest__suggestions-container--open {
+      display: block;
+      position: absolute;
+      top: 31px;
+      width: 100%;
+      border: 1px solid #e3e4e7;
+      background-color: #fff;
+      border-bottom-left-radius: 3px;
+      border-bottom-right-radius: 3px;
+      z-index: 2; }
+  .react-autosuggest__suggestions-list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none; }
+  .react-autosuggest__suggestion {
+    cursor: pointer;
+    padding: 0.5rem 0.8rem;
+    border-top: 1px solid #ddd; }
+    .react-autosuggest__suggestion--first {
+      border-top: 0; }
+    .react-autosuggest__suggestion--highlighted {
+      background-color: #1c77c3;
+      color: #fff; }
 
 #editor-app, #editor-app .container-fluid {
   height: 100%; }

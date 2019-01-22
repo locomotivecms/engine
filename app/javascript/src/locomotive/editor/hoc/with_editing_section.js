@@ -10,6 +10,15 @@ import { fetchBlockContent, findBetterText as findBetterTextForBlock } from '../
 // In charge of find the section and the block based on the location
 const withEditingSection = Component => {
 
+  const findFieldLabel = (sectionDefinition, blockDefinition, settingId) => {
+    if (settingId === null || settingId === undefined) return null;
+
+    const settings  = (blockDefinition || sectionDefinition).settings;
+    const setting   = find(settings, setting => setting.id === settingId);
+
+    return setting ? setting.label : null;
+  }
+
   // Enhance the props
   const buildNewProps = props => {
     var newProps = pick(props.match.params, [
@@ -34,6 +43,8 @@ const withEditingSection = Component => {
       newProps.blockLabel         = findBetterTextForBlock(newProps.blockContent, newProps.blockDefinition);
 
       newProps.currentContent     = newProps.blockContent || newProps.sectionContent;
+
+      newProps.settingLabel       = findFieldLabel(newProps.sectionDefinition, newProps.blockDefinition, newProps.settingId);
     }
 
     return Object.assign({}, props, newProps);
@@ -80,7 +91,6 @@ const withEditingSection = Component => {
 
   const handleChange = (props, settingType, settingId, newValue) => {
     const { section, blockId, updateSectionInput } = props;
-
     updateSectionInput(section, blockId, settingType, settingId, newValue);
   }
 

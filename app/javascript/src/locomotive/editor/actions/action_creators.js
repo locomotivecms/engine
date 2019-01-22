@@ -72,7 +72,7 @@ function loadEditor(data, urls) {
       formErrors:         {},
       locale:             data.locale,
       locales:            data.locales,
-      api:                ApiFactory(urls),
+      api:                ApiFactory(urls, data.locale),
       urls
     }
   }
