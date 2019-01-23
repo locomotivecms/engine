@@ -16,34 +16,6 @@ module Locomotive
         Rails.logger.warn("[EditorService] Unknown type: #{type}")
         []
       end
-
-      # TODO: content entries
-
-
-      # (
-      #   site.pages
-      #   .only(:_id, :title)
-      #   .where(title: /#{query}/i, is_layout: false, target_klass_name: nil, :slug.ne => '404')
-      #   .limit(max_results).map do |page|
-      #     { type: 'page', value:  page._id, label: ['Pages', page.title] }
-      #   end
-      # ) + (
-      #   site.pages
-      #   .only(:_id, :site_id, :target_klass_name)
-      #   .where(:target_klass_name.ne => nil).map do |page|
-      #     page.fetch_target_entries(
-      #       page.content_type.label_field_name => /#{query}/i, _visible: true
-      #     ).map do |entry|
-      #       {
-      #         type:   'content_entry',
-      #         value:  { content_type_slug: entry.content_type_slug, id: entry._id, page_id: page._id },
-      #         label:  [entry.content_type.name, entry._label]
-      #       }
-      #     end
-      #   end.flatten
-      # )
-      # .sort { |a, b| a[:label][1] <=> b[:label][1] }
-      # .first(max_results)
     end
 
     # Save sections for both the current site (global versions) and the page

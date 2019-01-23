@@ -24,17 +24,6 @@ module Locomotive
           pages:  pages
         }
       end.compact
-      # site.pages
-      # .only(:_id, :site_id, :title, :target_klass_name, :sections_dropzone_content, :sections_content)
-      # .where(:target_klass_name.ne => nil).map do |page|
-      #   {
-      #     page_id:            page._id,
-      #     page_title:         page.title,
-      #     sections:           page.group_all_sections_by_id,
-      #     content_type_slug:  page.content_type.slug,
-      #     content_type_name:  page.content_type.name
-      #   }
-      # end
     end
 
     def sections_content(model, sections, definitions)

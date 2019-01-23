@@ -28,28 +28,26 @@ class ContentEntry extends Component {
     this.setState({ settings, contentType, page });
   }
 
-  _handleChange(newSettings, extraData) {
-    this.setState({
-      ...extraData,
-      settings: Object.assign(this.state.settings, newSettings)
-    }, () => this.props.handleChange(this.state.settings));
+  _handleChange(settings, extraData) {
+    this.setState({ ...extraData, settings }, () => this.props.handleChange(this.state.settings));
   }
 
   handleContentTypeChanged(newSlug) {
-    this._handleChange({ value: { content_type_slug: newSlug } }, {
+    this._handleChange(
+      { value: { content_type_slug: newSlug }, new_window: this.state.settings.new_window }, {
       contentType: getContentType(this.props.contentTypes, newSlug)
     });
   }
 
   handleContentEntryChanged(newSettings) {
     this._handleChange(
-      update(newSettings, { value: { page_id: { $set: this.state.contentType.pages[0].id } } })
+      update(newSettings, { page_id: { $set: this.state.contentType.pages[0].id } })
     );
   }
 
   handlePageChanged(newPageId) {
     this._handleChange(
-      update(this.state.settings, { value: { page_id: { $set: newPageId } } }), {
+      update(this.state.settings, { page_id: { $set: newPageId } }), {
         page: getPage(contentType.pages, newPageId)
       }
     );
@@ -57,12 +55,14 @@ class ContentEntry extends Component {
 
   handleSectionChanged(newSectionId) {
     this._handleChange(
-      update(this.state.settings, { value: { section_id: { $set: newSectionId } } })
+      update(this.state.settings, { section_id: { $set: newSectionId } })
     );
   }
 
   handleNewWindowChanged(checked) {
-    this._handleChange({ new_window: checked }, {});
+    this._handleChange(
+      update(this.state.settings, { new_window: { $set: checked } })
+    );
   }
 
   renderContentTypeSelect() {
@@ -99,7 +99,7 @@ class ContentEntry extends Component {
     return (
       <Select
         label={i18n.t('views.pickers.url.page.label')}
-        value={this.state.settings.value?.page_id}
+        value={this.state.settings.page_id}
         list={list}
         onChange={id => handlePageChanged(id)}
       />
@@ -112,7 +112,7 @@ class ContentEntry extends Component {
     return (
       <Select
         label={i18n.t('views.pickers.url.page.section_label')}
-        value={this.state.settings.value?.section_id}
+        value={this.state.settings.section_id}
         list={list}
         includeEmpty={true}
         onChange={id => this.handleSectionChanged(id)}

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import classnames from 'classnames';
 import i18n from '../../../i18n';
 
 const TypeOption = ({ value, currentValue, handleChange, ...props }) => (
-  <div className="url-picker-type-option">
+  <div className={classnames('url-picker-type-option', currentValue === value && 'url-picker-type-option--checked')}>
     <label>
       <input
         type="radio"

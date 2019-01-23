@@ -24,7 +24,9 @@ class Iframe extends React.Component {
 
       this.iframe.contentWindow.onunload =() => {
         this.createdAt = new Date().getMilliseconds();
-        this.props.startLoadingIframe(this.iframe.contentWindow);
+
+        if (this.iframe?.contentWindow)
+          this.props.startLoadingIframe(this.iframe.contentWindow);
       }
 
       if (this.props.iframeState.loaded === null) {

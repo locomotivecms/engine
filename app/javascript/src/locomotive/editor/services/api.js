@@ -125,9 +125,7 @@ export function getThumbnail(url, imageUrl, format) {
 
 // RESOURCES
 
-// TODO: TO BE REMOVED
 export function searchForResources(url, locale, type, q, scope) {
-  console.log('searchForResources', locale, type, q, scope);
   return jsonGet(url, { content_locale: locale, q, type, scope })
   .then(response => ({ list: response.json }));
 }

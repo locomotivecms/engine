@@ -10,22 +10,25 @@ en:
           action: "Apply"
           action_in_progress: "Cropping..."
 
-        url_picker:
-          no_url: "No URL for now"
-          placeholder: "Please type the label of a resource"
-          open_new_window: "Open in a new window?"
-          select_button: "Select"
-          cancel_button: "Cancel"
-          change_button: "Change"
-          done_button: "Done"
-          types:
-            external: "External"
-            pages: "Page"
-
         locale_switcher:
           locale: "<strong>{{locale}}</strong> version"
 
+        draft:
+          link:
+            title: Insert link
+            insert_link: Done
+
       inputs:
+        url:
+          select_button: "Select"
+          change_button: "Change"
+          remove_button: "Remove"
+          types:
+            page: Page
+            content_entry: Model
+            _external: URL
+            email: Email
+
         image_picker:
           select_button: "Select"
           change_button: "Change"
@@ -75,7 +78,7 @@ en:
               placeholder: Type the label of the instance
             _external:
               label: URL address
-              placeholder: "https://"
+              placeholder: "https://www.example.com"
             email:
               label: Email address
               placeholder: "name@example.com"

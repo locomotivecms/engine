@@ -25,7 +25,6 @@ module Locomotive
               content:  section
             }
           end
-          # TODO: sections_content + Rspec
         end
 
         private

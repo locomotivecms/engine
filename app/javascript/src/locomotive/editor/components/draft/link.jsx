@@ -1,14 +1,17 @@
-import React, { Component } from 'react';
-import { bindAll } from 'lodash';
+import React, { Component, Fragment } from 'react';
+import { compose } from 'redux';
 import classNames from 'classnames';
-import { encodeLinkResource, decodeLinkResource, stopPropagation } from '../../utils/misc';
+import { isBlank, encodeLinkResource, decodeLinkResource, findParentElement } from '../../utils/misc';
+import i18n from '../../i18n';
 
 // HOC
 import withRedux from '../../hoc/with_redux';
+import withGlobalVars from '../../hoc/with_global_vars';
 
 // Components
 import Option from './option.jsx';
-import UrlPicker from '../url_picker';
+import Modal from '../modal';
+import UrlPicker from '../../views/pickers/urls/main';
 
 class Link extends Component {
 
@@ -16,30 +19,18 @@ class Link extends Component {
     super(props);
     this.state = {
       showModal: false,
+      resource: null,
       linkTarget: '',
       linkTitle: '',
       linkTargetOption: this.props.config.defaultTargetOption
     };
-
-    bindAll(this,
-      'renderAddLinkModal', 'hideModal', 'signalExpandShowModal',
-      'forceExpandAndShowModal', 'onUpdate', 'removeLink'
-    );
   }
 
-  componentWillReceiveProps(props) {
-    if (this.props.expanded && !props.expanded) {
-      this.setState({
-        showModal: false,
-        linkTarget: '',
-        linkTitle: '',
-        linkTargetOption: this.props.config.defaultTargetOption
-      });
-    }
-  }
-
-  hideModal() {
-    this.setState({ showModal: false });
+  componentDidMount() {
+    // FIXME: little hack to make the select tags work inside a modal
+    document.addEventListener('mousedown', event => {
+      if (event.target.tagName === 'SELECT') event.stopPropagation();
+    }, true);
   }
 
   signalExpandShowModal() {
@@ -54,48 +45,58 @@ class Link extends Component {
     });
   }
 
-  forceExpandAndShowModal() {
-    const { doExpand, currentState: { link, selectionText } } = this.props;
-    const { linkTargetOption } = this.state;
-    doExpand();
-    this.setState({
-      showModal: true,
-      linkTarget: link && link.target,
-      linkTargetOption: (link && link.targetOption) || linkTargetOption,
-      linkTitle: (link && link.title) || selectionText,
-    });
+  hideModal() {
+    this.setState({ showModal: false, resource: null });
   }
 
-  onUpdate(resource) {
-    const { onChange }  = this.props;
-    const target        = encodeLinkResource(resource);
-    const targetOption  = resource.new_window ? '_blank' : null;
-    onChange('link', this.state.linkTitle, target, targetOption);
+  onUpdate(type, resource) {
+    this.setState({ resource: Object.assign({}, resource, { type }) });
+  }
+
+  insertLink() {
+    const { linkTitle, resource } = this.state;
+
+    if (!isBlank(resource?.value)) {
+      const target        = encodeLinkResource(resource);
+      const { onChange }  = this.props;
+      const targetOption  = resource.new_window ? '_blank' : null;
+
+      // insert/change the link
+      onChange('link', linkTitle, target, targetOption);
+
+      // close the modal
+      this.hideModal();
+    }
   }
 
   removeLink() {
-    const { onChange } = this.props;
-    onChange('unlink');
+    this.props.onChange('unlink');
   }
 
   renderAddLinkModal() {
-    const { config: { popupClassName }, doCollapse, translations } = this.props;
-    const { linkTitle, linkTarget, linkTargetOption } = this.state;
+    const { showModal, linkTitle, linkTarget, linkTargetOption } = this.state;
 
     return (
-      <div
-        className={classNames('rdw-link-modal', popupClassName)}
-        onClick={stopPropagation}
+      <Modal
+        title={i18n.t('components.draft.link.title')}
+        isOpen={showModal}
+        onClose={() => this.hideModal()}
       >
         <UrlPicker
-          value={decodeLinkResource(linkTarget) || linkTitle}
-          handleChange={this.onUpdate}
-          useDoneButton={true}
-          searchForResources={this.props.api.searchForResources}
-          locale={locale}
+          api={this.props.api}
+          url={showModal ? decodeLinkResource(linkTarget) || linkTitle : ''}
+          contentTypes={this.props.contentTypes}
+          findSectionDefinition={this.props.findSectionDefinition}
+          updateContent={(type, resource) => this.onUpdate(type, resource)}
         />
-      </div>
-    )
+
+        <div className="rdw-link-modal-actions">
+          <button className="btn btn-default btn-sm" onClick={event => this.insertLink()}>
+            {i18n.t('components.draft.link.insert_link')}
+          </button>
+        </div>
+      </Modal>
+    );
   }
 
   render() {
@@ -105,15 +106,15 @@ class Link extends Component {
       expanded,
       translations,
     } = this.props;
-    const { showModal } = this.state;
+
     return (
       <div className={classNames('rdw-link-wrapper', className)} aria-label="rdw-link-control">
         {options.indexOf('link') >= 0 && <Option
           value="unordered-list-item"
           className={classNames(link.className)}
-          onClick={this.signalExpandShowModal}
+          onClick={e => this.signalExpandShowModal()}
           aria-haspopup="true"
-          aria-expanded={showModal}
+          aria-expanded={this.state.showModal}
           title={link.title || translations['components.controls.link.link']}
         >
           <img
@@ -121,11 +122,12 @@ class Link extends Component {
             alt=""
           />
         </Option>}
+
         {options.indexOf('unlink') >= 0 && <Option
           disabled={!currentState.link}
           value="ordered-list-item"
           className={classNames(unlink.className)}
-          onClick={this.removeLink}
+          onClick={e => this.removeLink()}
           title={unlink.title || translations['components.controls.link.unlink']}
         >
           <img
@@ -133,14 +135,15 @@ class Link extends Component {
             alt=""
           />
         </Option>}
-        {expanded && showModal ? this.renderAddLinkModal() : undefined}
+
+        {this.renderAddLinkModal()}
       </div>
     );
   }
 
 }
 
-export default withRedux(state => ({
-  api:      state.editor.api,
-  locale:   state.editor.locale
-}))(Link);
+export default compose(
+  withGlobalVars,
+  withRedux(state => ({ contentTypes: state.editor.contentTypes }))
+)(Link);

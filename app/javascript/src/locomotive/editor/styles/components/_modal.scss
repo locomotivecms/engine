@@ -23,6 +23,7 @@
     padding: 0rem 2rem;
     background: #ffffff;
     color: #333333;
+    border-radius: 3px;
   }
 
   &-header {
@@ -39,16 +40,18 @@
 }
 
 .modal-close {
-  color: #aaa;
-  line-height: 50px;
-  font-size: 2rem;
   position: absolute;
-  right: 0;
-  text-align: center;
   top: 0;
+  right: 0rem;
   width: 70px;
+  padding-right: 2rem;
+  line-height: 50px;
+  text-align: right;
   text-decoration: none;
+  font-size: 2rem;
+  color: #aaa;
   cursor: pointer;
+
   &:hover {
     color: #000;
   }

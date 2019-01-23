@@ -22,19 +22,16 @@ class Autosuggest extends Component {
   }
 
   componentDidMount() {
-    // console.log('Autosuggest', 'componentDidMount', this.props);
     this.setState({ input: this.props.input });
   }
 
   componentDidUpdate(prevProps) {
-    // console.log('Autosuggest', 'componentDidUpdate', this.props);
     if (this.props.input !== prevProps.input)
       this.setState({ input: this.props.input });
   }
 
   onChange(event, { newValue, method }) {
-    console.log(method, newValue);
-
+    console.log('onChange', method);
     switch(method) {
       case 'enter':
       case 'click':
@@ -52,14 +49,12 @@ class Autosuggest extends Component {
   }
 
   onSuggestionsFetchRequested({ value }) {
-    console.log('onSuggestionsFetchRequested', value);
     this.setState({ loading: true });
     this.props.search(value)
     .then(data => this.setState({ suggestions: data.list, loading: false }));
   }
 
   onSuggestionsClearRequested() {
-    console.log('onSuggestionsClearRequested');
     this.setState({ suggestions: [] });
   }
 
