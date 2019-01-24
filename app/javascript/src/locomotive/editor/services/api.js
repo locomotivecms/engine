@@ -131,7 +131,6 @@ export function searchForResources(url, locale, type, q, scope) {
 }
 
 export default function ApiFactory(urls, locale) {
-  console.log('ApiFactory', locale);
   return {
     loadContent:        (pageId, contentEntryId, locale) => loadContent(urls.load, pageId, contentEntryId, locale),
     saveContent:        (site, page, locale) => saveContent(urls.save, site, page, locale),

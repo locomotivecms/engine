@@ -59,7 +59,7 @@ module Locomotive
     end
 
     def sections_dropzone_content(page)
-      (page.sections_dropzone_content || {}).each_with_index.map do |section, index|
+      (page.sections_dropzone_content || []).each_with_index.map do |section, index|
         section['id'] = "dropzone-#{index}"
 
         # FIXME: sections content deployed with Wagon might have no blocks (nil)
@@ -80,7 +80,7 @@ module Locomotive
           ids[attributes[:uuid]] = attributes
         end
 
-        (page.sections_dropzone_content || {}).each_with_index do |section, index|
+        (page.sections_dropzone_content || []).each_with_index do |section, index|
           id    = "dropzone-#{index}"
           uuid  = Digest::MD5.hexdigest(id)
 

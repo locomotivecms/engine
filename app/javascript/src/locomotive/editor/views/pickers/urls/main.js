@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { compose } from 'redux';
-import { bindAll, isEqual } from 'lodash';
+import { compact, isEqual } from 'lodash';
 import i18n from '../../../i18n';
 
 // Components
@@ -12,11 +12,15 @@ import { findBetterText } from '../../../services/sections_service';
 
 // Helpers
 const buildSectionOptions = (findSectionDefinition, sections) => {
-  return (sections || []).map(section => {
-    const definition  = findSectionDefinition(section.type);
-    const label       = findBetterText(section.content, definition)
-    return [label, section.id];
-  });
+  return compact((sections || []).map(section => {
+    // unknown section type, can happen if the data are messed up (first deployment)
+    if (section.type === null) return null;
+
+    const definition = findSectionDefinition(section.type);
+    const label       = findBetterText(section.content, definition) || definition.name;
+    const anchor      = (section.content.anchor || `page-${section.id}`) + '-section';
+    return [label, anchor];
+  }));
 }
 
 class Main extends Component {
@@ -30,7 +34,6 @@ class Main extends Component {
       _external:      { value: '', new_window: false },
       email:          { value: '', new_window: false }
     };
-    bindAll(this, 'handleTypeChange', 'handleChange');
   }
 
   componentDidMount() {
@@ -51,8 +54,8 @@ class Main extends Component {
       this.setState({ type: value.type, [value.type]: Object.assign({}, value) });
   }
 
-  handleTypeChange(event) {
-    this.setState({ type: event.target.value });
+  handleTypeChange(newType) {
+    this.setState({ type: newType });
   }
 
   handleChange(newSettings) {
@@ -83,7 +86,7 @@ class Main extends Component {
               key={type}
               value={type}
               currentValue={this.state.type}
-              handleChange={this.handleTypeChange}
+              handleChange={event => this.handleTypeChange(event.target.value)}
             />
           ))}
         </div>
@@ -93,7 +96,7 @@ class Main extends Component {
             api={this.props.api}
             settings={this.state[this.state.type]}
             contentTypes={this.props.contentTypes}
-            handleChange={this.handleChange}
+            handleChange={newSettings => this.handleChange(newSettings)}
             buildSectionOptions={buildSectionOptions.bind(null, this.props.findSectionDefinition)}
           />
         </div>

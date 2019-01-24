@@ -18,13 +18,22 @@ module Locomotive
         end
 
         def group_all_sections_by_id
+          puts self.sections_content.inspect
+
           self.sections_dropzone_content.map.each_with_index do |section, index|
             {
               id:       "#{section['type']}-#{index}",
               type:     section['type'],
               content:  section
             }
+          end + self.sections_content.map do |(section_id, section)|
+            {
+              id:       section_id,
+              type:     section['type'],
+              content:  section
+            }
           end
+
         end
 
         private

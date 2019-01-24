@@ -67,6 +67,7 @@ function loadEditor(data, urls) {
       sections:           data.sections,
       sectionDefinitions: data.sectionDefinitions,
       editableElements:   data.editableElements,
+      contentTypes:       data.contentTypes,
       changed:            false,
       pageChanged:        false,
       formErrors:         {},

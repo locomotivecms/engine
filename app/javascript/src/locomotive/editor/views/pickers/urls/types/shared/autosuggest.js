@@ -31,7 +31,6 @@ class Autosuggest extends Component {
   }
 
   onChange(event, { newValue, method }) {
-    console.log('onChange', method);
     switch(method) {
       case 'enter':
       case 'click':

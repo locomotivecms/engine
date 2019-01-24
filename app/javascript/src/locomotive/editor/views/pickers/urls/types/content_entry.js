@@ -41,21 +41,21 @@ class ContentEntry extends Component {
 
   handleContentEntryChanged(newSettings) {
     this._handleChange(
-      update(newSettings, { page_id: { $set: this.state.contentType.pages[0].id } })
+      update(newSettings, { value: { page_id: { $set: this.state.contentType.pages[0].id } } })
     );
   }
 
   handlePageChanged(newPageId) {
     this._handleChange(
-      update(this.state.settings, { page_id: { $set: newPageId } }), {
-        page: getPage(contentType.pages, newPageId)
+      update(this.state.settings, { value: { page_id: { $set: newPageId } } }), {
+        page: getPage(this.state.contentType.pages, newPageId)
       }
     );
   }
 
-  handleSectionChanged(newSectionId) {
+  handleSectionChanged(newAnchor) {
     this._handleChange(
-      update(this.state.settings, { section_id: { $set: newSectionId } })
+      update(this.state.settings, { anchor: { $set: newAnchor } })
     );
   }
 
@@ -73,7 +73,7 @@ class ContentEntry extends Component {
         label={i18n.t('views.pickers.url.content_entry.content_type_label')}
         value={this.state.settings.value?.content_type_slug}
         list={list}
-        onChange={slug => handleContentTypeChanged(slug)}
+        onChange={slug => this.handleContentTypeChanged(slug)}
       />
     );
   }
@@ -101,7 +101,7 @@ class ContentEntry extends Component {
         label={i18n.t('views.pickers.url.page.label')}
         value={this.state.settings.page_id}
         list={list}
-        onChange={id => handlePageChanged(id)}
+        onChange={id => this.handlePageChanged(id)}
       />
     )
   }
@@ -112,10 +112,10 @@ class ContentEntry extends Component {
     return (
       <Select
         label={i18n.t('views.pickers.url.page.section_label')}
-        value={this.state.settings.section_id}
+        value={this.state.settings.anchor}
         list={list}
         includeEmpty={true}
-        onChange={id => this.handleSectionChanged(id)}
+        onChange={anchor => this.handleSectionChanged(anchor)}
       />
     )
   }

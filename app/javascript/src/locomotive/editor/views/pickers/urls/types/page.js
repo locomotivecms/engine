@@ -35,11 +35,11 @@ class Page extends Component {
 
   handlePageChanged(newSettings) {
     const { sections, ...settings } = newSettings;
-    this._handleChange(Object.assign(settings, { section_id: '' }), { sections });
+    this._handleChange(Object.assign(settings, { anchor: '' }), { sections });
   }
 
-  handleSectionChanged(newSectionId) {
-    this._handleChange({ section_id: newSectionId }, {});
+  handleSectionChanged(newAnchor) {
+    this._handleChange({ anchor: newAnchor }, {});
   }
 
   handleNewWindowChanged(checked) {
@@ -60,13 +60,17 @@ class Page extends Component {
   }
 
   renderSectionPicker() {
+    const options = this.props.buildSectionOptions(this.state.sections);
+
+    if (options.length === 0) return null;
+
     return (
       <Select
         label={i18n.t('views.pickers.url.page.section_label')}
-        value={this.state.settings.section_id}
-        list={this.props.buildSectionOptions(this.state.sections)}
+        value={this.state.settings.anchor}
+        list={options}
         includeEmpty={true}
-        onChange={id => this.handleSectionChanged(id)}
+        onChange={anchor => this.handleSectionChanged(anchor)}
       />
     )
   }
@@ -88,7 +92,7 @@ class Page extends Component {
       <div className="url-picker-page-settings">
         {this.renderPagePicker()}
 
-        {settings && sections.length > 0 && this.renderSectionPicker()}
+        {settings && this.renderSectionPicker()}
 
         {settings && this.renderNewWindowCheckbox()}
       </div>
