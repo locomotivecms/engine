@@ -4,8 +4,8 @@ module Locomotive
     include Locomotive::Concerns::ActivityService
 
     # Used by the URL picker to retrieve either a page or a content entry.
-    def find_resources(type, query, scope, max_results = 10)
-      return [] if query.strip.blank?
+    def find_resources(type, query, scope = nil, max_results = 10)
+      return [] if type.blank? || query.strip.blank?
 
       case type
       when 'page'
@@ -45,7 +45,7 @@ module Locomotive
           type:     'page',
           value:    page._id,
           label:    ['Page', page.title],
-          sections: page.group_all_sections_by_id
+          sections: page.all_sections_content
         }
       end
     end

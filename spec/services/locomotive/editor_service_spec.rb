@@ -10,13 +10,15 @@ describe Locomotive::EditorService do
   describe '#find_resources' do
 
     let(:site)  { create(:site) }
+    let(:type)  { nil }
     let(:query) { 'none' }
+    let(:scope) { nil }
 
-    subject { service.find_resources(query) }
+    subject { service.find_resources(type, query, scope) }
 
     it { is_expected.to eq [] }
 
-    context 'with a bunch of pages' do
+    context 'querying pages' do
 
       before do
         create(:page, title: 'Hello', slug: nil, site: site, published: false)
@@ -25,21 +27,24 @@ describe Locomotive::EditorService do
         3.times { |i| create(:page, title: "Another page #{i}", slug: nil, site: site) }
       end
 
+      let(:type)  { 'page' }
       let(:query) { 'Hello' }
 
       it 'returns the pages whose titles match the query' do
         expect(subject.count).to eq 3
         expect(subject.first[:type]).to eq('page')
-        expect(subject.first[:label][0]).to eq('Pages')
+        expect(subject.first[:label][0]).to eq('Page')
         expect(subject.first[:label][1]).to eq('Hello')
       end
 
     end
 
-    context 'with a bunch of content entries' do
+    context 'querying content entries' do
 
       let(:content_type)  { create(:content_type, :article, site: site) }
+      let(:type)          { 'content_entry' }
       let(:query)         { 'Article' }
+      let(:scope)         { 'articles' }
 
       before do
         klass_name = content_type.entries_class_name

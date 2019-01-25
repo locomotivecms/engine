@@ -16,10 +16,10 @@ const buildSectionOptions = (findSectionDefinition, sections) => {
     // unknown section type, can happen if the data are messed up (first deployment)
     if (section.type === null) return null;
 
-    const definition = findSectionDefinition(section.type);
-    const label       = findBetterText(section.content, definition) || definition.name;
-    const anchor      = (section.content.anchor || `page-${section.id}`) + '-section';
-    return [label, anchor];
+    const definition  = findSectionDefinition(section.type);
+    const label       = findBetterText(section, definition) || definition.name;
+
+    return [label, section.anchor];
   }));
 }
 

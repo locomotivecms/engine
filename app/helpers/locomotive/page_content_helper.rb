@@ -12,7 +12,7 @@ module Locomotive
             {
               id:       page._id,
               title:    page.title,
-              sections: page.group_all_sections_by_id
+              sections: page.all_sections_content
             }
           end
 
