@@ -4425,7 +4425,7 @@ eval("\nvar content = __webpack_require__(/*! !../../../../node_modules/mini-css
 /*!*************************************************************************!*\
   !*** ./app/javascript/src/locomotive/editor/actions/action_creators.js ***!
   \*************************************************************************/
-/*! exports provided: updatePageSetting, updateSectionInput, selectSection, deselectSection, addSectionBlock, removeSectionBlock, moveSectionBlock, previewSection, cancelPreviewSection, addSection, removeSection, moveSection, persistChanges, reloadEditor, changeLocale, startLoadingIframe, onIframeLoaded, onIframeOperationsDone */
+/*! exports provided: persistChanges, reloadEditor, changeLocale, startLoadingIframe, onIframeLoaded, onIframeOperationsDone, updatePageSetting, updateSectionInput, selectSection, deselectSection, addSectionBlock, removeSectionBlock, moveSectionBlock, previewSection, cancelPreviewSection, addSection, removeSection, moveSection */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

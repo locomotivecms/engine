@@ -1,14 +1,7 @@
 GIT
-  remote: git://github.com/salsify/grape-entity-matchers.git
-  revision: 43dea6d1327d86e97fe54242296728cd05e71e5c
-  branch: grape-entity-exposures
-  specs:
-    grape-entity-matchers (1.2.0)
-      grape-entity (>= 0.5.0)
-      rspec (>= 3.2.0)
-
-PATH
-  remote: ../custom_fields
+  remote: git://github.com/locomotivecms/custom_fields.git
+  revision: 73b666dff28ca27f23a64734f88341f9ecc43415
+  ref: 73b666d
   specs:
     custom_fields (2.10.0.beta2)
       activesupport (>= 5.1, < 6.0)
@@ -17,8 +10,10 @@ PATH
       monetize (~> 1.9.0)
       mongoid (>= 6.2, < 7.0)
 
-PATH
-  remote: ../steam
+GIT
+  remote: git://github.com/locomotivecms/steam.git
+  revision: a75066f171e5185dc781fda85d246ade5e440fea
+  ref: a75066f
   specs:
     locomotivecms_steam (1.5.0.beta2)
       RedCloth (~> 4.3.2)
@@ -47,6 +42,15 @@ PATH
       sass (~> 3.4.25)
       sprockets (~> 3.7.1)
       uglifier (~> 4.1.3)
+
+GIT
+  remote: git://github.com/salsify/grape-entity-matchers.git
+  revision: 43dea6d1327d86e97fe54242296728cd05e71e5c
+  branch: grape-entity-exposures
+  specs:
+    grape-entity-matchers (1.2.0)
+      grape-entity (>= 0.5.0)
+      rspec (>= 3.2.0)
 
 PATH
   remote: .
