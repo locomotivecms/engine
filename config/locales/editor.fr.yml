@@ -10,22 +10,25 @@ fr:
           action: "Appliquer"
           action_in_progress: "Rognage..."
 
-        url_picker:
-          no_url: "Aucune URL pour le moment"
-          placeholder: "Veuillez taper le titre d'une ressource"
-          open_new_window: "Ouvrir dans une nouvelle fenêtre ?"
-          select_button: "Sélectionner"
-          cancel_button: "Annuler"
-          change_button: "Changer"
-          done_button: "Finir"
-          types:
-            external: "Externe"
-            pages: "Page"
-
         locale_switcher:
           locale: 'version <strong>{{locale}}</strong>'
 
+        draft:
+          link:
+            title: Insérer un lien
+            insert_link: Terminé
+
       inputs:
+        url:
+          select_button: "Sélectionner"
+          change_button: "Changer"
+          remove_button: "Enlever"
+          types:
+            page: Page
+            content_entry: Modèle
+            _external: URL
+            email: Email
+
         image_picker:
           select_button: "Sélectionner"
           change_button: "Changer"
@@ -50,13 +53,35 @@ fr:
             settings: "Paramètres"
             seo: "SEO"
 
-        assets:
+        pickers:
           images:
             title: "Images"
             loading: "Chargement des images en cours !"
             too_big: "Votre image est trop lourde : la taille maximale pour un fichier est de 2Mo"
             add: "+ ajouter"
             upload_in_progress: "Téléchargement en cours..."
+          url:
+            title: "Sélectionner une cible"
+            open_new_window: "Ouvrir dans une nouvelle fenêtre ?"
+            types:
+              page: Page
+              content_entry: Modèle
+              _external: URL
+              email: Email
+            page:
+              label: Page
+              placeholder: Taper le titre de votre page
+              section_label: Section
+            content_entry:
+              content_type_label: Quel modèle ?
+              label: Titre d'une ressource
+              placeholder: Taper le tire de votre ressource
+            _external:
+              label: Adresse WEB
+              placeholder: "https://www.example.com"
+            email:
+              label: Adresse Email
+              placeholder: "name@example.com"
 
         preview:
           view: "Aperçu"

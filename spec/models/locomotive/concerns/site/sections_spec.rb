@@ -30,7 +30,6 @@ describe Locomotive::Concerns::Site::Sections do
 
     end
 
-
   end
 
 end

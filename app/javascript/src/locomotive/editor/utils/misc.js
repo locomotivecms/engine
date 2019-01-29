@@ -34,6 +34,10 @@ export function uuid() {
   });
 }
 
+export function shortUuid() {
+  return Math.random().toString(36).substring(10);
+}
+
 // Swap an element of an array to its new position
 export function arrayMove(array, oldIndex, newIndex) {
   var newArray = [];

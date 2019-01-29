@@ -1,5 +1,5 @@
 import { forEach, find, findIndex, sortBy, pick, cloneDeep } from 'lodash';
-import { uuid, presence, isBlank, stripHTML } from '../utils/misc';
+import { uuid, shortUuid, presence, isBlank, stripHTML } from '../utils/misc';
 
 const setDefaultValuesTo = (settings, object) => {
   forEach(settings, setting => {
@@ -24,11 +24,12 @@ export function buildSection(definitions, sectionType, presetIndex) {
 
   // and also add other default attributes (if some of them are missing)
   section = {
-    id:       uuid(),
-    name:     preset.name,
-    type:     sectionType,
-    settings: {},
-    blocks:   [],
+    id:         uuid(),
+    name:       preset.name,
+    type:       sectionType,
+    anchor:     `${sectionType}-${shortUuid()}`,
+    settings:   {},
+    blocks:     [],
     ...section
   }
 

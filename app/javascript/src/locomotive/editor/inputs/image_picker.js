@@ -14,7 +14,7 @@ import Modal from '../components/modal';
 import Cropper from '../components/cropper';
 
 const openLibrary = props => {
-  props.redirectTo(props.imagesPath(
+  props.redirectTo(props.pickImagePath(
     props.section,
     props.blockType,
     props.blockId,
@@ -78,7 +78,7 @@ class ImagePickerInput extends Component {
           ></div>
 
           <div className="editor-input-image-picker--actions">
-            <button className="btn btn-default btn-sm" onClick={e => openLibrary({ setting, ...this.props})}>
+            <button className="btn btn-default btn-sm" onClick={e => openLibrary({ setting, ...this.props })}>
               {i18n.t(value === null ? 'inputs.image_picker.select_button' : 'inputs.image_picker.change_button')}
             </button>
             &nbsp;

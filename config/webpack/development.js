@@ -12,11 +12,7 @@ module.exports = {
       {
         test: /\.(js|jsx|es6)$/,
         exclude: /(node_modules|bower_components)/,
-        loader: 'babel-loader',
-        query: {
-          plugins: ['transform-object-rest-spread'],
-          presets: ['env', 'react']
-        }
+        loader: 'babel-loader'
       },
       {
         test: /\.scss$/,

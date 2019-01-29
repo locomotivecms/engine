@@ -1,85 +1,52 @@
 .url-picker {
-  width: 100%;
+
+  padding: 2rem;
+
+  &-type {
+
+    &-list {
+      display: flex;
+      margin-bottom: 2rem;
+    }
+
+    &-option {
+      flex: 1;
+
+      &--checked {
+        label {
+          color: $black !important;
+        }
+      }
+
+      input {
+        margin-right: 1rem;
+      }
+
+      label {
+        font-weight: normal;
+        color: $gray;
+        margin-bottom: 0;
+        cursor: pointer;
+      }
+    }
+
+  }
+
+  .react-autosuggest__input {
+    &::placeholder {
+      color: $gray-light;
+    }
+  }
+
 }
 
-.url-picker-info {
-  display: flex;
-  align-items: center;
-  margin-bottom: 1rem;
+// inside a modal
 
-  &--value {
-    flex-grow: 1;
+.modal-window {
 
-    .label {
-      position: relative;
-      top: -2px;
-      border-radius: 0px;
-      background-color: rgba(#333, 1);
-    }
+  .url-picker {
+    min-width: 42rem;
+    padding: 2rem 0 0 0;
   }
 
-  &--actions {
-    display: flex;
-    margin-left: 1rem;
-    .btn {
-      margin-left: 0.5rem;
-    }
-  }
-}
-
-.url-picker-input {
-  display: flex;
-  align-items: center;
-  margin-bottom: 1rem;
-
-  &--autocomplete {
-    flex-grow: 1;
-
-    .rap-manager, .rap-target-container {
-      width: 100%;
-    }
-
-    .rap-popover-pad {
-      width: 30rem;
-      padding: 0;
-    }
-  }
-
-  &--actions {
-    display: flex;
-    margin-left: 1rem;
-    .btn {
-      margin-left: 0.5rem;
-    }
-  }
-}
-
-.url-picker-new-window {
-  font-size: 1.2rem;
-  color: $gray;
-  text-align: right;
-}
-
-
-.url-picker-resource {
-  display: flex;
-  align-items: center;
-
-  padding: 0.7rem 1rem;
-  border-bottom: 1px solid $gray-lighter;
-
-  &--type {
-    margin-right: 1rem;
-
-    .label {
-      position: relative;
-      top: -2px;
-      border-radius: 0px;
-      background-color: rgba(#333, 1);
-    }
-  }
-
-  &--label {
-    cursor: pointer;
-  }
 }

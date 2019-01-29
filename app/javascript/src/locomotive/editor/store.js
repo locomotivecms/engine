@@ -6,7 +6,7 @@ import ApiFactory from './services/api';
 
 // create an object for the default data
 const { data, urls } = window.Locomotive;
-const { site, page, sectionDefinitions, sections, editableElements, locale, locales, uiLocale } = data;
+const { site, page, sectionDefinitions, sections, editableElements, locale, locales, uiLocale, contentTypes } = data;
 
 const defaultState = {
   editor: {
@@ -16,11 +16,12 @@ const defaultState = {
     sectionDefinitions,
     sections,
     editableElements,
+    contentTypes,
     locale,
     locales,
     uiLocale,
     urls,
-    api: ApiFactory(urls)
+    api: ApiFactory(urls, locale)
   },
   content: {
     site: site,

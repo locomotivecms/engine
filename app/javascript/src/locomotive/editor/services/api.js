@@ -125,12 +125,12 @@ export function getThumbnail(url, imageUrl, format) {
 
 // RESOURCES
 
-export function searchForResources(url, query) {
-  return jsonGet(url, { q: query })
+export function searchForResources(url, locale, type, q, scope) {
+  return jsonGet(url, { content_locale: locale, q, type, scope })
   .then(response => ({ list: response.json }));
 }
 
-export default function ApiFactory(urls) {
+export default function ApiFactory(urls, locale) {
   return {
     loadContent:        (pageId, contentEntryId, locale) => loadContent(urls.load, pageId, contentEntryId, locale),
     saveContent:        (site, page, locale) => saveContent(urls.save, site, page, locale),
@@ -139,7 +139,7 @@ export default function ApiFactory(urls) {
     uploadAssets:       (assets) => uploadAssets(urls.bulkAssetUpload, assets),
     getThumbnail:       (imageUrl, format) => getThumbnail(urls.thumbnail, imageUrl, format),
 
-    searchForResources: (query) => searchForResources(urls.resources, query),
+    searchForResources: (type, query, scope) => searchForResources(urls.resources, locale, type, query, scope),
 
     loadSectionHTML:    (sectionType, content) => loadSectionHTML(urls.preview , sectionType, content)
   };

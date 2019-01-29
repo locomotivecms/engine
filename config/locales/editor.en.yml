@@ -10,22 +10,25 @@ en:
           action: "Apply"
           action_in_progress: "Cropping..."
 
-        url_picker:
-          no_url: "No URL for now"
-          placeholder: "Please type the label of a resource"
-          open_new_window: "Open in a new window?"
-          select_button: "Select"
-          cancel_button: "Cancel"
-          change_button: "Change"
-          done_button: "Done"
-          types:
-            external: "External"
-            pages: "Page"
-
         locale_switcher:
           locale: "<strong>{{locale}}</strong> version"
 
+        draft:
+          link:
+            title: Insert link
+            insert_link: Done
+
       inputs:
+        url:
+          select_button: "Select"
+          change_button: "Change"
+          remove_button: "Remove"
+          types:
+            page: Page
+            content_entry: Model
+            _external: URL
+            email: Email
+
         image_picker:
           select_button: "Select"
           change_button: "Change"
@@ -50,13 +53,35 @@ en:
             settings: "Settings"
             seo: "SEO"
 
-        assets:
+        pickers:
           images:
             title: "Images"
             loading: "Loading the images. Please wait!"
             add: "+ add"
             too_big: "Your image is too big: Maximum file size is 2MB"
             upload_in_progress: "Uploading..."
+          url:
+            title: "Pick a target"
+            open_new_window: "Open in a new window?"
+            types:
+              page: Page
+              content_entry: Model
+              _external: URL
+              email: Email
+            page:
+              label: Page
+              placeholder: Type the title of your page
+              section_label: Section
+            content_entry:
+              content_type_label: Which model?
+              label: Instance of your model
+              placeholder: Type the label of the instance
+            _external:
+              label: URL address
+              placeholder: "https://www.example.com"
+            email:
+              label: Email address
+              placeholder: "name@example.com"
 
         preview:
           view: "View"

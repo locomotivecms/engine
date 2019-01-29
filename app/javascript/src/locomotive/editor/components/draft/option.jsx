@@ -9,7 +9,7 @@ export default class Option extends Component {
     bindAll(this, 'onClick');
   }
 
-  onClick() {
+  onClick(event) {
     const { disabled, onClick, value } = this.props;
     if (!disabled)
       onClick(value);

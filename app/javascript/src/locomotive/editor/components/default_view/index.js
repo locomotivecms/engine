@@ -16,11 +16,11 @@ const DefaultView = ({ title, subTitle, renderMenu, onLeave, renderAction, ...pr
         </div>
         <div className="editor-view--header-title">
           {!isBlank(subTitle) && (
-            <div className="editor-view--header-subTitle">
+            <div className="editor-view--header-sub-title">
               {truncate(subTitle, { length: 30 })}
             </div>
           )}
-          <div className="editor-view--header-mainTitle">
+          <div className="editor-view--header-main-title">
             {truncate(title, { length: 25 })}
           </div>
         </div>

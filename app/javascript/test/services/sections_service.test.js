@@ -70,7 +70,7 @@ describe('locomotive/editor/services/sections_service', function() {
       expect(section.id).to.have.lengthOf(36);
       expect(section.uuid).to.have.lengthOf(36);
 
-      expect(omit(section, ['id', 'uuid'])).to.eql({
+      expect(omit(section, ['id', 'uuid', 'anchor'])).to.eql({
         name:     'Creative',
         type:     'slideshow',
         settings: { title: 'Awesome!' },
@@ -85,7 +85,7 @@ describe('locomotive/editor/services/sections_service', function() {
 
     it('should build a valid section even if the preset is incomplete', function() {
       const definitions = [{ type: 'slideshow', presets: [{ name: 'Simple' }] }];
-      expect(omit(buildSection(definitions, 'slideshow', 0), ['id', 'uuid'])).to.eql({
+      expect(omit(buildSection(definitions, 'slideshow', 0), ['id', 'uuid', 'anchor'])).to.eql({
         name:     'Simple',
         type:     'slideshow',
         settings: {},
@@ -120,7 +120,7 @@ describe('locomotive/editor/services/sections_service', function() {
           presets: [{ name: 'Simple', settings: { image: '/banner.png' }, blocks: [{ type: 'button' }, { type: 'button' }] }]
         }
       ];
-      expect(omit(buildSection(definitions, 'hero', 0), ['id', 'uuid', 'blocks'])).to.eql({
+      expect(omit(buildSection(definitions, 'hero', 0), ['id', 'uuid', 'anchor', 'blocks'])).to.eql({
         name: 'Simple',
         type: 'hero',
         settings: { title: 'Hello world', image: '/banner.png' },

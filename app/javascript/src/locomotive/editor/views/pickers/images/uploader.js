@@ -20,7 +20,7 @@ class Uploader extends Component {
     const files = compact(map(event.target.files, file => file.size > MAX_FILE_SIZE ? null : file));
 
     if (files.length != event.target.files.length)
-      alert(i18n.t('views.assets.images.too_big'));
+      alert(i18n.t('views.pickers.images.too_big'));
 
     if (files.length > 0)
       this.setState({ uploading: true }, () => {
@@ -40,13 +40,13 @@ class Uploader extends Component {
         <input type="file" ref={el => this.input = el} onChange={this.handleUpload} />
         {!this.state.uploading && (
           <a className="editor-image-uploader--button" onClick={this.openDialog}>
-            {i18n.t('views.assets.images.add')}
+            {i18n.t('views.pickers.images.add')}
           </a>
         )}
 
         {this.state.uploading && (
           <div className="editor-image-uploader--uploading">
-            {i18n.t('views.assets.images.upload_in_progress')}
+            {i18n.t('views.pickers.images.upload_in_progress')}
           </div>
         )}
       </div>

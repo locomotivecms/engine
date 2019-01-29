@@ -16,15 +16,17 @@ group :development, :test do
 
   # To use a debugger
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+end
 
-  # gem 'custom_fields', path: '../custom_fields' # for Developers
-  gem 'custom_fields', github: 'locomotivecms/custom_fields', ref: '6a19a4d'
+group :development, :test do
+  gem 'custom_fields', path: '../custom_fields' # for Developers
+  # gem 'custom_fields', github: 'locomotivecms/custom_fields', ref: '6a19a4d'
 
   # gem 'locomotivecms_common', path: '../common', require: false
   # gem 'locomotivecms_common', github: 'locomotivecms/common', ref: '4d1bd56', require: false
 
-  # gem 'locomotivecms_steam', path: '../steam', require: false
-  gem 'locomotivecms_steam', github: 'locomotivecms/steam', ref: '25e5db6', require: false
+  gem 'locomotivecms_steam', path: '../steam', require: false
+  # gem 'locomotivecms_steam', github: 'locomotivecms/steam', ref: '25e5db6', require: false
 
   # gem 'locomotive_liquid', path: '../gems/liquid' # for Developers
   # gem 'locomotivecms_solid', path: '../gems/solid' # for Developers
@@ -43,7 +45,6 @@ group :test do
   gem 'factory_bot_rails',        '~> 4.11.1'
   gem 'json_spec',                '~> 1.1.5'
   gem 'database_cleaner',         '~> 1.6.2'
-  # gem 'timecop',                  '~> 0.9.1'
   gem 'email_spec',               '~> 2.2.0'
 
   gem 'codeclimate-test-reporter',  '~> 1.0.7',  require: false

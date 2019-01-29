@@ -67,12 +67,13 @@ function loadEditor(data, urls) {
       sections:           data.sections,
       sectionDefinitions: data.sectionDefinitions,
       editableElements:   data.editableElements,
+      contentTypes:       data.contentTypes,
       changed:            false,
       pageChanged:        false,
       formErrors:         {},
       locale:             data.locale,
       locales:            data.locales,
-      api:                ApiFactory(urls),
+      api:                ApiFactory(urls, data.locale),
       urls
     }
   }

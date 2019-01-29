@@ -21,11 +21,17 @@ module Locomotive
         ## Custom setters ##
 
         def sections_content=(value)
-          set_attribute(:sections_content, value.is_a?(String) ? JSON.parse(value) : value)
+          set_attribute(:sections_content, value.is_a?(String) ? parse_json(value, {}) : value)
         end
 
         def routes=(value)
-          set_attribute(:routes, value.is_a?(String) ? JSON.parse(value) : value)
+          set_attribute(:routes, value.is_a?(String) ? parse_json(value, []) : value)
+        end
+
+        private
+
+        def parse_json(string, default_value = nil)
+          JSON.parse(string) rescue default_value
         end
 
       end

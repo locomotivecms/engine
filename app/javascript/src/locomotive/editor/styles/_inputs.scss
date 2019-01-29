@@ -26,6 +26,10 @@
     padding: 0.5rem 0.8rem;
     border-radius: 3px;
     border: 1px solid $gray-lighter;
+
+    &::placeholder {
+      color: $gray-light;
+    }
   }
 
   &--select {
@@ -65,6 +69,28 @@
     background-position: center center;
     background-repeat: no-repeat;
     background-size: contain;
+  }
+
+  &--actions {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+}
+
+// URL
+
+.editor-input-url {
+
+  &--info {
+    display: flex;
+    align-items: center;
+
+    &-type {
+      margin-right: 1rem;
+    }
   }
 
   &--actions {
@@ -192,15 +218,6 @@
     position: static;
   }
 
-  .rdw-link-modal {
-    margin-top: 1rem;
-    left: 1rem;
-    right: 1rem;
-    width: auto;
-    height: auto;
-    box-shadow: none;
-  }
-
   &-counter {
     margin-top: 0.4rem;
     opacity: 0.6;
@@ -208,5 +225,11 @@
     font-size: 1.2rem;
   }
 
+}
+
+.rdw-link-modal-actions {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
 }
 
