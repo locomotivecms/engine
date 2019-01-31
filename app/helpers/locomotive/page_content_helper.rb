@@ -39,14 +39,14 @@ module Locomotive
         if content[key].blank?
           definition = definitions.find { |definition| definition['type'] == type } || {}
 
-          content[key] = definition['default'] || { 'settings' => {}, 'blocks' => [], 'type' => type }
+          content[key] = definition['default'] || { 'settings' => {}, 'blocks' => [] }
         else
-          content[key]['type'] = type
           content[key]['settings'] ||= {}
           content[key]['blocks']   ||= []
         end
 
-        content[key]['id'] = attributes[:id] # FIXME: attributes[:id] => section domId
+        content[key]['id']    = attributes[:id] # FIXME: attributes[:id] => section domId
+        content[key]['type']  = type # make sure there is always the type attribute
 
         # reset block id
         content[key]['blocks'] = (content[key]['blocks'] || []).each_with_index.map do |block, index|
