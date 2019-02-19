@@ -41,6 +41,14 @@
         li class="#{'active' if params[:group] == group[:name]}"
           = link_to group[:name], group[:url]
 
+.row
+  .col-md-6.col-md-offset-6.text-right
+    .content-entries-select-all
+      span Select all
+
+    .content-entries-unselect-all.hidden
+      span Unselect all
+
 = render 'list', content_type: @content_type, entries: @content_entries
 
 - unless empty_collection?(@content_entries)

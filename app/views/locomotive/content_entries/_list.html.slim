@@ -24,7 +24,9 @@
             == document_stamp(entry)
 
         .actions
-          = link_to content_entry_path(current_site, content_type.slug, entry), title: t(:delete, scope: 'simple_form.buttons.defaults.locomotive'), class: 'remove', data: { confirm: t('locomotive.messages.confirm') }, method: :delete do
+          = check_box_tag "content_entry[]"
+
+          //= link_to content_entry_path(current_site, content_type.slug, entry), title: t(:delete, scope: 'simple_form.buttons.defaults.locomotive'), class: 'remove', data: { confirm: t('locomotive.messages.confirm') }, method: :delete do
             i.far.fa-trash-alt
 
 
