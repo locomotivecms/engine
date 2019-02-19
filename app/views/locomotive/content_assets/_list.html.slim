@@ -22,6 +22,11 @@
                 span= asset_text(asset)
 
         .actions
+          - if asset.source&.url
+            = link_to asset.source.url, class: 'btn btn-primary btn-sm', target: '_blank' do
+              i.fas.fa-download
+            | &nbsp;
+
           - if enable_select
             = link_to t('.buttons.select'), asset.source.url, class: 'btn btn-primary btn-sm select', title: asset_filename(asset), data: { image: asset.image? }
             | &nbsp;
