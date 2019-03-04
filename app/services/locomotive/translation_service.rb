@@ -24,6 +24,13 @@ module Locomotive
       end
     end
 
+    def bulk_destroy(ids)
+      site.translations.where(:id.in => ids).map do |translation|
+        translation.destroy
+        translation._id
+      end
+    end
+
     protected
 
     def prepare_keywords_statement(keywords)

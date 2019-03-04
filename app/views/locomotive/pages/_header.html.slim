@@ -1,6 +1,6 @@
 - title t(:title, title: h(@page.title), fullpath: nice_preview_page_path(@page), scope: 'locomotive.pages.edit')
 
-= help t('.help', default: '')
+- help t('.help', default: '')
 
 - if current_site.localized?
   - content_for :actions do

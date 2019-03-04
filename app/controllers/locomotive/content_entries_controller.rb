@@ -72,10 +72,10 @@ module Locomotive
       respond_with @content_type, location: content_entries_path(current_site, @content_type.slug)
     end
 
-    def destroy
-      authorize @content_entry
-      service.destroy(@content_entry)
-      respond_with @content_entry, location: content_entries_path(current_site, @content_type.slug)
+    def bulk_destroy
+      authorize ContentEntry, :destroy?
+      service.bulk_destroy(params[:ids].split(','))
+      respond_with @content_type, location: content_entries_path(current_site, @content_type.slug, page: params[:page], q: params[:q])
     end
 
     private

@@ -1,0 +1,38 @@
+.checkbox {
+  display: inline-block;
+  margin: 0;
+  font-size: 0; /* remove empty space */
+
+  input[type=checkbox] {
+    display: none;
+  }
+
+  label {
+    padding: 0;
+    min-height: 2rem;
+  }
+
+  input[type=checkbox] + label:before {
+    display: inline-block;
+    height: 2rem;
+    width: 2rem;
+    line-height: 2rem;
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    font-size: 1.2rem;
+    text-align: center;
+    transition: all $base-transition-speed linear;
+  }
+
+  input[type=checkbox] + label:before {
+    border: 1px solid $gray-light;
+    content: " ";
+    color: $gray-light;
+  }
+
+  input[type=checkbox]:checked + label:before {
+    content: "\f00c";
+    color: $gray-darker;
+    border: 1px solid $gray-darker;
+  }
+}

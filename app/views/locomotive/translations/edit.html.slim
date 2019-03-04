@@ -1,6 +1,6 @@
 - title t('.title', key: @translation.key )
 
-= locomotive_form_for @translation, url: translation_path(current_site, @translation) do |f|
+= locomotive_form_for @translation, url: translation_path(current_site, @translation, translation_nav_params) do |f|
 
   = render 'form', f: f
 

@@ -26,10 +26,11 @@ html xmlns='http://www.w3.org/1999/xhtml'
 
             - if title
               .row.header-row
-                .col-md-8.col-xs-9
+                .col-md-7.col-xs-9
                   h1== title
+                  == help
 
-                .col-md-4.col-xs-3.actions
+                .col-md-5.col-xs-3.actions
                   = yield :actions
 
             = yield

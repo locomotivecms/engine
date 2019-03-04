@@ -1,6 +1,6 @@
 - title t('.title', type: @content_type.name.capitalize)
 
-= help @content_type.description
+- help @content_type.description
 
 - content_for :actions do
   = link_to t(:back, scope: 'locomotive.content_entries.shared').html_safe, content_entries_path(current_site, @content_type.slug), class: 'btn btn-sm btn-default'

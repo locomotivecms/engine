@@ -127,6 +127,24 @@ module Locomotive
       end
     end
 
+    # Destroy all the entries described by their id
+    def bulk_destroy(ids)
+      content_type.entries.where(:_id.in => ids).map do |entry|
+        entry.destroy
+        entry._label
+      end.tap do |labels|
+        track_activity 'content_entry.destroyed_bulk',
+          parameters: activity_parameters.merge(labels: labels)
+      end
+    end
+
+    # Destroy all the entries of a content type.
+    # Runs each entry's destroy callbacks.
+    #
+    def destroy_all
+      content_type.entries.destroy_all
+    end
+
     # Make sure the content entries has a non-blank slug in the new locales.
     # We take the slug in the default locale or the previous default locale (if provided)
     #
@@ -146,13 +164,6 @@ module Locomotive
 
         entry.save if entry.changed?
       end
-    end
-
-    # Destroy all the entries of a content type.
-    # Runs each entry's destroy callbacks.
-    #
-    def destroy_all
-      content_type.entries.destroy_all
     end
 
     def send_notifications(entry)

@@ -52,7 +52,9 @@ Locomotive::Engine.routes.draw do
 
     resources :memberships
 
-    resources :translations
+    resources :translations do
+      delete :bulk_destroy, on: :collection
+    end
 
     resources :search_for_resources, only: [:index]
 
@@ -65,9 +67,10 @@ Locomotive::Engine.routes.draw do
     end
 
     resources :content_entries, path: 'content_types/:slug/entries' do
-      get :show_in_form,  on: :collection
-      put :sort,          on: :collection
-      get :export,        on: :collection
+      get :show_in_form,      on: :collection
+      put :sort,              on: :collection
+      get :export,            on: :collection
+      delete :bulk_destroy,   on: :collection
     end
 
     namespace :custom_fields, path: 'content_types/:slug/fields/:name' do

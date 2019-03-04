@@ -24,6 +24,8 @@ en:
           notice: "Entries were successfully sorted."
         destroy:
           notice: "Entry was successfully deleted."
+        bulk_destroy:
+          notice: "Entries were successfully deleted."
 
       content_types:
         update:
@@ -85,6 +87,8 @@ en:
           alert: "Translation was not updated."
         destroy:
           notice: "Translation was successfully deleted."
+        bulk_destroy:
+          notice: "Translations were successfully deleted."
 
       custom_fields:
         select_options:

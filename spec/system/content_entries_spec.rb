@@ -25,6 +25,7 @@ describe 'A site with content entries' do
     it 'adds accounts', js: true do
       click_link 'Models'
       click_link 'Messages'
+      click_button 'Toggle Dropdown'
       click_link 'Edit notification settings'
       expect(page).to have_content('NOTIFIED ACCOUNTS')
     end
