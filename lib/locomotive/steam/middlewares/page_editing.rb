@@ -28,7 +28,7 @@ module Locomotive
               <link href='https://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
 
               <!-- [Locomotive] fix absolute links to inner pages in preview mode-->
-              <script>
+              <script type="text/javascript">
                 window.document.addEventListener('click', function(event) {
                   var qs = document.querySelectorAll('a');
                   if (qs) {
@@ -47,6 +47,25 @@ module Locomotive
               </script>
             )
             response.first.gsub!('</head>', %(#{html}</head>))
+
+            # new way of letting the parent window know about the status of the preview
+            response.first.gsub!('</body>', %(
+                <script type="text/javascript">
+                  if (window.parent) {
+                    console.log(window.parent);
+                    var event = new CustomEvent('LocomotivePreviewReady', {
+                      detail: {
+                        locale: "#{locale}",
+                        pageId: "#{page._id}",
+                        contentEntryId: "#{content_entry_id(env)}",
+                        mountedOn: "#{mounted_on}"
+                      }
+                    });
+                    window.parent.document.dispatchEvent(event);
+                  }
+                </script>
+              </body>
+            ))
           end
 
           [status, headers, response]

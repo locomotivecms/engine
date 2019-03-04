@@ -13,7 +13,7 @@ class Iframe extends React.Component {
   }
 
   componentDidMount() {
-    this.iframe.onload = () => {
+    window.document.addEventListener('LocomotivePreviewReady', event => {
       // bring some modifications to the iframe
       prepareIframe(this.iframe.contentWindow);
 
@@ -42,7 +42,8 @@ class Iframe extends React.Component {
           )
         });
       }
-    }
+
+    });
   }
 
   // If no locale is included in the path (ex.: /index), Steam will use the
