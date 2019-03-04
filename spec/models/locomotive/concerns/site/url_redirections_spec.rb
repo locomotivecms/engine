@@ -36,6 +36,13 @@ describe Locomotive::Concerns::Site::UrlRedirections do
       let(:redirections) { ['hello_world', 'hello-world'] }
       it { is_expected.to eq([['/hello_world', '/hello-world']]) }
 
+      context 'the target is an external url' do
+
+        let(:redirections) { ['hello_world', 'https://rickandmortyrule.com'] }
+        it { is_expected.to eq([['/hello_world', 'https://rickandmortyrule.com']]) }
+
+      end
+
     end
 
   end

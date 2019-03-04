@@ -18,10 +18,20 @@ fr:
       zh-CN: Chinois
       cs: Tchèque
       bg: Bulgare
+      hr: Croate
       sk: Slovaque
+      sl: Slovène
       sr: Serbe
       sv: Suédois
       el: Grec
+      ca: Catalan
+      uk: Ukrainien
+      fa-IR: Perse
+      ja-JP: Japonais
+      pl-PL: Polonais
+      sv-FI: Suédois/Finnois
+      fi-FI: 'Finnois '
+      da: Danois
     messages:
       confirm: Êtes-vous sûr ?
       unsaved_content_warning: "Vous avez des modifications non sauvegardées dans cette page. Si vous la quittez, ces modifications seront perdues."
@@ -87,7 +97,7 @@ fr:
         destroyed: 'a supprimé la page %{page} '
         sorted: 'a trié les pages'
       page_content:
-        updated: 'a modifié le contenu de %{page}'
+        updated: 'a modifié le contenu de la page %{page}'
       editable_element:
         updated_bulk: 'a modifié le contenu de %{pages} '
       content_entry:
@@ -316,7 +326,7 @@ fr:
         title: '%{type}'
         download: télécharger les élements
         new: nouvel élément
-        bulk_destroy: supprimer éléments
+        bulk_destroy: supprimer les éléments
         edit_notification_settings: Modifier les paramètres de notifications
         search_placeholder: "Entrez vos critères de recherche ici"
         group_by:

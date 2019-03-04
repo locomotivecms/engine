@@ -22,8 +22,6 @@ fr:
       domain_taken: "%{value} a été déjà pris"
       invalid_domain: "%{value} n'est pas valide"
       needs_admin_account: "Au moin un compte admin est requis"
-      protected_page: "Vous ne pouvez pas supprimer les pages index et 404"
-      extname_changed: "Le nouveau fichier n'a pas l'extension originale"
       array_too_short: "est trop petit (le nombre minimum d'éléments est %{count})"
       site:
         default_locale_removed: La langue précédente ne peut être supprimée immédiatement.

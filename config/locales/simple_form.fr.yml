@@ -46,6 +46,8 @@ fr:
           cache_enabled: Cache
           private_access: "Activer la protection par mot de passe"
           password: "Mot de passe du site"
+          url_redirections_expert_mode: "Mode expert"
+          url_redirections_plain_text: "URLs de redirection"
           new:
             locales: Langue principale
         membership:
@@ -91,10 +93,13 @@ fr:
           meta_description: "La META DESCRIPTION est utilisée à l'intérieur du tag HEAD de chaque page. Elle est requise pour un meilleur SEO."
           robots_txt: "Contenu de la page <span class='code'>/robots.txt</span>. Veuillez lire ce <a href='http://www.w3.org/TR/html4/appendix/notes.html#h-B.4.1.1'>document</a>  pour plus d'informations."
           domains: "Ajoutez vos domaines en-dessous. La documentation est <a href=\"https://locomotive-v3.readme.io/docs/domains\">ici</a> pour plus d'informations."
+          asset_host: "Hôte spécifique au site destiné à servir les assets. (Exemple : \"localhost\", \"asset.dev\", \"https://asset-host.com/)."
           memberships: "Vous pouvez inviter d'autres comptes à venir éditer votre site."
           cache_enabled: "Si cette option est activée. vos pages seront cachés tant que le contenu ne sera pas modifié. Le cache peut être désactivé par page."
           redirect_to_first_domain: "Si cette option est activée, les requêtes destinées à n'importe quels domains listés ci-dessus seront redirigées vers le premier domaine."
-          redirect_to_https: "Si cette option est activée, les requêtes non sécurisées seront redirigées vers le protocole https. Un certificat SSL doit être installé en amont."
+          redirect_to_https: "Si activé, les requêtes non sécurisées seront redirigées vers la version https du site. Cela nécessite l'installation d'un certificate SSL sur votre serveur web. Il est fourni pour les utilisateurs de LocomotiveCMS.com."
+          url_redirections_expert_mode: "Lorsque le mode expert est activé, une zone de texte vous laisse le soin de gérer vos redirections. <strong>Important : Sauvegarder votre site avant de quitter le mode expert</strong>."
+          url_redirections_plain_text: "Une seule ligne par redirection et source/cible séparées par un espace."
           url_redirections: "Redirige (301) des anciennes URLs vers des pages que vous avez créés ici. L'origine et la destination des URLs sont séparées par un <u>espace</u>."
           private_access: Vous pouvez rendre votre site accessible uniquement par un mot de passe.
           password: Le mot de passe que les visiteurs devront entrer afin de voir le contenu de votre site.

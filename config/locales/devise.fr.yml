@@ -40,11 +40,11 @@ fr:
         unlocked: 'Votre compte à été dé-verouillé. Vous êtes connecté!'
     mailer:
       confirmation_instructions:
-        locomotive_account_subject: 'Instructions de validation'
+        locomotive_account_subject: 'Instructions pour confirmation'
       reset_password_instructions:
-        locomotive_account_subject:  'Instructions de rétablissement du mot de passe'
+        locomotive_account_subject: 'Instructions pour ré-initialiser le mot de passe'
       unlock_instructions:
-        locomotive_account_subject: 'Instructions de déverrouillage.'
+        locomotive_account_subject: 'Instructions pour débloquer'
   locomotive:
     devise_mailer:
       common:

@@ -77,7 +77,7 @@ module Locomotive
         protected
 
         def add_leading_slash_to(path)
-          path.starts_with?('/') ? path : "/#{path}"
+          path.starts_with?('/') || path =~ /\Ahttps+:\/\// ? path : "/#{path}"
         end
 
       end
