@@ -37,7 +37,7 @@ module Locomotive
       when 'page_content.updated'           then activity_page_content_options(params, locale)
       when 'editable_element.updated_bulk'  then activity_bulk_editable_elements_options(params)
       when 'content_asset.created_bulk'     then { count: activity_emphasize(params[:assets].size) }
-      when 'content_asset.destroyed'        then { name:  activity_emphasize(params[:name]) }
+      when 'content_asset.destroyed'        then { name: activity_emphasize(params[:name]) }
       when 'membership.created'             then { name: activity_emphasize(params[:name]) }
       when 'site_metafields.updated'        then { label: current_site_metafields_ui[:label].downcase }
       end
@@ -90,6 +90,8 @@ module Locomotive
         link_to(params[:label], path)
       elsif params[:label]
         activity_emphasize(params[:label])
+      elsif params[:labels]
+        activity_emphasize(params[:labels].join(', '))
       else
         nil
       end

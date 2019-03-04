@@ -1,6 +1,6 @@
 - title t('.title', name: @content_type.name)
 
-= help t('.help', default: '')
+- help t('.help', default: '')
 
 = locomotive_form_for @content_type, url: public_submission_accounts_path(current_site, @content_type.slug), html: { multipart: true } do |f|
 

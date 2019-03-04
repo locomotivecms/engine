@@ -11,6 +11,9 @@ module Locomotive
           field :url_redirections, type: Array, default: []
           field :url_redirections_information, type: Hash, default: {}
 
+          ## virtual attributes ##
+          attr_accessor :url_redirections_expert_mode
+
         end
 
         module ClassMethods
@@ -20,6 +23,13 @@ module Locomotive
             self.where(_id: site_id).inc("url_redirections_information.#{url_id}.counter" => 1)
           end
 
+        end
+
+        def url_redirections_plain_text
+          url_redirections
+          .sort { |a, b| a.first <=> b.first }
+          .map { |redirection| redirection.join(' ') }
+          .join("\n")
         end
 
         def url_redirections_with_information(with_hidden = true)

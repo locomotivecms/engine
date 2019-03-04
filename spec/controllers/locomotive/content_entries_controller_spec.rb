@@ -62,9 +62,9 @@ module Locomotive
       it { is_expected.to be_redirect }
     end
 
-    describe "#DELETE destroy" do
+    describe "#DELETE bulk destroy" do
       subject do
-        delete :destroy, params: { site_handle: site, slug: content_type.slug, id: content_entry.id, locale: :en }
+        delete :bulk_destroy, params: { site_handle: site, slug: content_type.slug, ids: content_entry.id, locale: :en }
       end
       it { is_expected.to be_redirect }
       specify do

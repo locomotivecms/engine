@@ -29,10 +29,11 @@ module Locomotive
       end
     end
 
-    def help(text)
-      if text.present?
-        content_tag :p, text, class: 'text'
+    def help(text = nil)
+      if text.nil?
+        @content_for_help
       else
+        @content_for_help = content_tag(:p, text, class: 'text')
         ''
       end
     end

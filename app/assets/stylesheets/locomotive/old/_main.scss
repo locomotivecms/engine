@@ -11,14 +11,31 @@
       color: $main_title_color;
     }
 
+    .text {
+      margin: 0.8rem 0 0 0;
+      color: rgba($main_title_color, 0.7);
+    }
+
     .actions {
       text-align: right;
-      p {
-        margin: 0;
+
+      & > a, & > div {
+        margin-left: 5px;
+        display: inline-block;
       }
 
-      a {
-        margin-left: 5px;
+      .btn > i {
+        margin-right: 0.5rem;
+      }
+
+      .btn.dropdown-toggle {
+        border-left: 1px solid $btn-primary-border;
+      }
+
+      .dropdown-menu {
+        i {
+          margin-right: 1rem;
+        }
       }
     }
   }

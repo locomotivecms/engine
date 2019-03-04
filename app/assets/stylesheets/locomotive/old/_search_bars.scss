@@ -1,13 +1,9 @@
 .search-bar {
-  text-align: right;
-
   form {
     display: inline-block;
 
     .form-group {
-      position: relative;
-      top: -6px;
-      padding: 4px 6px;
+      padding: 0.5rem 0.9rem;
       margin-bottom: 0;
       border: 1px solid #dadada;
 
@@ -24,6 +20,7 @@
       .icon {
         display: inline-block;
         color: $nav-tabs-link-color;
+        margin-right: 0.8rem;
       }
     }
   }

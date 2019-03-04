@@ -20,6 +20,7 @@ module Locomotive
     def update
       authorize @site
       service.update(@site, site_params)
+      logger.debug @site.errors.inspect
       respond_with @site, location: -> { edit_current_site_path(current_site) }
     end
 
@@ -63,7 +64,13 @@ module Locomotive
     end
 
     def site_params
-      params.require(:site).permit(*policy(@site || Site).permitted_attributes)
+      params.require(:site).permit(*policy(@site || Site).permitted_attributes).tap do |_params|
+        if params[:site][:url_redirections_expert_mode] == '1'
+          _params[:url_redirections] = params[:site][:url_redirections_plain_text]
+          .split("\n")
+          .map { |line| line.split(/\s+/) }
+        end
+      end
     end
 
     def service

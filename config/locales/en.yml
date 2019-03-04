@@ -112,6 +112,7 @@ en:
         updated: 'updated %{entry} from %{content_type}'
         destroyed: 'deleted %{entry} from %{content_type}'
         sorted: 'sorted %{content_type}'
+        destroyed_bulk: 'deleted %{entry} from %{content_type}'
       content_asset:
         created_bulk: 'uploaded %{count} asset(s)'
         destroyed: 'deleted the %{name} asset'
@@ -360,6 +361,7 @@ en:
         title: '%{type}'
         download: download entries
         new: new entry
+        bulk_destroy: delete entries
         edit_notification_settings: Edit notification settings
         search_placeholder: "Enter your search keywords here"
         group_by:

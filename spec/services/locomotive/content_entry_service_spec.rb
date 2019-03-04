@@ -110,6 +110,19 @@ describe Locomotive::ContentEntryService do
 
   end
 
+  describe '#bulk_destroy' do
+
+    let!(:entry_1) { create_content_entry(title: 'Hello world', body: 'Lorem ipsum', published: true) }
+    let!(:entry_2) { create_content_entry(title: 'Bla bla', body: 'Lorem ipsum', published: false) }
+    let!(:entry_3) { create_content_entry(title: 'Rick & Morty', body: 'Lorem ipsum', published: false) }
+
+    subject { service.bulk_destroy([entry_1._id, entry_3._id]) }
+
+    it { expect { subject }.to change(content_type.entries, :count).by(-2) }
+
+  end
+
+
   describe '#create' do
 
     let(:attributes) { { title: 'Hello world', body: 'Lorem ipsum', published: true } }

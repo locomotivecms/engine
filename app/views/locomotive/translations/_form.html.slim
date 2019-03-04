@@ -1,6 +1,3 @@
-- (params[:_location] || {}).each do |name, value|
-  = hidden_field_tag "_location[#{name}]", value
-
 = f.inputs do
 
   = f.simple_fields_for :values, OpenStruct.new(@translation.values) do |g|

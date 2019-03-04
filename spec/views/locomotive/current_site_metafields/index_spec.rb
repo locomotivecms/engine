@@ -22,17 +22,6 @@ describe 'locomotive/current_site_metafields/index', type: :view do
 
   end
 
-  describe 'UI' do
-
-    let(:ui) { { 'label' => 'Store settings', 'icon' => 'shopping-cart', 'hint' => 'Metafields are awesome' } }
-    let(:site) { create('test site', metafields_schema: schema, metafields_ui: ui) }
-
-    it 'renders the hint' do
-      expect(subject).to include('Metafields are awesome</p>')
-    end
-
-  end
-
   describe 'namespace' do
 
     let(:schema) { [

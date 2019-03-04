@@ -23,6 +23,8 @@ fr:
           notice: "Les éléments ont été ordonnés avec succès."
         destroy:
           notice: "L'élément a été supprimé avec succès."
+        bulk_destroy:
+          notice: "Les éléments ont été supprimés avec succès."
       content_types:
         update:
           notice: "Le modèle a été mis à jour avec succès."
@@ -75,6 +77,8 @@ fr:
           alert: "La traduction n'a pas été mise à jour."
         destroy:
           notice: "La traduction a été supprimée avec succès."
+        bulk_destroy:
+          notice: "Les traductions ont été supprimées avec succès."
       custom_fields:
         select_options:
           update:

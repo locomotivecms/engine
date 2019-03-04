@@ -24,6 +24,12 @@ module Locomotive
       respond_with @translation, location: translations_path(current_site, translation_nav_params)
     end
 
+    def bulk_destroy
+      authorize Translation, :destroy?
+      service.bulk_destroy(params[:ids].split(','))
+      respond_with current_site, location: translations_path(current_site, translation_nav_params)
+    end
+
     protected
 
     def load_translation
@@ -35,7 +41,7 @@ module Locomotive
     end
 
     def translation_nav_params
-      params[:_location].permit(:filter_by, :q)
+      params.permit(:filter_by, :q, :page, :per_page)
     end
 
     def service

@@ -96,6 +96,7 @@ fr:
         updated: 'a mis à jour %{entry} de %{content_type}'
         destroyed: 'a supprimé %{entry} de %{content_type}'
         sorted: 'a trié  %{content_type}'
+        destroyed_bulk: 'a supprimé %{entry} de %{content_type}'
       content_asset:
         created_bulk: 'a mis à jour %{count} média(s)'
         destroyed: 'a supprimé le média %{name}'
@@ -315,6 +316,7 @@ fr:
         title: '%{type}'
         download: télécharger les élements
         new: nouvel élément
+        bulk_destroy: supprimer éléments
         edit_notification_settings: Modifier les paramètres de notifications
         search_placeholder: "Entrez vos critères de recherche ici"
         group_by:

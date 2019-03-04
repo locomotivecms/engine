@@ -1,55 +1,68 @@
 - title t('.title', type: @content_type.name.capitalize)
+- help @content_type.description
 
 - content_for :actions do
   - if @content_type.localized?
     = locale_picker_link
 
-  - if can_edit_public_submission_accounts?(@content_type)
-    = link_to edit_public_submission_accounts_path(current_site, @content_type.slug), class: 'btn btn-primary btn-sm' do
-      i.fa.fa-pencil
-      | &nbsp;
-      = t('.edit_notification_settings')
+  .bulk-destroy-action.hidden
+    = form_tag bulk_destroy_content_entries_path(current_site, @content_type.slug, page: params[:page] || 1), method: :delete do
+      = hidden_field_tag 'ids', ''
+      = button_tag type: 'submit', class: 'btn btn-primary btn-sm', data: { confirm: t('locomotive.messages.confirm') } do
+        i.far.fa-trash-alt
+        | &nbsp;
+        = t('.bulk_destroy')
 
-  = link_to new_content_entry_path(current_site, @content_type.slug), class: 'btn btn-primary btn-sm' do
-    i.fa.fa-plus
-    | &nbsp;
-    = t('.new')
+  .main-action
+    .btn-group
+      = link_to new_content_entry_path(current_site, @content_type.slug), class: 'btn btn-primary btn-sm' do
+        i.fa.fa-plus
+        | &nbsp;
+        = t('.new')
+      button.btn.btn-primary.btn-sm.dropdown-toggle data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+        span.caret
+        span.sr-only Toggle Dropdown
+      ul.dropdown-menu.dropdown-menu-right
+        - if can_edit_public_submission_accounts?(@content_type)
+          li
+            = link_to edit_public_submission_accounts_path(current_site, @content_type.slug) do
+              i.fas.fa-cog
+              = t('.edit_notification_settings')
 
-- if @content_type.filter_fields.present?
-  .row
-    .col-md-6
-      = help @content_type.description
-    .col-md-6
+        - unless empty_collection?(@content_entries)
+          li
+            = link_to export_content_entries_path(current_site, @content_type.slug, :csv) do
+              i.fa.fa-download
+              = t('.download')
+
+- if @content_type.groupable?
+  .row.list-groups
+    .nav-container
+      ul.nav.nav-tabs role='tablist'
+        li class="#{'active' if params[:group].nil?}"
+          = link_to t('.group_by.all'), content_entries_path(current_site, @content_type.slug, query: params[:query])
+
+        - each_content_entry_group(@content_type) do |group|
+          li class="#{'active' if params[:group] == group[:name]}"
+            = link_to group[:name], group[:url]
+
+.row.list-header
+  .col.col-md-6.text-left
+    - if @content_type.filter_fields.present?
       .search-bar
         = form_tag content_entries_path(current_site, @content_type.slug), method: :get do
           .form-group
             = hidden_field_tag :group, params[:group]
             = hidden_field_tag :where, params[:where]
-            = text_field_tag :q, params[:q], placeholder: t('.search_placeholder'), class: 'form-control'
             i.fa.fa-search.icon
+            = text_field_tag :q, params[:q], placeholder: t('.search_placeholder'), class: 'form-control'
+    - else
+      p
 
-- else
-  = help @content_type.description
-
-- if @content_type.groupable?
-  .nav-container
-    ul.nav.nav-tabs role='tablist'
-      li class="#{'active' if params[:group].nil?}"
-        = link_to t('.group_by.all'), content_entries_path(current_site, @content_type.slug, query: params[:query])
-
-      - each_content_entry_group(@content_type) do |group|
-        li class="#{'active' if params[:group] == group[:name]}"
-          = link_to group[:name], group[:url]
+  .col.col-md-6.text-right
+    - unless empty_collection?(@content_entries)
+      .checkbox
+        = check_box_tag 'all_entries', 1, false, class: 'list-main-checkbox'
+        = label_tag 'all_entries', ''
 
 = render 'list', content_type: @content_type, entries: @content_entries
-
-- unless empty_collection?(@content_entries)
-  .row
-    .col-md-12
-      br
-      p.text-right
-        = link_to export_content_entries_path(current_site, @content_type.slug, :csv), class: 'btn btn-primary btn-sm' do
-          i.fa.fa-download
-          | &nbsp;
-          = t('.download')
-

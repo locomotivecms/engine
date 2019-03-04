@@ -23,14 +23,48 @@ describe Locomotive::CurrentSiteController do
   end
 
   describe "#PUT update" do
+
+    let(:attributes) { { name: 'foooo' } }
+
     subject do
-      put :update, params: { site_handle: site, locale: :en, site: { name: 'foooo' } }
+      put :update, params: { site_handle: site, locale: :en, site: attributes }
     end
+
     it { is_expected.to be_redirect }
+
     specify do
       subject
       expect(assigns(:site).name).to eq('foooo')
     end
+
+    describe 'update url redirections from plain text' do
+
+      let(:attributes) { { url_redirections_expert_mode: expert_mode, url_redirections_plain_text: '/en/foo /en/bar' } }
+
+      context 'not in expert mode' do
+
+        let(:expert_mode) { '0' }
+
+        it "doesn't update the url redirections from the plain text" do
+          subject
+          expect(assigns(:site).url_redirections.size).to eq(0)
+        end
+
+      end
+
+      context 'in expert mode' do
+
+        let(:expert_mode) { '1' }
+
+        it "updates the url redirections from the plain text" do
+          subject
+          expect(assigns(:site).url_redirections.size).to eq(1)
+        end
+
+      end
+
+    end
+
   end
 
   describe "#DELETE destroy" do

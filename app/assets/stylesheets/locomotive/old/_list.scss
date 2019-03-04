@@ -3,6 +3,33 @@
     color: $paragraph_color;
   }
 
+  .list-groups {
+    margin-bottom: 10px;
+
+    .nav-tabs {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  }
+
+  .list-header {
+
+    .col {
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 1rem;
+
+      &:first-child {
+        align-items: flex-start;
+      }
+
+      &:last-child {
+        align-items: flex-end;
+        padding-top: 4px;
+      }
+    }
+  }
+
   .big-list {
     .item {
       position: relative;
@@ -74,6 +101,7 @@
       .actions {
         position: relative;
         margin-left: auto;
+        font-size: 0; /* remove empty space */
 
         i {
           font-size: 16px;

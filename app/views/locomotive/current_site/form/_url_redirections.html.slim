@@ -1,4 +1,8 @@
 = f.inputs :url_redirections do
+  = f.input :url_redirections_expert_mode, as: :toggle
+
+  = f.input :url_redirections_plain_text, as: :text, wrapper_html: { class: 'hide' }, input_html: { rows: 30 }
+
   = f.input :url_redirections, as: :array, hint: t(:url_redirections, scope: 'simple_form.hints.locomotive.site').html_safe, placeholder: true, collection: f.object.url_redirections_with_information(false).to_a, template: :url_redirection, template_url: new_url_redirection_current_site_path(current_site)
 
 = f.actions do
