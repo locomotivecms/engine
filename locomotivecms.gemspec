@@ -55,7 +55,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'json-schema',                     '~> 2.8.0'
 
   s.add_dependency 'carrierwave-mongoid',             '~> 1.1.0'
-  s.add_dependency 'dragonfly',                       '~> 1.1.4'
+  s.add_dependency 'dragonfly',                       '~> 1.2.0'
   s.add_dependency 'rack-cache',                      '~> 1.7.1'
 
   s.add_dependency 'multi_json',                      '~> 1.13.1'
