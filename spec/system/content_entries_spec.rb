@@ -8,7 +8,7 @@ describe 'A site with content entries' do
       click_link 'Models'
       click_link 'Article'
       click_link 'new entry'
-      fill_in 'Title', with: 'Hello world'
+      fill_in 'content_entry_title', with: 'Hello world'
       within('#main') { click_button 'Create' }
       expect(page).to have_content('Entry was successfully created.')
       click_link 'Add a new one'
