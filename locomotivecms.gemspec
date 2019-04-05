@@ -17,9 +17,9 @@ Gem::Specification.new do |s|
   s.files = Dir['{app,config,db,lib,vendor}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
   s.files.reject! { |fn| fn.include?('app/javascript') }
 
-  s.add_dependency 'rails',                           '>= 5.2.1', '< 6.0'
+  s.add_dependency 'rails',                           '>= 5.2.3', '< 6.0'
 
-  s.add_dependency 'devise',                          '~> 4.4.1'
+  s.add_dependency 'devise',                          '~> 4.6.2'
   s.add_dependency 'devise-encryptable',              '~> 0.2.0'
   s.add_dependency 'simple_token_authentication',     '~> 1.15.1'
 
@@ -45,7 +45,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'jquery-ui-rails',                 '~> 6.0.1'
   s.add_dependency 'codemirror-rails',                '~> 5.16.0'
   s.add_dependency 'flash_cookie_session',            '~> 1.1.1'
-  s.add_dependency 'bootstrap-sass',                  '~> 3.3.7'
+  s.add_dependency 'bootstrap-sass',                  '~> 3.4.1'
   s.add_dependency 'autoprefixer-rails',              '~> 8.0.0'
 
   s.add_dependency 'font-awesome-sass',               '~> 5.2.0'

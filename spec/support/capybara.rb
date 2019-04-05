@@ -1,7 +1,8 @@
+require 'webdrivers'
 require 'selenium-webdriver'
 
 if chromedriver_version = ENV['CHROMEDRIVER_VERSION']
-  Chromedriver.set_version chromedriver_version
+  Webdrivers::Chromedriver.version = chromedriver_version #'2.46'
 end
 
 Capybara.server = :webrick
