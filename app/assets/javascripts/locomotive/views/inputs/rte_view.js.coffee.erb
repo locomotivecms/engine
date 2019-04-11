@@ -80,7 +80,7 @@ class Locomotive.Views.Inputs.RteView extends Backbone.View
 
     # Counter
     count = @editor.currentView.doc.body.innerText.length
-    @$counter = $("<div class='wysihtml5-counter'>#{count}</div>").insertAfter(@$('.form-wrapper'))
+    @$counter = $("<div class='wysihtml5-counter'>#{count}</div>").insertAfter(@$('> .form-wrapper'))
 
     $(@editor.currentView.doc.body).on 'keyup', (event) =>
       @$counter.html(event.currentTarget.innerText.length)
