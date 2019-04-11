@@ -1,6 +1,6 @@
 # Locomotive
 
-[![Build Status](https://travis-ci.com/locomotivecms/engine.svg?branch=master)](https://travis-ci.org/locomotivecms/engine) [![Code Climate](https://codeclimate.com/github/locomotivecms/engine/badges/gpa.svg)](https://codeclimate.com/github/locomotivecms/engine) [![Coverage Status](https://img.shields.io/coveralls/locomotivecms/engine.svg)](https://coveralls.io/r/locomotivecms/engine?branch=master) [![Join the chat at https://gitter.im/locomotivecms/engine](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/locomotivecms/engine?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Build Status](https://travis-ci.com/locomotivecms/engine.svg?branch=master)](https://travis-ci.com/locomotivecms/engine) [![Code Climate](https://codeclimate.com/github/locomotivecms/engine/badges/gpa.svg)](https://codeclimate.com/github/locomotivecms/engine) [![Coverage Status](https://img.shields.io/coveralls/locomotivecms/engine.svg)](https://coveralls.io/r/locomotivecms/engine?branch=master) [![Join the chat at https://gitter.im/locomotivecms/engine](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/locomotivecms/engine?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Locomotive is an open source platform to create, publish and edit sites (CMS). It is designed to save time and help you focus on what matters: front-end technology, standard development process and a very low learning curve for your clients.
 
@@ -10,7 +10,7 @@ Locomotive relies on a **very original workflow**:
 - Sites are deployed to the platform (engine) thanks to our internal API.
 - A back-office for the end-users is automatically generated based on the custom models and editable regions described by the developers.
 
-![Locomotive](http://i.imgur.com/iRG1gWA.jpg)
+![Locomotive](https://i.imgur.com/Qy1K4fT.jpg)
 
 Visit the Locomotive official website [here](https://www.locomotivecms.com) for more information.
 
@@ -18,7 +18,7 @@ Visit the Locomotive official website [here](https://www.locomotivecms.com) for 
 
 - Multi-sites natively supported
 - Uses Liquid, a simple and clean templating language
-- Easy to add custom content types, no SQL needed
+- Easy to add custom sections, content types, no SQL needed
 - Beautiful and intuitive editing interface
 - Can fully localize all the content and pages
 - Embed a Restful API to manage every site
@@ -27,7 +27,7 @@ Visit the Locomotive official website [here](https://www.locomotivecms.com) for 
 
 ## Instructions and help
 
-- [Documentation](https://locomotive-v3.readme.io/)
+- [Documentation](https://doc.locomotivecms.com/)
 - Get help with Locomotive or discuss technical issues on [Gitter](https://gitter.im/locomotivecms/engine?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) or [here](https://locomotive-v3.readme.io/discuss).
 - [Follow us on twitter](http://twitter.com/locomotivecms)
 

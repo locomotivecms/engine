@@ -37,7 +37,6 @@ end
 group :test do
   gem 'selenium-webdriver',       '~> 3.141.0'
   gem 'puma',                     '~> 3.12.0'
-  # gem 'chromedriver-helper',      '~> 2.1.0'
   gem 'webdrivers',               '~> 3.0'
 
   gem 'grape-entity-matchers',    github: 'salsify/grape-entity-matchers', branch: 'grape-entity-exposures'
