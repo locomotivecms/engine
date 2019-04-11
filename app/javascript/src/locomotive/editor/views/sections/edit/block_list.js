@@ -15,8 +15,12 @@ const SortableBlock = SortableElement(Block);
 const SortableList  = SortableContainer(({ blocks, ...props }) => (
   <div>
     {blocks.map((block, index) => {
-      const definition        = props.sectionDefinition.blocks.find(def => def.type === block.type)
-      const { image, text }   = findBetterImageAndText(block, definition)
+      const definition = props.sectionDefinition.blocks.find(def => def.type === block.type)
+
+      // verify that the block coming from the DB has still a definition
+      if (definition === null || definition === undefined) return
+
+      const { image, text } = findBetterImageAndText(block, definition)
 
       return (
         <SortableBlock

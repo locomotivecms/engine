@@ -42,7 +42,6 @@ describe('locomotive/editor/services/sections_service', function() {
       };
       expect(findBetterImageAndText(content, definition)).to.include({ image: '/banner.png', text: 'Hello world' });
     });
-
   });
 
   describe('#buildSection', function() {
