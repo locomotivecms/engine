@@ -60,7 +60,7 @@ PATH
       autoprefixer-rails (~> 8.0.0)
       bazaar (~> 0.0.2)
       bootstrap-kaminari-views (~> 0.0.5)
-      bootstrap-sass (~> 3.4.0)
+      bootstrap-sass (~> 3.4.1)
       carrierwave-imageoptim (= 0.1.5)
       carrierwave-mongoid (~> 1.1.0)
       codemirror-rails (~> 5.16.0)
