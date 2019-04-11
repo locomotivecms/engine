@@ -45,7 +45,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'jquery-ui-rails',                 '~> 6.0.1'
   s.add_dependency 'codemirror-rails',                '~> 5.16.0'
   s.add_dependency 'flash_cookie_session',            '~> 1.1.1'
-  s.add_dependency 'bootstrap-sass',                  '~> 3.4.1'
+  s.add_dependency 'bootstrap-sass',                  '~> 3.3.7'
   s.add_dependency 'autoprefixer-rails',              '~> 8.0.0'
 
   s.add_dependency 'font-awesome-sass',               '~> 5.2.0'
