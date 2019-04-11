@@ -62,6 +62,7 @@ class Locomotive.Views.Inputs.RteView extends Backbone.View
       placement:  'bottom'
       content:    html
       html:       true
+      sanitize:   false
       title:      undefined)
 
     @$style_popover.data('bs.popover').options.content = html

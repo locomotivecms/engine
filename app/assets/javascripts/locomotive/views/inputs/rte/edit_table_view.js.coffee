@@ -20,6 +20,7 @@ class Locomotive.Views.Inputs.Rte.EditTableView extends Backbone.View
       placement:  'bottom'
       content:    @$content.html()
       html:       true
+      sanitize:   false
       title:      undefined
 
   attach_events: ->

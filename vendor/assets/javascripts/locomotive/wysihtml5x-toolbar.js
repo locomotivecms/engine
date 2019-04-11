@@ -18339,7 +18339,6 @@ wysihtml5.views.View = Base.extend(
     },
 
     _updateLinkStates: function() {
-
       var i, state, action, command, displayDialogAttributeValue,
           commandMapping      = this.commandMapping,
           composer            = this.composer,

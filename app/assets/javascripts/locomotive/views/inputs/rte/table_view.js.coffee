@@ -27,6 +27,7 @@ class Locomotive.Views.Inputs.Rte.TableView extends Backbone.View
       placement:  'bottom'
       content:    @$content
       html:       true
+      sanitize:   false
       trigger:    'manual'
       template:   '<div class="popover" role="tooltip"><div class="arrow"></div><form class="simple_form"><div class="popover-content"></div></form></div>'
     @$link.data('bs.popover').setContent()

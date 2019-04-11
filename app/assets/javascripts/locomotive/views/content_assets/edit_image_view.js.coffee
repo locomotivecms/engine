@@ -44,6 +44,7 @@ class Locomotive.Views.ContentAssets.EditImageView extends Backbone.View
       placement:  'left'
       content:    @$content
       html:       true
+      sanitize:   false
       template:   '<div class="popover" role="tooltip"><div class="arrow"></div><form><div class="popover-content"></div></form></div>'
     @$link.data('bs.popover').setContent()
 

@@ -8,6 +8,7 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require bootstrap-sprockets
+//= require bootstrap
 //= require codemirror
 //= require codemirror/modes/markdown
 //= require locomotive/vendor

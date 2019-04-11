@@ -36,6 +36,7 @@ class Locomotive.Views.Inputs.Rte.FileView extends Backbone.View
       placement:  'left'
       content:    @$popover
       html:       true
+      sanitize:   false
       template:   '<div class="popover" role="tooltip"><div class="arrow"></div><form class="simple_form"><div class="popover-content"></div></form></div>'
     @$link.data('bs.popover').setContent()
 
