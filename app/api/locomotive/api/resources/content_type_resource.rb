@@ -66,6 +66,7 @@ module Locomotive
               optional :display_settings
               optional :filter_fields
               optional :public_submission_enabled
+              optional :recaptcha_required
               optional :public_submission_account_emails
               optional :public_submission_title_template
             end
