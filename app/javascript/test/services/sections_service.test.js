@@ -22,7 +22,7 @@ describe('locomotive/editor/services/sections_service', function() {
     });
 
     it('returns the first image and text of the section', function() {
-      const content = { settings: { logo: '/logo.png', image: '/banner.png', body: '<b>Hello</b> world' } };
+      const content = { settings: { logo: '/logo.png', image: '/banner.png', body: "<b>Hello</b>\n world" } };
       const definition = {
         settings: [{ id: 'image', type: 'image_picker' }, { id: 'body', type: 'text' }, { id: 'logo', type: 'image_picker' }]
       };

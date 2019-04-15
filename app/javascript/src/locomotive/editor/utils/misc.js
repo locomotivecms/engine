@@ -69,7 +69,10 @@ export function formatLineBreak(text) {
 export function stripHTML(html) {
   if (_isBlank(html)) return html;
 
-  return striptags(html);
+  return striptags(html)
+    .replace(/(\/n|\/t)+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
 }
 
 // parse an integer/float and returns null if it's not an integer
