@@ -35,7 +35,7 @@ const Edit = ({ translate, ...props }) => (
             setting={setting}
             value={props.blockContent.settings[setting.id]}
             onChange={props.handleChange}
-            isVisible={props.blockContent.settings[setting.only_if]}
+            isVisible={setting.only_if === undefined || props.blockContent.settings[setting.only_if] === true}
             {...props}
           />
         )}

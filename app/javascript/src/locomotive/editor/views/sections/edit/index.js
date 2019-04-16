@@ -79,7 +79,7 @@ class Edit extends Component {
                 setting={setting}
                 value={this.props.sectionContent.settings[setting.id]}
                 onChange={this.props.handleChange}
-                isVisible={this.props.sectionContent.settings[setting.only_if]}
+                isVisible={setting.only_if === undefined || this.props.sectionContent.settings[setting.only_if] === true}
                 {...this.props}
               />
             )}

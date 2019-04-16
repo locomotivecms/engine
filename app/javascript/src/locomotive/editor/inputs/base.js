@@ -57,8 +57,6 @@ class Base extends Component {
   render() {
     const Input = this.getInput(this.props.setting);
 
-    console.log('BASE', this.props.setting.type, this.props.isVisible)
-
     if (this.props.isVisible === false)
       return null;
 
