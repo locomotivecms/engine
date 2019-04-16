@@ -41,7 +41,7 @@ module Locomotive
         inject_into_file 'Gemfile', after: "source 'https://rubygems.org'\n" do <<-'RUBY'
 
 if ENV['HEROKU_APP_NAME']
-  ruby '2.4.3'
+  ruby '2.5.1'
 end
         RUBY
         end
@@ -63,7 +63,7 @@ end
         RUBY
         end
 
-        gem 'platform-api', '~> 2'
+        gem 'platform-api', '~> 2.2.0'
       end
     end
 
@@ -73,14 +73,6 @@ end
 
     def remove_robots_txt
       remove_file 'public/robots.txt'
-    end
-
-    def use_puma_as_app_server
-      inject_into_file 'Gemfile', after: "# gem 'unicorn'\n" do <<-'RUBY'
-# Use Puma as the app server
-gem 'puma'
-      RUBY
-      end
     end
 
     def show_readme

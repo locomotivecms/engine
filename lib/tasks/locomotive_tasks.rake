@@ -94,6 +94,14 @@ namespace :locomotive do
       end
       puts '[x] set completion for translations'
 
+      # rename routes to url_redirections
+      Locomotive::Site.all.each_by(10) do |site|
+        site.url_redirections = site.routes
+        site.routes = nil
+        site.save
+      end
+      puts '[x] rename site attribute: change routes to url_redirections'
+
       puts "\nDone!"
     end
 
