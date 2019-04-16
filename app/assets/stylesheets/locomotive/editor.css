@@ -1239,6 +1239,18 @@
 
 .DraftEditor-editorContainer, .DraftEditor-root, .public-DraftEditor-content {
   height: 100%; }
+  .DraftEditor-editorContainer h1, .DraftEditor-root h1, .public-DraftEditor-content h1 {
+    font-size: 2.4rem; }
+  .DraftEditor-editorContainer h2, .DraftEditor-root h2, .public-DraftEditor-content h2 {
+    font-size: 2.2rem; }
+  .DraftEditor-editorContainer h3, .DraftEditor-root h3, .public-DraftEditor-content h3 {
+    font-size: 2.0rem; }
+  .DraftEditor-editorContainer h4, .DraftEditor-root h4, .public-DraftEditor-content h4 {
+    font-size: 1.8rem; }
+  .DraftEditor-editorContainer h5, .DraftEditor-root h5, .public-DraftEditor-content h5 {
+    font-size: 1.6rem; }
+  .DraftEditor-editorContainer h6, .DraftEditor-root h6, .public-DraftEditor-content h6 {
+    font-size: 1.4rem; }
 
 .editor-input-rich-text .rdw-editor-wrapper {
   border: 1px solid #e3e4e7;

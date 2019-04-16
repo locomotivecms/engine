@@ -194,6 +194,13 @@
 
 .DraftEditor-editorContainer, .DraftEditor-root, .public-DraftEditor-content {
   height: 100%;
+
+  h1 { font-size: 2.4rem; }
+  h2 { font-size: 2.2rem; }
+  h3 { font-size: 2.0rem; }
+  h4 { font-size: 1.8rem; }
+  h5 { font-size: 1.6rem; }
+  h6 { font-size: 1.4rem; }
 }
 
 .editor-input-rich-text {
