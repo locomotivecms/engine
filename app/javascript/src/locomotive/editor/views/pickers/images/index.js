@@ -53,7 +53,11 @@ class Index extends Component {
         ) : (
           <div className="editor-image-list">
             <div className="editor-image-list--container">
-              <Uploader handleUpload={this.handleUpload} uploadAssets={this.props.api.uploadAssets} />
+              <Uploader
+                handleUpload={this.handleUpload}
+                uploadAssets={this.props.api.uploadAssets}
+                compress={this.props.setting.compress}
+              />
 
               {this.props.list.map(image =>
                 <Image

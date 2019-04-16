@@ -2533,6 +2533,13 @@ cli-width@^2.0.0:
   resolved "https://registry.yarnpkg.com/cli-width/-/cli-width-2.2.0.tgz#ff19ede8a9a5e579324147b0c11f0fbcbabed639"
   integrity sha1-/xnt6Kml5XkyQUewwR8PvLq+1jk=
 
+client-compress@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/client-compress/-/client-compress-2.1.2.tgz#bf7b85a3afa7b0a0e99edd485b144f12447504be"
+  integrity sha512-z7wRt5BYYUYwFxf32n4kn5Mc0O9ExHV6zGI1PLCsGOCXVcCvfafKMHxnG4WF9UcD4wgbKv8LWf+xbW+oXST2KA==
+  dependencies:
+    babel-runtime "^6.26.0"
+
 cliui@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/cliui/-/cliui-3.2.0.tgz#120601537a916d29940f934da3b48d585a39213d"

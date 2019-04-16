@@ -51,6 +51,7 @@
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.3.0",
     "classnames": "^2.2.5",
+    "client-compress": "^2.1.2",
     "draft-js": "^0.10.5",
     "draftjs-to-html": "^0.8.4",
     "html-to-draftjs": "^1.4.0",

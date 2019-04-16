@@ -92,7 +92,12 @@ export function loadSectionHTML(url, section, content) {
 
 export function uploadAssets(url, assets) {
   var form = new FormData();
-  each(assets, asset => form.append('content_assets[][source]', asset))
+  each(assets, asset => {
+    if (typeof(asset.name) == 'string')
+      form.append('content_assets[][source]', asset)
+    else
+      form.append('content_assets[][source]', asset.blob, asset.filename)
+  })
 
   return post(url, form, {
     'Content-Type': null

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { bindAll, map, compact } from 'lodash';
 import i18n from '../../../i18n';
+import Compress from 'client-compress';
 
 const MAX_FILE_SIZE = 2048000;
 
@@ -16,6 +17,17 @@ class Uploader extends Component {
     this.input.click();
   }
 
+  _handleUpload(files) {
+    console.log(files)
+    this.props.uploadAssets(files)
+    .then((assets) => {
+      this.setState({ uploading: false }, () => {
+        this.props.handleUpload(assets[0]);
+      });
+    })
+    .catch(error => { alert('error!', error) })
+  }
+
   handleUpload(event) {
     const files = compact(map(event.target.files, file => file.size > MAX_FILE_SIZE ? null : file));
 
@@ -24,13 +36,15 @@ class Uploader extends Component {
 
     if (files.length > 0)
       this.setState({ uploading: true }, () => {
-        this.props.uploadAssets(files)
-        .then((assets) => {
-          this.setState({ uploading: false }, () => {
-            this.props.handleUpload(assets[0]);
-          });
-        })
-        .catch(error => { alert('error!', error) })
+        // do we have to compress the images on the browser before sending them to server?
+        // https://www.npmjs.com/package/client-compress
+        if (this.props.compress !== undefined) {
+          const compress = new Compress(this.props.compress);
+          compress.compress(files)
+          .then(conversions => map(conversions, conversion => ({ blob: conversion.photo.data, filename: conversion.photo.name })))
+          .then(_files => this._handleUpload(_files))
+        } else
+          this._handleUpload(files)
       });
   }
 
