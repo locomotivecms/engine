@@ -10,8 +10,8 @@ module Locomotive
     #
     # @return [ String ] The label of the content type entry
     #
-    def entry_label(content_type, entry)
-      link = edit_content_entry_path(current_site, content_type.slug, entry)
+    def entry_label(content_type, entry, location_options = {})
+      link = edit_content_entry_path(current_site, content_type.slug, entry, location_options)
 
       if content_type.entry_template.blank?
         label = entry._label(content_type).presence || t(:untranslated, scope: 'locomotive.shared.list')

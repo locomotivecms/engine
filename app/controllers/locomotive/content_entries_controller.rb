@@ -16,6 +16,8 @@ module Locomotive
 
     helper 'Locomotive::CustomFields'
 
+    helper_method :default_location_params
+
     def index
       authorize ContentEntry
       @content_entries = service.all(list_params)
@@ -75,7 +77,7 @@ module Locomotive
     def bulk_destroy
       authorize ContentEntry, :destroy?
       service.bulk_destroy(params[:ids].split(','))
-      respond_with @content_type, location: content_entries_path(current_site, @content_type.slug, page: params[:page], q: params[:q])
+      respond_with @content_type, location: content_entries_path(current_site, @content_type.slug, default_location_params)
     end
 
     private
@@ -104,8 +106,12 @@ module Locomotive
       params.require(:content_entry).permit(service.permitted_attributes)
     end
 
+    def default_location_params
+      { page: params[:page], q: params[:q] }.compact
+    end
+
     def location_after_persisting
-      default = edit_content_entry_path(current_site, @content_type.slug, @content_entry)
+      default = edit_content_entry_path(current_site, @content_type.slug, @content_entry, default_location_params)
 
       if params[:_location].present?
         last_saved_location!(default)
