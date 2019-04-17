@@ -63,6 +63,7 @@ class Base extends Component {
     return Input !== null ? (
       <Input
         label={this.getLocalizedLabel(this.props.setting.label)}
+        inputId={`setting-${this.props.setting.type}-${this.props.setting.id}`}
         getLocalizedLabel={this.getLocalizedLabel}
         getValue={this.getValue}
         {...this.props}

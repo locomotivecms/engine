@@ -60,6 +60,7 @@ RSpec.configure do |config|
 
   config.include Features::SessionHelpers,  type: :system
   config.include Features::SiteHelpers,     type: :system
+  config.include Features::Matchers,        type: :system
   config.include EmailSpec::Helpers,        type: :system
   config.include EmailSpec::Matchers,       type: :system
 

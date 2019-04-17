@@ -1067,8 +1067,11 @@
     margin-left: 2rem;
     font-size: 1.2rem;
     font-weight: bold;
-    text-transform: uppercase;
-    color: #555; }
+    text-transform: uppercase; }
+    .editor-list-item--label a {
+      color: #555; }
+      .editor-list-item--label a:hover {
+        text-decoration: none; }
   .editor-list-item--actions {
     margin-left: auto;
     margin-right: 2rem;

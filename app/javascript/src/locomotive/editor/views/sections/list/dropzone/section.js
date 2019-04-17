@@ -22,12 +22,11 @@ const Section = ({ image, text, ...props }) => {
         </div>
       )}
       <div className="editor-list-item--label">
-        {truncate(text || props.section.label || props.section.name || props.definition.name, { length: 32 })}
+        <SlideLeftLink to={props.editPath}>
+          {truncate(text || props.section.label || props.section.name || props.definition.name, { length: 32 })}
+        </SlideLeftLink>
       </div>
       <div className="editor-list-item--actions">
-        <SlideLeftLink to={props.editPath} className="editor-list-item--actions--button">
-          <EditIcon />
-        </SlideLeftLink>
         <Handle />
       </div>
     </div>

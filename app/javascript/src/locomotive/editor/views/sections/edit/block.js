@@ -15,12 +15,11 @@ const Block = ({ image, text, handleComponent, editPath, ...props }) => {
         </div>
       )}
       <div className="editor-list-item--label">
-        {truncate(text || props.blockDefinition.name, { length: 32 })}
+        <SlideLeftLink to={editPath}>
+          {truncate(text || props.blockDefinition.name, { length: 32 })}
+        </SlideLeftLink>
       </div>
       <div className="editor-list-item--actions">
-        <SlideLeftLink to={editPath} className="editor-list-item--actions--button">
-          <EditIcon />
-        </SlideLeftLink>
         <Handle />
       </div>
     </div>

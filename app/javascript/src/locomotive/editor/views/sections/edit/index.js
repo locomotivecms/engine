@@ -76,11 +76,11 @@ class Edit extends Component {
             {this.props.sectionDefinition.settings.map((setting, index) =>
               <Input
                 key={`section-section-input-${setting.id}-${index}`}
-                setting={setting}
                 value={this.props.sectionContent.settings[setting.id]}
                 onChange={this.props.handleChange}
                 isVisible={setting.only_if === undefined || this.props.sectionContent.settings[setting.only_if] === true}
                 {...this.props}
+                setting={setting}
               />
             )}
           </div>

@@ -32,11 +32,11 @@ const Edit = ({ translate, ...props }) => (
         {props.blockDefinition.settings.map((setting, index) =>
           <Input
             key={`section-section-input-${setting.id}-${index}`}
-            setting={setting}
             value={props.blockContent.settings[setting.id]}
             onChange={props.handleChange}
             isVisible={setting.only_if === undefined || props.blockContent.settings[setting.only_if] === true}
             {...props}
+            setting={setting}
           />
         )}
       </div>

@@ -1,13 +1,14 @@
 import React from 'react';
 
-const SelectInput = ({ label, setting, getValue, getLocalizedLabel, handleChange }) => {
+const SelectInput = ({ label, inputId, setting, getValue, getLocalizedLabel, handleChange }) => {
 
   return (
     <div className="editor-input editor-input-select">
-      <label>{label}</label>
+      <label htmlFor={inputId}>{label}</label>
       <br/>
       <div className="editor-input-select-wrapper">
         <select
+          id={inputId}
           value={getValue(null)}
           onChange={e => handleChange(e.target.value)}
           className="editor-input--select"

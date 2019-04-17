@@ -11,7 +11,7 @@ import EditIcon from '../../../../components/icons/edit';
 import { isEditable } from '../../../../services/sections_service';
 
 const Section = ({ image, text, section, definition, translate, separator, ...props })=> {
-  const Icon = Icons[definition.icon];
+  const Icon  = Icons[definition.icon];
 
   return (
     <div className={classnames('editor-list-item', separator ? 'with-separator' : null)}>
@@ -25,14 +25,11 @@ const Section = ({ image, text, section, definition, translate, separator, ...pr
         </div>
       )}
       <div className="editor-list-item--label">
-        {truncate(text || section.label || translate(definition.name), { length: 32 })}
+        <SlideLeftLink to={props.editPath}>
+          {truncate(text || section.label || translate(definition.name), { length: 32 })}
+        </SlideLeftLink>
       </div>
       <div className="editor-list-item--actions">
-        {isEditable(definition) && (
-          <SlideLeftLink to={props.editPath} className="editor-section--edit-button">
-            <EditIcon />
-          </SlideLeftLink>
-        )}
       </div>
     </div>
   )
