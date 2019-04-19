@@ -13,6 +13,7 @@ module Locomotive
     include Concerns::ContentEntry::Localized
     include Concerns::ContentEntry::Counter
     include Concerns::ContentEntry::FileSize
+    include Concerns::ContentEntry::Authentication
     include Concerns::ContentEntry::NextPrevious
 
     ## fields ##

@@ -82,10 +82,22 @@ FactoryBot.define do
 
     factory 'photo content type' do
       name { 'Photos' }
+      slug { 'photos' }
       description { 'The list of photos' }
       after(:build) do |content_type, _|
         content_type.entries_custom_fields.build label: 'Title', name: 'title', type: 'string'
         content_type.entries_custom_fields.build label: 'Photo', name: 'photo', type: 'file'
+      end
+    end
+
+    factory 'account content type' do
+      name { 'Accounts' }
+      slug { 'accounts' }
+      description { 'protected area' }
+      after(:build) do |content_type, _|
+        content_type.entries_custom_fields.build label: 'Name', name: 'name', type: 'string'
+        content_type.entries_custom_fields.build label: 'Email', name: 'email', type: 'email'
+        content_type.entries_custom_fields.build label: 'Password', name: 'password', type: 'password'
       end
     end
 

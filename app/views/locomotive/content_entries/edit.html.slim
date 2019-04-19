@@ -3,8 +3,13 @@
 - help @content_type.description
 
 - content_for :actions do
+  - if @content_entry.with_authentication?
+    = link_to content_entry_impersonation_path(current_site, @content_type.slug, @content_entry, default_location_params), class: 'btn btn-sm btn-primary', method: 'post', target: '_blank' do
+      i.fas.fa-user-secret
+      = t(:impersonate)
+
   - if @content_type.localized?
-    = locale_picker_link
+    = locale_picker_link { |locale| url_for({ content_locale: locale }.merge(default_location_params)) }
     | &nbsp;
 
   = link_to t(:back, scope: 'locomotive.content_entries.shared').html_safe, content_entries_path(current_site, @content_type.slug, default_location_params), class: 'btn btn-sm btn-default'

@@ -11,7 +11,6 @@ describe 'A site with sections' do
       click_link 'This is the header'
       expect(page).to have_no_javascript_error
       expect(page).to have_content('TITLE')
-      save_and_open_page
       fill_in 'Title', with: 'My new header'
       click_button 'Save'
       expect(page).to have_content('Saving...')

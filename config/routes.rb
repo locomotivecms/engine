@@ -71,6 +71,8 @@ Locomotive::Engine.routes.draw do
       put :sort,              on: :collection
       get :export,            on: :collection
       delete :bulk_destroy,   on: :collection
+
+      resource :impersonation, only: [:create], controller: 'content_entry_impersonations'
     end
 
     namespace :custom_fields, path: 'content_types/:slug/fields/:name' do
