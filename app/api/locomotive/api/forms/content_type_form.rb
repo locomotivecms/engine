@@ -12,7 +12,7 @@ module Locomotive
               :public_submission_enabled,
               :public_submission_accounts,
               :public_submission_title_template,
-              :recaptcha_require,
+              :recaptcha_required,
               :entry_template,
               :entries_custom_fields_attributes,
               :display_settings,

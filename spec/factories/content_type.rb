@@ -141,6 +141,7 @@ FactoryBot.define do
 
     trait :public_submission_enabled do
       after(:build) do |content_type, _|
+        content_type.recaptcha_required = true
         content_type.public_submission_enabled = true
         content_type.public_submission_accounts = [create('admin user')._id]
       end

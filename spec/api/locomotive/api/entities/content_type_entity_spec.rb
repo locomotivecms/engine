@@ -14,6 +14,7 @@ describe Locomotive::API::Entities::ContentTypeEntity do
       public_submission_enabled
       public_submission_accounts
       public_submission_title_template
+      recaptcha_required
       entry_template
     )
 

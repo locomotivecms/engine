@@ -16,7 +16,7 @@ describe Locomotive::ContentAssetsController do
 
   describe '#GET index' do
     subject { get :index, params: { site_handle: site, locale: :en } }
-    it { is_expected.to be_success }
+    it { is_expected.to be_successful }
     specify do
       subject
       expect(assigns(:content_assets).all).to eq([content_asset])
