@@ -6,7 +6,7 @@ module Locomotive
         extend ActiveSupport::Concern
 
         included do
-          embeds_many   :editable_elements, class_name: 'Locomotive::EditableElement', cascade_callbacks: true
+          embeds_many :editable_elements, class_name: 'Locomotive::EditableElement', cascade_callbacks: true
 
           accepts_nested_attributes_for :editable_elements
         end

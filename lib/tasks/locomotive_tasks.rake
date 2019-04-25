@@ -102,6 +102,27 @@ namespace :locomotive do
       end
       puts '[x] rename site attribute: change routes to url_redirections'
 
+      # editable controle are now localized by default
+      Locomotive::Site.all.each_by(10) do |site|
+        site.pages.each_by(10) do |page|
+          page.editable_elements.each do |el|
+            next if !el.is_a?(Locomotive::EditableControl) || el.attributes['content'].is_a?(Hash)
+
+            value = el.attributes['content']
+
+            # trick: reset the content with an empty hash
+            new_attributes = el.attributes.dup
+            new_attributes[:content] = {}
+            el.instance_variable_set(:@attributes, new_attributes)
+
+            site.locales.each do |locale|
+              Mongoid::Fields::I18n.with_locale(locale) {  el.set(content: value) }
+            end
+          end
+        end
+      end
+      puts '[x] editable_control elements are localized by default'
+
       puts "\nDone!"
     end
 
