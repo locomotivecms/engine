@@ -3,7 +3,7 @@ module Locomotive
 
     source_root File.expand_path('../../../../../', __FILE__)
 
-    class_option :heroku, type: :boolean, default: false, description: 'if the Engine runs on Heroku'
+    class_option :heroku, type: :boolean, default: false, description: 'if the Engine is supposed to run on Heroku'
 
     def copy_initializers
       @source_paths = nil # reset it for the find_in_source_paths method
@@ -19,6 +19,19 @@ module Locomotive
       if options.heroku? || yes?('Do you want to store your assets on Amazon S3?')
         template 'carrierwave_aws.rb', 'config/initializers/carrierwave.rb'
         gem 'carrierwave-aws'
+        gem 'rack-cors', require: 'rack/cors'
+        inject_into_file 'Gemfile', after: "# the framework and any gems in your application.\n" do <<-RUBY
+
+    config.assets.initialize_on_precompile = false
+
+    config.middleware.insert_before ActionDispatch::Static, Rack::Cors do
+      allow do
+        origins '*'
+        resource '/assets/*', headers: :any, methods: :any
+      end
+    end
+
+        RUBY
       else
         template 'carrierwave.rb', 'config/initializers/carrierwave.rb'
       end
@@ -41,7 +54,7 @@ module Locomotive
         inject_into_file 'Gemfile', after: "source 'https://rubygems.org'\n" do <<-'RUBY'
 
 if ENV['HEROKU_APP_NAME']
-  ruby '2.5.1'
+  ruby '2.6.2'
 end
         RUBY
         end
