@@ -36,7 +36,7 @@ describe Locomotive::Steam::APIEntrySubmissionService do
 
     context 'with notified emails' do
 
-      let(:params) { { notified_emails: 'john@doe.net,jane@doe.net' } }
+      let(:params) { { 'notified_emails' => 'john@doe.net,jane@doe.net' } }
 
       it 'passes an array of emails to the content entry service' do
         expect_any_instance_of(Locomotive::ContentEntryService).to receive(:send_notifications).with(any_args, ['john@doe.net', 'jane@doe.net'])

@@ -44,8 +44,8 @@ module Locomotive
       # a public form might need to inform accounts from other Locomotive sites
       def notified_emails
         (
-          self.request.params[:notified_emails] ||
-          self.request.params[:notified_accounts] ||
+          self.request.params['notified_emails'] ||
+          self.request.params['notified_accounts'] ||
           ''
         ).split(',')
       end
