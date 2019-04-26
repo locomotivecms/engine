@@ -73,7 +73,7 @@ module Locomotive
     # A notification email is sent to the selected members of the site.
     #
     # @param [ Hash ] attributes The attributes of new content entry.
-    # @param [ Hash ] options For now, only store the ip address of the person who submitted the content entry.
+    # @param [ Hash ] options For now, only store the ip address of the person who submitted the content entry + other accounts
     #
     # @return [ Object ] An instance of the content entry.
     #
@@ -82,8 +82,8 @@ module Locomotive
 
       without_tracking_activity { create(form.serializable_hash) }.tap do |entry|
         if entry.errors.empty?
-          # send an email to selected local accounts
-          send_notifications(entry)
+          # send an email to selected local accounts + potential external accounts described by their emails
+          send_notifications(entry, options[:emails])
 
           track_activity 'content_entry.created_public', locale: locale, parameters: activity_parameters(entry)
         end
@@ -166,14 +166,13 @@ module Locomotive
       end
     end
 
-    def send_notifications(entry)
+    def send_notifications(entry, emails = nil)
       return unless self.content_type.public_submission_enabled?
 
-      account_ids = (self.content_type.public_submission_accounts || []).map(&:to_s)
-
-      self.content_type.site.accounts.each do |account|
-        next unless account_ids.include?(account._id.to_s)
-
+      Locomotive::Account.any_of(
+        { :_id.in   => self.content_type.public_submission_accounts || [] },
+        { :email.in => emails || [] }
+      ).each do |account|
         Locomotive::Notifications.new_content_entry(account, entry).deliver
       end
     end

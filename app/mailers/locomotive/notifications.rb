@@ -1,7 +1,7 @@
+require 'adomain'
+
 module Locomotive
   class Notifications < ActionMailer::Base
-
-    default from: Locomotive.config.mailer_sender
 
     def new_content_entry(account, entry)
       @site, @account = entry.site, account
@@ -12,8 +12,13 @@ module Locomotive
         'localhost'
 
       subject = new_content_entry_subject(entry, domain: @domain, type: @type.name, locale: account.locale)
+      from    = (if top_level_domain = Adomain.domain(@domain)
+         "noreply@#{top_level_domain}"
+      else
+        Locomotive.config.mailer_sender
+      end)
 
-      mail subject: subject, to: account.email
+      mail subject: subject, from: from, to: account.email, reply_to: from
     end
 
     protected

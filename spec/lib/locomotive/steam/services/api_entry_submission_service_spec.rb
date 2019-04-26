@@ -4,8 +4,9 @@ describe Locomotive::Steam::APIEntrySubmissionService do
 
   let(:site)          { create(:site) }
   let(:steam_service) { instance_double('SteamContentEntryService', locale: 'en') }
+  let(:params)        { {} }
   let(:request_env)   { instance_double('RequestEnv') }
-  let(:request)       { instance_double('Request', ip: '127.0.0.1', user_agent: 'Rspec', referer: 'https://www.locomotivecms.com', env: request_env) }
+  let(:request)       { instance_double('Request', ip: '127.0.0.1', user_agent: 'Rspec', referer: 'https://www.locomotivecms.com', env: request_env, params: params) }
   let(:enabled)       { true }
   let!(:content_type) { create('message content type', site: site, public_submission_enabled: enabled).reload }
   let(:service)       { described_class.new(steam_service, request) }
@@ -33,7 +34,18 @@ describe Locomotive::Steam::APIEntrySubmissionService do
 
     end
 
-  end #
+    context 'with notified emails' do
+
+      let(:params) { { notified_emails: 'john@doe.net,jane@doe.net' } }
+
+      it 'passes an array of emails to the content entry service' do
+        expect_any_instance_of(Locomotive::ContentEntryService).to receive(:send_notifications).with(any_args, ['john@doe.net', 'jane@doe.net'])
+        subject
+      end
+
+    end
+
+  end
 
   describe '#to_json' do
 

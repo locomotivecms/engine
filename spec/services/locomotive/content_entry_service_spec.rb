@@ -209,11 +209,20 @@ describe Locomotive::ContentEntryService do
   describe '#public_create' do
 
     let(:attributes) { { title: 'Hello world', body: 'Lorem ipsum' } }
+    let(:options) { {} }
 
-    subject { service.public_create(attributes) }
+    subject { service.public_create(attributes, options) }
 
     it { expect { subject }.to change { content_type.entries.count } }
     it { expect(service).to receive(:send_notifications); subject }
+
+    context 'with notified accounts' do
+
+      let(:options) { { emails: ['john@doe.net', 'jane@doe.net'] } }
+
+      it { expect(service).to receive(:send_notifications).with(any_args, ['john@doe.net', 'jane@doe.net']); subject }
+
+    end
 
     context 'invalid' do
 
@@ -229,12 +238,13 @@ describe Locomotive::ContentEntryService do
   describe '#send_notifications' do
 
     let(:enabled)       { true }
-    let(:account_1)     { create(:designer, site: site).account }
-    let(:account_2)     { create('brazillian user') }
-    let(:content_type)  { create_content_type(public_submission_enabled: enabled, public_submission_accounts: ['', account_1._id, account_2._id]) }
+    let!(:account_1)    { create(:designer, site: site).account }
+    let!(:account_2)    { create('brazillian user', email: 'juan@doe.br') }
+    let(:emails)        { nil }
+    let(:content_type)  { create_content_type(public_submission_enabled: enabled, public_submission_accounts: ['', account_1._id]) }
     let(:entry)         { create_content_entry(title: 'Shoot an email', body: 'now') }
 
-    subject { service.send_notifications(entry) }
+    subject { service.send_notifications(entry, emails) }
 
     context 'public_submission disabled' do
 
@@ -250,6 +260,18 @@ describe Locomotive::ContentEntryService do
         expect(Locomotive::Notifications).to receive(:new_content_entry).with(account_1, entry).and_return(instance_double('mailer', deliver: true))
         expect(Locomotive::Notifications).not_to receive(:new_content_entry).with(account_2, entry)
         subject
+      end
+
+      context 'external accounts' do
+
+        let(:emails) { ['juan@doe.br'] }
+
+        it 'sends email notifications to external accounts' do
+          expect(Locomotive::Notifications).to receive(:new_content_entry).with(account_1, entry).and_return(instance_double('mailer', deliver: true))
+          expect(Locomotive::Notifications).to receive(:new_content_entry).with(account_2, entry).and_return(instance_double('mailer', deliver: true))
+          subject
+        end
+
       end
 
     end

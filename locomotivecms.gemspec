@@ -61,6 +61,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'multi_json',                      '~> 1.13.1'
   s.add_dependency 'yajl-ruby',                       '~> 1.3.1'
   s.add_dependency 'actionmailer-with-request',       '~> 0.5.0'
+  s.add_dependency 'adomain',                         '~> 0.1.1'
 
   s.add_dependency 'grape',                           '~> 1.1.0'
   s.add_dependency 'grape-entity',                    '0.7.1'
