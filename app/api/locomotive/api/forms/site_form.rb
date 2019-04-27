@@ -4,8 +4,9 @@ module Locomotive
 
       class SiteForm < BaseForm
 
-        attrs :name, :handle, :robots_txt, :locales, :domains, :routes, :url_redirections, :timezone, :picture, :cache_enabled, :private_access, :password, :asset_host
+        attrs :name, :handle, :robots_txt, :domains, :routes, :url_redirections, :timezone, :picture, :cache_enabled, :private_access, :password, :asset_host
         attrs :metafields_schema, :metafields, :metafields_ui
+        attrs :locales, :prefix_default_locale, :bypass_browser_locale
         attrs :seo_title, :meta_keywords, :meta_description, localized: true
         attrs :sections_content
 

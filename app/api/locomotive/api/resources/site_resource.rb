@@ -97,6 +97,8 @@ module Locomotive
               optional :robots_txt
               optional :locales, type: Array
               optional :domains, type: Array
+              optional :prefix_default_locale
+              optional :bypass_browser_locale
               optional :timezone
               optional :picture
               optional :cache_enabled

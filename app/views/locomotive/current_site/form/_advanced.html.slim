@@ -3,6 +3,8 @@
 
   = f.input :prefix_default_locale, as: :toggle
 
+  = f.input :bypass_browser_locale, as: :toggle
+
   = f.input :timezone_name, as: :select, include_blank: false, collection: options_for_site_timezones
 
   = f.input :robots_txt, as: :code, wrapper_html: { class: 'small' }

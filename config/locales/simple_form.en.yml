@@ -101,6 +101,7 @@ en:
           asset_host: "Site-specific asset host that overrides engine asset host (ex. \"localhost\", \"asset.dev\", \"https://asset-host.com/\")."
           memberships: "You can invite other accounts to edit/manage the site."
           cache_enabled: "When enabled, your pages will be cached as long as the content doesn't change. Disabling cache per page is allowed."
+          bypass_browser_locale: "By default, in a multi locales site, if a visitor visits the index page for the first time, we'll redirect her/him to the locale matching one of the browser languages. Toggle on if you don't want this behaviour."
           redirect_to_first_domain: "When enabled, requests made to any domains listed above will be redirected to the first domain."
           redirect_to_https: "When enabled, non secure requests will be redirected to https. This requires the installation of a SSL certificate on the web server."
           url_redirections_expert_mode: "When enabled, a textarea will let you manage your redirections. <strong>IMPORTANT: save your site before returning to the default mode.</strong>"

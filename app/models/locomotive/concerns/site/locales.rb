@@ -10,6 +10,7 @@ module Locomotive
           ## fields ##
           field :locales, type: ::RawArray, default: []
           field :prefix_default_locale, type: ::Boolean, default: false
+          field :bypass_browser_locale, type: ::Boolean, default: false
 
           ## validations ##
           validate :can_not_remove_default_locale
