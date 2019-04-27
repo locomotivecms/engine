@@ -37,7 +37,7 @@
 
 - if @content_type.groupable?
   .row.list-groups
-    .nav-container
+    .nav-container.nav-container--scroll
       ul.nav.nav-tabs role='tablist'
         li class="#{'active' if params[:group].nil?}"
           = link_to t('.group_by.all'), content_entries_path(current_site, @content_type.slug, query: params[:query])
@@ -45,6 +45,8 @@
         - each_content_entry_group(@content_type) do |group|
           li class="#{'active' if params[:group] == group[:name]}"
             = link_to group[:name], group[:url]
+
+        li
 
 .row.list-header
   .col.col-md-6.text-left

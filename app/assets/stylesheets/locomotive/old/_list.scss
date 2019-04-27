@@ -6,6 +6,41 @@
   .list-groups {
     margin-bottom: 10px;
 
+    .nav-container.nav-container--scroll {
+      padding-left: 15px;
+      padding-right: 15px;
+
+      .nav-tabs {
+        position: relative;
+        display: flex;
+        flex-wrap: nowrap;
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+        border: none;
+        padding-left: 0px;
+        padding-right: 0px;
+        padding-bottom: 2px;
+
+        // don't display the scrollbar
+        &::-webkit-scrollbar { display: none; }
+
+        & > li {
+          flex: 0 0 auto;
+          z-index: 2;
+
+          &:last-child {
+            width: 9999px;
+            height: 2px;
+            border-bottom: 2px solid #ccc;
+            position: absolute;
+            bottom: 2px;
+            z-index: 1;
+          }
+        }
+      }
+    }
+
     .nav-tabs {
       padding-left: 15px;
       padding-right: 15px;
