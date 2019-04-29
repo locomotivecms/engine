@@ -6,6 +6,7 @@ describe 'locomotive/my_account/edit', type: :view do
   let(:account) { build(:account, api_key: 42) }
 
   before {
+    allow(view).to receive(:policy).and_return(instance_double('Policy', edit?: true))
     allow(view).to receive(:last_saved_location).and_return(nil)
     allow(view).to receive(:current_locomotive_account).and_return(account)
   }

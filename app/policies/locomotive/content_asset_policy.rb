@@ -5,16 +5,24 @@ module Locomotive
       site_staff?
     end
 
-    def create?
+    def new?
       site_staff?
+    end
+
+    def edit?
+      site_staff?
+    end
+
+    def create?
+      site_staff? && !membership.visitor?
     end
 
     def update?
-      site_staff?
+      site_staff? && !membership.visitor?
     end
 
     def destroy?
-      site_staff?
+      site_staff? && !membership.visitor?
     end
 
   end

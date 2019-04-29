@@ -3,7 +3,7 @@ module Locomotive
 
     include Locomotive::Mongoid::Document
 
-    ROLES = %w(author designer admin)
+    ROLES = %w(visitor author designer admin)
 
     ## fields ##
     field :role, default: 'author'

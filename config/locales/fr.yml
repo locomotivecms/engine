@@ -83,6 +83,8 @@ fr:
           create_account: "Veuillez créer un compte avant de créer un site"
           add_domain: "Ajoutez le domaine <strong>%{host}</strong>  à la liste de domaines de l'un de vos sites."
           sign_in: "Veuillez d'abord vous identifier. Puis, ajoutez le domaine <strong>%{host}</strong> à la liste de domaines de l'un de vos sites."
+      access_denied:
+        message: "Vous n'êtes pas autorisé(e) à effectuer cette action. Veuillez contacter l'administrateur du site pour de l'aide."
     notifications:
       new_content_entry:
         subject: "[%{domain}][%{type}] nouvelle entité"

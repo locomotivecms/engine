@@ -21,12 +21,16 @@ module Locomotive
       true
     end
 
+    def edit?
+      super_admin? || site_staff?
+    end
+
     def create?
-      true
+      !account.visitor?
     end
 
     def update?
-      super_admin? || site_staff?
+      super_admin? || site_staff? && !membership.visitor?
     end
 
     def destroy?

@@ -87,6 +87,8 @@ en:
           create_account: "Please create an account first and then create a site."
           add_domain: "Add the <strong>%{host}</strong> domain to the list of domains of one of your sites."
           sign_in: "Please sign in first. Then, add the <strong>%{host}</strong> domain to the list of domains of one of your sites."
+      access_denied:
+        message: "You're not allowed to perform this action. Contact your site administrator for some help."
 
     notifications:
       new_content_entry:

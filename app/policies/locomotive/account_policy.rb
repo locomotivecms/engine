@@ -15,7 +15,7 @@ module Locomotive
     end
 
     def update?
-      super_admin? || owner?
+      (super_admin? || owner?) && !@resource.visitor?
     end
 
     def destroy?
