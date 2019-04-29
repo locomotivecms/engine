@@ -118,6 +118,7 @@ module Locomotive
               optional :public_submission_enabled
               optional :public_submission_account_emails
               optional :public_submission_title_template
+              optional :recaptcha_required
             end
           end
           put ':id' do
