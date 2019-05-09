@@ -12,6 +12,8 @@ module Locomotive
         # add a flag to notify that the sign in was done by impersonating the entry
         session[:authenticated_impersonation] = '1'
 
+        # notify signed in
+        notify(:signed_in, content_entry, request)
         redirect_to preview_url(current_site)
       else
         redirect_to content_entries_path(current_site, content_type.slug)
@@ -26,6 +28,15 @@ module Locomotive
 
     def content_entry
       @content_entry ||= content_type.entries.find(params[:content_entry_id])
+    end
+
+    def notify(action, entry, request)
+        ActiveSupport::Notifications.instrument("steam.auth.#{action}",
+          site:     current_site,
+          entry:    entry,
+          locale:   locale,
+          request:  request
+        )
     end
 
   end
