@@ -122,7 +122,7 @@ const findFirstSettingValueOf = (type, sectionContent, definition) => {
 
       // find the block definition
       const _definition = find(definition.blocks, _block => _block.type === block.type);
-      const _setting    = find(_definition.settings, setting => setting.type === type);
+      const _setting    = find(_definition.settings || [], setting => setting.type === type);
 
       if (_setting)
         value = presence(block.settings[_setting.id]);
