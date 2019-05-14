@@ -3,6 +3,9 @@ require 'selenium-webdriver'
 
 if chromedriver_version = ENV['CHROMEDRIVER_VERSION']
   Webdrivers::Chromedriver.version = chromedriver_version #'2.46'
+
+  # https://www.rubydoc.info/github/titusfortner/webdrivers/master
+  Webdrivers.cache_time = 86_400 # ie. 24 hours
 end
 
 Capybara.server = :webrick

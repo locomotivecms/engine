@@ -122,13 +122,14 @@ GEM
     bson (4.4.2)
     builder (3.2.3)
     byebug (11.0.1)
-    capybara (3.8.2)
+    capybara (3.18.0)
       addressable
       mini_mime (>= 0.1.3)
       nokogiri (~> 1.8)
       rack (>= 1.6.0)
       rack-test (>= 0.6.3)
-      xpath (~> 3.1)
+      regexp_parser (~> 1.2)
+      xpath (~> 3.2)
     carrierwave (1.2.3)
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
@@ -140,8 +141,8 @@ GEM
       carrierwave (>= 0.8, < 1.3)
       mongoid (>= 3.0, < 8.0)
       mongoid-grid_fs (>= 1.3, < 3.0)
-    childprocess (0.9.0)
-      ffi (~> 1.0, >= 1.0.11)
+    childprocess (1.0.1)
+      rake (< 13.0)
     chronic (0.10.2)
     chunky_png (1.3.11)
     codeclimate-test-reporter (1.0.9)
@@ -348,7 +349,6 @@ GEM
     mustermann (1.0.3)
     mustermann-grape (1.0.0)
       mustermann (~> 1.0.0)
-    net_http_ssl_fix (0.0.10)
     nio4r (2.3.1)
     nokogiri (1.8.5)
       mini_portile2 (~> 2.3.0)
@@ -408,6 +408,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
+    regexp_parser (1.4.0)
     responders (2.4.1)
       actionpack (>= 4.2.0, < 6.0)
       railties (>= 4.2.0, < 6.0)
@@ -441,8 +442,8 @@ GEM
     sassc (2.0.1)
       ffi (~> 1.9)
       rake
-    selenium-webdriver (3.141.0)
-      childprocess (~> 0.5)
+    selenium-webdriver (3.142.2)
+      childprocess (>= 0.5, < 2.0)
       rubyzip (~> 1.2, >= 1.2.2)
     shoulda-matchers (3.1.3)
       activesupport (>= 4.0.0)
@@ -484,8 +485,7 @@ GEM
       equalizer (~> 0.0, >= 0.0.9)
     warden (1.2.8)
       rack (>= 2.0.6)
-    webdrivers (3.7.2)
-      net_http_ssl_fix
+    webdrivers (3.9.1)
       nokogiri (~> 1.6)
       rubyzip (~> 1.0)
       selenium-webdriver (~> 3.0)
@@ -501,7 +501,7 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
-  capybara (~> 3.8.2)
+  capybara (~> 3.18.0)
   codeclimate-test-reporter (~> 1.0.7)
   database_cleaner (~> 1.6.2)
   email_spec (~> 2.2.0)
@@ -512,10 +512,10 @@ DEPENDENCIES
   puma (~> 3.12.0)
   rails-controller-testing (~> 1.0.2)
   rspec-rails (~> 3.8.0)
-  selenium-webdriver (~> 3.141.0)
+  selenium-webdriver (~> 3.142.2)
   shoulda-matchers (~> 3.1.2)
   simplecov
-  webdrivers (~> 3.0)
+  webdrivers (~> 3.9.1)
 
 BUNDLED WITH
    1.17.3

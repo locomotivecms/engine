@@ -12,7 +12,7 @@ gemspec
 
 group :development, :test do
   gem 'rspec-rails',  '~> 3.8.0'
-  gem 'capybara',     '~> 3.8.2'
+  gem 'capybara',     '~> 3.18.0'
 
   # To use a debugger
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -35,9 +35,9 @@ group :development, :test do
 end
 
 group :test do
-  gem 'selenium-webdriver',       '~> 3.141.0'
+  gem 'selenium-webdriver',       '~> 3.142.2'
   gem 'puma',                     '~> 3.12.0'
-  gem 'webdrivers',               '~> 3.0'
+  gem 'webdrivers',               '~> 3.9.1'
 
   gem 'grape-entity-matchers',    github: 'salsify/grape-entity-matchers', branch: 'grape-entity-exposures'
   gem 'shoulda-matchers',         '~> 3.1.2'
