@@ -31,22 +31,33 @@ namespace :locomotive do
     task v3: :environment do
       puts '...'
 
+      if ENV['site']
+        site_id = Locomotive::Site.find_by(handle: ENV['site']).id
+
+        filters = {site_id: site_id}
+        site_filters = {id: site_id}
+      else
+        filters = {} 
+        site_filters = {} 
+      end
+
+
       # subdomain to handle
-      Locomotive::Site.all.each_by(10) do |site|
+      Locomotive::Site.where(site_filters).each_by(10) do |site|
         if subdomain = site.attributes['subdomain']
           site.set handle: subdomain
         end
       end
-      puts '[x] set the handle attribute for all the sites'
+      puts "[x] set the handle attribute for the site#{'s' if ENV['site']}"
 
       # number_of_entries by content type
-      Locomotive::ContentType.all.each_by(10) do |content_type|
+      Locomotive::ContentType.where(filters).each_by(10) do |content_type|
         content_type.set number_of_entries: content_type.entries.count
       end
       puts '[x] set the number of entries by content type'
 
       # content_entries: many_to_many relationships, make sure both sides are consistent
-      Locomotive::ContentType.where('entries_custom_fields.type' => 'many_to_many').all.each_by(10) do |content_type|
+      Locomotive::ContentType.where(filters).where('entries_custom_fields.type' => 'many_to_many').all.each_by(10) do |content_type|
         # puts "[#{content_type.site.name}] #{content_type.name}"
         content_type.entries_custom_fields.where('type' => 'many_to_many').all.each do |field|
           # puts "\t[#{content_type.name}][#{field.name}] #{field.label}"
@@ -81,21 +92,21 @@ namespace :locomotive do
       puts '[x] make many_to_many relationships exist both sides'
 
       # content asset checksums
-      Locomotive::ContentAsset.all.each do |asset|
+      Locomotive::ContentAsset.where(filters).each do |asset|
         asset.send(:calculate_checksum)
         asset.save
       end
       puts '[x] generate checksums for existing content assets'
 
       # translation completion
-      Locomotive::Translation.all.each do |translation|
+      Locomotive::Translation.where(filters).each do |translation|
         translation.send(:set_completion)
         translation.save
       end
       puts '[x] set completion for translations'
 
       # rename routes to url_redirections
-      Locomotive::Site.all.each_by(10) do |site|
+      Locomotive::Site.where(site_filters).each_by(10) do |site|
         site.url_redirections = site.routes
         site.routes = nil
         site.save
@@ -103,7 +114,7 @@ namespace :locomotive do
       puts '[x] rename site attribute: change routes to url_redirections'
 
       # editable controle are now localized by default
-      Locomotive::Site.all.each_by(10) do |site|
+      Locomotive::Site.where(site_filters).each_by(10) do |site|
         site.pages.each_by(10) do |page|
           page.editable_elements.each do |el|
             next if !el.is_a?(Locomotive::EditableControl) || el.attributes['content'].is_a?(Hash)
