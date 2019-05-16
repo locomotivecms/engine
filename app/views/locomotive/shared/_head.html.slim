@@ -1,5 +1,5 @@
 - if current_site
-  title== escape_once("#{Locomotive.config.name} &mdash; #{current_site.name}")
+  title== escape_once("#{current_site.name} &mdash; #{Locomotive.config.name}")
 - else
   title= escape_once(Locomotive.config.name)
 
