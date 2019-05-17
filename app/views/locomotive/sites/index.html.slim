@@ -11,6 +11,7 @@
   .public-entries
     = render @sites
 
-  = link_to new_site_url, class: 'public-entry is-add' do
-    i.fa.fa-plus
-    = t('.new')
+  - if policy(Locomotive::Site).new?
+    = link_to new_site_url, class: 'public-entry is-add' do
+      i.fa.fa-plus
+      = t('.new')

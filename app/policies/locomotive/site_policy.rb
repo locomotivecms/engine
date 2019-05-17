@@ -25,6 +25,10 @@ module Locomotive
       super_admin? || site_staff?
     end
 
+    def new
+      !account.visitor?
+    end
+
     def create?
       !account.visitor?
     end
