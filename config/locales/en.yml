@@ -361,9 +361,9 @@ en:
     content_entries:
       index:
         title: '%{type}'
-        download: download entries
-        new: new entry
-        bulk_destroy: delete entries
+        download: Download entries
+        new: New entry
+        bulk_destroy: Delete entries
         edit_notification_settings: Edit notification settings
         search_placeholder: "Enter your search keywords here"
         group_by:

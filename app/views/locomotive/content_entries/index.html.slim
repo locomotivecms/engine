@@ -14,26 +14,32 @@
         = t('.bulk_destroy')
 
   .main-action
-    .btn-group
+    - if can_edit_public_submission_accounts?(@content_type) || !empty_collection?(@content_entries)
+      .btn-group
+        = link_to new_content_entry_path(current_site, @content_type.slug), class: 'btn btn-primary btn-sm' do
+          i.fa.fa-plus
+          | &nbsp;
+          = t('.new')
+        button.btn.btn-primary.btn-sm.dropdown-toggle data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+          span.caret
+          span.sr-only Toggle Dropdown
+        ul.dropdown-menu.dropdown-menu-right
+          - if can_edit_public_submission_accounts?(@content_type)
+            li
+              = link_to edit_public_submission_accounts_path(current_site, @content_type.slug) do
+                i.fas.fa-cog
+                = t('.edit_notification_settings')
+
+          - unless empty_collection?(@content_entries)
+            li
+              = link_to export_content_entries_path(current_site, @content_type.slug, :csv) do
+                i.fa.fa-download
+                = t('.download')
+    - else
       = link_to new_content_entry_path(current_site, @content_type.slug), class: 'btn btn-primary btn-sm' do
         i.fa.fa-plus
         | &nbsp;
         = t('.new')
-      button.btn.btn-primary.btn-sm.dropdown-toggle data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-        span.caret
-        span.sr-only Toggle Dropdown
-      ul.dropdown-menu.dropdown-menu-right
-        - if can_edit_public_submission_accounts?(@content_type)
-          li
-            = link_to edit_public_submission_accounts_path(current_site, @content_type.slug) do
-              i.fas.fa-cog
-              = t('.edit_notification_settings')
-
-        - unless empty_collection?(@content_entries)
-          li
-            = link_to export_content_entries_path(current_site, @content_type.slug, :csv) do
-              i.fa.fa-download
-              = t('.download')
 
 - if @content_type.groupable?
   .row.list-groups

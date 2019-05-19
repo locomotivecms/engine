@@ -16,6 +16,12 @@
       color: rgba($main_title_color, 0.7);
     }
 
+    .dropdown-menu {
+      i {
+        margin-right: 1rem;
+      }
+    }
+
     .actions {
       text-align: right;
 
@@ -30,12 +36,6 @@
 
       .btn.dropdown-toggle {
         border-left: 1px solid $btn-primary-border;
-      }
-
-      .dropdown-menu {
-        i {
-          margin-right: 1rem;
-        }
       }
     }
   }

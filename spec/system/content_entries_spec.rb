@@ -7,7 +7,7 @@ describe 'A site with content entries' do
     it 'creates an article and attach a photo to it', js: true do
       click_link 'Models'
       click_link 'Article'
-      click_link 'new entry'
+      click_link 'New entry'
       fill_in 'Title', with: 'Hello world'
       within('#main') { click_button 'Create' }
       expect(page).to have_content('Entry was successfully created.')
