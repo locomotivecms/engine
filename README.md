@@ -33,7 +33,7 @@ Visit the Locomotive official website [here](https://www.locomotivecms.com) for 
 
 ## Contribute
 
-V3 has launched! Which means a lot of stuff changed and we got bunch of new features shipped in. However, Locomotive will be updated frequently with more awesome features. Have a look at our [Trello](https://trello.com/b/kRiy1dZu/locomotive-v3) board to see what's next or see where you can help out.
+Have a look at our [Trello](https://trello.com/b/kRiy1dZu/locomotive-v3) board to see what's next or see where you can help out.
 
 ### Technologies
 
