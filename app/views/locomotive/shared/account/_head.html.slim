@@ -1,0 +1,33 @@
+meta charset="utf-8"
+meta http-equiv="x-ua-compatible" content="ie=edge"
+
+title= escape_once(strip_tags(title) + " | #{application_name}")
+
+meta name="viewport" content="width=device-width, initial-scale=1"
+
+link rel="icon" type="image/png" href="#{asset_url('locomotive/favicon.png')}" sizes="32x32"
+
+link href="https://fonts.googleapis.com/css?family=Muli:400,300|Noto+Sans:400,700" rel="stylesheet" type="text/css"
+
+javascript:
+  window.Locomotive = { mounted_on: '#{Locomotive.mounted_on}' }
+
+= javascript_include_tag  'locomotive'
+= stylesheet_link_tag     'locomotive/account', media: 'screen'
+
+javascript:
+  window.locale                     = '#{locale}';
+
+  $(document).ready(function() {
+
+    window.application_view = new Locomotive.Views.SimpleView({
+      flash:      #{{flash_messages_to_json}},
+      view:       #{backbone_view_class_name}
+    });
+    window.application_view.render();
+
+  });
+
+= csrf_meta_tag
+
+= yield :head
