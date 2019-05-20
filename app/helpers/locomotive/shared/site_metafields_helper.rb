@@ -18,7 +18,7 @@ module Locomotive
           ui[:hint]  = current_site_metafields_ui_t(_ui['hint'], t('locomotive.current_site_metafields.index.help', default: ''))
 
           # icon in the sidebar
-          ui[:icon]  = "far fa-#{_ui['icon'].present? ? _ui['icon'] : 'newspaper'}"
+          ui[:icon]  = "fas fa-#{_ui['icon'].present? ? _ui['icon'] : 'newspaper'}"
         end
       end
 
