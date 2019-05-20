@@ -1,14 +1,12 @@
 - list = Locomotive::ContentTypeService.new(current_site).list
 
 - unless list.empty?
-  - active = params[:controller].include?('content_types')
-
-  = link_to '#collapseContentTypes', data: { toggle: 'collapse' }, aria: { expanded: active.to_s, controls: 'collapseContentTypes' }, class: sidebar_link_class(:content_types) do
+  = link_to '#collapseContentTypes', data: { toggle: 'collapse' }, aria: { expanded: 'false', controls: 'collapseContentTypes' }, class: sidebar_link_class(:content_types) do
     i.fas.fa-list
     span= t('.title')
     i.fa.fa-caret-down
 
-  ul.sidebar-list.collapse#collapseContentTypes class=('in' if active)
+  ul.sidebar-list.collapse#collapseContentTypes
     - list.each do |content_type|
       - if policy(content_type).show?
         li

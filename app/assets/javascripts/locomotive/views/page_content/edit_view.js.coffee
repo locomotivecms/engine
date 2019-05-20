@@ -9,6 +9,7 @@ class Locomotive.Views.PageContent.EditView extends Backbone.View
 
   initialize: ->
     _.bindAll(@, 'shrink_preview', 'close_sidebar')
+    $('#collapsePages').addClass('in')
 
   render: ->
     super()
