@@ -1,6 +1,7 @@
 module Locomotive
   class DashboardController < BaseController
-    include Locomotive::Shared::ActivitiesHelper
+
+    helper Locomotive::Shared::ActivitiesHelper
 
     account_required & within_site
 
