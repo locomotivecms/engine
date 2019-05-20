@@ -4,6 +4,11 @@ class Locomotive.Views.Pages.ListView extends Backbone.View
 
   el: '.pages-tree'
 
+  initialize: ->
+    super()
+    if $('body').hasClass('pages')
+      $('#collapsePages').addClass('in')
+
   render: ->
     @make_foldable()
 

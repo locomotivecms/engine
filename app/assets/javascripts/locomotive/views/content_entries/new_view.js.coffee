@@ -4,6 +4,10 @@ class Locomotive.Views.ContentEntries.NewView extends Locomotive.Views.Shared.Fo
 
   el: '.main'
 
+  initialize: ->
+    super()
+    $('#collapseContentTypes').addClass('in')
+
   render: ->
     super()
 
