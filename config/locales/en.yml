@@ -49,7 +49,7 @@ en:
         dashboard: Dashboard
         assets: Assets
         pages: Pages
-        settings: General Settings
+        settings: Site Administration
         metafields: Properties
         developers: Developers
         content_types:
@@ -263,7 +263,7 @@ en:
 
     current_site:
       edit:
-        title: Editing the current site
+        title: Site Administration
       form:
         main:
           new_membership: "Add account"

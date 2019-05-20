@@ -2,7 +2,7 @@ describe 'Editing a site' do
 
   before do
     create_full_site
-    click_link 'General Settings'
+    click_link 'Site Administration'
   end
 
   it 'edits it with success' do
