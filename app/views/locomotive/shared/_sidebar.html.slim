@@ -8,7 +8,7 @@
       span= t('.dashboard')
 
     - cache(cache_key_for_sidebar_pages) do
-      = link_to '#collapsePages', data: { toggle: 'collapse' }, aria: { expanded: 'false', controls: 'collapsePages' }, class: sidebar_link_class(:pages) do
+      = link_to '#collapsePages', data: { toggle: 'collapse' }, aria: { expanded: request.path.include?("/pages/").to_s, controls: 'collapsePages' }, class: sidebar_link_class(:pages) do
         i.far.fa-file-alt
         span= t('.pages')
         i.fa.fa-caret-down

@@ -1,5 +1,5 @@
 .pages-tree
-  ul.root.sidebar-list.collapse#collapsePages data-url=sort_page_path(current_site, root)
+  ul.root.sidebar-list.collapse#collapsePages data-url=sort_page_path(current_site, root) class=('in' if request.path.include?("/pages/").to_s)
     = render partial: 'locomotive/shared/sidebar/page', collection: nodes
 
     li.sidebar-list-add
