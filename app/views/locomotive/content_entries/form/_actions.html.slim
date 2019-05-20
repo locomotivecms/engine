@@ -1,1 +1,12 @@
-= f.actions back_url: content_entries_path(current_site, @content_type.slug), use_stored_location: params[:_location].present?
+- if defined?(advanced) && advanced == true && @content_entry.persisted?
+  = f.actions do
+    .row
+      .col-sm-6.text-left
+        - if policy(@content_entry).destroy?
+          = link_to t(:delete, scope: 'simple_form.buttons.locomotive.content_entry'), content_entry_path(current_site, @content_type.slug, @content_entry), data: { confirm:  I18n.t('locomotive.messages.confirm') }, class:'btn btn-sm btn-danger', method: :delete
+
+      .col-sm-6.text-right
+        = f.actions_with_back_button back_url: content_entries_path(current_site, @content_type.slug), use_stored_location: params[:_location].present?
+
+- else
+  = f.actions back_url: content_entries_path(current_site, @content_type.slug), use_stored_location: params[:_location].present?

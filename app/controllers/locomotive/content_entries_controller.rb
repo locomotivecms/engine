@@ -80,6 +80,12 @@ module Locomotive
       respond_with @content_type, location: content_entries_path(current_site, @content_type.slug, default_location_params)
     end
 
+    def destroy
+      authorize @content_entry
+      service.bulk_destroy([*params[:id]])
+      respond_with @content_type, location: content_entries_path(current_site, @content_type.slug, default_location_params)
+    end
+
     private
 
     def load_content_type
