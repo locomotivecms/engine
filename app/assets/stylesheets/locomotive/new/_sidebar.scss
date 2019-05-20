@@ -14,8 +14,8 @@
   overflow: auto;
   background: $gray-darkest;
   transition: left $base-transition-speed linear;
-  
-  .draggable:hover{
+
+  .draggable:hover {
      cursor: move;
   }
 }
