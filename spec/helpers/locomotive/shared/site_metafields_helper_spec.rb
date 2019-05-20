@@ -10,7 +10,7 @@ describe Locomotive::Shared::SiteMetafieldsHelper do
   it { expect(subject[:label]).to eq 'Store settings' }
   it { expect(subject[:title]).to eq 'Store settings' }
   it { expect(subject[:hint]).to eq 'Lorem ipsum' }
-  it { expect(subject[:icon]).to eq 'far fa-shopping-cart' }
+  it { expect(subject[:icon]).to eq 'fas fa-shopping-cart' }
 
   describe 'no ui' do
 
@@ -19,7 +19,7 @@ describe Locomotive::Shared::SiteMetafieldsHelper do
     it { expect(subject[:label]).to eq 'Properties' }
     it { expect(subject[:title]).to eq 'Editing properties' }
     it { expect(subject[:hint]).to eq '' }
-    it { expect(subject[:icon]).to eq 'far fa-newspaper' }
+    it { expect(subject[:icon]).to eq 'fas fa-newspaper' }
 
   end
 
