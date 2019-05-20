@@ -1,6 +1,8 @@
 module Locomotive
   class DashboardController < BaseController
 
+    helper Locomotive::Shared::ActivitiesHelper
+
     account_required & within_site
 
     def show
