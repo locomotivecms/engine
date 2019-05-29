@@ -1787,6 +1787,8 @@
   padding: 2rem 0 0 0; }
 
 .locale-switcher {
+  position: relative;
+  display: inline-block;
   margin-top: 0.2rem; }
   .locale-switcher-button {
     color: #adb1b7;
@@ -1806,6 +1808,9 @@
     z-index: 999 !important; }
     .locale-switcher-content > span {
       z-index: 1000; }
+  .locale-switcher .rap-popper-div {
+    z-index: 999 !important;
+    transform: translate3d(0px, 25px, 0px) !important; }
   .locale-switcher-locales {
     position: relative;
     z-index: 100;
@@ -1818,7 +1823,7 @@
     border-radius: 3px; }
   .locale-switcher-locale a {
     display: block;
-    padding: 0.8rem 1rem;
+    padding: 1rem 2rem;
     font-size: 1.2rem;
     color: #6a707a;
     white-space: nowrap;
