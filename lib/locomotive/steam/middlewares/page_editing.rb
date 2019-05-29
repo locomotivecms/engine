@@ -48,6 +48,13 @@ module Locomotive
             )
             response.first.gsub!('</head>', %(#{html}</head>))
 
+            # make sure there is no span tags within the head.
+            # For the record, Steam adds a span tag next to a block liquid tag
+            response.first.gsub!(/<head>(.+)<\/head>/m) do
+              head = Regexp.last_match[1]
+              "<head>#{head.gsub(/<span/, '<meta').gsub(/<\/span>/, '</meta>')}</head>"
+            end
+
             # new way of letting the parent window know about the status of the preview
             response.first.gsub!('</body>', %(
                 <script type="text/javascript">
