@@ -45,6 +45,16 @@ namespace :locomotive do
       end
       puts '[x] set the number of entries by content type'
 
+      # content_types: filter_fields (don't use ids but use field name instead)
+      Locomotive::ContentType.where(:'filter_fields.0'.exists => true).all.each_by(10) do |content_type|
+        content_type.filter_fields = content_type.filter_fields.map do |id_or_name|
+          content_type.entries_custom_fields.where(id: id_or_name).first&.name || id_or_name
+        end
+        content_type.save
+      end
+      puts '[x] make filter_fields an array of only names (and not of field ids)'
+
+
       # content_entries: many_to_many relationships, make sure both sides are consistent
       Locomotive::ContentType.where('entries_custom_fields.type' => 'many_to_many').all.each_by(10) do |content_type|
         # puts "[#{content_type.site.name}] #{content_type.name}"
