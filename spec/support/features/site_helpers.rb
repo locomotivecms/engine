@@ -37,9 +37,9 @@ module Features
         sections_content: {
           header: { settings: { title: 'This is the header' } },
           gallery: { settings: {}, blocks: [
-            { type: 'image', settings: { image: '/images/image_01.png' } },
-            { type: 'image', settings: { image: '/images/image_02.png' } },
-            { type: 'image', settings: { image: '/images/image_03.png' } }
+            { type: 'image', settings: { image: 'https://via.placeholder.com/150' } },
+            { type: 'image', settings: { image: 'https://via.placeholder.com/300' } },
+            { type: 'image', settings: { image: 'https://via.placeholder.com/300' } }
           ] }
         }
       )
