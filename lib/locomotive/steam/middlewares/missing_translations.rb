@@ -32,6 +32,9 @@ module Locomotive
 
           translations.each do |attributes|
             if existing = site.translations.where(key: attributes[:key]).first
+              # don't need to call the DB if we already have the values in DB
+              next if existing.values == attributes[:values]
+
               existing.update_attribute :values, existing.values.merge(attributes[:values])
             else
               new_translations << attributes
