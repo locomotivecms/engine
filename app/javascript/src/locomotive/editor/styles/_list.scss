@@ -1,3 +1,5 @@
+$editor-list-item-height: 4rem;
+
 .editor-list-item {
   display: flex;
   align-items: center;
@@ -6,19 +8,19 @@
   margin: 1rem 0rem;
   background: #f7f7f7;
   box-shadow: 0 0 0 1px rgba(63, 63, 68, 0.05), 0 1px 3px 0 rgba(63, 63, 68, 0.15);
-  min-height: 4rem;
+  min-height: $editor-list-item-height;
   user-select: none;
 
   &.with-separator {
-    margin-top: 4rem;
+    margin-top: $editor-list-item-height;
   }
 
   &--icon, &--image {
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;
     background: #D7D7D7;
-    width: 4rem;
-    height: 4rem;
+    width: $editor-list-item-height;
+    height: $editor-list-item-height;
   }
 
   &--icon {
@@ -34,20 +36,20 @@
   }
 
   &--label {
-    margin-left: 2rem;
+    padding-left: 2rem;
     font-size: 1.2rem;
     font-weight: bold;
     text-transform: uppercase;
-    a {
-      color: #555;
-      &:hover {
-        text-decoration: none;
-      }
+    height: $editor-list-item-height;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    &:hover {
+      text-decoration: none;
     }
   }
 
   &--actions {
-    margin-left: auto;
     margin-right: 2rem;
     display: flex;
     justify-content: center;

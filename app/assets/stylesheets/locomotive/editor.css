@@ -1058,16 +1058,17 @@
     background-repeat: no-repeat;
     background-size: cover; }
   .editor-list-item--label {
-    margin-left: 2rem;
+    padding-left: 2rem;
     font-size: 1.2rem;
     font-weight: bold;
-    text-transform: uppercase; }
-    .editor-list-item--label a {
-      color: #555; }
-      .editor-list-item--label a:hover {
-        text-decoration: none; }
+    text-transform: uppercase;
+    height: 4rem;
+    width: 100%;
+    display: flex;
+    align-items: center; }
+    .editor-list-item--label:hover {
+      text-decoration: none; }
   .editor-list-item--actions {
-    margin-left: auto;
     margin-right: 2rem;
     display: flex;
     justify-content: center;
