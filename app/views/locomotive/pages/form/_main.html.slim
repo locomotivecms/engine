@@ -26,7 +26,10 @@
 
     = f.input :listed, as: :toggle
 
-  - if current_site.cache_enabled? && !@page.redirect?
-    = f.input :cache_enabled, as: :toggle
+  - if policy(current_site).site_admin_or_designer? && current_site.cache_enabled? && !@page.redirect?
+    = f.inputs :cache_enabled do
+      = f.input :cache_enabled, as: :toggle
+      = f.input :cache_control, as: :string, wrapper_html: { class: "#{'hide' unless f.object.cache_enabled?}" }
+      = f.input :cache_vary, as: :string, wrapper_html: { class: "#{'hide' unless f.object.cache_enabled?}" }
 
 = render 'locomotive/pages/form/actions', f: f

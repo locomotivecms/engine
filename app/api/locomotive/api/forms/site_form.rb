@@ -4,10 +4,11 @@ module Locomotive
 
       class SiteForm < BaseForm
 
-        attrs :name, :handle, :robots_txt, :domains, :routes, :url_redirections, :timezone, :picture, :cache_enabled, :private_access, :password, :asset_host
+        attrs :name, :handle, :robots_txt, :domains, :routes, :url_redirections, :timezone, :picture, :private_access, :password, :asset_host
         attrs :metafields_schema, :metafields, :metafields_ui
         attrs :locales, :prefix_default_locale, :bypass_browser_locale
         attrs :seo_title, :meta_keywords, :meta_description, localized: true
+        attrs :cache_enabled, :cache_control, :cache_vary
         attrs :sections_content
 
         # Make sure locales and domains are in arrays.

@@ -8,12 +8,18 @@ class Locomotive.Views.CurrentSite.EditView extends Locomotive.Views.Shared.Form
 
   initialize: ->
     @attach_events_on_private_access_attribute()
+    @attach_events_on_cache_enabled_attribute()
     @display_locale_picker_only_for_seo()
     @allow_url_redirections_expert_mode()
 
   attach_events_on_private_access_attribute: ->
     @$('#site_private_access').on 'switchChange.bootstrapSwitch', (event, state) ->
       $inputs = $('.locomotive_site_password')
+      $inputs.toggleClass('hide')
+
+  attach_events_on_cache_enabled_attribute: ->
+    @$('#site_cache_enabled').on 'switchChange.bootstrapSwitch', (event, state) ->
+      $inputs = $('.locomotive_site_cache_control, .locomotive_site_cache_vary')
       $inputs.toggleClass('hide')
 
   display_locale_picker_only_for_seo: ->

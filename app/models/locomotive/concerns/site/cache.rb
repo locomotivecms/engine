@@ -9,6 +9,8 @@ module Locomotive
 
           ## fields ##
           field :cache_enabled,     type: Boolean, default: false
+          field :cache_control
+          field :cache_vary
           field :template_version,  type: DateTime
           field :content_version,   type: DateTime
 

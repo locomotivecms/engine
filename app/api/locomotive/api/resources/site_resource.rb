@@ -66,6 +66,8 @@ module Locomotive
               optional :timezone
               optional :picture
               optional :cache_enabled
+              optional :cache_control
+              optional :cache_vary
               optional :private_access
               optional :password
               optional :metafields_schema
@@ -102,6 +104,8 @@ module Locomotive
               optional :timezone
               optional :picture
               optional :cache_enabled
+              optional :cache_control
+              optional :cache_vary
               optional :private_access
               optional :password
               optional :metafields_schema

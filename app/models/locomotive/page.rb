@@ -28,6 +28,8 @@ module Locomotive
     field :locales,             type: Array
     field :published,           type: Boolean, default: false
     field :cache_enabled,       type: Boolean, default: true
+    field :cache_control
+    field :cache_vary
     field :response_type,       default: 'text/html'
     field :display_settings,    type: Hash
 

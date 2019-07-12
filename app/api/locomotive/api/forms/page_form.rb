@@ -4,7 +4,8 @@ module Locomotive
 
       class PageForm < BaseForm
 
-        attrs :title, :slug, :handle, :response_type, :published, :cache_enabled
+        attrs :title, :slug, :handle, :response_type, :published
+        attrs :cache_enabled, :cache_control, :cache_vary
 
         # Tree
         attrs :parent_id, :position, :listed
