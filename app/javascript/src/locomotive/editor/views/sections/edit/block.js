@@ -10,15 +10,15 @@ const Block = ({ image, text, handleComponent, editPath, ...props }) => {
 
   return (
     <div className="editor-list-item">
-      {image && (
-        <div className="editor-list-item--image" style={{ backgroundImage: `url("${image}")` }}>
-        </div>
-      )}
-      <div className="editor-list-item--label">
-        <SlideLeftLink to={editPath}>
-          {truncate(text || props.blockDefinition.name, { length: 32 })}
-        </SlideLeftLink>
-      </div>
+      <SlideLeftLink to={editPath}>
+        {image && (
+          <div className="editor-list-item--image" style={{ backgroundImage: `url("${image}")` }}>
+          </div>
+        )}
+      </SlideLeftLink>
+      <SlideLeftLink to={editPath} className="editor-list-item--label">
+        {truncate(text || props.blockDefinition.name, { length: 32 })}
+      </SlideLeftLink>
       <div className="editor-list-item--actions">
         <Handle />
       </div>
