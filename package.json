@@ -36,8 +36,8 @@
     "handlebars": ">=4.0.14",
     "hoek": "^4.1.2",
     "identity-obj-proxy": "^3.0.0",
-    "js-yaml": "^3.13.0",
     "jest": "^24.8.0",
+    "js-yaml": "^3.13.0",
     "jsdom": "^12.0.0",
     "macaddress": "^0.2.9",
     "mini-css-extract-plugin": "^0.4.0",
@@ -48,8 +48,8 @@
     "postcss-loader": "^3.0.0",
     "regenerator-runtime": "^0.11.1",
     "sass-loader": "^7.1.0",
-    "tar": "^2.2.2",
     "style-loader": "^0.21.0",
+    "tar": "^2.2.2",
     "webpack": "^4.2.1",
     "webpack-cli": "^3.3.6"
   },
@@ -79,7 +79,7 @@
     "react-transition-group": "^2.4.0",
     "redux": "^4.0.0",
     "redux-thunk": "^2.3.0",
-    "striptags": "^3.1.1"
+    "striptags": "^2.2.1"
   },
   "jest": {
     "setupFiles": [
