@@ -4,7 +4,7 @@ module Locomotive
 
       class SiteForm < BaseForm
 
-        attrs :name, :handle, :robots_txt, :domains, :routes, :url_redirections, :timezone, :picture, :private_access, :password, :asset_host
+        attrs :name, :handle, :robots_txt, :domains, :routes, :url_redirections, :timezone_name, :picture, :private_access, :password, :asset_host
         attrs :metafields_schema, :metafields, :metafields_ui
         attrs :locales, :prefix_default_locale, :bypass_browser_locale
         attrs :seo_title, :meta_keywords, :meta_description, localized: true
@@ -21,6 +21,10 @@ module Locomotive
         end
 
         ## Custom setters ##
+
+        def timezone=(value)
+          self.timezone_name = value
+        end
 
         def sections_content=(value)
           set_attribute(:sections_content, value.is_a?(String) ? parse_json(value, {}) : value)

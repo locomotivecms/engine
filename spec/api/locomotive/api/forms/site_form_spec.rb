@@ -22,4 +22,14 @@ describe Locomotive::API::Forms::SiteForm do
 
   end
 
+  describe 'timezone setter' do
+
+    let(:attributes) { { timezone: 'Paris' } }
+
+    subject { form.serializable_hash }
+
+    it { is_expected.to eq({ 'timezone_name' => 'Paris' }) }
+
+  end
+
 end
