@@ -177,6 +177,26 @@
   }
 }
 
+// INTEGER
+.editor-input-integer {
+
+  .editor-input {
+
+    &--label {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      &--value {
+        margin-left: auto;
+        text-transform: lowercase;
+        color: $brand-primary;
+        font-size: 1.25rem;
+      }
+    }
+  }
+}
+
 // HINT
 .editor-input-hint {
 

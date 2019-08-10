@@ -14,6 +14,7 @@ import ImagePickerInput from './image_picker';
 import UrlInput from './url';
 import ContentTypeInput from './content_type';
 import HintInput from './hint';
+import IntegerInput from './integer';
 
 class Base extends Component {
 
@@ -41,6 +42,7 @@ class Base extends Component {
   getInput(setting) {
     switch (setting.type) {
       case 'text':          return setting.html ? RichTextInput : TextInput;
+      case 'integer':       return IntegerInput;
       case 'checkbox':      return CheckboxInput;
       case 'select':        return SelectInput;
       case 'radio':         return RadioInput;

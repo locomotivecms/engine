@@ -66,6 +66,7 @@
     "lodash": "^4.17.13",
     "prop-types": "^15.6.2",
     "rc-switch": "^1.8.0",
+    "rc-slider": "^8.6.13",
     "react": "^16.7.0",
     "react-autosuggest": "^9.4.3",
     "react-awesome-popover": "^4.0.2",
