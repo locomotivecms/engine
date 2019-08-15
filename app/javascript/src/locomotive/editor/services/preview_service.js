@@ -1,6 +1,11 @@
 import { decodeLinkResource, findParentElement, cancelEvent } from '../utils/misc';
 import { startsWith } from 'lodash';
 
+const findSection = (_window, sectionId) => {
+  const sectionSelector = `[data-locomotive-section-id='${sectionId}'], #locomotive-section-${sectionId}`;
+  return $(_window.document).find(sectionSelector);
+}
+
 const sendEvent = (elem, type, data) => {
   if (elem === null || elem === undefined) return false;
 
@@ -33,7 +38,7 @@ const pokeSection = (_window, action, sectionId, blockId) => {
       eventName = `block::${action}`;
       eventData = { sectionId, blockId };
     } else {
-      $elem = $(_window.document).find(`#locomotive-section-${sectionId}`);
+      $elem     = findSection(_window, sectionId);
       eventName = `section::${action}`;
       eventData = { sectionId };
     }
@@ -84,13 +89,13 @@ export function prepareIframe(_window, onPageChange) {
 
 export function updateSection(_window, section, html) {
   return new Promise(resolve => {
-    var $elem = $(_window.document).find(`#locomotive-section-${section.id}`);
+    var $elem = findSection(_window, section.id);
 
     sendEvent($elem[0], 'section::unload', { sectionId: section.id });
     $elem.replaceWith(html);
 
     // find the new element
-    $elem = $(_window.document).find(`#locomotive-section-${section.id}`);
+    $elem = findSection(_window, section.id);
     sendEvent($elem[0], 'section::load', { sectionId: section.id });
 
     resolve(true);
@@ -124,7 +129,7 @@ export function previewSection(_window, html, section, previousSection) {
   return new Promise(resolve => {
     // remove the previous previewed section (if existing)
     if (previousSection) {
-      const $previous = $(_window.document).find(`#locomotive-section-${previousSection.id}`);
+      const $previous = findSection(_window, previousSection.id);
       sendEvent($previous[0], 'section::unload', { sectionId: previousSection.id });
       $previous.remove();
     }
@@ -140,8 +145,8 @@ export function previewSection(_window, html, section, previousSection) {
 
 export function moveSection(_window, section, targetSection, direction) {
   return new Promise(resolve => {
-    const $elem  = $(_window.document).find(`#locomotive-section-${section.id}`);
-    const $pivot = $(_window.document).find(`#locomotive-section-${targetSection.id}`);
+    const $elem   = findSection(_window, section.id);
+    const $pivot  = findSection(_window, targetSection.id);
 
     if (direction === 'before')
       $elem.insertBefore($pivot);
@@ -156,7 +161,7 @@ export function moveSection(_window, section, targetSection, direction) {
 
 export function removeSection(_window, section) {
   return new Promise(resolve => {
-    const $elem = $(_window.document).find(`#locomotive-section-${section.id}`);
+    const $elem = findSection(_window, section.id);
     sendEvent($elem[0], 'section::unload', { sectionId: section.id });
     $elem.remove();
 
