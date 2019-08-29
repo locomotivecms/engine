@@ -16,6 +16,18 @@ module Locomotive
       _options = options.deep_symbolize_keys
 
       _options[:via] = _options[:via].to_sym if _options[:via]
+      
+      if _options[:via_options] && (_options[:via_options][:authentication].blank?)
+        _options[:via_options][:authentication] = nil
+      end
+      
+      if _options[:via_options] && (_options[:via_options][:user_name].blank?)
+        _options[:via_options][:user_name] = nil     
+      end
+      
+      if _options[:via_options] && (_options[:via_options][:password].blank?)
+        _options[:via_options][:password] = nil 
+      end
 
       if _options[:via_options] && (value = _options[:via_options][:authentication])
         _options[:via_options][:authentication] = value.to_sym
