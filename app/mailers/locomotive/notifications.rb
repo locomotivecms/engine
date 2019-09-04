@@ -22,7 +22,7 @@ module Locomotive
       if @type.public_submission_email_attachments
         entry.file_custom_fields.each do |name|
           next if (file = entry.send(name)&.file).nil?
-          attachments[file.identifier] = file.read
+          attachments[file.filename] = file.read
         end
       end
 
