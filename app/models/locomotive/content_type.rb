@@ -20,17 +20,18 @@ module Locomotive
     field :name
     field :description
     field :slug
-    field :label_field_id,              type: BSON::ObjectId
+    field :label_field_id,                      type: BSON::ObjectId
     field :label_field_name
     field :tree_parent_field_name
-    field :group_by_field_id,           type: BSON::ObjectId
+    field :group_by_field_id,                   type: BSON::ObjectId
     field :order_by # either a BSON::ObjectId (field id) or a String (:_position, ...etc)
-    field :order_direction,             default: 'asc'
-    field :public_submission_enabled,   type: Boolean,  default: false
-    field :recaptcha_required,          type: Boolean,  default: false
-    field :public_submission_accounts,  type: Array,    default: []
+    field :order_direction,                     default: 'asc'
+    field :public_submission_enabled,           type: Boolean,  default: false
+    field :public_submission_email_attachments, type: Boolean,  default: false
+    field :public_submission_accounts,          type: Array,    default: []
+    field :recaptcha_required,                  type: Boolean,  default: false
     field :number_of_entries
-    field :display_settings,            type: Hash
+    field :display_settings,                    type: Hash
 
     ## associations ##
     has_many :entries,   class_name: 'Locomotive::ContentEntry', dependent: :destroy

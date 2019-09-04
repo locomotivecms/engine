@@ -83,6 +83,33 @@ describe Locomotive::Notifications do
 
     end
 
+    describe 'attaching uploaded files' do
+
+      let(:content_type)  { build('message content type', site: site, public_submission_email_attachments: enabled) }
+      let(:content_entry) { content_type.entries.build(name: 'Jack', message: 'Hello world', resume: FixturedAsset.open('5k.png'), site: site) }
+
+      context 'the option is off' do
+
+        let(:enabled) { false }
+
+        it "doesn't attach the file to the email" do
+          expect(mail.attachments).to eq []
+        end
+
+      end
+
+      context 'the option is onn' do
+
+        let(:enabled) { true }
+
+        it "attaches the file to the email" do
+          expect(mail.attachments.size).to eq 1
+        end
+
+      end
+
+    end
+
     context 'custom title' do
 
       before do

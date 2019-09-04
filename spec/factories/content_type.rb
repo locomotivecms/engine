@@ -40,6 +40,7 @@ FactoryBot.define do
       after(:build) do |content_type, _|
         content_type.entries_custom_fields.build label: 'Name', name: 'name', type: 'string', required: true
         content_type.entries_custom_fields.build label: 'Message', name: 'message', type: 'text'
+        content_type.entries_custom_fields.build label: 'Resume', name: 'resume', type: 'file'
       end
     end
 

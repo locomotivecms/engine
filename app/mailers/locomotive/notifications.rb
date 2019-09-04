@@ -18,6 +18,14 @@ module Locomotive
         Locomotive.config.mailer_sender
       end)
 
+      # attach uploaded files
+      if @type.public_submission_email_attachments
+        entry.file_custom_fields.each do |name|
+          next if (file = entry.send(name)&.file).nil?
+          attachments[file.original_filename] = file.read
+        end
+      end
+
       mail subject: subject, from: from, to: account.email, reply_to: from
     end
 
