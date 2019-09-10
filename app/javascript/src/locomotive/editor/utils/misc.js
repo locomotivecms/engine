@@ -65,11 +65,13 @@ export function formatLineBreak(text) {
     .replace(/<\/p>/g, '');
 }
 
-// Strip HTML tags from a string. Keep
+// Strip HTML tags from a string.
 export function stripHTML(html) {
   if (_isBlank(html)) return html;
 
   return striptags(html)
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
     .replace(/(\/n|\/t)+/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();

@@ -9,8 +9,12 @@ describe('locomotive/editor/utils/misc', function() {
       expect(stripHTML('<b>Hello</b> world')).to.eql('Hello world');
     });
 
-    it('should als remove all the \n and \t occurences of a string', function() {
+    it('should remove all the \n and \t occurences of a string', function() {
       expect(stripHTML("\tHello\n\nworld")).to.eql('Hello world');
+    });
+
+    it('should remove all the &nbsp; and &amp; occurences of a string', function() {
+      expect(stripHTML("\tHello&nbsp;&nbsp; &amp;&nbsp;world")).to.eql('Hello & world');
     });
 
     it('should return null if the HTML string is null', function() {
