@@ -21,7 +21,8 @@ module Locomotive
         registers = { site: current_site, locale: current_content_locale.to_s, services: Locomotive::Steam::Services.build_instance }
         context   = ::Liquid::Context.new({}, assigns, registers)
 
-        content_type.render_entry_template(context).html_safe
+        label = content_type.render_entry_template(context).html_safe
+        link_to label, link # custom link
       end
     end
 
