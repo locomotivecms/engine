@@ -16,6 +16,7 @@ module Locomotive
       cookie_key:                   '_locomotive_session',
       enable_logs:                  false,
       enable_admin_ssl:             false,
+      enable_devise:                true,
       delayed_job:                  false,
       default_locale:               :en,
       mailer_sender:                'support@example.com',

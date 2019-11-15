@@ -20,7 +20,6 @@ module Locomotive
     def update
       authorize @site
       service.update(@site, site_params)
-      logger.debug @site.errors.inspect
       respond_with @site, location: -> { edit_current_site_path(current_site) }
     end
 

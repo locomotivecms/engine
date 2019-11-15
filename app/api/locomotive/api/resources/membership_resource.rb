@@ -14,7 +14,7 @@ module Locomotive
 
           desc 'Index of memberships'
           get do
-            authorize(memberships, :index?)
+            authorize Membership, :index?
 
             present memberships, with: entity_klass
           end

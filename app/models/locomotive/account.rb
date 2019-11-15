@@ -2,7 +2,7 @@ module Locomotive
   class Account
 
     include Locomotive::Mongoid::Document
-    devise *Locomotive.config.devise_modules
+    # devise *Locomotive.config.devise_modules
     acts_as_token_authenticatable
     include Locomotive::Concerns::Account::ApiKey
 

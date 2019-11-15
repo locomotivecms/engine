@@ -1,20 +1,21 @@
 Locomotive::Engine.routes.draw do
 
-  # Authentication
-  devise_for :locomotive_account,
-    class_name:   'Locomotive::Account',
-    skip:         [:registrations],
-    path:         '',
-    failure_app:  'Locomotive::Devise::FailureApp'
+  # # Authentication
+  # devise_for :accounts,
+  #   class_name:   'Locomotive::Account',
+  #   skip:         [:registrations],
+  #   path:         '',
+  #   failure_app:  'Locomotive::Devise::FailureApp',
+  #   controllers:  { omniauth_callbacks: 'locomotive/omniauth_callbacks' }
 
-  devise_scope :locomotive_account do
-    if Locomotive.config.enable_registration
-      get     'sign_up'  => 'registrations#new',    as: :sign_up
-      post    'sign_up'  => 'registrations#create'
-    end
-    get     'sign_in'  => 'sessions#new',         as: :sign_in
-    delete  'sign_out' => 'sessions#destroy',     as: :sign_out
-  end
+  # devise_scope :account do
+  #   if Locomotive.config.enable_registration
+  #     get     'sign_up'  => 'registrations#new',    as: :sign_up
+  #     post    'sign_up'  => 'registrations#create'
+  #   end
+  #   get     'sign_in'  => 'sessions#new',         as: :sign_in
+  #   delete  'sign_out' => 'sessions#destroy',     as: :sign_out
+  # end
 
   root to: 'sites#index'
 

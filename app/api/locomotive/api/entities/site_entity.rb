@@ -35,9 +35,10 @@ module Locomotive
           Locomotive::Engine.routes.url_helpers.preview_url(site, host: opts[:env]['HTTP_HOST'])
         end
 
-        expose :sign_in_url do |site, opts|
-          Locomotive::Engine.routes.url_helpers.new_locomotive_account_session_url(host: opts[:env]['HTTP_HOST'])
-        end
+        # TODO: disabled if config.without_devise = true (OR create fake routes...and pass them to the config)
+        # expose :sign_in_url do |site, opts|
+        #   Locomotive::Engine.routes.url_helpers.new_locomotive_account_session_url(host: opts[:env]['HTTP_HOST'])
+        # end
 
         expose :metafields do |site, opts|
           site.metafields.to_json
