@@ -3,7 +3,7 @@ module Locomotive
 
     class LiquidParserWithCacheService < LiquidParserService
 
-      UNMARSHALABLE_OPTIONS = %i(parser page parent_finder snippet_finder).freeze
+      UNMARSHALABLE_OPTIONS = %i(parser page parent_finder snippet_finder section_finder locale).freeze
 
       attr_accessor_initialize :current_site, :parent_finder, :snippet_finder, :locale
 
@@ -39,17 +39,18 @@ module Locomotive
       def marshal(template)
         _template = template.dup
 
+        # delete the unmarshalable options of the Liquid Template
+        delete_unmarshalable_options(_template)
+
         # get rid of options in any tags/blocks of the document
         # because options can not be marshaled
-        remove_unmarshalable_options(_template)
-
         clean_template!(_template.root)
 
         Marshal.dump(_template)
       end
 
       def clean_template!(node)
-        remove_unmarshalable_options(node)
+        remove_unmarshalable_parse_context_options(node)
 
         # special case
         clean_template!(node.descendant) if node.respond_to?(:descendant) && node.descendant
@@ -60,28 +61,34 @@ module Locomotive
           end
         end
 
-        # [Debug](used to find the node element whic can't be marshaled): Marshal.dump(node)
+        # FIXME: To debug marshalling errors, find the node element which can't be marshaled with `Marshal.dump(node)`
       end
 
-      def remove_unmarshalable_options(node)
-        options = node.instance_variable_get(:@options)
+      def remove_unmarshalable_parse_context_options(node)
+        parse_context = node.instance_variable_get(:@parse_context)
 
-        return if options.blank?
+        return if parse_context.nil?
 
-        unless options[:inherited_blocks].blank?
-          remove_unmarshalable_options_from_inherited_blocks(options)
+        unless parse_context[:inherited_blocks].blank?
+          remove_unmarshalable_parse_context_options_from_inherited_blocks(parse_context)
         end
 
-        options.delete_if { |name, _| UNMARSHALABLE_OPTIONS.include?(name) }
+        delete_unmarshalable_options(parse_context)
       end
 
-      def remove_unmarshalable_options_from_inherited_blocks(options)
-        options[:inherited_blocks].values.each do |blocks|
+      def remove_unmarshalable_parse_context_options_from_inherited_blocks(parse_context)
+        parse_context[:inherited_blocks].values.each do |blocks|
           (blocks.respond_to?(:has_key?) ? blocks.values : blocks).each do |block|
-            _options = block.instance_variable_get(:@options)
-            _options.delete_if { |name, _| UNMARSHALABLE_OPTIONS.include?(name) }
+            _parse_context = block.instance_variable_get(:@parse_context)
+            delete_unmarshalable_options(_parse_context)
           end
         end
+      end
+
+      def delete_unmarshalable_options(template_or_parse_context)
+        options = template_or_parse_context.instance_variable_get(:@template_options) ||
+                  template_or_parse_context.instance_variable_get(:@options)
+        options.delete_if { |name, _| UNMARSHALABLE_OPTIONS.include?(name) }
       end
 
     end

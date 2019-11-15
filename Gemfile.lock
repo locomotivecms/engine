@@ -1,7 +1,7 @@
 GIT
   remote: git://github.com/locomotivecms/steam.git
-  revision: 3c6cdc93aa347630c4a295d9343da097727dd496
-  ref: 3c6cdc9
+  revision: e9cf772b0a8601c79fa6b461291c225d7ff470e4
+  ref: e9cf772
   specs:
     locomotivecms_steam (1.5.0.rc0)
       RedCloth (~> 4.3.2)
@@ -14,7 +14,7 @@ GIT
       duktape (~> 2.0.1.1)
       httparty (~> 0.16.0)
       kramdown (~> 1.16.2)
-      locomotivecms-solid (~> 4.0.1)
+      liquid (~> 4.0.3)
       locomotivecms_common (~> 0.3.1)
       mime-types (~> 3.1.0)
       mimetype-fu (~> 0.1.2)
@@ -310,9 +310,7 @@ GEM
     kramdown (1.16.2)
     launchy (2.4.3)
       addressable (~> 2.3)
-    locomotivecms-liquid (4.0.0)
-    locomotivecms-solid (4.0.1)
-      locomotivecms-liquid (~> 4.0.0)
+    liquid (4.0.3)
     locomotivecms_common (0.3.1)
       activesupport (>= 5.1.5, < 6.0)
       attr_extras (~> 5.2.0)
