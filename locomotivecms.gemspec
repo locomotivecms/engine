@@ -31,7 +31,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'mongoid-tree',                    '~> 2.1.0'
   s.add_dependency 'origin',                          '~> 2.3.1'
 
-  s.add_dependency 'custom_fields',                   '~> 2.10.0.beta3'
+  s.add_dependency 'custom_fields',                   '~> 2.10.0.rc1'
   s.add_dependency 'locomotivecms_steam',             '~> 1.5.0.rc1'
 
   s.add_dependency 'slim',                            '~> 3.0.9'

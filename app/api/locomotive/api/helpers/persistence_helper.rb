@@ -107,6 +107,9 @@ module Locomotive
         end
 
         def setup_plural_method
+          # is it already defined by the resource itself?
+          return if self.respond_to?(plural)
+
           self.class.send(:define_method, plural) do
             current_site.send(plural)
           end

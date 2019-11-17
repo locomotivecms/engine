@@ -11,12 +11,23 @@ module Locomotive
             setup_resource_methods_for(:accounts)
           end
 
-          desc 'Index of accounts'
-          get :index do
-            authenticate_locomotive_account!
-            authorize accounts, :index?
+          helpers do
 
-            present accounts, with: entity_klass
+            def accounts
+              Locomotive::Account.all
+            end
+
+          end
+
+          desc 'Index of accounts'
+          get do
+            authenticate_locomotive_account!
+
+            authorize Account, :index?
+
+            _accounts = accounts.where(JSON.parse(params[:where] || '{}'))
+
+            present _accounts, with: entity_klass
           end
 
           desc 'Show an account'
@@ -39,6 +50,7 @@ module Locomotive
               requires :email
               requires :password
               requires :password_confirmation
+              optional :locale
             end
           end
           post do

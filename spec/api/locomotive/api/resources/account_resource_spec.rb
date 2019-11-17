@@ -9,12 +9,12 @@ describe Locomotive::API::Resources::AccountResource do
   let!(:new_account) { create(:account, email: 'abc@example.com', name: 'Lisa Johnson') }
 
   context 'authenticated site as super admin' do
-    include_context 'api header setup'
+    include_context 'api header setup without a site'
     let(:account) { create(:account, super_admin: true) }
 
     describe 'GET index' do
       context 'JSON' do
-        before { get "#{url_prefix}/index.json" }
+        before { get "#{url_prefix}.json" }
 
         it 'returns a successful response' do
           expect(last_response).to be_successful

@@ -4,7 +4,11 @@ namespace :development do
 
   desc "Display the API routes"
   task api_routes: :environment do
-    puts Locomotive::API::Dispatch.routes.map(&:to_s).join("\n")
+    Locomotive::API::Dispatch.routes.each do |api|
+      method  = api.request_method.ljust(10)
+      path    = api.path
+      puts "#{method} #{path}"
+    end
   end
 
   desc "Setup sites and account for development"
@@ -19,7 +23,7 @@ namespace :development do
       end
     end
 
-    account = Locomotive::Account.new email: "admin@locomotivecms.com", password: "locomotive", password_confirmation: "locomotive", name: "Admin"
+    account = Locomotive::Account.new email: "admin@locomotivecms.com", password: "locomotive", password_confirmation: "locomotive", name: "Admin", super_admin: true
     account.api_key = 'd49cd50f6f0d2b163f48fc73cb249f0244c37074'
     account.save!
 
@@ -33,7 +37,7 @@ namespace :development do
 
     puts "\"LocomotiveCMS\" created: #{site._id}"
 
-    site = Locomotive::Site.create! name: "Sample site", handle: "sample", domains: ["sample.example.com"]
+    site = Locomotive::Site.create! name: "Sample site", handle: "sample", domains: ["sample.example.com", "acme.example.local"]
     site.memberships.build account: account, role: 'admin'
     site.save!
 
