@@ -18,8 +18,9 @@ Gem::Specification.new do |s|
   s.files.reject! { |fn| fn.include?('app/javascript') }
 
   s.add_dependency 'rails',                           '>= 5.2.3', '< 6.0'
+  s.add_dependency 'rails-html-sanitizer',            '~> 1.3.0'
 
-  s.add_dependency 'devise',                          '~> 4.6.2'
+  s.add_dependency 'devise',                          '~> 4.7.1'
   s.add_dependency 'devise-encryptable',              '~> 0.2.0'
   s.add_dependency 'simple_token_authentication',     '~> 1.15.1'
 
