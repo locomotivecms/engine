@@ -1,38 +1,5 @@
 GIT
-  remote: git://github.com/locomotivecms/steam.git
-  revision: 3c6cdc93aa347630c4a295d9343da097727dd496
-  ref: 3c6cdc9
-  specs:
-    locomotivecms_steam (1.5.0.rc0)
-      RedCloth (~> 4.3.2)
-      autoprefixer-rails (~> 8.0.0)
-      bcrypt (~> 3.1.11)
-      chronic (~> 0.10.2)
-      coffee-script (~> 2.4.1)
-      compass (~> 1.0.3)
-      dragonfly (~> 1.2.0)
-      duktape (~> 2.0.1.1)
-      httparty (~> 0.16.0)
-      kramdown (~> 1.16.2)
-      locomotivecms-solid (~> 4.0.1)
-      locomotivecms_common (~> 0.3.1)
-      mime-types (~> 3.1.0)
-      mimetype-fu (~> 0.1.2)
-      moneta (~> 1.0.0)
-      morphine (~> 0.1.1)
-      multi_json (~> 1.13.1)
-      nokogiri (~> 1.10.4)
-      pony (~> 1.12)
-      rack-cache (~> 1.7.0)
-      rack-rewrite (~> 1.5.1)
-      rack_csrf (~> 2.6.0)
-      sanitize (~> 4.6.4)
-      sass (~> 3.4.25)
-      sprockets (~> 3.7.1)
-      uglifier (~> 4.1.3)
-
-GIT
-  remote: git://github.com/salsify/grape-entity-matchers.git
+  remote: https://github.com/salsify/grape-entity-matchers.git
   revision: 43dea6d1327d86e97fe54242296728cd05e71e5c
   branch: grape-entity-exposures
   specs:
@@ -70,7 +37,7 @@ PATH
       json-schema (~> 2.8.0)
       kaminari-actionview (~> 1.1.1)
       kaminari-mongoid (~> 1.0.1)
-      locomotivecms_steam (~> 1.5.0.rc0)
+      locomotivecms_steam (~> 1.5.0.rc1)
       mongo (= 2.8.0)
       mongoid (~> 6.4.0)
       mongoid-tree (~> 2.1.0)
@@ -311,14 +278,39 @@ GEM
     kramdown (1.16.2)
     launchy (2.4.3)
       addressable (~> 2.3)
-    locomotivecms-liquid (4.0.0)
-    locomotivecms-solid (4.0.1)
-      locomotivecms-liquid (~> 4.0.0)
+    liquid (4.0.3)
     locomotivecms_common (0.3.1)
       activesupport (>= 5.1.5, < 6.0)
       attr_extras (~> 5.2.0)
       colorize
       stringex (~> 2.8.2)
+    locomotivecms_steam (1.5.0.rc1)
+      RedCloth (~> 4.3.2)
+      autoprefixer-rails (~> 8.0.0)
+      bcrypt (~> 3.1.11)
+      chronic (~> 0.10.2)
+      coffee-script (~> 2.4.1)
+      compass (~> 1.0.3)
+      dragonfly (~> 1.2.0)
+      duktape (~> 2.0.1.1)
+      httparty (~> 0.16.0)
+      kramdown (~> 1.16.2)
+      liquid (~> 4.0.3)
+      locomotivecms_common (~> 0.3.1)
+      mime-types (~> 3.1.0)
+      mimetype-fu (~> 0.1.2)
+      moneta (~> 1.0.0)
+      morphine (~> 0.1.1)
+      multi_json (~> 1.13.1)
+      nokogiri (~> 1.10.4)
+      pony (~> 1.12)
+      rack-cache (~> 1.7.0)
+      rack-rewrite (~> 1.5.1)
+      rack_csrf (~> 2.6.0)
+      sanitize (~> 4.6.4)
+      sass (~> 3.4.25)
+      sprockets (~> 3.7.1)
+      uglifier (~> 4.1.3)
     logger (1.4.1)
     loofah (2.3.1)
       crass (~> 1.0.2)
@@ -516,7 +508,6 @@ DEPENDENCIES
   grape-entity-matchers!
   json_spec (~> 1.1.5)
   locomotivecms!
-  locomotivecms_steam!
   puma (~> 3.12.0)
   rails-controller-testing (~> 1.0.2)
   rspec-rails (~> 3.8.0)
@@ -526,4 +517,4 @@ DEPENDENCIES
   webdrivers (~> 4.1.0)
 
 BUNDLED WITH
-   1.17.3
+   2.0.2
