@@ -22,6 +22,7 @@ module Locomotive
     end
 
     def bulk_create
+      authorize Locomotive::ContentAsset, :create?
       @content_assets = service.bulk_create(content_assets_params)
       respond_with @content_assets, location: content_assets_path
     end
