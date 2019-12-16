@@ -360,7 +360,8 @@ GEM
       mail (>= 2.0)
     progress (3.5.2)
     public_suffix (4.0.1)
-    puma (3.12.1)
+    puma (4.3.1)
+      nio4r (~> 2.0)
     pundit (1.1.0)
       activesupport (>= 3.0.0)
     rack (2.0.7)
@@ -508,7 +509,7 @@ DEPENDENCIES
   grape-entity-matchers!
   json_spec (~> 1.1.5)
   locomotivecms!
-  puma (~> 3.12.0)
+  puma (~> 4.3.1)
   rails-controller-testing (~> 1.0.2)
   rspec-rails (~> 3.8.0)
   selenium-webdriver (~> 3.142.3)
