@@ -3,8 +3,6 @@ import { bindAll, map, compact } from 'lodash';
 import i18n from '../../../i18n';
 import Compress from 'client-compress';
 
-const MAX_FILE_SIZE = 2048000;
-
 class Uploader extends Component {
 
   constructor(props) {
@@ -29,7 +27,7 @@ class Uploader extends Component {
   }
 
   handleUpload(event) {
-    const files = compact(map(event.target.files, file => file.size > MAX_FILE_SIZE ? null : file));
+    const files = compact(map(event.target.files, file => file.size > window.Locomotive.maximum_uploaded_file_size ? null : file));
 
     if (files.length != event.target.files.length)
       alert(i18n.t('views.pickers.images.too_big'));

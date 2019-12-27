@@ -11,6 +11,7 @@
 
     window.Locomotive.i18n = <%= h I18n.t('locomotive.editor').to_json.html_safe %>;
 
+    window.Locomotive.maximum_uploaded_file_size = <%= current_site.maximum_uploaded_file_size %>;
   </script>
 
   <%= javascript_include_tag  'locomotive/editor' %>
