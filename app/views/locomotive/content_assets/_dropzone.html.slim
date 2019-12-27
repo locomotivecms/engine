@@ -4,6 +4,10 @@
   = t('.instructions').html_safe
   | &nbsp;
   = link_to t('.browse'), '#', class: 'upload'
+  br
+  br
+  i
+    = t('.maximum_file_size', maximum: number_to_human_size(current_site.maximum_uploaded_file_size)).html_safe
 
 = form_tag('', class: 'hide') do
   = file_field_tag :source, multiple: true
