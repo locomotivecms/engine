@@ -55,7 +55,7 @@ module Locomotive
 
     def permitted_attributes
       plain = [
-        :name, :handle, :picture, :remove_picture, :seo_title, :meta_keywords, :meta_description, :robots_txt,
+        :name, :handle, :picture, :remove_picture, :seo_title, :meta_keywords, :meta_description, :robots_txt, :maximum_uploaded_file_size,
         :timezone_name, :timezone,
         :cache_enabled, :cache_control, :cache_vary,
         :asset_host, :redirect_to_first_domain, :redirect_to_https,
@@ -64,7 +64,7 @@ module Locomotive
       hash  = { domains: [], locales: [], url_redirections: [] }
 
       if persisted? && !update_advanced?
-        plain -= [:timezone_name, :timezone, :robots_txt, :cache_enabled, :cache_control, :cache_vary, :prefix_default_locale, :bypass_browser_locale, :asset_host]
+        plain -= [:timezone_name, :timezone, :robots_txt, :cache_enabled, :cache_control, :cache_vary, :prefix_default_locale, :bypass_browser_locale, :asset_host, :maximum_uploaded_file_size]
         hash.delete(:locales)
         hash.delete(:url_redirections)
       end

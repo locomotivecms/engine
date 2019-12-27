@@ -52,6 +52,7 @@ en:
           password: "Site-Wide Password"
           url_redirections_expert_mode: "Expert mode"
           url_redirections_plain_text: "Url redirections"
+          maximum_uploaded_file_size: "Maximum uploaded files size"
           new:
             locales: First language
         membership:
@@ -97,6 +98,7 @@ en:
           meta_keywords: "Meta keywords used within the head tag of the page. They are separated by a comma. Required for SEO."
           meta_description: "Meta description used within the head tag of the page. Required for SEO."
           robots_txt: "Content of the <span class='code'>/robots.txt</span> file. Check the following <a href='http://www.w3.org/TR/html4/appendix/notes.html#h-B.4.1.1'>url</a> for more information."
+          maximum_uploaded_file_size: "In bytes."
           domains: "Add your domains just below. Documentation <a href=\"https://locomotive-v3.readme.io/docs/domains\">here</a> for more information."
           asset_host: "Site-specific asset host that overrides engine asset host (ex. \"localhost\", \"asset.dev\", \"https://asset-host.com/\")."
           memberships: "You can invite other accounts to edit/manage the site."
