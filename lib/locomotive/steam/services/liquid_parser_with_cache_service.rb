@@ -3,7 +3,7 @@ module Locomotive
 
     class LiquidParserWithCacheService < LiquidParserService
 
-      UNMARSHALABLE_OPTIONS = %i(parser page parent_finder snippet_finder section_finder locale).freeze
+      UNMARSHALABLE_OPTIONS = %i(parser page parent_finder snippet_finder section_finder).freeze
 
       attr_accessor_initialize :current_site, :parent_finder, :snippet_finder, :locale
 
