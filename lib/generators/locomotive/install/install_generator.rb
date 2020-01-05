@@ -32,6 +32,7 @@ module Locomotive
     end
 
         RUBY
+        end
       else
         template 'carrierwave.rb', 'config/initializers/carrierwave.rb'
       end
