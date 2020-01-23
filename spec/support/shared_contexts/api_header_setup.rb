@@ -5,7 +5,6 @@ shared_context 'api header setup without a site' do
   end
 end
 
-
 shared_context 'api header setup' do
   before do
     header 'X-Locomotive-Account-Token', account.authentication_token

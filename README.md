@@ -71,4 +71,4 @@ Locomotive is an open source project, we encourage contributions. If you have fo
 
 Feel free to contact me at didier at nocoffee dot fr.
 
-Copyright (c) 2019 NoCoffee, released under the MIT license
+Copyright (c) 2020 NoCoffee, released under the MIT license

@@ -16,10 +16,11 @@ module Locomotive
       _options = options.deep_symbolize_keys
 
       _options[:via] = _options[:via].to_sym if _options[:via]
+      _options[:via_options] ||= {}
 
-      if _options[:via_options] && (value = _options[:via_options][:authentication])
-        _options[:via_options][:authentication] = value.to_sym
-      end
+      _options[:via_options][:authentication] = _options.dig(:via_options, :authentication).presence&.to_sym
+      _options[:via_options][:user_name]      = _options.dig(:via_options, :user_name).presence
+      _options[:via_options][:password]       = _options.dig(:via_options, :password).presence
 
       # if attachments, decode them because they were enccoding in base64
       if attachments = _options.delete(:attachments)

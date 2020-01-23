@@ -2,10 +2,12 @@ dist: trusty
 sudo: required
 script: "bundle exec rake travis"
 before_script: ./bin/ci/before_build.sh
+before_install:
+  - gem install bundler:2.0.2
 after_failure: ./bin/ci/after_failure.sh
 services: mongodb
 rvm:
-  - 2.5.0
+  - 2.6.5
 notifications:
   email:
     - didier@nocoffee.fr
@@ -13,7 +15,6 @@ notifications:
 branches:
   only:
     - master
-    - debug-travis-ci
 addons:
   chrome: stable
   hosts:

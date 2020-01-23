@@ -17,9 +17,10 @@ Gem::Specification.new do |s|
   s.files = Dir['{app,config,db,lib,vendor}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
   s.files.reject! { |fn| fn.include?('app/javascript') }
 
-  s.add_dependency 'rails',                           '>= 5.2.3', '< 6.0'
+  s.add_dependency 'rails',                           '>= 5.2.4.1', '< 6.0'
+  s.add_dependency 'rails-html-sanitizer',            '~> 1.3.0'
 
-  s.add_dependency 'devise',                          '~> 4.6.2'
+  s.add_dependency 'devise',                          '~> 4.7.1'
   s.add_dependency 'devise-encryptable',              '~> 0.2.0'
   s.add_dependency 'simple_token_authentication',     '~> 1.15.1'
 
@@ -30,11 +31,11 @@ Gem::Specification.new do |s|
   s.add_dependency 'mongoid-tree',                    '~> 2.1.0'
   s.add_dependency 'origin',                          '~> 2.3.1'
 
-  s.add_dependency 'custom_fields',                   '~> 2.10.0.beta3'
-  s.add_dependency 'locomotivecms_steam',             '~> 1.5.0.rc0'
+  s.add_dependency 'custom_fields',                   '~> 2.10.0'
+  s.add_dependency 'locomotivecms_steam',             '~> 1.5.1'
 
   s.add_dependency 'slim',                            '~> 3.0.9'
-  s.add_dependency 'simple_form',                     '~> 4.0.1'
+  s.add_dependency 'simple_form',                     '~> 5.0.0'
   s.add_dependency 'kaminari-actionview',             '~> 1.1.1'
   s.add_dependency 'kaminari-mongoid',                '~> 1.0.1'
   s.add_dependency 'bootstrap-kaminari-views',        '~> 0.0.5'

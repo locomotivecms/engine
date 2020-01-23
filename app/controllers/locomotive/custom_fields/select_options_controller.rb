@@ -14,6 +14,7 @@ module Locomotive
       end
 
       def update
+        authorize ContentEntry
         @options = service.update_select_options(options_params.map(&:to_h))
         respond_with @custom_field, location: -> { last_saved_location!(default_back_location) }
       end

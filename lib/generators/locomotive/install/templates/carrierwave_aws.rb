@@ -22,6 +22,11 @@ CarrierWave.configure do |config|
       region:             ENV['S3_BUCKET_REGION']
     }
 
+    # Use a different endpoint (eg: another provider such as Exoscale)
+    if ENV['S3_ENDPOINT'].present?
+      config.aws_credentials[:endpoint] = ENV['S3_ENDPOINT']
+    end
+
     # Put your CDN host below instead
     if ENV['S3_ASSET_HOST_URL'].present?
       config.asset_host = ENV['S3_ASSET_HOST_URL']

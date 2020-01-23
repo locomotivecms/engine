@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+Gemfilesource 'https://rubygems.org'
 
 # Declare your gem's dependencies in locomotive.gemspec.
 # Bundler will treat runtime dependencies like base dependencies, and
@@ -22,21 +22,18 @@ group :development, :test do
   # gem 'custom_fields', path: '../custom_fields' # for Developers
   # gem 'custom_fields', github: 'locomotivecms/custom_fields', ref: '73b666d'
 
-  gem 'locomotivecms_common', path: '../common', require: false
+  # gem 'locomotivecms_common', path: '../common', require: false
   # gem 'locomotivecms_common', github: 'locomotivecms/common', ref: '4d1bd56', require: false
 
-  gem 'locomotivecms_steam', path: '../steam', require: false
-  # gem 'locomotivecms_steam', github: 'locomotivecms/steam', ref: '3c6cdc9', require: false
-
-  # gem 'locomotivecms-liquid', path: '../liquid' # for Developers
-  # gem 'locomotivecms_solid', path: '../gems/solid' # for Developers
+  # gem 'locomotivecms_steam', path: '../steam', require: false
+  # gem 'locomotivecms_steam', github: 'locomotivecms/steam', ref: 'e9cf772', require: false
 
   # gem 'carrierwave-mongoid', git: 'git://github.com/locomotivecms/carrierwave-mongoid.git'
 end
 
 group :test do
   gem 'selenium-webdriver',       '~> 3.142.3'
-  gem 'puma',                     '~> 3.12.0'
+  gem 'puma',                     '~> 4.3.1'
   gem 'webdrivers',               '~> 4.1.0'
 
   gem 'grape-entity-matchers',    github: 'salsify/grape-entity-matchers', branch: 'grape-entity-exposures'
