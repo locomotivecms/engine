@@ -70,6 +70,18 @@ describe Locomotive::PageParsingService do
 
     end
 
+    context 'editable elements within a snippet (DEPRECATED in v5)' do
+
+      let(:my_snippet) { create(:snippet, slug: 'my_snippet', site: home.site, template: "{% editable_text single_content %}Hello world{% endeditable_text %}") }
+      let(:page_template) { "{% block body %}{% include 'my_snippet' %}{% endblock %}" }
+
+      before { my_snippet }
+
+      it { expect(subject.size).to eq 1 }
+      it { expect { subject }.to change { page.editable_elements.count }.by(1) }
+
+    end
+
     describe "don't deal with untyped editable element" do
 
       before do
