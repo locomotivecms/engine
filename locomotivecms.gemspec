@@ -65,6 +65,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'actionmailer-with-request',       '~> 0.5.0'
   s.add_dependency 'adomain',                         '~> 0.1.1'
 
+  s.add_dependency 'rack',                            '~> 2.0.8'
   s.add_dependency 'grape',                           '~> 1.1.0'
   s.add_dependency 'grape-entity',                    '0.7.1'
 
