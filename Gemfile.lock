@@ -37,7 +37,7 @@ PATH
       json-schema (~> 2.8.0)
       kaminari-actionview (~> 1.1.1)
       kaminari-mongoid (~> 1.0.1)
-      locomotivecms_steam (~> 1.5.1)
+      locomotivecms_steam (~> 1.5.2)
       mongo (= 2.8.0)
       mongoid (~> 6.4.0)
       mongoid-tree (~> 2.1.0)
@@ -285,7 +285,7 @@ GEM
       attr_extras (~> 5.2.0)
       colorize
       stringex (~> 2.8.2)
-    locomotivecms_steam (1.5.1)
+    locomotivecms_steam (1.5.2)
       RedCloth (~> 4.3.2)
       autoprefixer-rails (~> 8.0.0)
       bcrypt (~> 3.1.11)
