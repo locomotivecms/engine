@@ -174,6 +174,20 @@ describe Locomotive::ContentType do
 
   end
 
+  describe '#list_of_groups' do
+
+    let(:content_type) { build_content_type }
+    subject { content_type.list_of_groups }
+
+    context 'the field is a boolean' do
+      before { content_type.group_by_field_id = 'active' }
+      it 'returns 2 groups (true | false)' do
+        is_expected.to eq([{ name: 'Active (Yes)', _id: true }, { name: 'Active (No)', _id: false }])
+      end
+    end
+
+  end
+
   describe 'custom fields' do
 
     before(:each) do
@@ -372,7 +386,7 @@ describe Locomotive::ContentType do
     build(:content_type, options).tap do |content_type|
       content_type.entries_custom_fields.build label: 'Name',        type: 'string'
       content_type.entries_custom_fields.build label: 'Description', type: 'text'
-      content_type.entries_custom_fields.build label: 'Active',      type: 'boolean'
+      content_type.entries_custom_fields.build label: 'Active',      name: 'active', type: 'boolean'
       content_type.entries_custom_fields.build label: 'Active at',   type: 'date'
       block.call(content_type) if block_given?
     end

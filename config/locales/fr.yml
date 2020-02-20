@@ -36,6 +36,8 @@ fr:
       confirm: Êtes-vous sûr ?
       unsaved_content_warning: "Vous avez des modifications non sauvegardées dans cette page. Si vous la quittez, ces modifications seront perdues."
     shared:
+      "yes": "Oui"
+      "no": "Non"
       header:
         welcome: Bienvenue, %{name}
         sites: Mes sites

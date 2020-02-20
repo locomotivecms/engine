@@ -16,6 +16,11 @@ module Locomotive
           field = self.group_by_field
 
           case field.type.to_sym
+          when :boolean
+            [
+              { name: "#{field.label} (#{I18n.t('yes', scope: 'locomotive.shared')})", _id: true },
+              { name: "#{field.label} (#{I18n.t('no', scope: 'locomotive.shared')})", _id: false }
+            ]
           when :select
             self.entries_class._select_options(field.name).map(&:with_indifferent_access)
           when :belongs_to
@@ -31,7 +36,7 @@ module Locomotive
         end
 
         def groupable?
-          !!self.group_by_field && %w(select belongs_to).include?(group_by_field.type)
+          !!self.group_by_field && %w(select belongs_to boolean).include?(group_by_field.type)
         end
 
         def group_by_field

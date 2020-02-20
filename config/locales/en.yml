@@ -38,6 +38,8 @@ en:
       unsaved_content_warning: "This page is asking you to confirm that you want to leave - data you have entered may not be saved."
 
     shared:
+      "yes": "Yes"
+      "no": "No"
       header:
         welcome: Welcome, %{name}
         sites: My sites

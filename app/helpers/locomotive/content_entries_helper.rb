@@ -42,15 +42,21 @@ module Locomotive
     # @return [ Array ] The list of labels and urls (Hash)
     #
     def each_content_entry_group(content_type, &block)
-      field   = content_type.group_by_field
-      groups  = content_type.list_of_groups || []
+      field       = content_type.group_by_field
+      groups      = content_type.list_of_groups || []
 
       groups.each do |group|
+        where = if field.type == 'boolean'
+          %({"#{field.name}": #{group[:_id]}})
+        else
+          %({"#{field.name}_id": "#{group[:_id]}"})
+        end
+
         block.call({
           name: group[:name],
           url:  content_entries_path(current_site, content_type.slug, {
             group:  group[:name],
-            where:  %({"#{field.name}_id": "#{group[:_id]}"}),
+            where:  where,
             q:      params[:q]
           })
         })
