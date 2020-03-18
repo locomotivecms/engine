@@ -8,6 +8,7 @@ import EditSection from './views/sections/edit';
 import EditBlock from './views/blocks/edit';
 import ImagesIndex from './views/pickers/images';
 import UrlsIndex from './views/pickers/urls';
+import ContentEntryIndex from './views/pickers/content_entry'
 
 const nestedRoutes = {
   '/:pageId/content/edit': {
@@ -17,10 +18,12 @@ const nestedRoutes = {
       '/edit': EditSection,
       '/setting/:settingType/:settingId/images': ImagesIndex,
       '/setting/:settingType/:settingId/pick-url': UrlsIndex,
+      '/setting/:settingType/:settingId/content-entry': ContentEntryIndex,
       '/blocks/:blockType/:blockId': {
         '/edit': EditBlock,
         '/setting/:settingType/:settingId/images': ImagesIndex,
-        '/setting/:settingType/:settingId/pick-url': UrlsIndex
+        '/setting/:settingType/:settingId/pick-url': UrlsIndex,
+        '/setting/:settingType/:settingId/content-entry': ContentEntryIndex
       }
     }
   }

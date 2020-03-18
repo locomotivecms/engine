@@ -13,6 +13,7 @@ import RadioInput from './radio';
 import ImagePickerInput from './image_picker';
 import UrlInput from './url';
 import ContentTypeInput from './content_type';
+import ContentEntryInput from './content_entry';
 import HintInput from './hint';
 import IntegerInput from './integer';
 
@@ -49,6 +50,7 @@ class Base extends Component {
       case 'image_picker':  return ImagePickerInput;
       case 'url':           return UrlInput;
       case 'content_type':  return ContentTypeInput;
+      case 'content_entry': return ContentEntryInput;
       case 'hint':          return HintInput;
       default:
         console.log(`[Editor] Warning! Unknown input type: "${setting.type}"`);

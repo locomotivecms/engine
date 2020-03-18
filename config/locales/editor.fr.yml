@@ -82,6 +82,11 @@ fr:
             email:
               label: Adresse Email
               placeholder: "name@example.com"
+          content_entry:
+            title: "Sélectionner une ressource"
+            input:
+              label: Titre d'une ressource
+              placeholder: Taper le tire de votre ressource
 
         preview:
           view: "Aperçu"

@@ -38,6 +38,11 @@ en:
         content_type:
           show: "Show"
 
+        content_entry:
+          select_button: "Select"
+          change_button: "Change"
+          remove_button: "Remove"
+
       views:
         action_bar:
           header:
@@ -82,6 +87,11 @@ en:
             email:
               label: Email address
               placeholder: "name@example.com"
+          content_entry:
+            title: "Pick an entry"
+            input:
+              label: Instance
+              placeholder: Type the label of the instance
 
         preview:
           view: "View"

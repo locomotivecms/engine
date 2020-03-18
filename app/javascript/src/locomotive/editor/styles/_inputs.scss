@@ -102,6 +102,25 @@
 
 }
 
+// CONTENT ENTRY
+
+.editor-input-content-entry {
+
+  &--info {
+    display: flex;
+    align-items: center;
+  }
+
+  &--actions {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+}
+
+
 // RADIO
 
 .editor-input-radio {

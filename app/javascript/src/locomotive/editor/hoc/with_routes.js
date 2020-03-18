@@ -48,6 +48,15 @@ export default function withRoutes(Component) {
         return `${sectionPath(section)}/${postfix}`;
     }
 
+    const pickContentEntryPath = (section, blockType, blockId, settingType, settingId) => {
+      const postfix = `setting/${settingType}/${settingId}/content-entry`;
+
+      if (blockType && blockId)
+        return `${blockPath(section, blockType, blockId)}/${postfix}`;
+      else
+        return `${sectionPath(section)}/${postfix}`;
+    }
+
     return {
       rootPath,
       editSectionPath,
@@ -55,7 +64,8 @@ export default function withRoutes(Component) {
       editBlockPath,
       blockParentPath,
       pickImagePath,
-      pickUrlPath
+      pickUrlPath,
+      pickContentEntryPath
     }
   }
 

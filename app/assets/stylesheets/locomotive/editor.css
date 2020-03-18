@@ -1434,6 +1434,16 @@
   align-items: center;
   justify-content: center; }
 
+.editor-input-content-entry--info {
+  display: flex;
+  align-items: center; }
+
+.editor-input-content-entry--actions {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
 .editor-input-radio--option input {
   margin-right: 1rem; }
 
@@ -2022,6 +2032,19 @@
 .modal-window .url-picker {
   min-width: 42rem;
   padding: 2rem 0 0 0; }
+
+.content-entry-picker {
+  padding: 2rem; }
+  .content-entry-picker .react-autosuggest__input::-webkit-input-placeholder {
+    color: #c8cbcf; }
+  .content-entry-picker .react-autosuggest__input::-moz-placeholder {
+    color: #c8cbcf; }
+  .content-entry-picker .react-autosuggest__input:-ms-input-placeholder {
+    color: #c8cbcf; }
+  .content-entry-picker .react-autosuggest__input::-ms-input-placeholder {
+    color: #c8cbcf; }
+  .content-entry-picker .react-autosuggest__input::placeholder {
+    color: #c8cbcf; }
 
 .locale-switcher {
   position: relative;

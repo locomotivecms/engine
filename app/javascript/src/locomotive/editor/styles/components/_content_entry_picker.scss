@@ -1,0 +1,11 @@
+.content-entry-picker {
+
+  padding: 2rem;
+
+  .react-autosuggest__input {
+    &::placeholder {
+      color: $gray-light;
+    }
+  }
+
+}
