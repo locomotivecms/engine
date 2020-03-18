@@ -1,7 +1,7 @@
-import { find, findIndex, keyBy, mapValues } from 'lodash';
+import { find, findIndex, forEach, keyBy, mapValues } from 'lodash';
 import { uuid, presence, stripHTML, isBlank } from '../utils/misc';
 
-export function build(sectionDefinition, blockType) {
+export function build(sectionDefinition, blockType, index) {
   const blockDefinition = find(sectionDefinition.blocks, def => def.type === blockType);
   const settings = mapValues(
     keyBy(blockDefinition.settings, setting => setting.id),
@@ -11,8 +11,20 @@ export function build(sectionDefinition, blockType) {
   return {
     id:   uuid(),
     type: blockType,
+    index,
     settings
   }
+}
+
+export function findNextIndex(blocks) {
+  var index = blocks ? blocks.length : 0;
+
+  forEach(blocks, block => {
+    if (block?.index && block.index > index)
+      index = block.index;
+  })
+
+  return index + 1;
 }
 
 export function fetchBlockContent(sectionContent, blockId) {

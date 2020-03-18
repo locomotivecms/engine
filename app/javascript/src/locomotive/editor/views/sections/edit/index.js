@@ -8,7 +8,7 @@ import i18n from '../../../i18n';
 import asView from '../../../hoc/as_view';
 
 // Services
-import { build as buildBlock } from '../../../services/blocks_service';
+import { build as buildBlock, findNextIndex as findBlockNextIndex } from '../../../services/blocks_service';
 
 // Components
 import View from '../../../components/default_view';
@@ -29,7 +29,8 @@ class Edit extends Component {
       this.props.section,
       buildBlock(
         this.props.sectionDefinition,
-        blockType || this.props.sectionDefinition.blocks[0].type
+        blockType || this.props.sectionDefinition.blocks[0].type,
+        findBlockNextIndex(this.props.sectionContent.blocks)
       )
     )
   }

@@ -25,7 +25,7 @@ class Main extends Component {
     const contentType = this.props.setting.content_type;
 
     return (
-      <div class="content-entry-picker">
+      <div className="content-entry-picker">
         <Autosuggest
           label={i18n.t('views.pickers.content_entry.input.label')}
           placeholder={i18n.t('views.pickers.content_entry.input.placeholder')}

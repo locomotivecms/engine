@@ -20,7 +20,11 @@ const SortableList  = SortableContainer(({ blocks, ...props }) => (
       // verify that the block coming from the DB has still a definition
       if (definition === null || definition === undefined) return
 
-      const { image, text } = findBetterImageAndText(block, definition)
+      var { image, text } = findBetterImageAndText(block, definition)
+
+      // we don't want the blocks to all have the same text
+      if (text === null && block.index)
+        text = `${definition.name} #${block.index}`
 
       return (
         <SortableBlock
