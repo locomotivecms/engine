@@ -1,55 +1,81 @@
-import React, { Component } from 'react';
-import { SortableContainer, SortableElement, SortableHandle } from 'react-sortable-hoc';
-
-// Services
-import { findBetterImageAndText } from '../../../services/blocks_service';
+import React from 'react';
+import { DndProvider } from 'react-dnd';
+import { Flipper, Flipped } from 'react-flip-toolkit';
+import HTML5Backend from 'react-dnd-html5-backend';
+import Sortly, { ContextProvider, useDrag, useDrop } from 'react-sortly';
 
 // Components
 import Block from './block';
 
-// Sortable components
-const DragHandle    = SortableHandle(() => (
-  <div className="editor-list-item--drag-handle"><i className="fa fa-bars"></i></div>
-));
-const SortableBlock = SortableElement(Block);
-const SortableList  = SortableContainer(({ blocks, ...props }) => (
-  <div>
-    {blocks.map((block, index) => {
-      const definition = props.sectionDefinition.blocks.find(def => def.type === block.type)
+// Services
+import { findBetterImageAndText } from '../../../services/blocks_service';
 
-      // verify that the block coming from the DB has still a definition
-      if (definition === null || definition === undefined) return
+const buildItems = props => {
+  return (props.sectionContent.blocks || []).map(block => {
+    const definition = props.sectionDefinition.blocks.find(def => def.type === block.type)
 
-      var { image, text } = findBetterImageAndText(block, definition)
+    if (definition === null || definition === undefined) return null;
+    var { image, text } = findBetterImageAndText(block, definition)
 
-      // we don't want the blocks to all have the same text
-      if (text === null && block.index)
-        text = `${definition.name} #${block.index}`
+    // we don't want the blocks to all have the same text
+    if (text === null && block.index)
+      text = `${definition.name} #${block.index}`
 
-      return (
-        <SortableBlock
-          key={`section-${props.sectionType}-block-${index}`}
-          index={index}
-          image={image}
-          text={text}
-          block={block}
-          blockDefinition={definition}
-          handleComponent={DragHandle}
-          editPath={props.editBlockPath(props.section, block.type, block.id)}
-        />
-      )
-    })}
-  </div>
-));
+    return {
+      block,
+      text,
+      image,
+      id:              block.id,
+      depth:           block.depth || 0,
+      blockDefinition: definition,
+      editPath:        props.editBlockPath(props.section, block.type, block.id)
+    }
+  });
+}
+
+const ItemRenderer = (props) => {
+  const { data } = props;
+  const [, drop] = useDrop();
+  const [{ isDragging }, drag, preview] = useDrag({
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+    }),
+  });
+
+  return (
+    <Flipped flipId={data.id}>
+      <div ref={ref => drop(preview(ref))}>
+        <div style={{ marginLeft: data.depth * 20 }}>
+          <Block isDragging={isDragging} drag={drag} {...data} />
+        </div>
+      </div>
+    </Flipped>
+  );
+};
+
+const SortableTree = props => {
+  const items = buildItems(props);
+  const onChange = sortedItems => {
+    props.moveBlock(
+      sortedItems.map(item => ({ ...item.block, depth: item.depth }))
+    );
+  };
+
+  return (
+    <Flipper flipKey={items.map(({ id }) => id).join('.')} spring="stiff">
+      <Sortly items={items} onChange={onChange} maxDepth={props.maxDepth}>
+        {(props) => <ItemRenderer {...props} />}
+      </Sortly>
+    </Flipper>
+  );
+};
 
 const BlockList = props => (
-  <SortableList
-    blocks={props.sectionContent.blocks || []}
-    onSortEnd={props.moveBlock}
-    useDragHandle={true}
-    lockAxis="y"
-    {...props}
-  />
-)
+ <DndProvider backend={HTML5Backend}>
+   <ContextProvider>
+     <SortableTree {...props} />
+   </ContextProvider>
+ </DndProvider>
+);
 
 export default BlockList;

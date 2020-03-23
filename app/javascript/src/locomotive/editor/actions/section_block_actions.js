@@ -57,19 +57,18 @@ export function removeSectionBlock(section, blockId) {
 
 // Drag&drop a block
 
-const _moveSectionBlock = (section, oldIndex, newIndex) => {
+const _moveSectionBlock = (section, sortedBlocks) => {
   return {
     type: actionName('SECTION::BLOCK::MOVE', section),
     section,
-    oldIndex,
-    newIndex
+    sortedBlocks
   }
 }
 
-export function moveSectionBlock(section, oldIndex, newIndex) {
+export function moveSectionBlock(section, sortedBlocks) {
   return (dispatch, getState) => {
     // forward the action to the content reducer
-    dispatch(_moveSectionBlock(section, oldIndex, newIndex));
+    dispatch(_moveSectionBlock(section, sortedBlocks));
 
     refreshSection(getState, section);
   }

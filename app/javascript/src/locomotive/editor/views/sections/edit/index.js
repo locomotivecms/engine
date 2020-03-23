@@ -36,12 +36,8 @@ class Edit extends Component {
   }
 
   // Called when an editor changes the block order
-  moveBlock({ oldIndex, newIndex }) {
-    this.props.moveSectionBlock(
-      this.props.section,
-      oldIndex,
-      newIndex
-    )
+  moveBlock(sortedBlocks) {
+    this.props.moveSectionBlock(this.props.section, sortedBlocks);
   }
 
   removeSection() {
@@ -63,38 +59,41 @@ class Edit extends Component {
   }
 
   render() {
-    const { translate } = this.props;
+    const { sectionDefinition, sectionContent, translate } = this.props;
+
+    console.log('BlockList', sectionDefinition.blocks_display, sectionDefinition.block_max_depth, sectionDefinition.blocks_display === 'tree' ? sectionDefinition.block_max_depth || 1 : 0)
 
     return (
       <View
-        title={translate(presence(this.props.sectionLabel) || this.props.sectionDefinition.name)}
+        title={translate(presence(this.props.sectionLabel) || sectionDefinition.name)}
         onLeave={this.props.leaveView}
         renderAction={this.renderRemoveButton}
       >
         <div className="editor-edit-section">
 
           <div className="editor-section-settings">
-            {this.props.sectionDefinition.settings.map((setting, index) =>
+            {sectionDefinition.settings.map((setting, index) =>
               <Input
                 key={`section-section-input-${setting.id}-${index}`}
-                value={this.props.sectionContent.settings[setting.id]}
+                value={sectionContent.settings[setting.id]}
                 onChange={this.props.handleChange}
-                isVisible={setting.only_if === undefined || this.props.sectionContent.settings[setting.only_if] === true}
+                isVisible={setting.only_if === undefined || sectionContent.settings[setting.only_if] === true}
                 {...this.props}
                 setting={setting}
               />
             )}
           </div>
 
-          {!isBlank(this.props.sectionDefinition.blocks) && (
-            <div className={classnames('editor-section-blocks', this.props.sectionDefinition.settings.length === 0 && 'editor-section-blocks-standalone')}>
+          {!isBlank(sectionDefinition.blocks) && (
+            <div className={classnames('editor-section-blocks', sectionDefinition.settings.length === 0 && 'editor-section-blocks-standalone')}>
               <h3 className="editor-section-blocks--title">
-                {translate(this.props.sectionDefinition.blocks_label, i18n.t('views.sections.edit.default_block_label'))}
+                {translate(sectionDefinition.blocks_label, i18n.t('views.sections.edit.default_block_label'))}
               </h3>
 
               <div className="editor-section-blocks--list">
                 <BlockList
                   moveBlock={this.moveBlock}
+                  maxDepth={sectionDefinition.blocks_display === 'tree' ? sectionDefinition.block_max_depth || 1 : 0}
                   {...this.props}
                 />
               </div>

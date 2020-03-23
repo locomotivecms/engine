@@ -1297,6 +1297,8 @@
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none; }
+  .editor-list-item--dragging {
+    box-shadow: 0 0 0 1px rgba(63, 63, 68, 0.25), 0 1px 3px 0 rgba(63, 63, 68, 0.75); }
   .editor-list-item.with-separator {
     margin-top: 4rem; }
   .editor-list-item--icon, .editor-list-item--image {

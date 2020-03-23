@@ -5,11 +5,11 @@ import { truncate } from 'lodash';
 import { SlideLeftLink } from '../../../components/links';
 import EditIcon from '../../../components/icons/edit';
 
-const Block = ({ image, text, handleComponent, editPath, ...props }) => {
+const Block = ({ image, text, handleComponent, editPath, isDragging, ...props }) => {
   const Handle = handleComponent;
 
   return (
-    <div className="editor-list-item">
+    <div className={`editor-list-item ${isDragging ? 'editor-list-item--dragging' : ''}`}>
       {image && (
         <div className="editor-list-item--image" style={{ backgroundImage: `url("${image}")` }}>
         </div>
@@ -20,7 +20,9 @@ const Block = ({ image, text, handleComponent, editPath, ...props }) => {
         </SlideLeftLink>
       </div>
       <div className="editor-list-item--actions">
-        <Handle />
+        <div ref={props.drag} className="editor-list-item--drag-handle">
+          <i className="fa fa-bars"></i>
+        </div>
       </div>
     </div>
   )

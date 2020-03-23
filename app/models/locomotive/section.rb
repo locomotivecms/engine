@@ -129,6 +129,8 @@ module Locomotive
           presets:          { type: 'array', items: { '$ref': '#/definitions/preset' } },
           blocks:           { type: 'array', items: { '$ref': '#/definitions/blocks' } },
           max_blocks:       { type: 'integer' },
+          blocks_display:   { enum: ['list', 'tree'] },
+          max_blocks_depth: { type: 'integer' },
           default:          {
             type: 'object',
             properties: {

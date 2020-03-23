@@ -119,10 +119,7 @@ function content(state = {}, action) {
           sectionsDropzoneContent: {
             [findSectionIndex(state.page.sectionsDropzoneContent, action.section)]: {
               blocks: {
-                $arrayMove: {
-                  oldIndex: action.oldIndex,
-                  newIndex: action.newIndex
-                }
+                $set: action.sortedBlocks
               }
             }
           }
@@ -164,10 +161,7 @@ function content(state = {}, action) {
           sectionsContent: {
             [action.section.key]: {
               blocks: {
-                $arrayMove: {
-                  oldIndex: action.oldIndex,
-                  newIndex: action.newIndex
-                }
+                $set: action.sortedBlocks
               }
             }
           }
