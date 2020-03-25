@@ -25,15 +25,15 @@ group :development, :test do
   # gem 'locomotivecms_common', path: '../common', require: false
   # gem 'locomotivecms_common', github: 'locomotivecms/common', ref: '4d1bd56', require: false
 
-  gem 'locomotivecms_steam', path: '../steam', require: false
-  # gem 'locomotivecms_steam', github: 'locomotivecms/steam', ref: 'e9cf772', require: false
+  # gem 'locomotivecms_steam', path: '../steam', require: false
+  gem 'locomotivecms_steam', github: 'locomotivecms/steam', ref: '02edd6b', require: false
 
   # gem 'carrierwave-mongoid', git: 'git://github.com/locomotivecms/carrierwave-mongoid.git'
 end
 
 group :test do
   gem 'selenium-webdriver',       '~> 3.142.3'
-  gem 'puma',                     '~> 4.3.1'
+  gem 'puma',                     '~> 4.3.3'
   gem 'webdrivers',               '~> 4.1.0'
 
   gem 'grape-entity-matchers',    github: 'salsify/grape-entity-matchers', branch: 'grape-entity-exposures'
