@@ -4,6 +4,7 @@ script: "bundle exec rake travis"
 before_script: ./bin/ci/before_build.sh
 before_install:
   - gem install bundler:2.0.2
+  - nvm install 13.5.0
 after_failure: ./bin/ci/after_failure.sh
 services: mongodb
 rvm:
