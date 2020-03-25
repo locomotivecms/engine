@@ -84,7 +84,7 @@
     "react-image-crop": "^5.0.0",
     "react-js-pagination": "^3.0.2",
     "react-redux": "^5.0.7",
-    "react-router-dom": "^4.2.2",
+    "react-router-dom": "^5.1.2",
     "react-sortable-hoc": "^0.8.0",
     "react-sortly": "^3.0.4",
     "react-transition-group": "^2.4.0",
