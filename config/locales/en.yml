@@ -334,6 +334,7 @@ en:
       dropzone:
         instructions: "<strong>Drop files from your computer here.</strong><br/>You can also"
         browse: "browse for a file"
+        maximum_file_size: "Maximum file size allowed is %{maximum}."
 
       list:
         no_items: "There are no media for now."

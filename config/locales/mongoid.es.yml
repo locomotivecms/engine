@@ -14,6 +14,10 @@ es:
               unique_account: "ya estaba en uso"
             email:
               unique_account: "ya esta en uso"
+        locomotive/content_asset:
+          attributes:
+            source:
+              maximum_file_size_exceeded: supera el tamaño máximo de fichero permitido
     attributes:
       locomotive/content_entry:
         created_at: Creado el

@@ -20,6 +20,7 @@ module Locomotive
 
     ## validations ##
     validates_presence_of :source
+    validate :maximum_file_size
 
     ## behaviours ##
     mount_uploader :source, ContentAssetUploader, mount_on: :source_filename
@@ -43,5 +44,8 @@ module Locomotive
       )
     end
 
+    def maximum_file_size
+      errors.add(:source, :maximum_file_size_exceeded) if size_changed? && size > site.maximum_uploaded_file_size
+    end
   end
 end

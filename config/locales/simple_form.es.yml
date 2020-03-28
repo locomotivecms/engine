@@ -46,6 +46,7 @@ es:
           cache_enabled: Cache
           private_access: "Habilitar proteccion de password"
           password: "Password global de sitio"
+          maximum_uploaded_file_size: Tamaño máximo de los archivos subidos
           new:
             locales: Primer lenguaje
         membership:
@@ -89,6 +90,7 @@ es:
           meta_keywords: "Keywords meta usadas dentro de la etiqueta principal de la pagina. Son separadas por una coma. Requeridas para SEO."
           meta_description: "Meta descripcion usada dentro de la etiqueta principal de la pagina. Requerida para SEO."
           robots_txt: "Contenido del archivo <span class='code'>/robots.txt</span>. Chequea el siguiente <a href='http://www.w3.org/TR/html4/appendix/notes.html#h-B.4.1.1'>url</a> para mas informacion."
+          maximum_uploaded_file_size: "En bytes."
           domains: "Agrega tus dominios debajo.  Encontraras documentacion <a href=\"https://locomotive-v3.readme.io/docs/domains\">aqui</a> para mas informacion."
           memberships: "Puedes invitar a otras cuentas a editar/manejar el sitio."
           cache_enabled: "Cuendo este habilitado, tus paginas seran 'cacheadas' siempre y cuando el contenido no cambie. Desahbilitar el cache por pagina es permitido."

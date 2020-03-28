@@ -291,6 +291,8 @@ es:
       dropzone:
         instructions: "<strong>Coloca los archivos desde tu computadora aqui.</strong><br/>Tambien puedes"
         browse: "buscar un fichero"
+        maximum_file_size: "El tamaño máximo permitido es %{maximum}."
+
       list:
         no_items: "No hay archivos por ahora"
         buttons:

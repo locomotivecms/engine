@@ -22,6 +22,7 @@ module Locomotive
       unsafe_token_authentication:  false,
       enable_registration:          true,
       optimize_uploaded_files:      false,
+      default_maximum_uploaded_file_size: 2.megabytes,
       ui:                     {
         per_page:     10
       },

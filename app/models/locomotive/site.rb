@@ -18,6 +18,7 @@ module Locomotive
     ## fields ##
     field :name
     field :robots_txt
+    field :maximum_uploaded_file_size, type: ::Integer, default: Locomotive.config.default_maximum_uploaded_file_size
 
     mount_uploader :picture, PictureUploader, validate_integrity: true
 
