@@ -173,7 +173,7 @@ module Locomotive
         { :_id.in   => self.content_type.public_submission_accounts || [] },
         { :email.in => emails || [] }
       ).each do |account|
-        Locomotive::Notifications.new_content_entry(account, entry).deliver
+        Locomotive::Notifications.new_content_entry(site, account, entry).deliver
       end
     end
 

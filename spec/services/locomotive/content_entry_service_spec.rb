@@ -257,8 +257,8 @@ describe Locomotive::ContentEntryService do
     context 'public_submission enabled' do
 
       it 'sends email notifications only to the members of the site' do
-        expect(Locomotive::Notifications).to receive(:new_content_entry).with(account_1, entry).and_return(instance_double('mailer', deliver: true))
-        expect(Locomotive::Notifications).not_to receive(:new_content_entry).with(account_2, entry)
+        expect(Locomotive::Notifications).to receive(:new_content_entry).with(site, account_1, entry).and_return(instance_double('mailer', deliver: true))
+        expect(Locomotive::Notifications).not_to receive(:new_content_entry).with(site, account_2, entry)
         subject
       end
 
@@ -267,8 +267,8 @@ describe Locomotive::ContentEntryService do
         let(:emails) { ['juan@doe.br'] }
 
         it 'sends email notifications to external accounts' do
-          expect(Locomotive::Notifications).to receive(:new_content_entry).with(account_1, entry).and_return(instance_double('mailer', deliver: true))
-          expect(Locomotive::Notifications).to receive(:new_content_entry).with(account_2, entry).and_return(instance_double('mailer', deliver: true))
+          expect(Locomotive::Notifications).to receive(:new_content_entry).with(site, account_1, entry).and_return(instance_double('mailer', deliver: true))
+          expect(Locomotive::Notifications).to receive(:new_content_entry).with(site, account_2, entry).and_return(instance_double('mailer', deliver: true))
           subject
         end
 
@@ -321,6 +321,8 @@ describe Locomotive::ContentEntryService do
       content_type.entries_custom_fields.build(name: 'published', type: 'boolean', label: 'Published')
 
       content_type.attributes = attributes
+
+      allow(content_type).to receive(:site).and_return(site)
 
       content_type.save!
     end.reload

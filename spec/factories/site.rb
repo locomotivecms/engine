@@ -37,6 +37,24 @@ FactoryBot.define do
 
     end
 
+    trait :with_custom_smtp_settings do
+      metafields_schema { [
+        {
+          'name' => 'mailer_settings',
+          'fields' => [
+            { 'name' => 'address' },
+            { 'name' => 'authentication' },
+            { 'name' => 'port', 'type' => 'integer' },
+            { 'name' => 'enable_starttls_auto', 'type' => 'boolean' },
+            { 'name' => 'user_name' },
+            { 'name' => 'password' },
+            { 'name' => 'domain' },
+            { 'name' => 'from' }
+          ]
+        }
+      ] }
+    end
+
     factory 'valid site' do
       # after(:build) { |valid_site| valid_site.stubs(:valid?).returns(true) }
     end

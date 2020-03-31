@@ -150,4 +150,24 @@ describe Locomotive::Concerns::Site::Metafields do
 
   end
 
+  describe '#cast_metafields' do
+
+    let(:namespace) { nil }
+
+    subject { site.cast_metafields(namespace) }
+
+    it { is_expected.to eq nil }
+
+    context 'with metafields' do
+
+      let(:namespace) { 'social' }
+      let(:schema) { [{ 'name' => 'social', 'fields' => [{ 'name' => 'title' }, { 'name' => 'enabled', 'type' => 'boolean' }, { 'name' => 'count', 'type' => 'integer' }, { 'name' => 'body', 'localized' => true }] }, { 'name' => 'theme', 'fields' => [{ 'name' => 'Link Color', 'hint' => 'found it' }, { 'name' => 'background_color' }] }] }
+      let(:fields) { { 'social' => { 'title' => 'FB', 'enabled' => '1', 'count' => '42' } } }
+
+      it { is_expected.to eq({ 'title' => 'FB', 'enabled' => true, 'count' => 42 }) }
+
+    end
+
+  end
+
 end

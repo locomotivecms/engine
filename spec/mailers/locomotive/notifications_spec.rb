@@ -6,12 +6,13 @@ describe Locomotive::Notifications do
 
     let(:now)           { Time.use_zone('America/Chicago') { Time.zone.local(1982, 'sep', 16, 14, 0) } }
     let(:domains)       { [] }
-    let(:site)          { build(:site, name: 'Acme', domains: domains, timezone_name: 'Paris') }
+    let(:metafields)    { {} }
+    let(:site)          { build(:site, :with_custom_smtp_settings, name: 'Acme', domains: domains, timezone_name: 'Paris', metafields: metafields) }
     let(:account)       { build(:account, email: 'bart@simpson.net') }
     let(:content_type)  { build(:content_type, site: site) }
     let(:content_entry) { build(:content_entry, content_type: content_type, site: site) }
 
-    let(:mail) { Locomotive::Notifications.new_content_entry(account, content_entry) }
+    let(:mail) { Locomotive::Notifications.new_content_entry(site, account, content_entry) }
 
     it 'renders the subject' do
       expect(mail.subject).to eq('[localhost][My project] new entry')
@@ -53,6 +54,41 @@ describe Locomotive::Notifications do
 
       it 'uses the top level domain name for the sender email' do
         expect(mail.from).to eq(['noreply@acme.com'])
+      end
+
+      it 'uses the default SMTP settings to deliver emails' do
+        expect(mail.delivery_method.settings).to eq({})
+      end
+
+    end
+
+    context 'the site has metafields describing a SMTP server' do
+
+      let(:metafields) { { 'mailer_settings' => {
+        'address' => 'smtp.acme.com',
+        'authentication' =>  'plain',
+        'port' => '587',
+        'enable_starttls_auto' => '1',
+        'user_name' => 'john',
+        'password' => 'easyone',
+        'domain' => 'acme.com',
+        'from' => 'support@acme.com'
+      } } }
+
+      it 'uses the site SMTP settings to deliver emails' do
+        expect(mail.delivery_method.settings).to eq({
+          address: 'smtp.acme.com',
+          authentication: 'plain',
+          port: 587,
+          enable_starttls_auto: true,
+          user_name: 'john',
+          password: 'easyone',
+          domain: 'acme.com'
+        })
+      end
+
+      it 'uses the from parameter for the sender email' do
+        expect(mail.from).to eq(['support@acme.com'])
       end
 
     end
@@ -98,7 +134,7 @@ describe Locomotive::Notifications do
 
       end
 
-      context 'the option is onn' do
+      context 'the option is on' do
 
         let(:enabled) { true }
 

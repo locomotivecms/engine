@@ -41,6 +41,21 @@ module Locomotive
           end
         end
 
+        def cast_metafields(namespace)
+          return nil if namespace.blank? || !has_metafields?
+
+          schema = self.metafields_schema.find { |s| s['name'] == namespace }
+          values = self.metafields[namespace]
+
+          return nil if schema.blank? || values.blank?
+
+          values.map do |name, value|
+            field = schema['fields'].find { |f| f['name'] == name }
+            next unless field
+            [name, cast_metafield_value(field, value)]
+          end.compact.to_h
+        end
+
         protected
 
         def _metafields_schema_schema
@@ -73,6 +88,17 @@ module Locomotive
               'required' => ['name', 'fields']
             }
           }
+        end
+
+        def cast_metafield_value(field, value)
+          case field['type']
+          when 'boolean'
+            ['1', 'true', true].include?(value)
+          when 'integer'
+            Integer(value)
+          else
+            value
+          end
         end
 
       end
