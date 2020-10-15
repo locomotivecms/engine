@@ -95,6 +95,7 @@ en:
 
         preview:
           view: "View"
+          errorMessage: "The page couldn't be loaded. Please contact the developer of the site."
 
         sections:
           edit:

@@ -14,6 +14,9 @@ function iframe(state = {}, action) {
     case 'IFRAME::DONE':
       return update(state, { previousSection: { $set: null } })
 
+    case 'IFRAME::FAILED':
+      return update(state, { loaded: { $set: true }, failed: { $set: true } });
+
     // DROPZONE
 
     case 'DROPZONE::SECTION::PREVIEW':

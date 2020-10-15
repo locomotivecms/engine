@@ -3,7 +3,7 @@ import { waitUntil, getMetaContentFromIframe } from '../../utils/misc';
 import classnames from 'classnames';
 
 // Services
-import { prepareIframe } from '../../services/preview_service';
+import { prepareIframe, PREVIEW_LOADING_TIME_OUT } from '../../services/preview_service';
 
 class Iframe extends React.Component {
 
@@ -13,7 +13,14 @@ class Iframe extends React.Component {
   }
 
   componentDidMount() {
+    const loadingTimeout = setTimeout(() => {
+      this.props.stopLoadingIframe();
+    }, PREVIEW_LOADING_TIME_OUT);
+
     window.document.addEventListener('LocomotivePreviewReady', event => {
+      // stop the loading timeout timer!
+      clearTimeout(loadingTimeout);
+
       // bring some modifications to the iframe
       prepareIframe(this.iframe.contentWindow);
 
@@ -42,8 +49,7 @@ class Iframe extends React.Component {
           )
         });
       }
-
-    });
+    });    
   }
 
   // If no locale is included in the path (ex.: /index), Steam will use the

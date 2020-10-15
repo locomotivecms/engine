@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { bindAll } from 'lodash';
 import classnames from 'classnames';
+import i18n from '../../i18n';
 
 // HOC
 import withRedux from '../../hoc/with_redux';
@@ -22,6 +23,8 @@ class Preview extends React.Component {
   }
 
   render() {
+    const displayLoader = !this.props.iframeState.loaded || this.props.iframeState.failed;
+
     return (
       <div className="content-preview preview">
         <div className={classnames('preview-inner', this.state.screensize)}>
@@ -31,12 +34,13 @@ class Preview extends React.Component {
             {...this.props}
           />
 
-          <div className={classnames('preview-iframe', this.props.iframeState.loaded !== true ? 'preview-iframe--loading' : null)}>
+          <div className={classnames('preview-iframe', displayLoader ? 'preview-iframe--loading' : null)}>
             <Iframe {...this.props} />
 
-            {!this.props.iframeState.loaded && (
+            {displayLoader && (
               <div className="preview-iframe-loader">
                 <img src={this.props.loaderImage} />
+                {this.props.iframeState.failed && (<p>{i18n.t('views.preview.errorMessage')}</p>)}
               </div>
             )}
           </div>

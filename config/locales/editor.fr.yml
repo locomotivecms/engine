@@ -38,6 +38,11 @@ fr:
         content_type:
           show: "Voir"
 
+        content_entry:
+          select_button: "Sélectionner"
+          change_button: "Changer"
+          remove_button: "Enlever"
+
       views:
         action_bar:
           header:
@@ -90,6 +95,7 @@ fr:
 
         preview:
           view: "Aperçu"
+          errorMessage: "La page n'a pas pu être chargée. Veuillez contacter le développeur du site."
 
         sections:
           edit:

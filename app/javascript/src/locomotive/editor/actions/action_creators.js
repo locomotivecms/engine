@@ -126,6 +126,12 @@ export function startLoadingIframe(contentWindow) {
   return _startLoadingIframe(contentWindow);
 }
 
+export function stopLoadingIframe() {
+  return {
+    type:         'IFRAME::FAILED'    
+  }
+}
+
 export function onIframeLoaded(contentWindow) {
   return {
     type:         'IFRAME::LOADED',

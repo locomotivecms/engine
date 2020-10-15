@@ -81,6 +81,7 @@
   & > &-loader {
     background: #fff;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     position: absolute;
@@ -94,6 +95,10 @@
     img {
       display: block;
       width: 12rem;
+    }
+
+    p {
+      margin-top: 2rem;
     }
   }
 

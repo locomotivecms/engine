@@ -55,6 +55,9 @@ const pokeSection = (_window, action, sectionId, blockId) => {
 
 // General
 
+// After this time out, we warn the editor with an error messages
+export const PREVIEW_LOADING_TIME_OUT = 20000; // 20 seconds
+
 export function reload(_window, location) {
   // console.log(reload, _window, location);
   _window.document.location.href = location;

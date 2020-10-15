@@ -1794,6 +1794,7 @@
   .preview-iframe > .preview-iframe-loader {
     background: #fff;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     position: absolute;
@@ -1806,6 +1807,8 @@
     .preview-iframe > .preview-iframe-loader img {
       display: block;
       width: 12rem; }
+    .preview-iframe > .preview-iframe-loader p {
+      margin-top: 2rem; }
   .preview-iframe--loading > .scrollable {
     opacity: 0;
     z-index: 998; }
