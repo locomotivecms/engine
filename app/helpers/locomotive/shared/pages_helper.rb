@@ -104,7 +104,7 @@ module Locomotive
         end
 
         def templatized_parent?
-          parent.templatized?
+          parent&.templatized?
         end
 
         def templatized_children?
