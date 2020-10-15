@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails',                           '>= 5.2.4.2', '< 6.0'
   s.add_dependency 'rails-html-sanitizer',            '~> 1.3.0'
 
-  s.add_dependency 'devise',                          '~> 4.7.1'
+  s.add_dependency 'devise',                          '~> 4.7.3'
   s.add_dependency 'devise-encryptable',              '~> 0.2.0'
   s.add_dependency 'simple_token_authentication',     '~> 1.15.1'
 
@@ -65,9 +65,9 @@ Gem::Specification.new do |s|
   s.add_dependency 'actionmailer-with-request',       '~> 0.5.0'
   s.add_dependency 'adomain',                         '~> 0.1.1'
 
-  s.add_dependency 'rack',                            '~> 2.0.8'
-  s.add_dependency 'grape',                           '~> 1.1.0'
-  s.add_dependency 'grape-entity',                    '0.7.1'
+  s.add_dependency 'rack',                            '~> 2.1.4'
+  s.add_dependency 'grape',                           '~> 1.5.0'
+  s.add_dependency 'grape-entity',                    '~> 0.8.1'
 
   s.add_dependency 'carrierwave-imageoptim',          '0.1.5'
   s.add_dependency 'image_optim',                     '0.26.3'
