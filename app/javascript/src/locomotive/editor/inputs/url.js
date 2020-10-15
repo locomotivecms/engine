@@ -11,8 +11,15 @@ const openPicker = props => {
   ), 'left');
 }
 
-const getType = url => url.type === 'content_entry' ? url.label[0] : i18n.t(`inputs.url.types.${url.type}`);
-const getLabel = url => url.type === '_external' || url.type === 'email' ? url.value : url.label[1];
+const getType = url => url.type === 'content_entry' && url.label ? url.label[0] : i18n.t(`inputs.url.types.${url.type}`);
+const getLabel = url => {
+  if (url.type === '_external' || url.type === 'email')
+    return url.value
+  else if (url.label)
+    return url.label[1];
+  else
+    return null;
+}
 
 const UrlInput = ({ label, getValue, handleChange, api, locale, ...props }) => {
   var url = getValue(null);

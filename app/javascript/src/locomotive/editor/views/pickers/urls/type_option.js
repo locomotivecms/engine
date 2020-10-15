@@ -17,6 +17,4 @@ const TypeOption = ({ value, currentValue, handleChange, ...props }) => (
   </div>
 )
 
-
-
 export default TypeOption;

@@ -60,7 +60,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'dragonfly',                       '~> 1.2.0'
   s.add_dependency 'rack-cache',                      '~> 1.7.1'
 
-  s.add_dependency 'multi_json',                      '~> 1.13.1'
+  s.add_dependency 'multi_json',                      '~> 1.15.0'
   s.add_dependency 'yajl-ruby',                       '~> 1.3.1'
   s.add_dependency 'actionmailer-with-request',       '~> 0.5.0'
   s.add_dependency 'adomain',                         '~> 0.1.1'

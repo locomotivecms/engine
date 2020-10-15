@@ -26,7 +26,7 @@ group :development, :test do
   # gem 'locomotivecms_common', github: 'locomotivecms/common', ref: '4d1bd56', require: false
 
   # gem 'locomotivecms_steam', path: '../steam', require: false
-  gem 'locomotivecms_steam', github: 'locomotivecms/steam', ref: '02edd6b', require: false
+  gem 'locomotivecms_steam', github: 'locomotivecms/steam', ref: '3d08eb0', require: false
 
   # gem 'carrierwave-mongoid', git: 'git://github.com/locomotivecms/carrierwave-mongoid.git'
 end
