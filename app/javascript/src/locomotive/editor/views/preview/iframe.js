@@ -9,7 +9,7 @@ class Iframe extends React.Component {
 
   constructor(props) {
     super(props);
-    this.createdAt = new Date().getMilliseconds();
+    this.createdAt = new Date().getMilliseconds();    
   }
 
   componentDidMount() {
