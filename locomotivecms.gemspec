@@ -36,7 +36,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'slim',                            '~> 3.0.9'
   s.add_dependency 'simple_form',                     '~> 5.0.0'
-  s.add_dependency 'kaminari-actionview',             '~> 1.1.1'
+  s.add_dependency 'kaminari-actionview',             '~> 1.2.1'
   s.add_dependency 'kaminari-mongoid',                '~> 1.0.1'
   s.add_dependency 'bootstrap-kaminari-views',        '~> 0.0.5'
   s.add_dependency 'responders',                      '~> 2.4.0'

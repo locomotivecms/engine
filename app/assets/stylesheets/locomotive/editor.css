@@ -1404,13 +1404,9 @@
     padding: 0.5rem 0.8rem;
     border-radius: 3px;
     border: 1px solid #e3e4e7; }
-    .editor-input--text::-webkit-input-placeholder {
-      color: #c8cbcf; }
     .editor-input--text::-moz-placeholder {
       color: #c8cbcf; }
     .editor-input--text:-ms-input-placeholder {
-      color: #c8cbcf; }
-    .editor-input--text::-ms-input-placeholder {
       color: #c8cbcf; }
     .editor-input--text::placeholder {
       color: #c8cbcf; }
@@ -2048,13 +2044,9 @@
       color: #91979f;
       margin-bottom: 0;
       cursor: pointer; }
-  .url-picker .react-autosuggest__input::-webkit-input-placeholder {
-    color: #c8cbcf; }
   .url-picker .react-autosuggest__input::-moz-placeholder {
     color: #c8cbcf; }
   .url-picker .react-autosuggest__input:-ms-input-placeholder {
-    color: #c8cbcf; }
-  .url-picker .react-autosuggest__input::-ms-input-placeholder {
     color: #c8cbcf; }
   .url-picker .react-autosuggest__input::placeholder {
     color: #c8cbcf; }
@@ -2065,13 +2057,9 @@
 
 .content-entry-picker {
   padding: 2rem; }
-  .content-entry-picker .react-autosuggest__input::-webkit-input-placeholder {
-    color: #c8cbcf; }
   .content-entry-picker .react-autosuggest__input::-moz-placeholder {
     color: #c8cbcf; }
   .content-entry-picker .react-autosuggest__input:-ms-input-placeholder {
-    color: #c8cbcf; }
-  .content-entry-picker .react-autosuggest__input::-ms-input-placeholder {
     color: #c8cbcf; }
   .content-entry-picker .react-autosuggest__input::placeholder {
     color: #c8cbcf; }
