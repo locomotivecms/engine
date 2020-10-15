@@ -17,7 +17,7 @@ branches:
   only:
     - master
 addons:
-  chrome: stable
+  chrome: beta
   hosts:
     - locomotive.local
 
