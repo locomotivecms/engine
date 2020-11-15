@@ -1,6 +1,7 @@
 $:.push File.expand_path('../lib', __FILE__)
 
 # Maintain your gem's version:
+
 require 'locomotive/version'
 
 # Describe your gem and declare its dependencies:
@@ -26,7 +27,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'pundit',                          '~> 1.1.0'
 
-  s.add_dependency 'mongo',                           '2.8.0'
+  s.add_dependency 'mongo',                           '2.13.1'
   s.add_dependency 'mongoid',                         '~> 6.4.0'
   s.add_dependency 'mongoid-tree',                    '~> 2.1.0'
   s.add_dependency 'origin',                          '~> 2.3.1'
