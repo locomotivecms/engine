@@ -14,18 +14,14 @@ export const build = (pageId, contentEntryId) => {
   const editSectionPath = (section) => {
     return `${sectionPath(section)}/edit`;
   }
-
-  const focusSectionSettingPath = (section, settingType, settingId) => {
-    return `${sectionPath(section)}/setting/${settingType}/${settingId}/focus`;
-  }
-
+  
   const blockPath = (section, blockType, blockId) => {
     return `${sectionPath(section)}/blocks/${blockType}/${blockId}`;
   }
   const editBlockPath = (section, blockType, blockId) => {
     return `${blockPath(section, blockType, blockId)}/edit`;
   }
-
+  
   const blockParentPath = (section) => {
     return `${sectionPath(section)}/edit`;
   }
@@ -61,7 +57,6 @@ export const build = (pageId, contentEntryId) => {
     rootPath,
     editSectionPath,
     newSectionPath,
-    focusSectionSettingPath,
     editBlockPath,
     blockParentPath,
     pickImagePath,

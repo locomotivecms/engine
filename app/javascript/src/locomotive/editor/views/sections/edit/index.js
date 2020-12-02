@@ -58,11 +58,6 @@ class Edit extends Component {
     )
   }
 
-  hasFocus(setting) {
-    const { match: { params: { settingType, settingId } } } = this.props;
-    return setting.type === settingType && setting.id === settingId;
-  }
-
   render() {
     const { sectionDefinition, sectionContent, translate } = this.props;
 
@@ -84,7 +79,6 @@ class Edit extends Component {
                 value={sectionContent.settings[setting.id]}
                 onChange={this.props.handleChange}
                 isVisible={setting.only_if === undefined || sectionContent.settings[setting.only_if] === true}
-                hasFocus={this.hasFocus(setting)}
                 {...this.props}
                 setting={setting}
               />

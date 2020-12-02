@@ -55,20 +55,29 @@ class Iframe extends React.Component {
 
   // Go to the view (section or block form) where is located the input setting
   selectTextInput(textId) {
-    const { sections, focusSectionSettingPath, redirectTo } = this.props;
-    const { sectionId, blockId, settingId } = findSectionFromTextId(sections, textId);
+    const { sections, globalContent, editSectionPath, editBlockPath, redirectTo, focusSetting } = this.props;
+    const { sectionId, blockType, blockId, settingId } = findSectionFromTextId(textId, sections, globalContent);
+
+    console.log('[IFrame][selectTextInput]', textId, sectionId, blockType, blockId, settingId)
     
     if (!sectionId && !blockId) {
       console.log('[Editor] unknown sectionId and blockId');
       return;
     }
 
-    const path = focusSectionSettingPath({ uuid: sectionId }, 'text', settingId);
+    let path = editSectionPath({ uuid: sectionId });
+    let anchor = `setting-text-${settingId}`
+
+    if (blockType && blockId) 
+      path = editBlockPath({ uuid: sectionId }, blockType, blockId);
 
     console.log('[IFrame][selectTextInput]', path);
 
     // in this UX context, we don't need to apply the sliding animation
     redirectTo(path, 'none');
+
+    // give the focus to the setting input
+    focusSetting(settingId);
   }
 
   // If no locale is included in the path (ex.: /index), Steam will use the

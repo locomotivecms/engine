@@ -1,6 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { find, pick, bindAll } from 'lodash';
+import { buildClickEvent } from '../utils/misc';
 
 // Services
 import { fetchSectionContent, findBetterText as findBetterTextForSection } from '../services/sections_service';
@@ -113,6 +114,10 @@ const withEditingSection = Component => {
         // unknown section and/or block, go back to the root view
         this.props.redirectTo(this.props.rootPath());
       }
+    }    
+
+    componentDidUpdate() {
+      this.applyFocus(this.props.focusedSettingId);
     }
 
     leaveView() {
@@ -122,6 +127,15 @@ const withEditingSection = Component => {
 
     handleChange(settingType, settingId, newValue) {
       handleChange(this.props, settingType, settingId, newValue);
+    }
+
+    applyFocus(settingId) {
+      // NOTE: only support the text setting type
+      if (!settingId) return;
+      const label = document.querySelector(`label[for=setting-text-${settingId}]`);
+      label.dispatchEvent(buildClickEvent());
+      label.scrollIntoView();
+      this.props.resetFocusSetting();      
     }
 
     render() {

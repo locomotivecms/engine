@@ -11,8 +11,8 @@ export default function withRoutes(Component) {
     }
 
     // NOTE: slideDirection is the direction where the new view will move to
-    redirectTo(pathname, slideRediction) {
-      this.props.history.push({ pathname, state: { slideDirection: slideRediction || 'right' } });
+    redirectTo(pathname, slideRediction, hash) {
+      this.props.history.push({ pathname, hash, state: { slideDirection: slideRediction || 'right' } });
     } 
 
     render() {

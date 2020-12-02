@@ -11,9 +11,10 @@ const { site, page, sectionDefinitions, sections, editableElements, locale, loca
 
 const defaultState = {
   editor: {
-    changed:      false,
-    pageChanged:  false, // Page Settings & SEO
-    formErrors:   {},
+    changed:          false,
+    pageChanged:      false, // Page Settings & SEO
+    formErrors:       {},
+    focusedSettingId: null,
     sectionDefinitions,
     sections,
     editableElements,
@@ -23,7 +24,7 @@ const defaultState = {
     uiLocale,
     urls,
     api: ApiFactory(urls, locale),
-    routes: buildRoutes(page.id, page.contentEntryId)
+    routes: buildRoutes(page?.id, page?.contentEntryId)
   },
   content: {
     site: site,

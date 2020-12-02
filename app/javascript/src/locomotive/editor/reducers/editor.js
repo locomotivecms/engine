@@ -9,6 +9,12 @@ function editor(state = {}, action) {
     case 'PERSIST_CHANGES':
       return action.success ? update(state, { changed: { $set: false } }) : state;
 
+    case 'EDITOR::FOCUS_SETTING_ID':
+      return update(state, { focusedSettingId: { $set: action.settingId } });
+
+    case 'EDITOR::RESET_FOCUS_SETTING':
+      return update(state, { focusedSettingId: { $set: null } });
+
     case 'PAGE::PERSIST_CHANGES':
       return update(state, {
         pageChanged: { $set: !action.success },

@@ -31,30 +31,6 @@ class ActionBar extends Component {
     const slideDirection  = !iframeLoaded ? 'up' : (location.state || {}).slideDirection || 'up';
     const timeout         = slideDirection === 'none' ? { enter: 1, exit: 1 } : { enter: 150, exit: 100 };
 
-    console.log('[ActionBar] render', slideDirection, timeout);
-
-    // return (
-    //   <div className="actionbar">
-    //     <Header />
-
-    //         <Switch location={location}>
-    //           {!iframeLoaded && <Route path={`/${pageId}/content/edit/`} component={Startup} />}
-
-    //           {routes.map(route => (
-    //             <Route
-    //               key={route.path}
-    //               exact={route.exact === true}
-    //               path={route.path}
-    //               component={route.component}
-    //             />
-    //           ))}
-
-    //           <Route render={() => <Redirect to={`/${pageId}/content/edit`} />} />
-
-    //         </Switch>
-    //   </div>
-    // )
-
     return (
       <div className="actionbar">
         <Header />

@@ -16,7 +16,6 @@ const nestedRoutes = {
     '/sections/dropzone/new': SectionGallery,
     '/sections/:sectionId': {
       '/edit': EditSection,
-      '/setting/:settingType/:settingId/focus': EditSection,
       '/setting/:settingType/:settingId/images': ImagesIndex,
       '/setting/:settingType/:settingId/pick-url': UrlsIndex,
       '/setting/:settingType/:settingId/content-entry': ContentEntryIndex,

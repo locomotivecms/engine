@@ -24,8 +24,10 @@ class RichTextInput extends Component {
       editorState: this.createEditorContent(value),
       value
     };
-
-    bindAll(this, 'inputOnChangeSanitizer', 'editorOnChangeSanitizer');
+    
+    this.setDomEditorRef = ref => this.domEditor = ref;
+    
+    bindAll(this, 'inputOnChangeSanitizer', 'editorOnChangeSanitizer', 'focus');
   }
 
   componentDidMount() {
@@ -33,7 +35,7 @@ class RichTextInput extends Component {
     const editorElement = this.input.querySelector('.draftjs-editor');
 
     if (editorElement)
-      editorElement.style.height = `${(setting.nb_rows || MIN_ROWS) * LINE_HEIGHT}px`;
+      editorElement.style.height = `${(setting.nb_rows || MIN_ROWS) * LINE_HEIGHT}px`;    
   }
 
   createEditorContent(html) {
@@ -45,6 +47,14 @@ class RichTextInput extends Component {
   inputOnChangeSanitizer(event) {
     if (event.target)
       this.updateSectionValue(event.target.value);
+  }
+
+  focus() {
+    this.domEditor.focusEditor();
+    const editorState = EditorState.moveSelectionToEnd(this.state.editorState);
+    this.setState({
+      editorState: EditorState.forceSelection(editorState, editorState.getSelection())
+    });;
   }
 
   editorOnChangeSanitizer(editorState) {
@@ -65,11 +75,11 @@ class RichTextInput extends Component {
   }
 
   render() {
-    const { setting, label } = this.props;
+    const { setting, label, inputId } = this.props;
 
     return (
       <div className="editor-input editor-input-rich-text" ref={el => this.input = el}>
-        <label className="editor-input--label">
+        <label className="editor-input--label" htmlFor={inputId} onClick={this.focus}>
           {label}
         </label>
         <div>
@@ -81,6 +91,7 @@ class RichTextInput extends Component {
             toolbar={RichTextInput.mytoolbar(setting.line_break !== true)}
             onEditorStateChange={this.editorOnChangeSanitizer}
             stripPastedStyles={true}
+            ref={this.setDomEditorRef}
           />
           <div className="editor-input-rich-text-counter">
             {stripHTML(this.state.value).length}

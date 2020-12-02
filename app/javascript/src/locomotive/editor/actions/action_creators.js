@@ -146,3 +146,16 @@ export function onIframeOperationsDone() {
     type:         'IFRAME::DONE'
   }
 }
+
+export function focusSetting(settingId) {
+  return {
+    type:         'EDITOR::FOCUS_SETTING_ID',
+    settingId
+  }
+}
+
+export function resetFocusSetting() {
+  return {
+    type:         'EDITOR::RESET_FOCUS_SETTING'
+  }
+}

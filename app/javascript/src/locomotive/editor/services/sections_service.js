@@ -154,18 +154,33 @@ export function isEditable(definition) {
   return !(isBlank(definition.settings) && isBlank(definition.blocks));
 }
 
-export function findFromTextId(sections, textId) {
-  console.log('findFromTextId', sections, textId);
+const findSectionAndBlockFromTextId = (scope, string, sections, content) => {
+  let sectionId, blockType, blockId;
+  sectionId = blockType = blockId = null; 
 
-  const regexp = /^section-(page|site){1}-([^\.]+)\.(.+)$/g;
-  const results = regexp.exec(textId);
-  const scope = results[1];
-  const sectionType = results[2];
-  const settingId = results[3];
+  const subRegexp = scope === 'dropzone' ? 
+  /^-([0-9]+)(-block\.([0-9]+))?$/g :
+  /^-([a-zA-Z0-9_]+)(-block\.([0-9]+))?$/g;
+  const subMatches = subRegexp.exec(string);
+  
+  const localSectionId = `${scope}-${subMatches[1]}`;
+  const section = Object.values(sections.all).find(section => section.source === scope && section.id === localSectionId);  
+  sectionId = section.uuid;
 
-  const section = Object.values(sections.all).find(section => section.source === scope && section.type === sectionType);
+  blockId = subMatches[3] || null;
+  if (blockId) {
+    const subContent = scope === 'dropzone' ? content.page.sectionsDropzoneContent : content[scope].sectionsContent;
+    blockType = subContent[subMatches[1]].blocks[blockId]?.type;
+  }
 
-  console.log('[findFromTextId] section = ', section);
+  return { sectionId, blockType, blockId };
+}
 
-  return { sectionId: section.uuid, blockId: null, settingId };
+export function findFromTextId(textId, sections, content) {
+  const regexp = /^section-(page|site|dropzone)(.+)\.([^\.]+)$/g;
+  const matches = regexp.exec(textId);
+  return {
+    ...findSectionAndBlockFromTextId(matches[1], matches[2], sections, content),
+    settingId: matches[3]
+  };
 }

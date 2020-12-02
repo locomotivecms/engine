@@ -10,16 +10,54 @@ import {
 
 describe('locomotive/editor/services/sections_service', function() {
 
+  let sections = { all: {
+    'b2': { source: 'site', uuid: 'b2', id: 'site-header' },
+    'a1': { source: 'page', uuid: 'a1', id: 'page-hero_simple' },
+    '42': { source: 'dropzone', id: 'dropzone-0', uuid: '42' },
+  } };
+
+  let content = { 
+    site: {
+      sectionsContent: {
+        header: {
+          type: 'header',
+          blocks: [
+            { type: 'page', id: '0' },
+            { type: 'sub-page', id: '1' },
+          ]
+        }
+      }
+    },
+    page: {
+      sectionsDropzoneContent: [        
+        { type: 'team', blocks: [{}, { type: 'person', id: 1 }] }
+      ]
+    }
+  }
+
   describe('#findFromTextId', function() {
     it('returns the section/block/input matching the text id [PAGE]', () => {
-      const sections = { all: {
-        'b2': { source: 'site', type: 'hero_simple', uuid: 'b2' },
-        'a1': { source: 'page', type: 'hero_simple', uuid: 'a1' },        
-      } };
-      const { sectionId, blockId, settingId } = findFromTextId(sections, 'section-page-hero_simple.title');
+      const { sectionId, blockType, blockId, settingId } = findFromTextId('section-page-hero_simple.title', sections, content);
       expect(sectionId).to.eq('a1');
+      expect(blockType).to.eq(null);
       expect(blockId).to.eq(null);
       expect(settingId).to.eq('title');
+    });
+
+    it('returns the section/block/input matching the text id [SITE]', () => {
+      const { sectionId, blockId, blockType, settingId } = findFromTextId('section-site-header-block.0.text', sections, content);
+      expect(sectionId).to.eq('b2');
+      expect(blockType).to.eq('page');
+      expect(blockId).to.eq('0');
+      expect(settingId).to.eq('text');
+    });
+
+    it('returns the section/block/input matching the text id [DROPZONE]', () => {      
+      const { sectionId, blockId, blockType, settingId } = findFromTextId('section-dropzone-0-block.1.name', sections, content);
+      expect(sectionId).to.eq('42');
+      expect(blockType).to.eq('person');
+      expect(blockId).to.eq('1');
+      expect(settingId).to.eq('name');
     });
   });
 

@@ -68,7 +68,7 @@ export function prepareLinks(_window, onPageChange) {
   _window.document.body.addEventListener('click', event => {
     var link = findParentElement('a', event.target);
 
-    if (link) {
+    if (link && !link.dataset.locomotiveEditorSetting) {
       const url       = link.getAttribute('href');
       const resource  = decodeLinkResource(url);
 
@@ -89,9 +89,6 @@ export function prepareLinks(_window, onPageChange) {
   })
 }
 
-// TODO:
-// x listen to all the elements through the on method of jQuery
-// - handle double clicks if it's a link
 export function prepareHighlighText(_window, selectTextInput) {
   $(_window.document).on('mouseenter', '[data-locomotive-editor-setting]', function() {
     const $element = $(this);
@@ -110,12 +107,21 @@ export function prepareHighlighText(_window, selectTextInput) {
     $element.css('outline', 'transparent');
   });
 
-  $(_window.document).on('click', '[data-locomotive-editor-setting]', function() {    
-    event.stopPropagation() & event.preventDefault();
+  $(_window.document).on('click', '[data-locomotive-editor-setting]', function(event) {    
+    console.log('click on a setting', event.target, event.target.nodeName);
+
     const $element = $(this);
-    const textId = $element.data('locomotive-editor-setting');
+    const textId = $element.data('locomotive-editor-setting');    
+
+    // don't touch A nodes within the text    
+    if (event.target.nodeName === 'A' && !textId) 
+      return true;
+
+    event.stopPropagation() & event.preventDefault();
+  
+    // tell the editor to display the input    
     selectTextInput(textId);
-  });
+  });  
 }
 
 export function prepareIframe(_window, { selectTextInput }) {
