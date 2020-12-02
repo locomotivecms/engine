@@ -1,6 +1,7 @@
 import React from 'react';
+import withFocus from '../hoc/with_focus';
 
-const TextInput = ({ label, inputId, getValue, handleChange, hasFocus, error }) => (
+const TextInput = ({ label, inputId, getValue, handleChange, inputFocus, error }) => (
   <div className="editor-input editor-input-text">
     <label className="editor-input--label" htmlFor={inputId}>
       {label}
@@ -16,9 +17,9 @@ const TextInput = ({ label, inputId, getValue, handleChange, hasFocus, error }) 
       value={getValue('')}
       onChange={e => handleChange(e.target.value)}
       className="editor-input--text"
-      ref={input => input && hasFocus && input.focus()}
+      ref={inputFocus.ref}
     />
   </div>
 )
 
-export default TextInput;
+export default withFocus(TextInput);
