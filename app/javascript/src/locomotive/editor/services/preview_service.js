@@ -90,23 +90,31 @@ export function prepareLinks(_window, onPageChange) {
 }
 
 // TODO:
-// - listen to all the elements through the on method of jQuery
+// x listen to all the elements through the on method of jQuery
 // - handle double clicks if it's a link
 export function prepareHighlighText(_window, selectTextInput) {
-  $(_window.document).find('[data-locomotive-editor-setting]').each(function() {
+  $(_window.document).on('mouseenter', '[data-locomotive-editor-setting]', function() {
     const $element = $(this);
-    $element.hover(event => {
-      $element.css('outline', event.type === 'mouseenter' ? '2px solid #1D77C3' : 'transparent');
-    });
-    const hasLink = $element.closest('a,button').size();
+    $element.css('outline', '2px solid #1D77C3');    
+  });  
 
-    $element.click(event => {
-      event.stopPropagation() & event.preventDefault();
-      const textId = $element.data('locomotive-editor-setting');
+  // $(_window.document).on('dblclick', '[data-locomotive-editor-setting]', function() {
+  //   event.stopPropagation() & event.preventDefault();
+  //   const $element = $(this);
+  //   const hasLink = $element.closest('a,button').size() === 0;
+  //   console.log('do something', hasLink);
+  // });
 
-      // let Redux take care of this
-      selectTextInput(textId);      
-    });
+  $(_window.document).on('mouseleave', '[data-locomotive-editor-setting]', function() {
+    const $element = $(this);
+    $element.css('outline', 'transparent');
+  });
+
+  $(_window.document).on('click', '[data-locomotive-editor-setting]', function() {    
+    event.stopPropagation() & event.preventDefault();
+    const $element = $(this);
+    const textId = $element.data('locomotive-editor-setting');
+    selectTextInput(textId);
   });
 }
 

@@ -55,8 +55,6 @@ class Iframe extends React.Component {
 
   // Go to the view (section or block form) where is located the input setting
   selectTextInput(textId) {
-    console.log('selectTextInput [NEW]', textId);
-
     const { sections, focusSectionSettingPath, redirectTo } = this.props;
     const { sectionId, blockId, settingId } = findSectionFromTextId(sections, textId);
     
@@ -65,7 +63,7 @@ class Iframe extends React.Component {
       return;
     }
 
-    let path = focusSectionSettingPath({ uuid: sectionId }, 'text', settingId);
+    const path = focusSectionSettingPath({ uuid: sectionId }, 'text', settingId);
 
     console.log('[IFrame][selectTextInput]', path);
 
