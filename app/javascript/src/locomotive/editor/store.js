@@ -24,7 +24,7 @@ const defaultState = {
     uiLocale,
     urls,
     api: ApiFactory(urls, locale),
-    routes: buildRoutes(page?.id, page?.contentEntryId)
+    routes: buildRoutes(page?.id, page?.contentEntryId, urls?.base)
   },
   content: {
     site: site,

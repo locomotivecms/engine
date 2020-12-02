@@ -1,11 +1,16 @@
 import { compact } from 'lodash';
 
-export const build = (pageId, contentEntryId) => {
+export const build = (pageId, contentEntryId, baseUrl) => {
   const _pageId       = compact([pageId, contentEntryId]).join('-');
   const basePath      = `/${_pageId}/content/edit`;
   const sectionsPath  = `${basePath}/sections`;
 
-  const rootPath              = () => basePath;
+  const editPagePath  = (pageId, contentEntryId) => {
+    const id = [pageId, contentEntryId].filter(n => n).join('-');
+    return `${baseUrl}/${id}/content/edit`;
+  } 
+
+  const rootPath              = () => basePath;  
   const newSectionPath        = () => `${basePath}/sections/dropzone/new`;
 
   const sectionPath = (section) => {
@@ -55,6 +60,7 @@ export const build = (pageId, contentEntryId) => {
 
   return {
     rootPath,
+    editPagePath,
     editSectionPath,
     newSectionPath,
     editBlockPath,

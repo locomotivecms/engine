@@ -28,9 +28,13 @@ const scrollTo = (_window, $elem) => {
   }, 400);
 }
 
-const pokeSection = (_window, action, sectionId, blockId) => {
-  return new Promise(resolve => {
+const pokeSection = (_window, action, sectionId, blockId) => {  
+  return new Promise((resolve, reject) => {
     var $elem, eventName, eventData;
+
+    if (!_window) {
+      return reject('Window is not ready yet');
+    }
 
     if (blockId) {
       const value = `section-${sectionId}-block-${blockId}`;
@@ -64,7 +68,7 @@ export function reload(_window, location) {
   _window.document.location.href = location;
 }
 
-export function prepareLinks(_window, onPageChange) {
+export function prepareLinks(_window) {
   _window.document.body.addEventListener('click', event => {
     var link = findParentElement('a', event.target);
 
@@ -82,25 +86,20 @@ export function prepareLinks(_window, onPageChange) {
         return cancelEvent(event);
       }
 
-      if (url && url[0] !== '#' && onPageChange) { onPageChange(); }
-
       return true;
     }
   })
 }
 
 export function prepareHighlighText(_window, selectTextInput) {
+  $('head', _window.document).append(
+    '<style type="text/css">:root { --locomotive-editor-outline-color: #1D77C3; }</style>'
+  );
+
   $(_window.document).on('mouseenter', '[data-locomotive-editor-setting]', function() {
     const $element = $(this);
-    $element.css('outline', '2px solid #1D77C3');    
+    $element.css('outline', '2px solid var(--locomotive-editor-outline-color)');
   });  
-
-  // $(_window.document).on('dblclick', '[data-locomotive-editor-setting]', function() {
-  //   event.stopPropagation() & event.preventDefault();
-  //   const $element = $(this);
-  //   const hasLink = $element.closest('a,button').size() === 0;
-  //   console.log('do something', hasLink);
-  // });
 
   $(_window.document).on('mouseleave', '[data-locomotive-editor-setting]', function() {
     const $element = $(this);

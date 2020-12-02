@@ -75,7 +75,7 @@ function loadEditor(data, urls) {
       locale:             data.locale,
       locales:            data.locales,
       api:                ApiFactory(urls, data.locale),
-      routes:             buildRoutes(data.page.id, data.page.contentEntryId),
+      routes:             buildRoutes(data.page.id, data.page.contentEntryId, urls?.base),
       urls
     }
   }

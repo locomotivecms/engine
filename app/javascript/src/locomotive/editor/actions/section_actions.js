@@ -72,8 +72,9 @@ const _selectSection = (section, blockId) => {
 export function selectSection(section, blockId) {
   return (dispatch, getState) => {
     const { iframe: { _window } } = getState();
-    Preview.selectSection(_window, section, blockId);
-    dispatch(_selectSection(section));
+    Preview.selectSection(_window, section, blockId)
+    .then(() => dispatch(_selectSection(section)))
+    .catch(error => console.log('[Editor] selectSection failed, reason:', error));
   };
 }
 
