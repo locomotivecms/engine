@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TextInput = ({ label, inputId, getValue, handleChange, error }) => (
+const TextInput = ({ label, inputId, getValue, handleChange, hasFocus, error }) => (
   <div className="editor-input editor-input-text">
     <label className="editor-input--label" htmlFor={inputId}>
       {label}
@@ -16,6 +16,7 @@ const TextInput = ({ label, inputId, getValue, handleChange, error }) => (
       value={getValue('')}
       onChange={e => handleChange(e.target.value)}
       className="editor-input--text"
+      ref={input => input && hasFocus && input.focus()}
     />
   </div>
 )

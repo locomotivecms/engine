@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import { compose } from 'redux';
 import { bindAll } from 'lodash';
 import classnames from 'classnames';
 import i18n from '../../i18n';
 
 // HOC
+import { withRouter } from 'react-router-dom';
 import withRedux from '../../hoc/with_redux';
+import withRoutes from '../../hoc/with_routes';
 
 // Components
 import ActionBar from './action_bar';
@@ -51,11 +54,17 @@ class Preview extends React.Component {
 
 }
 
-export default withRedux(state => ({
-  iframeState:        state.iframe,
-  changed:            state.editor.changed,
-  previewPath:        state.editor.urls.preview,
-  loaderImage:        state.editor.urls.loaderImage,
-  currentLocale:      state.editor.locale,
-  defaultLocale:      state.editor.locales[0]
-}))(Preview);
+export default compose(
+  withRouter,
+  withRedux(state => ({
+    iframeState:        state.iframe,
+    changed:            state.editor.changed,
+    previewPath:        state.editor.urls.preview,
+    loaderImage:        state.editor.urls.loaderImage,
+    currentLocale:      state.editor.locale,
+    defaultLocale:      state.editor.locales[0],
+    sections:           state.editor.sections,
+    routes:             state.editor.routes
+  })),
+  withRoutes
+)(Preview);

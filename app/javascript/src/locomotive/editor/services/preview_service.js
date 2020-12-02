@@ -1,3 +1,4 @@
+import store from '../store';
 import { decodeLinkResource, findParentElement, cancelEvent } from '../utils/misc';
 import { startsWith } from 'lodash';
 
@@ -63,7 +64,7 @@ export function reload(_window, location) {
   _window.document.location.href = location;
 }
 
-export function prepareIframe(_window, onPageChange) {
+export function prepareLinks(_window, onPageChange) {
   _window.document.body.addEventListener('click', event => {
     var link = findParentElement('a', event.target);
 
@@ -86,6 +87,32 @@ export function prepareIframe(_window, onPageChange) {
       return true;
     }
   })
+}
+
+// TODO:
+// - listen to all the elements through the on method of jQuery
+// - handle double clicks if it's a link
+export function prepareHighlighText(_window, selectTextInput) {
+  $(_window.document).find('[data-locomotive-editor-setting]').each(function() {
+    const $element = $(this);
+    $element.hover(event => {
+      $element.css('outline', event.type === 'mouseenter' ? '2px solid #1D77C3' : 'transparent');
+    });
+    const hasLink = $element.closest('a,button').size();
+
+    $element.click(event => {
+      event.stopPropagation() & event.preventDefault();
+      const textId = $element.data('locomotive-editor-setting');
+
+      // let Redux take care of this
+      selectTextInput(textId);      
+    });
+  });
+}
+
+export function prepareIframe(_window, { selectTextInput }) {
+  prepareLinks(_window);
+  prepareHighlighText(_window, selectTextInput);
 }
 
 // Actions

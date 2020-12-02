@@ -153,3 +153,19 @@ export function findBetterText(sectionContent, definition) {
 export function isEditable(definition) {
   return !(isBlank(definition.settings) && isBlank(definition.blocks));
 }
+
+export function findFromTextId(sections, textId) {
+  console.log('findFromTextId', sections, textId);
+
+  const regexp = /^section-(page|site){1}-([^\.]+)\.(.+)$/g;
+  const results = regexp.exec(textId);
+  const scope = results[1];
+  const sectionType = results[2];
+  const settingId = results[3];
+
+  const section = Object.values(sections.all).find(section => section.source === scope && section.type === sectionType);
+
+  console.log('[findFromTextId] section = ', section);
+
+  return { sectionId: section.uuid, blockId: null, settingId };
+}

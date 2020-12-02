@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 import rootReducer from './reducers/index';
 
 import ApiFactory from './services/api';
+import { build as buildRoutes } from './services/routes_service';
 
 // create an object for the default data
 const { data, urls } = window.Locomotive;
@@ -21,7 +22,8 @@ const defaultState = {
     locales,
     uiLocale,
     urls,
-    api: ApiFactory(urls, locale)
+    api: ApiFactory(urls, locale),
+    routes: buildRoutes(page.id, page.contentEntryId)
   },
   content: {
     site: site,

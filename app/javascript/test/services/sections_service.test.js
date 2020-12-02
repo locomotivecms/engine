@@ -4,10 +4,24 @@ import {
   buildSection,
   buildCategories,
   findBetterImageAndText,
+  findFromTextId,
   isEditable
 } from '../../src/locomotive/editor/services/sections_service';
 
 describe('locomotive/editor/services/sections_service', function() {
+
+  describe('#findFromTextId', function() {
+    it('returns the section/block/input matching the text id [PAGE]', () => {
+      const sections = { all: {
+        'b2': { source: 'site', type: 'hero_simple', uuid: 'b2' },
+        'a1': { source: 'page', type: 'hero_simple', uuid: 'a1' },        
+      } };
+      const { sectionId, blockId, settingId } = findFromTextId(sections, 'section-page-hero_simple.title');
+      expect(sectionId).to.eq('a1');
+      expect(blockId).to.eq(null);
+      expect(settingId).to.eq('title');
+    });
+  });
 
   describe('#findBetterImageAndText', function() {
 

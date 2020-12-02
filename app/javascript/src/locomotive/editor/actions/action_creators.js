@@ -3,6 +3,7 @@ import { isBlank, waitUntil } from '../utils/misc';
 
 // Services
 import * as Preview from '../services/preview_service';
+import { build as buildRoutes } from '../services/routes_service';
 
 // Actions
 export * from './page_actions';
@@ -74,6 +75,7 @@ function loadEditor(data, urls) {
       locale:             data.locale,
       locales:            data.locales,
       api:                ApiFactory(urls, data.locale),
+      routes:             buildRoutes(data.page.id, data.page.contentEntryId),
       urls
     }
   }

@@ -58,7 +58,7 @@ const withEditingSection = Component => {
   // Helpers
   const isEditingSection  = props => !!(props.sectionId && props.sectionContent)
   const isEditingBlock    = props => !!(props.blockId && props.blockContent)
-  const isEditingSetting  = props => props.settingType && props.settingId
+  const isEditingSetting  = props => props.settingType && props.settingId && !props.location.pathname.endsWith('/focus')
   const isEditing         = props => isEditingSection(props) && (props.blockId === undefined || isEditingBlock(props))
   const editingType = props => {
     if (isEditingSetting(props) && isEditingBlock(props))   return 'block_setting';

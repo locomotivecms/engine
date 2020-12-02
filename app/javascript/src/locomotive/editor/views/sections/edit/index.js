@@ -58,10 +58,16 @@ class Edit extends Component {
     )
   }
 
+  hasFocus(setting) {
+    const { match: { params: { settingType, settingId } } } = this.props;
+    return setting.type === settingType && setting.id === settingId;
+  }
+
   render() {
     const { sectionDefinition, sectionContent, translate } = this.props;
 
-    console.log('BlockList', sectionDefinition.blocks_display, sectionDefinition.block_max_depth, sectionDefinition.blocks_display === 'tree' ? sectionDefinition.block_max_depth || 1 : 0)
+    // DEBUG
+    // console.log('BlockList', sectionDefinition.blocks_display, sectionDefinition.block_max_depth, sectionDefinition.blocks_display === 'tree' ? sectionDefinition.block_max_depth || 1 : 0)
 
     return (
       <View
@@ -78,6 +84,7 @@ class Edit extends Component {
                 value={sectionContent.settings[setting.id]}
                 onChange={this.props.handleChange}
                 isVisible={setting.only_if === undefined || sectionContent.settings[setting.only_if] === true}
+                hasFocus={this.hasFocus(setting)}
                 {...this.props}
                 setting={setting}
               />
