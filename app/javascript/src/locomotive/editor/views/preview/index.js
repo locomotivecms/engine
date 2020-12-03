@@ -64,6 +64,7 @@ export default compose(
     currentLocale:      state.editor.locale,
     defaultLocale:      state.editor.locales[0],
     routes:             state.editor.routes,
+    sections:           state.editor.sections,
     globalContent:      state.content,
   })),
   withRoutes

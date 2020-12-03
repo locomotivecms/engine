@@ -9,13 +9,13 @@ import {
 } from '../../src/locomotive/editor/services/sections_service';
 
 describe('locomotive/editor/services/sections_service', function() {
+  let sectionIds = [{ id: 'site-header', uuid: 'b2' }];
 
   let content = { 
     site: {
       sectionsContent: {
         header: {
           id: 'site-header',
-          uuid: 'b2', 
           blocks: [
             { type: 'page', id: '0' },
             { type: 'sub-page', id: '1' },
@@ -51,7 +51,7 @@ describe('locomotive/editor/services/sections_service', function() {
 
   describe('#findFromTextId', function() {
     it('returns the section/block/input matching the text id [PAGE]', () => {
-      const { sectionId, blockType, blockId, settingId } = findFromTextId('section-page-hero_simple.title', content);
+      const { sectionId, blockType, blockId, settingId } = findFromTextId('section-page-hero_simple.title', content, sectionIds);
       expect(sectionId).to.eq('a1');
       expect(blockType).to.eq(null);
       expect(blockId).to.eq(null);
@@ -59,7 +59,7 @@ describe('locomotive/editor/services/sections_service', function() {
     });
 
     it('returns the brand new section/block/input matching the text id [PAGE]', () => {
-      const { sectionId, blockType, blockId, settingId } = findFromTextId('section-dropzone-4906b3b6-c5f2-4b30-baeb-dd95e960bb17.title', content);
+      const { sectionId, blockType, blockId, settingId } = findFromTextId('section-dropzone-4906b3b6-c5f2-4b30-baeb-dd95e960bb17.title', content, sectionIds);
       expect(sectionId).to.eq('4906b3b6-c5f2-4b30-baeb-dd95e960bb17');
       expect(blockType).to.eq(null);
       expect(blockId).to.eq(null);
@@ -67,7 +67,7 @@ describe('locomotive/editor/services/sections_service', function() {
     });    
 
     it('returns the section/block/input matching the text id [SITE]', () => {
-      const { sectionId, blockId, blockType, settingId } = findFromTextId('section-site-header-block.0.text', content);
+      const { sectionId, blockId, blockType, settingId } = findFromTextId('section-site-header-block.0.text', content, sectionIds);
       expect(sectionId).to.eq('b2');
       expect(blockType).to.eq('page');
       expect(blockId).to.eq('0');
@@ -75,7 +75,7 @@ describe('locomotive/editor/services/sections_service', function() {
     });
 
     it('returns the new section/block/input matching the text id [SITE]', () => {
-      const { sectionId, blockId, blockType, settingId } = findFromTextId('section-site-header-block.6e8d235c-8d0e-4ef9-966a-ae20383f98ca.text', content);
+      const { sectionId, blockId, blockType, settingId } = findFromTextId('section-site-header-block.6e8d235c-8d0e-4ef9-966a-ae20383f98ca.text', content, sectionIds);
       expect(sectionId).to.eq('b2');
       expect(blockType).to.eq('page');
       expect(blockId).to.eq('6e8d235c-8d0e-4ef9-966a-ae20383f98ca');
@@ -83,7 +83,7 @@ describe('locomotive/editor/services/sections_service', function() {
     });
 
     it('returns the section/block/input matching the text id [DROPZONE]', () => {      
-      const { sectionId, blockId, blockType, settingId } = findFromTextId('section-dropzone-0-block.1.name', content);
+      const { sectionId, blockId, blockType, settingId } = findFromTextId('section-dropzone-0-block.1.name', content, sectionIds);
       expect(sectionId).to.eq('42');
       expect(blockType).to.eq('team');
       expect(blockId).to.eq('1');
@@ -91,7 +91,7 @@ describe('locomotive/editor/services/sections_service', function() {
     });
 
     it('returns the brand new section/block/input matching the text id [DROPZONE]', () => {
-      const { sectionId, blockId, blockType, settingId } = findFromTextId('section-dropzone-4906b3b6-c5f2-4b30-baeb-dd95e960bb17-block.6e8d235c-8d0e-4ef9-966a-ae20383f98ca.name', content);
+      const { sectionId, blockId, blockType, settingId } = findFromTextId('section-dropzone-4906b3b6-c5f2-4b30-baeb-dd95e960bb17-block.6e8d235c-8d0e-4ef9-966a-ae20383f98ca.name', content, sectionIds);
       expect(sectionId).to.eq('4906b3b6-c5f2-4b30-baeb-dd95e960bb17');
       expect(blockType).to.eq('person');
       expect(blockId).to.eq('6e8d235c-8d0e-4ef9-966a-ae20383f98ca');

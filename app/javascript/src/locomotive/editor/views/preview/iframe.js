@@ -55,8 +55,8 @@ class Iframe extends React.Component {
 
   // Go to the view (section or block form) where is located the input setting
   selectTextInput(textId) {
-    const { globalContent, editSectionPath, editBlockPath, redirectTo, focusSetting } = this.props;
-    const { sectionId, blockType, blockId, settingId } = findSectionFromTextId(textId, globalContent);
+    const { globalContent, sections, editSectionPath, editBlockPath, redirectTo, focusSetting } = this.props;
+    const { sectionId, blockType, blockId, settingId } = findSectionFromTextId(textId, globalContent, Object.values(sections.all));
 
     if (!sectionId && !blockId) {
       console.log('[Editor] unknown sectionId and blockId');
