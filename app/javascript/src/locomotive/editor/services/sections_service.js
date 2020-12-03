@@ -24,7 +24,7 @@ export function buildSection(definitions, sectionType, presetIndex) {
 
   // and also add other default attributes (if some of them are missing)
   section = {
-    id:         uuid(),
+    uuid:       uuid(),
     name:       preset.name,
     type:       sectionType,
     anchor:     `${sectionType}-${shortUuid()}`,
@@ -34,7 +34,7 @@ export function buildSection(definitions, sectionType, presetIndex) {
   }
 
   // add attributes for the Editor tool
-  section.uuid    = section.id;
+  section.id      = `dropzone-${section.uuid}`;
   section.source  = 'dropzone';
 
   // make sure all the settings are correctly filled
@@ -154,33 +154,27 @@ export function isEditable(definition) {
   return !(isBlank(definition.settings) && isBlank(definition.blocks));
 }
 
-const findSectionAndBlockFromTextId = (scope, string, sections, content) => {
-  let sectionId, blockType, blockId;
-  sectionId = blockType = blockId = null; 
-
+const findSectionAndBlockFromTextId = (scope, string, content) => {
   const subRegexp = scope === 'dropzone' ? 
-  /^-([0-9]+)(-block\.([0-9]+))?$/g :
-  /^-([a-zA-Z0-9_]+)(-block\.([0-9]+))?$/g;
+  /^-([a-zA-Z0-9-]+)(-block\.([a-zA-Z0-9-]+))?$/g :
+  /^-([a-zA-Z0-9_]+)(-block\.([a-zA-Z0-9-]+))?$/g;
   const subMatches = subRegexp.exec(string);
-  
-  const localSectionId = `${scope}-${subMatches[1]}`;
-  const section = Object.values(sections.all).find(section => section.source === scope && section.id === localSectionId);  
-  sectionId = section.uuid;
+    
+  const scopedSectionId = `${scope}-${subMatches[1]}`;
+  const scopedContent = scope === 'dropzone' ? content.page.sectionsDropzoneContent : Object.values(content[scope].sectionsContent);
+  const section = scopedContent.find(section => section.id === scopedSectionId);
+  const block = section?.blocks?.find(block => block.id === subMatches[3]);
 
-  blockId = subMatches[3] || null;
-  if (blockId) {
-    const subContent = scope === 'dropzone' ? content.page.sectionsDropzoneContent : content[scope].sectionsContent;
-    blockType = subContent[subMatches[1]].blocks[blockId]?.type;
-  }
-
-  return { sectionId, blockType, blockId };
+  return { sectionId: section?.uuid, blockType: block?.type || null, blockId: block?.id || null }; 
 }
 
-export function findFromTextId(textId, sections, content) {
-  const regexp = /^section-(page|site|dropzone)(.+)\.([^\.]+)$/g;
-  const matches = regexp.exec(textId);
+export function findFromTextId(textId, content) {
+  let regexp = /^section-(page|site|dropzone)(.+)\.([^\.]+)$/g;
+  let matches = regexp.exec(textId) || [null, null, null];
+  let [scope, string, settingId] = [matches[1], matches[2], matches[3]];
+
   return {
-    ...findSectionAndBlockFromTextId(matches[1], matches[2], sections, content),
-    settingId: matches[3]
+    ...findSectionAndBlockFromTextId(scope, string, content),
+    settingId
   };
 }

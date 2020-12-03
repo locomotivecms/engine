@@ -72,7 +72,9 @@ export function prepareLinks(_window) {
   _window.document.body.addEventListener('click', event => {
     var link = findParentElement('a', event.target);
 
-    if (link && !link.dataset.locomotiveEditorSetting) {
+    var $setting = $(event.target).closest('[data-locomotive-editor-setting]');
+
+    if (link && $setting.size() === 0) {
       const url       = link.getAttribute('href');
       const resource  = decodeLinkResource(url);
 
@@ -107,8 +109,6 @@ export function prepareHighlighText(_window, selectTextInput) {
   });
 
   $(_window.document).on('click', '[data-locomotive-editor-setting]', function(event) {    
-    console.log('click on a setting', event.target, event.target.nodeName);
-
     const $element = $(this);
     const textId = $element.data('locomotive-editor-setting');    
 

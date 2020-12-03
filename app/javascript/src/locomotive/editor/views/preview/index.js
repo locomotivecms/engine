@@ -63,7 +63,6 @@ export default compose(
     loaderImage:        state.editor.urls.loaderImage,
     currentLocale:      state.editor.locale,
     defaultLocale:      state.editor.locales[0],
-    sections:           state.editor.sections,    
     routes:             state.editor.routes,
     globalContent:      state.content,
   })),

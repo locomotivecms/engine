@@ -55,11 +55,9 @@ class Iframe extends React.Component {
 
   // Go to the view (section or block form) where is located the input setting
   selectTextInput(textId) {
-    const { sections, globalContent, editSectionPath, editBlockPath, redirectTo, focusSetting } = this.props;
-    const { sectionId, blockType, blockId, settingId } = findSectionFromTextId(textId, sections, globalContent);
+    const { globalContent, editSectionPath, editBlockPath, redirectTo, focusSetting } = this.props;
+    const { sectionId, blockType, blockId, settingId } = findSectionFromTextId(textId, globalContent);
 
-    console.log('[IFrame][selectTextInput]', textId, sectionId, blockType, blockId, settingId)
-    
     if (!sectionId && !blockId) {
       console.log('[Editor] unknown sectionId and blockId');
       return;
@@ -70,8 +68,6 @@ class Iframe extends React.Component {
 
     if (blockType && blockId) 
       path = editBlockPath({ uuid: sectionId }, blockType, blockId);
-
-    console.log('[IFrame][selectTextInput]', path);
 
     // in this UX context, we don't need to apply the sliding animation
     redirectTo(path, 'none');
