@@ -39,7 +39,9 @@ export default compose(
     sections:           state.editor.sections,
     sectionDefinitions: state.editor.sectionDefinitions,
     editableElements:   state.editor.editableElements,
-    uiLocale:           state.editor.uiLocale
+    uiLocale:           state.editor.uiLocale,
+    routes:             state.editor.routes,
+    focusedSettingId:   state.editor.focusedSettingId,
   } }),
   withGlobalVars
 );

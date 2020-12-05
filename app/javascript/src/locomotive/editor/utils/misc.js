@@ -145,3 +145,11 @@ export function cancelEvent(event) {
   event.preventDefault() & event.stopPropagation();
   return false;
 }
+
+export function buildClickEvent() {
+  return new MouseEvent('click', {
+    view: window,
+    bubbles: true,
+    cancelable: true
+  });
+}

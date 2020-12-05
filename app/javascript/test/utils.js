@@ -2,7 +2,7 @@ export function buildProps(specificPropsHash) {
   const props = {
     content: {
       site: undefined,
-      page: undefined
+      page: { id: 1, contentEntryId: null }
     },
     editableElements: [],
     sections: {

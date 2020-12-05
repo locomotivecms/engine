@@ -1,3 +1,4 @@
+import store from '../store';
 import { decodeLinkResource, findParentElement, cancelEvent } from '../utils/misc';
 import { startsWith } from 'lodash';
 
@@ -27,9 +28,13 @@ const scrollTo = (_window, $elem) => {
   }, 400);
 }
 
-const pokeSection = (_window, action, sectionId, blockId) => {
-  return new Promise(resolve => {
+const pokeSection = (_window, action, sectionId, blockId) => {  
+  return new Promise((resolve, reject) => {
     var $elem, eventName, eventData;
+
+    if (!_window) {
+      return reject('Window is not ready yet');
+    }
 
     if (blockId) {
       const value = `section-${sectionId}-block-${blockId}`;
@@ -63,11 +68,13 @@ export function reload(_window, location) {
   _window.document.location.href = location;
 }
 
-export function prepareIframe(_window, onPageChange) {
+export function prepareLinks(_window) {
   _window.document.body.addEventListener('click', event => {
     var link = findParentElement('a', event.target);
 
-    if (link) {
+    var $setting = $(event.target).closest('[data-locomotive-editor-setting]');
+
+    if (link && $setting.size() === 0) {
       const url       = link.getAttribute('href');
       const resource  = decodeLinkResource(url);
 
@@ -81,11 +88,44 @@ export function prepareIframe(_window, onPageChange) {
         return cancelEvent(event);
       }
 
-      if (url && url[0] !== '#' && onPageChange) { onPageChange(); }
-
       return true;
     }
   })
+}
+
+export function prepareHighlighText(_window, selectTextInput) {
+  $('head', _window.document).append(
+    '<style type="text/css">:root { --locomotive-editor-outline-color: #1D77C3; }</style>'
+  );
+
+  $(_window.document).on('mouseenter', '[data-locomotive-editor-setting]', function() {
+    const $element = $(this);
+    $element.css('outline', '2px solid var(--locomotive-editor-outline-color)');
+  });  
+
+  $(_window.document).on('mouseleave', '[data-locomotive-editor-setting]', function() {
+    const $element = $(this);
+    $element.css('outline', 'transparent');
+  });
+
+  $(_window.document).on('click', '[data-locomotive-editor-setting]', function(event) {    
+    const $element = $(this);
+    const textId = $element.data('locomotive-editor-setting');    
+
+    // don't touch A nodes within the text    
+    if (event.target.nodeName === 'A' && !textId) 
+      return true;
+
+    event.stopPropagation() & event.preventDefault();
+  
+    // tell the editor to display the input    
+    selectTextInput(textId);
+  });  
+}
+
+export function prepareIframe(_window, { selectTextInput }) {
+  prepareLinks(_window);
+  prepareHighlighText(_window, selectTextInput);
 }
 
 // Actions

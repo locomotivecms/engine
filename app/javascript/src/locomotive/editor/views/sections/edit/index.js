@@ -61,7 +61,8 @@ class Edit extends Component {
   render() {
     const { sectionDefinition, sectionContent, translate } = this.props;
 
-    console.log('BlockList', sectionDefinition.blocks_display, sectionDefinition.block_max_depth, sectionDefinition.blocks_display === 'tree' ? sectionDefinition.block_max_depth || 1 : 0)
+    // DEBUG
+    // console.log('BlockList', sectionDefinition.blocks_display, sectionDefinition.block_max_depth, sectionDefinition.blocks_display === 'tree' ? sectionDefinition.block_max_depth || 1 : 0)
 
     return (
       <View

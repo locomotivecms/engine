@@ -4,10 +4,101 @@ import {
   buildSection,
   buildCategories,
   findBetterImageAndText,
+  findFromTextId,
   isEditable
 } from '../../src/locomotive/editor/services/sections_service';
 
 describe('locomotive/editor/services/sections_service', function() {
+  let sectionIds = [{ id: 'site-header', uuid: 'b2' }];
+
+  let content = { 
+    site: {
+      sectionsContent: {
+        header: {
+          id: 'site-header',
+          blocks: [
+            { type: 'page', id: '0' },
+            { type: 'sub-page', id: '1' },
+            { type: 'page', id: '6e8d235c-8d0e-4ef9-966a-ae20383f98ca' }
+          ]
+        }
+      }
+    },
+    page: {
+      sectionsContent: {
+        hero_simple: {
+          id: 'page-hero_simple',
+          uuid: 'a1'
+        }
+      },
+      sectionsDropzoneContent: [
+        {
+          id: 'dropzone-0',
+          uuid: '42',
+          blocks: [{}, { type: 'team', id: '1' }]
+        },          
+        { 
+          id: 'dropzone-4906b3b6-c5f2-4b30-baeb-dd95e960bb17', type: 'team',
+          uuid: '4906b3b6-c5f2-4b30-baeb-dd95e960bb17', 
+          blocks: [
+            { type: 'person', id: '6e8d235c-8d0e-4ef9-966a-ae20383f98ca' }, 
+            { type: 'person', id: '1' }
+          ] 
+        },
+      ]
+    }
+  }
+
+  describe('#findFromTextId', function() {
+    it('returns the section/block/input matching the text id [PAGE]', () => {
+      const { sectionId, blockType, blockId, settingId } = findFromTextId('section-page-hero_simple.title', content, sectionIds);
+      expect(sectionId).to.eq('a1');
+      expect(blockType).to.eq(null);
+      expect(blockId).to.eq(null);
+      expect(settingId).to.eq('title');
+    });
+
+    it('returns the brand new section/block/input matching the text id [PAGE]', () => {
+      const { sectionId, blockType, blockId, settingId } = findFromTextId('section-dropzone-4906b3b6-c5f2-4b30-baeb-dd95e960bb17.title', content, sectionIds);
+      expect(sectionId).to.eq('4906b3b6-c5f2-4b30-baeb-dd95e960bb17');
+      expect(blockType).to.eq(null);
+      expect(blockId).to.eq(null);
+      expect(settingId).to.eq('title');
+    });    
+
+    it('returns the section/block/input matching the text id [SITE]', () => {
+      const { sectionId, blockId, blockType, settingId } = findFromTextId('section-site-header-block.0.text', content, sectionIds);
+      expect(sectionId).to.eq('b2');
+      expect(blockType).to.eq('page');
+      expect(blockId).to.eq('0');
+      expect(settingId).to.eq('text');
+    });
+
+    it('returns the new section/block/input matching the text id [SITE]', () => {
+      const { sectionId, blockId, blockType, settingId } = findFromTextId('section-site-header-block.6e8d235c-8d0e-4ef9-966a-ae20383f98ca.text', content, sectionIds);
+      expect(sectionId).to.eq('b2');
+      expect(blockType).to.eq('page');
+      expect(blockId).to.eq('6e8d235c-8d0e-4ef9-966a-ae20383f98ca');
+      expect(settingId).to.eq('text');
+    });
+
+    it('returns the section/block/input matching the text id [DROPZONE]', () => {      
+      const { sectionId, blockId, blockType, settingId } = findFromTextId('section-dropzone-0-block.1.name', content, sectionIds);
+      expect(sectionId).to.eq('42');
+      expect(blockType).to.eq('team');
+      expect(blockId).to.eq('1');
+      expect(settingId).to.eq('name');
+    });
+
+    it('returns the brand new section/block/input matching the text id [DROPZONE]', () => {
+      const { sectionId, blockId, blockType, settingId } = findFromTextId('section-dropzone-4906b3b6-c5f2-4b30-baeb-dd95e960bb17-block.6e8d235c-8d0e-4ef9-966a-ae20383f98ca.name', content, sectionIds);
+      expect(sectionId).to.eq('4906b3b6-c5f2-4b30-baeb-dd95e960bb17');
+      expect(blockType).to.eq('person');
+      expect(blockId).to.eq('6e8d235c-8d0e-4ef9-966a-ae20383f98ca');
+      expect(settingId).to.eq('name');
+    });
+    
+  });
 
   describe('#findBetterImageAndText', function() {
 
@@ -66,7 +157,7 @@ describe('locomotive/editor/services/sections_service', function() {
       ]
       const section = buildSection(definitions, 'slideshow', 1)
 
-      expect(section.id).to.have.lengthOf(36);
+      expect(section.id).to.have.lengthOf(45);
       expect(section.uuid).to.have.lengthOf(36);
 
       expect(omit(section, ['id', 'uuid', 'anchor'])).to.eql({
