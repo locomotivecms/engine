@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import i18n from '../i18n';
 
 const openPicker = props => {
@@ -19,6 +20,10 @@ const getLabel = url => {
     return url.label[1];
   else
     return null;
+}
+const isLocalUrl = url => url.type === 'content_entry' || url.type === 'page';
+const editPagePath = (url, buildPath) => {
+  return url.type === 'page' ? buildPath(url.value) : buildPath(url.value.page_id, url.value.id);
 }
 
 const UrlInput = ({ label, getValue, handleChange, api, locale, ...props }) => {
@@ -47,18 +52,22 @@ const UrlInput = ({ label, getValue, handleChange, api, locale, ...props }) => {
       )}
 
       <div className="editor-input-url--actions">
+        {isLocalUrl(url) && (
+          <a href={editPagePath(url, props.editPagePath)} className="btn btn-default btn-sm mr-3">
+            <i className="fas fa-external-link-alt"></i>
+          </a>
+        )}
         <button className="btn btn-default btn-sm" onClick={e => openPicker(props)}>
           {i18n.t(url === null ? 'inputs.url.select_button' : 'inputs.url.change_button')}
         </button>
-        &nbsp;
         {url !== null && (
           <button
-            className="btn btn-default btn-sm"
+            className="btn btn-default btn-sm ml-3"
             onClick={e => handleChange(null)}
           >
             {i18n.t('inputs.url.remove_button')}
           </button>
-        )}
+        )}        
       </div>
     </div>
   )

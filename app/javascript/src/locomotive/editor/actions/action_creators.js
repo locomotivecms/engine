@@ -3,6 +3,7 @@ import { isBlank, waitUntil } from '../utils/misc';
 
 // Services
 import * as Preview from '../services/preview_service';
+import { build as buildRoutes } from '../services/routes_service';
 
 // Actions
 export * from './page_actions';
@@ -74,6 +75,7 @@ function loadEditor(data, urls) {
       locale:             data.locale,
       locales:            data.locales,
       api:                ApiFactory(urls, data.locale),
+      routes:             buildRoutes(data.page.id, data.page.contentEntryId, urls?.base),
       urls
     }
   }
@@ -142,5 +144,18 @@ export function onIframeLoaded(contentWindow) {
 export function onIframeOperationsDone() {
   return {
     type:         'IFRAME::DONE'
+  }
+}
+
+export function focusSetting(settingId) {
+  return {
+    type:         'EDITOR::FOCUS_SETTING_ID',
+    settingId
+  }
+}
+
+export function resetFocusSetting() {
+  return {
+    type:         'EDITOR::RESET_FOCUS_SETTING'
   }
 }

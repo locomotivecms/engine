@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 import rootReducer from './reducers/index';
 
 import ApiFactory from './services/api';
+import { build as buildRoutes } from './services/routes_service';
 
 // create an object for the default data
 const { data, urls } = window.Locomotive;
@@ -10,9 +11,10 @@ const { site, page, sectionDefinitions, sections, editableElements, locale, loca
 
 const defaultState = {
   editor: {
-    changed:      false,
-    pageChanged:  false, // Page Settings & SEO
-    formErrors:   {},
+    changed:          false,
+    pageChanged:      false, // Page Settings & SEO
+    formErrors:       {},
+    focusedSettingId: null,
     sectionDefinitions,
     sections,
     editableElements,
@@ -21,7 +23,8 @@ const defaultState = {
     locales,
     uiLocale,
     urls,
-    api: ApiFactory(urls, locale)
+    api: ApiFactory(urls, locale),
+    routes: buildRoutes(page?.id, page?.contentEntryId, urls?.base)
   },
   content: {
     site: site,

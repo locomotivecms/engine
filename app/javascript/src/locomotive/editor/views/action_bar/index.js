@@ -29,6 +29,7 @@ class ActionBar extends Component {
     const { pageId, iframeLoaded, location } = this.props;
     const currentKey      = iframeLoaded ? location.pathname : 'startup';
     const slideDirection  = !iframeLoaded ? 'up' : (location.state || {}).slideDirection || 'up';
+    const timeout         = slideDirection === 'none' ? { enter: 1, exit: 1 } : { enter: 150, exit: 100 };
 
     return (
       <div className="actionbar">
@@ -38,7 +39,7 @@ class ActionBar extends Component {
           <CSSTransition
             key={currentKey}
             classNames={`slide-${slideDirection}`}
-            timeout={{ enter: 150, exit: 100 }}
+            timeout={timeout}
             mountOnEnter={true}
             unmountOnExit={true}
           >
