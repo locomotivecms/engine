@@ -36,7 +36,7 @@ class AssetPickerInput extends Component {
 
         <div className="editor-input--asset-picker">
           {value && (<div className="editor-input-asset-picker--filename">
-            <a href={value} target="_blank">{getFilename(asset)}</a>
+            <a href={value.url} target="_blank">{getFilename(asset)}</a>
           </div>)}
 
           <div className="editor-input-asset-picker--actions">
