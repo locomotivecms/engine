@@ -16,7 +16,6 @@ class Uploader extends Component {
   }
 
   _handleUpload(files) {
-    console.log(files)
     this.props.uploadAssets(files)
     .then((assets) => {
       this.setState({ uploading: false }, () => {
