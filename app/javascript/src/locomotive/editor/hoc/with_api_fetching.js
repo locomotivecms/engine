@@ -33,7 +33,6 @@ const withApiFetching = (source, options) => (Component) => {
     }
 
     handleSearchParamsChange(searchParams) {
-      console.log('TODO: searchParams');
       this.setState({ searchParams }, () => {
         this.fetch();
       });
