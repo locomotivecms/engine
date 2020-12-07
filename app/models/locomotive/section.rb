@@ -76,7 +76,7 @@ module Locomotive
             properties: {
               id:       { type: 'string' },
               label:    { '$ref': '#/definitions/locale_string' },
-              type:     { enum: ['text', 'image_picker', 'checkbox', 'select', 'url', 'radio', 'content_type', 'content_entry', 'hint', 'integer'] },
+              type:     { enum: ['text', 'image_picker', 'asset_picker', 'checkbox', 'select', 'url', 'radio', 'content_type', 'content_entry', 'hint', 'integer'] },
               default:  {}
             },
             required: [:id, :type]

@@ -1,0 +1,64 @@
+.editor-asset-uploader {
+
+  input[type=file] {
+    display: none;
+  }
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background: $white;
+
+  border: dashed 1px #e3e4e7;
+  border-radius: 3px;
+
+  margin-bottom: 1rem;
+  padding: 1rem 1.2rem;
+
+
+  &--button {
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  &--uploading {
+
+  }
+}
+
+.editor-asset-list {
+  margin: 2rem;
+
+  &--loading {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &--container {
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: flex-start;
+    justify-content: space-around;
+  }
+
+  .editor-list-item {
+    width: 100%; 
+    cursor: pointer;
+  }
+
+  &--pagination {
+    display: flex;
+    align-items: center;
+    margin-top: 2rem;
+
+    .pagination {
+      margin: 0 auto;
+    }
+  }
+
+}

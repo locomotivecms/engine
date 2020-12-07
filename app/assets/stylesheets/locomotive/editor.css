@@ -1451,6 +1451,12 @@
   align-items: center;
   justify-content: center; }
 
+.editor-input-asset-picker--actions {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
 .editor-input-url--info {
   display: flex;
   align-items: center; }
@@ -1944,6 +1950,46 @@
 .rap-popover-button-wrapper button {
   background: none;
   border: none; }
+
+.editor-asset-uploader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background: #fff;
+  border: dashed 1px #e3e4e7;
+  border-radius: 3px;
+  margin-bottom: 1rem;
+  padding: 1rem 1.2rem; }
+  .editor-asset-uploader input[type=file] {
+    display: none; }
+  .editor-asset-uploader--button {
+    text-transform: uppercase;
+    cursor: pointer; }
+
+.editor-asset-list {
+  margin: 2rem; }
+  .editor-asset-list--loading {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+  .editor-asset-list--container {
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: flex-start;
+    justify-content: space-around; }
+  .editor-asset-list .editor-list-item {
+    width: 100%;
+    cursor: pointer; }
+  .editor-asset-list--pagination {
+    display: flex;
+    align-items: center;
+    margin-top: 2rem; }
+    .editor-asset-list--pagination .pagination {
+      margin: 0 auto; }
 
 .editor-image-uploader {
   display: flex;

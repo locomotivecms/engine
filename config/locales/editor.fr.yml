@@ -35,6 +35,11 @@ fr:
           remove_button: "Enlever"
           crop_button: "Rogner"
 
+        asset_picker:
+          select_button: "Sélectionner"
+          change_button: "Changer"
+          remove_button: "Enlever"
+
         content_type:
           show: "Voir"
 
@@ -59,6 +64,12 @@ fr:
             seo: "SEO"
 
         pickers:
+          assets:
+            title: "Fichiers"
+            loading: "Chargement des fichiers en cours !"
+            add: "+ ajouter"
+            upload_in_progress: "Téléchargement en cours..."
+            search_placeholder: "Nom du fichier"
           images:
             title: "Images"
             loading: "Chargement des images en cours !"

@@ -106,6 +106,7 @@ export function uploadAssets(url, assets) {
 
 export function loadAssets(url, options) {
   return jsonGet(url, {
+    query:    options.query || '',
     page:     options.pagination.page || 1,
     per_page: options.pagination.perPage || 10
   })

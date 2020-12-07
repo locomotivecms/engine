@@ -40,6 +40,15 @@ export const build = (pageId, contentEntryId, baseUrl) => {
       return `${sectionPath(section)}/${postfix}`;
   }
 
+  const pickAssetPath = (section, blockType, blockId, settingType, settingId) => {
+    const postfix = `setting/${settingType}/${settingId}/assets`;
+
+    if (blockType && blockId)
+      return `${blockPath(section, blockType, blockId)}/${postfix}`;
+    else
+      return `${sectionPath(section)}/${postfix}`;
+  }
+
   const pickUrlPath = (section, blockType, blockId, settingType, settingId) => {
     const postfix = `setting/${settingType}/${settingId}/pick-url`;
 
@@ -66,6 +75,7 @@ export const build = (pageId, contentEntryId, baseUrl) => {
     editBlockPath,
     blockParentPath,
     pickImagePath,
+    pickAssetPath,
     pickUrlPath,
     pickContentEntryPath
   }

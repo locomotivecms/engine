@@ -1,12 +1,13 @@
 module Locomotive
   class ContentAsset
 
-    include Locomotive::Mongoid::Document
+    include Locomotive::Mongoid::Document    
 
     ## extensions ##
     include Concerns::Asset::Types
     include Concerns::Asset::Vignette
     include Concerns::Asset::Checksum
+    include ActionView::Helpers::NumberHelper
 
     ## fields ##
     field :content_type,  type: String
@@ -40,7 +41,8 @@ module Locomotive
 
     def as_json(options = nil)
       super.merge(
-        thumbnail_url: self.big_vignette_url
+        thumbnail_url: self.big_vignette_url,
+        size_to_human: number_to_human_size(self.size)
       )
     end
 
