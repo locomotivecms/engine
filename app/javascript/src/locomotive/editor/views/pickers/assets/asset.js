@@ -1,12 +1,25 @@
 import React from 'react';
 import i18n from '../../../i18n';
 
+const iconClassName = contentType => {
+  switch (contentType) {
+    case 'image': return 'far fa-file-image fa-lg';
+    case 'pdf': return 'far fa-file-pdf fa-lg';
+    case 'media': return 'far fa-file-video fa-lg'
+    default: 
+      return 'far fa-file'
+  }
+  
+}
+
 const Asset = props => (
-  <div className={`editor-asset ${props.selected ? 'active' : ''}`}>
-    <div className="editor-asset--inner" onClick={props.handleSelect}>
-      <span className="editor-asset--type">{i18n.t(`views.pickers.assets.types.${props.content_type}`)}</span>
-      <span className="editor-asset--filename">{props.source_filename}</span>
-      <span className="editor-asset--size">{props.size_to_human}</span>
+  <div className="editor-list-item" onClick={props.handleSelect}>
+    <div className="editor-list-item--icon">
+      <i className={iconClassName(props.content_type)}></i>
+    </div>
+    <div className="editor-list-item--label">{props.source_filename}</div>
+    <div className="editor-list-item--actions">
+      <small>{props.size_to_human}</small>
     </div>
   </div>
 )

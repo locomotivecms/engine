@@ -35,6 +35,11 @@ en:
           remove_button: "Remove"
           crop_button: "Crop"
 
+        asset_picker:
+          select_button: "Select"
+          change_button: "Change"
+          remove_button: "Remove"
+
         content_type:
           show: "Show"
 
@@ -59,6 +64,12 @@ en:
             seo: "SEO"
 
         pickers:
+          assets:
+            title: "Assets"
+            loading: "Loading the assets. Please wait!"
+            add: "+ add"
+            upload_in_progress: "Uploading..."
+            search_placeholder: "Name of your asset"
           images:
             title: "Images"
             loading: "Loading the images. Please wait!"

@@ -80,6 +80,17 @@
 
 }
 
+.editor-input-asset-picker {  
+
+  &--actions {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+}
+
 // URL
 
 .editor-input-url {

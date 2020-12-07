@@ -17,8 +17,8 @@ const openLibrary = props => {
   ), 'left');
 }
 
-const getFilename = url => {
-  return url.split('/').pop();
+const getFilename = asset => {
+  return asset.url.split('/').pop();
 }
 
 class AssetPickerInput extends Component {
@@ -26,6 +26,7 @@ class AssetPickerInput extends Component {
   render() {
     const { setting, getValue, label, handleChange } = this.props;
     const value = getValue(null);
+    const asset = value && typeof(value) === 'object' ? value : { url: value };
 
     return (
       <div className="editor-input editor-input-asset-picker">
@@ -35,7 +36,7 @@ class AssetPickerInput extends Component {
 
         <div className="editor-input--asset-picker">
           {value && (<div className="editor-input-asset-picker--filename">
-            <a href={value} target="_blank">{getFilename(value)}</a>
+            <a href={value} target="_blank">{getFilename(asset)}</a>
           </div>)}
 
           <div className="editor-input-asset-picker--actions">

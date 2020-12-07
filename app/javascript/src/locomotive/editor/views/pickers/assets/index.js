@@ -24,7 +24,8 @@ class Index extends Component {
 
   handleSelect(asset) {
     const { handleChange, settingType, settingId } = this.props;
-    handleChange(settingType, settingId, asset.source.url);
+    const { source: { url }, type, size } = asset;
+    handleChange(settingType, settingId, { url, type, size });
     this.props.leaveView();
   }
 
@@ -55,7 +56,13 @@ class Index extends Component {
         ) : (                
           <div className="editor-asset-list">
             <div className="editor-asset-list--search">
-              <input type="text" placeholder={i18n.t('views.pickers.assets.search.placeholder')} value={this.state.query} onChange={this.handleSearch} />
+              <input 
+                type="text" 
+                placeholder={i18n.t('views.pickers.assets.search_placeholder')} 
+                value={this.state.query} 
+                onChange={this.handleSearch} 
+                className="editor-input--text"
+              />
             </div>
             <div className="editor-asset-list--container">
               <Uploader
