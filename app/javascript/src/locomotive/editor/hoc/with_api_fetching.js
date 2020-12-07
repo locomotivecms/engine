@@ -13,6 +13,8 @@ const withApiFetching = (source, options) => (Component) => {
       this.state = {
         isLoading:    true,
         error:        null,
+        source:       props.source,
+        searchParams: null,
         pagination:   {
           page:         _options.page,
           perPage:      _options.perPage,
@@ -21,11 +23,18 @@ const withApiFetching = (source, options) => (Component) => {
         }
       };
 
-      bindAll(this, 'handlePageChange');
+      bindAll(this, 'handlePageChange', 'handleSearchParamsChange');
     }
 
     handlePageChange(page) {
       this.setState({ pagination: Object.assign(this.state.pagination, { page }) }, () => {
+        this.fetch();
+      });
+    }
+
+    handleSearchParamsChange(searchParams) {
+      console.log('TODO: searchParams');
+      this.setState({ searchParams }, () => {
         this.fetch();
       });
     }
@@ -43,12 +52,18 @@ const withApiFetching = (source, options) => (Component) => {
     }
 
     fetchOptions() {
-      return _options.pagination ? { pagination: this.state.pagination } : {};
+      let options = _options.pagination ? { pagination: this.state.pagination } : {};
+
+      if (this.state.searchParams)
+        options = { ...options, ...this.state.searchParams };
+
+      return options;
     }
 
     render() {
       return <Component
         handlePageChange={this.handlePageChange}
+        handleSearchParamsChange={this.handleSearchParamsChange}
         { ...this.props }
         { ...this.state }
       />

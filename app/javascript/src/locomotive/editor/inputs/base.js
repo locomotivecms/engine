@@ -11,6 +11,7 @@ import CheckboxInput from './checkbox';
 import SelectInput from './select';
 import RadioInput from './radio';
 import ImagePickerInput from './image_picker';
+import AssetPickerInput from './asset_picker';
 import UrlInput from './url';
 import ContentTypeInput from './content_type';
 import ContentEntryInput from './content_entry';
@@ -48,6 +49,7 @@ class Base extends Component {
       case 'select':        return SelectInput;
       case 'radio':         return RadioInput;
       case 'image_picker':  return ImagePickerInput;
+      case 'asset_picker':  return AssetPickerInput;
       case 'url':           return UrlInput;
       case 'content_type':  return ContentTypeInput;
       case 'content_entry': return ContentEntryInput;
