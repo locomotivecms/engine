@@ -21,7 +21,7 @@ const getLabel = url => {
   else
     return null;
 }
-const isLocalUrl = url => url.type === 'content_entry' || url.type === 'page';
+const isLocalUrl = url => url && (url.type === 'content_entry' || url.type === 'page');
 const editPagePath = (url, buildPath) => {
   return url.type === 'page' ? buildPath(url.value) : buildPath(url.value.page_id, url.value.id);
 }

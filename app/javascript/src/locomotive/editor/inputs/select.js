@@ -9,7 +9,7 @@ const SelectInput = ({ label, inputId, setting, getValue, getLocalizedLabel, han
       <div className="editor-input-select-wrapper">
         <select
           id={inputId}
-          value={getValue(null)}
+          value={getValue('')}
           onChange={e => handleChange(e.target.value)}
           className="editor-input--select"
         >
