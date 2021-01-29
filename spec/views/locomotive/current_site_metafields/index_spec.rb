@@ -65,6 +65,23 @@ describe 'locomotive/current_site_metafields/index', type: :view do
 
     end
 
+    describe 'raw text field type' do
+
+      let(:schema) { [
+        { 
+          'name' => 'theme', 
+          'fields' => [
+            { 'name' => 'footer_scripts', 'type' => 'text', 'format' => 'raw' }
+          ] 
+        }
+      ] }
+
+      it 'does not render wsiwyg editor' do
+        expect(subject).not_to include('wysihtml5-editor')
+      end
+
+    end
+
   end
 
 end

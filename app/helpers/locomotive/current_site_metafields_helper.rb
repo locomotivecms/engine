@@ -74,7 +74,8 @@ module Locomotive
       def type
         @type ||= case (type = @attributes['type'].try(:to_sym))
         when :boolean then :toggle
-        when :text    then :rte
+        when :text
+          @attributes['format'] == 'raw' ? :text : :rte
         else
           type || :string
         end
