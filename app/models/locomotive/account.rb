@@ -30,6 +30,7 @@ module Locomotive
 
     ## validations ##
     validates_presence_of :name
+    validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
 
     ## associations ##
     has_many :created_sites, class_name: 'Locomotive::Site', validate: false, autosave: false
