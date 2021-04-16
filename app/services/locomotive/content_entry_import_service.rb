@@ -3,12 +3,15 @@ require 'csv'
 # TODO:
 # x basic import: CSV -> entries
 # x transform all the types of attributes
+# x options col_sep + quote_char
+# x detect new or existing rows (don't throw an exception if something goes wrong)
+# - create a collection to store the progress of an import? / store it in the site itself? ++++ => content type of course!!!
+# - async method (can't run an import if already in progress)
+# - cancel a job
 # - create the controller to trigger a new import
 #   - store the CSV file as a content asset
 #   - add an async job
 #   - try to track the job somehow
-# - option to clear the current entries + col_sep + quote_char
-# - create a collection to store the progress of an import? / store it in the site itself? ++++
 # - page to display the status of the import
 #   - actions: cancel the job 
 # - new attribute of a content type: importable / import_enabled (boolean)
@@ -19,7 +22,7 @@ module Locomotive
 
     include Locomotive::Concerns::ActivityService
 
-    def async_import(file)
+    def async_import(file, csv_options = nil)
       raise 'TODO'
     end
 
@@ -28,27 +31,33 @@ module Locomotive
 
       return [:fail, { error: "Can't read the CSV" }] unless csv
 
-      count = 0
+      report = { created: 0, updated: 0, failed: [] }
 
-      csv.each do |row|
-        entry = create_entry_from_row(row)
-        count += 1 if entry.errors.empty?
-        puts entry.inspect # DEBUG statement\
+      csv.each_with_index do |row, index|
+        entry = content_type.entries.where(_slug: row['_slug']).first || content_type.entries.build
+        is_new_entry = !entry.persisted?
+        entry.attributes = attributes_from_row(row)
+
+        if entry.save
+          report[is_new_entry ? :created : :updated] += 1
+        else
+          report[:failed] << index
+        end        
       end
 
-      [:ok, count]
+      [:ok, report]
     end
 
     private
 
-    def create_entry_from_row(row)
+    def attributes_from_row(row)
       attributes = {}
       content_type.entries_custom_fields.each do |field|
         next if row[field.name].blank?
         name, value = transform_attribute(field, row[field.name])
         attributes[name] = value
       end
-      content_type.entries.create(attributes)
+      attributes
     end
 
     def load_csv(csv_asset_id, csv_options = nil)
@@ -59,7 +68,7 @@ module Locomotive
     end
     
     def transform_attribute(field, value)
-      puts "TODO transform_attribute #{field.name}(#{field.type}), value = #{value}"
+      # puts "TODO transform_attribute #{field.name}(#{field.type}), value = #{value}"
       case field.type
       when 'string'
         field.name =~ /_asset_url$/ ? 

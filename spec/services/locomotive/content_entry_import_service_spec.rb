@@ -15,9 +15,10 @@ describe Locomotive::ContentEntryImportService do
     before do
       create_content_type_relationships
       site.content_assets.create(filename: 'mybanner.png', source: FixturedAsset.open('5k.png'))
+      content_type.entries.create(_slug: 'first-article', title: 'First article')
+      content_type.entries.create(_slug: 'lorem-ipsum', title: 'Second article')
       authors_content_type.entries.create!(name: 'John Doe', _slug: 'john-doe')
       authors_content_type.entries.create!(name: 'Jane Doe', _slug: 'jane-doe')
-      puts authors_content_type.entries.first.inspect
     end
 
     let(:csv_options) { {} }
@@ -25,9 +26,10 @@ describe Locomotive::ContentEntryImportService do
 
     it 'creates as many articles as there are rows in the CSV' do
       expect { 
-        is_expected.to eq([:ok, 2])
-      }.to change(content_type.entries, :count).by(2)
-      entry = content_type.entries.first
+        is_expected.to eq([:ok, { created: 1, updated: 2, failed: [3] }])
+      }.to change(content_type.entries, :count).by(1)
+      entry = content_type.entries.first.reload
+      expect(entry.title).to eq 'Hello world'
       expect(entry.banner_asset_url).to match /\/sites\/[^\/]+\/assets\/[^\/]+\/5k.png$/
       expect(entry.category).to eq 'Development'
       expect(entry.author.name).to eq 'John Doe'
