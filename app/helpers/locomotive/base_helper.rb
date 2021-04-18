@@ -49,7 +49,7 @@ module Locomotive
     def sidebar_current_section_class
       case self.controller.controller_name
       when 'pages', 'editable_elements' then :pages
-      when 'content_types', 'content_entries', 'public_submission_accounts', 'select_options' then :content_types
+      when 'content_types', 'content_entries', 'content_entry_imports', 'public_submission_accounts', 'select_options' then :content_types
       else
         self.controller.controller_name
       end

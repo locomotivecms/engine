@@ -17,7 +17,8 @@ module Locomotive
               :entry_template,
               :entries_custom_fields_attributes,
               :display_settings,
-              :filter_fields
+              :filter_fields,
+              :import_enabled
 
         # @param [ Site ] the current site, or site to scope to
         def initialize(site, attributes = {})

@@ -25,5 +25,8 @@ module Locomotive
       site_admin_or_designer? || !@resource.hidden?
     end
 
+    def import?
+      @resource.import_enabled?      
+    end
   end
 end

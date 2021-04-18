@@ -17,11 +17,11 @@ en:
         locomotive/content_asset:
           attributes:
             source:
-              maximum_file_size_exceeded: exceeds the maximum file size allowed
+              maximum_file_size_exceeded: exceeds the maximum file size allowed        
     attributes:
       locomotive/content_entry:
         created_at: Created at
-
+      
   errors:
     messages:
       domain_taken: "%{value} is already taken"

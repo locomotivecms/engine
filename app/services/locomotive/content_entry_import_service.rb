@@ -9,10 +9,10 @@ require 'csv'
 # x async method (can't run an import if already in progress)
 # x new attribute of a content type: importable / import_enabled (boolean)
 #   x api + (steam) + wagon?
-# - Import controller
-#   - create: initiate a new import
-#.  - show: see the state
-#   - destroy: cancel a job
+# x Import controller
+#   x create: initiate a new import
+#.  x show: see the state
+#   x destroy: cancel a job
 
 module Locomotive
   class ContentEntryImportService < Struct.new(:content_type)
@@ -22,9 +22,9 @@ module Locomotive
     def async_import(file, csv_options = nil)
       csv_asset = content_assets.create(source: file)
       Locomotive::ImportContentEntryJob.perform_later(
-        content_type_id: content_type.id,
-        csv_asset_id: csv_asset.id,
-        csv_options: csv_options
+        content_type.id.to_s,
+        csv_asset.id.to_s,
+        csv_options
       )
     end
 
@@ -41,6 +41,10 @@ module Locomotive
       content_type.finish_import
 
       content_assets.destroy_all(id: csv_asset_id)
+    end
+
+    def cancel(reason)
+      content_type.cancel_import(reason)
     end
 
     private
@@ -91,7 +95,7 @@ module Locomotive
       case field.type
       when 'string'
         field.name =~ /_asset_url$/ ? 
-        [field.name, content_assets.where(filename: value).first&.source&.url] :
+        [field.name, content_assets.where(source_filename: value).first&.source&.url] :
         [field.name, value]
       when 'belongs_to'
         [field.name, fetch_entry_ids(field.class_name, value).first]

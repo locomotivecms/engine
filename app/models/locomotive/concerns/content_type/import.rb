@@ -18,6 +18,10 @@ module Locomotive
           import_enabled? && import_state.can_start?
         end
 
+        def importing?
+          import_state.running?
+        end
+
         def import_status
           import_state.status
         end
@@ -57,7 +61,11 @@ module Locomotive
           end
 
           def can_start?
-            status != :in_progress
+            !running?
+          end
+
+          def running?
+            status == :in_progress
           end
 
           def status
@@ -91,9 +99,26 @@ module Locomotive
           def failed_rows_ids
             @raw_state['failed_ids'] || []
           end
-        end
-
+        end        
       end
+    end
+  end
+
+  class ContentEntryImport
+    include ActiveModel::Model
+    
+    attr_accessor :file, :col_sep, :quote_char
+    
+    validates_each :file do |record, attr, value|
+      record.errors.add attr, :blank if value.blank?
+    end
+
+    def options
+      { col_sep: col_sep || ';', quote_char: quote_char || "\"" }
+    end
+
+    def file?
+      file.present?
     end
   end
 end

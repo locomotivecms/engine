@@ -366,6 +366,7 @@ en:
         title: '%{type}'
         download: Download entries
         new: New entry
+        import: CSV Import
         bulk_destroy: Delete entries
         edit_notification_settings: Edit notification settings
         search_placeholder: "Enter your search keywords here"
@@ -379,6 +380,22 @@ en:
         title: '%{type} &mdash; editing entry'
       shared:
         back: '&larr; Back to list'
+
+    content_entry_imports:
+      new:
+        title: "%{type} - Import a CSV file"
+      show:
+        title: "%{type} - Report of the CSV import"
+        report:
+          status: "Status"
+          created_rows: "Created entries"
+          updated_rows: "Updated entries"
+          failed_rows: "Failed entries"
+        statuses:
+          ready: "Ready"
+          done: "Done"
+          canceled: "Canceled"
+          failed: "Failer"
 
     developers_documentation:
       show:

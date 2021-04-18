@@ -75,6 +75,8 @@ en:
           rows: "Rows"
           head: "Head row?"
           class_name: "CSS class"
+        content_entry_import:
+          file: CSV File
 
     hints:
       locomotive:
@@ -125,7 +127,9 @@ en:
           public_submission_accounts: "When an entry is created, send a notification email to the accounts listed below."
         image_resize_form:
           width: "in px"
-          height: "in px"
+          height: "in px"        
+        content_entry_import:
+          file: "Your CSV must contain a header and use the double quotes to enclose value."
 
     placeholders:
       locomotive:

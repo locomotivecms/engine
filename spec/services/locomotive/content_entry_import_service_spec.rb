@@ -43,7 +43,9 @@ describe Locomotive::ContentEntryImportService do
     context 'the CSV file is valid' do
       before do
         create_content_type_relationships
-        site.content_assets.create(filename: 'mybanner.png', source: FixturedAsset.open('5k.png'))
+        site.content_assets.create(source: FixturedAsset.open('5k.png')).tap do |asset|
+          asset.update(source_filename: 'mybanner.png')
+        end
         content_type.entries.create(_slug: 'first-article', title: 'First article')
         content_type.entries.create(_slug: 'lorem-ipsum', title: 'Second article')
         authors_content_type.entries.create!(name: 'John Doe', _slug: 'john-doe')

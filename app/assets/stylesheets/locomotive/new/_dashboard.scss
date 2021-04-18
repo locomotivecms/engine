@@ -1,0 +1,20 @@
+.metric {
+  background: rgb(21, 90, 148);
+  border-radius: 3px;
+  padding: 2rem 1rem;
+  text-align: center;
+
+  h2 {
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: bold;
+    font-size: 1.15rem;
+    text-transform: uppercase;
+  }  
+
+  h3 {  
+    margin-top: 1rem;
+    color: #fff;
+    font-weight: bold;
+    font-size: 2.5rem;    
+  }
+}
