@@ -32,7 +32,7 @@ module Locomotive
     private    
 
     def only_if_import_enabled
-      redirect_to redirect_to content_entries_path(current_site, content_type.slug) unless content_type.import_enabled
+      redirect_to content_entries_path(current_site, content_type.slug) unless content_type.import_enabled
     end
 
     def content_type

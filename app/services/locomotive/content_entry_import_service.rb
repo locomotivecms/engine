@@ -91,7 +91,6 @@ module Locomotive
     end
     
     def transform_attribute(field, value)
-      # puts "TODO transform_attribute #{field.name}(#{field.type}), value = #{value}"
       case field.type
       when 'string'
         field.name =~ /_asset_url$/ ? 

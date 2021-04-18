@@ -382,8 +382,9 @@ en:
         back: '&larr; Back to list'
 
     content_entry_imports:
-      new:
+      new:        
         title: "%{type} - Import a CSV file"
+        show: "See last import"
       show:
         title: "%{type} - Report of the CSV import"
         report:

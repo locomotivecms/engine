@@ -1,5 +1,5 @@
 "_slug";"title";"body";"published";"published_at";"rating";"price";"tags";"banner_asset_url";"category";"author";"reviewers"
-"first-article";"Hello world";"<p>Built by <a href=""https://www.nocoffee.fr"">NoCoffee!</a></p>";"true";"";"4";"42.42";"hello,first,article";"mybanner.png";"Development";"john-doe";"john-doe,jane-doe"
+"first-article";"Hello world";"<p>Built by <a href=""https://www.nocoffee.fr"">NoCoffee!</a></p>";"true";"";"4";"42.42";"hello,first,article";"5k.png";"Development";"john-doe";"john-doe,jane-doe"
 "lorem-ipsum";"Lorem ipsum";"<p>Lorem ipsum....</p>";"false";"2021-06-29 22:30:00";"";"0";"free stuff,awesome,lorem";"";"Design";"";""
 "";"Brand new article";"<p>Lorem ipsum....</p>";"false";"2021-06-29 22:30:00";"";"0";"free stuff,awesome,lorem";"";"Design";"";""
 "";"";"<p>Lorem ipsum....</p>";"false";"2021-06-29 22:30:00";"";"0";"free stuff,awesome,lorem";"";"Design";"";""
