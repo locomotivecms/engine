@@ -10,8 +10,29 @@ describe Locomotive::ContentEntryImportService do
   let(:service)               { described_class.new(content_type, account, locale) }
   let(:csv_asset)             { create(:asset, site: site, source: FixturedAsset.open('articles.csv')) }
 
-  describe '#import' do
+  describe '#import!' do
 
+    context 'the CSV file is bogus' do
+      let(:csv_asset) { create(:asset, site: site, source: FixturedAsset.open('5k.png')) }
+      
+      it 'cancels the import' do
+        expect(content_type).to receive(:cancel_import).with('foo bar')
+        subject { service.import(csv_asset.id, {}) }  
+      end
+    end
+
+    context 'the CSV file is valid' do  
+      it 'updates the state of the import' do
+        expect(content_type.import_status).to eq nil
+        expect(content_type).to receive(:start_import).once
+        expect(content_type).to receive(:finish_import).once
+        expect(service).to receive(:import_rows).and_return([:ok, { created: 1, updated: 0, failed: [] }])
+        service.import('asset-42', {})
+      end
+    end
+  end
+
+  describe '#import' do
     before do
       create_content_type_relationships
       site.content_assets.create(filename: 'mybanner.png', source: FixturedAsset.open('5k.png'))

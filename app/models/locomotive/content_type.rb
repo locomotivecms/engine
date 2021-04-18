@@ -15,6 +15,7 @@ module Locomotive
     include Concerns::ContentType::ClassHelpers
     include Concerns::ContentType::PublicSubmissionTitleTemplate
     include Concerns::ContentType::FilterFields
+    include Concerns::ContentType::Import
 
     ## fields ##
     field :name

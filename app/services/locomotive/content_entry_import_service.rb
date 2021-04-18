@@ -12,7 +12,7 @@ require 'csv'
 #   - store the CSV file as a content asset
 #   - add an async job
 #   - try to track the job somehow
-# - page to display the status of the import
+# - page to display the status (or current state) of the import
 #   - actions: cancel the job 
 # - new attribute of a content type: importable / import_enabled (boolean)
 #   - steam + wagon?
@@ -26,13 +26,23 @@ module Locomotive
       raise 'TODO'
     end
 
+    def import!(csv_asset_id, csv_options = nil)
+      content_type.set_import_status([:in_progress, {}])
+      import(csv_asset_id, csv_options).tap do |state|
+        content_type.set_import_status(state)
+      end
+    end
+
     def import(csv_asset_id, csv_options = nil)
       csv = load_csv(csv_asset_id, csv_options)
-
       return [:fail, { error: "Can't read the CSV" }] unless csv
+      [:ok, import_rows(csv)]
+    end
 
+    private
+
+    def import_rows(csv)
       report = { created: 0, updated: 0, failed: [] }
-
       csv.each_with_index do |row, index|
         entry = content_type.entries.where(_slug: row['_slug']).first || content_type.entries.build
         is_new_entry = !entry.persisted?
@@ -42,13 +52,10 @@ module Locomotive
           report[is_new_entry ? :created : :updated] += 1
         else
           report[:failed] << index
-        end        
+        end
       end
-
-      [:ok, report]
+      report
     end
-
-    private
 
     def attributes_from_row(row)
       attributes = {}
