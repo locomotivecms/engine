@@ -94,7 +94,7 @@ module Locomotive
       case field.type
       when 'string'
         field.name =~ /_asset_url$/ ? 
-        [field.name, content_assets.where(source_filename: value).first&.source&.url] :
+        [field.name, content_assets.where(source_filename: value).order_by(:created_at.desc).first&.source&.url] :
         [field.name, value]
       when 'belongs_to'
         [field.name, fetch_entry_ids(field.class_name, value).first]
