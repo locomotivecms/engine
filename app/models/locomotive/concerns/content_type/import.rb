@@ -7,7 +7,7 @@ module Locomotive
 
         included do
           field :import_enabled, type: Boolean, default: false
-          field :raw_import_state, type: Hash, default: {}
+          field :raw_import_state, type: Hash, default: nil
         end
 
         def import_state
@@ -23,48 +23,32 @@ module Locomotive
         end
 
         def start_import(total:)
-          @import_state = nil # reset the state object
-          update(raw_import_state: { 
-            'status' => 'in_progress', 
-            'total_rows' => total,
-            'updated_at' => Time.zone.now
-          })
+          change_import_state({
+            'status' => 'in_progress', 'total_rows' => total
+          }, true)
         end
 
         def finish_import
-          @import_state = nil # reset the state object
-          update(raw_import_state: { 
-            'status' => 'done', 
-            'updated_at' => Time.zone.now
-          })
+          change_import_state({ 'status' => 'done' })
         end
 
         def cancel_import(error_message)
-          @import_state = nil # reset the state object
-          update(raw_import_state: { 
-            'status' => 'canceled', 
-            'error' => error_message,
-            'updated_at' => Time.zone.now
+          change_import_state({ 'status' => 'canceled', 'error' => error_message })
+        end
+
+        def on_imported_row(index, row_status)
+          change_import_state({
+            row_status.to_s => import_state.rows_count(row_status.to_s) + 1,
+            'failed_ids' => import_state.failed_rows_ids + (row_status.to_s == 'failed' ? [index] : []),
           })
         end
 
-        def on_imported_row(index, status)
-          update(raw_import_state: { 
-            status.to_s => import_state.rows_count(status.to_s) + 1,
-            'failed_ids' => import_state.failed_rows_ids + (status.to_s == 'failed' ? [index] : []),
-            'updated_at' => Time.zone.now
-          }).tap do
+        def change_import_state(attributes, clear_state = false)
+          new_attributes = ((clear_state ? nil : raw_import_state) || {}).merge(attributes)
+          update(raw_import_state: new_attributes.merge('updated_at' => Time.zone.now)).tap do
             @import_state = nil # reset the state object
           end
         end
-
-        # def change_import_state(attributes)
-        #   update(
-        #     raw_import_state: attributes.merge('updated_at' => Time.zone.now)
-        #   ).tap do
-        #     @import_state = nil # reset the state object
-        #   end
-        # end
 
         class ImportState
 

@@ -9,7 +9,7 @@ module Locomotive
                 :public_submission_accounts,
                 :public_submission_title_template,
                 :recaptcha_required,
-                :entry_template, :display_settings, :filter_fields
+                :entry_template, :display_settings, :filter_fields, :import_enabled
 
         expose :fields, using: ContentTypeFieldEntity do |content_type, _|
           content_type.ordered_entries_custom_fields || []

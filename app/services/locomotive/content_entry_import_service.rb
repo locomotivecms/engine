@@ -5,56 +5,66 @@ require 'csv'
 # x transform all the types of attributes
 # x options col_sep + quote_char
 # x detect new or existing rows (don't throw an exception if something goes wrong)
-# - create a collection to store the progress of an import? / store it in the site itself? ++++ => content type of course!!!
-# - async method (can't run an import if already in progress)
-# - cancel a job
-# - create the controller to trigger a new import
-#   - store the CSV file as a content asset
-#   - add an async job
-#   - try to track the job somehow
-# - page to display the status (or current state) of the import
-#   - actions: cancel the job 
-# - new attribute of a content type: importable / import_enabled (boolean)
-#   - steam + wagon?
+# x create a collection to store the progress of an import? / store it in the site itself? ++++ => content type of course!!!
+# x async method (can't run an import if already in progress)
+# x new attribute of a content type: importable / import_enabled (boolean)
+#   x api + (steam) + wagon?
+# - Import controller
+#   - create: initiate a new import
+#.  - show: see the state
+#   - destroy: cancel a job
 
 module Locomotive
-  class ContentEntryImportService < Struct.new(:content_type, :account, :locale)
+  class ContentEntryImportService < Struct.new(:content_type)
 
-    include Locomotive::Concerns::ActivityService
+    class WrongImportFileException < StandardError; end
 
     def async_import(file, csv_options = nil)
-      raise 'TODO'
-    end
-
-    def import!(csv_asset_id, csv_options = nil)
-      content_type.set_import_status([:in_progress, {}])
-      import(csv_asset_id, csv_options).tap do |state|
-        content_type.set_import_status(state)
-      end
+      csv_asset = content_assets.create(source: file)
+      Locomotive::ImportContentEntryJob.perform_later(
+        content_type_id: content_type.id,
+        csv_asset_id: csv_asset.id,
+        csv_options: csv_options
+      )
     end
 
     def import(csv_asset_id, csv_options = nil)
-      csv = load_csv(csv_asset_id, csv_options)
-      return [:fail, { error: "Can't read the CSV" }] unless csv
-      [:ok, import_rows(csv)]
+      begin
+        csv = load_csv(csv_asset_id, csv_options)
+      rescue WrongImportFileException => e
+        content_type.cancel_import(e.message)
+        return false
+      end 
+
+      content_type.start_import(total: csv.count)
+      import_rows(csv)
+      content_type.finish_import
+
+      content_assets.destroy_all(id: csv_asset_id)
     end
 
     private
 
     def import_rows(csv)
-      report = { created: 0, updated: 0, failed: [] }
       csv.each_with_index do |row, index|
         entry = content_type.entries.where(_slug: row['_slug']).first || content_type.entries.build
-        is_new_entry = !entry.persisted?
-        entry.attributes = attributes_from_row(row)
-
-        if entry.save
-          report[is_new_entry ? :created : :updated] += 1
-        else
-          report[:failed] << index
-        end
+        import_row(row, index, entry)
       end
-      report
+    end
+
+    def import_row(row, index, entry)
+      is_new_entry = !entry.persisted?
+      entry.attributes = attributes_from_row(row)
+      
+      if entry.save
+        content_type.on_imported_row(index, is_new_entry ? :created : :updated) 
+      else
+        content_type.on_imported_row(index, :failed)
+      end
+    rescue Exception => e
+      Rails.logger.error e.message # don't hide the exception
+      Rails.logger.error e.backtrace.join("\n")
+      content_type.on_imported_row(index, :failed)
     end
 
     def attributes_from_row(row)
@@ -70,8 +80,10 @@ module Locomotive
     def load_csv(csv_asset_id, csv_options = nil)
       csv_options = { headers: true, col_sep: ';', quote_char: "\"" }.merge(csv_options || {})
       asset = content_assets.where(id: csv_asset_id).first
-      return if asset.nil?
+      raise 'The CSV file doesn\'t exist anymore' unless asset
       CSV.parse(asset.source.read, csv_options)
+    rescue Exception => e
+      raise WrongImportFileException.new e.message
     end
     
     def transform_attribute(field, value)

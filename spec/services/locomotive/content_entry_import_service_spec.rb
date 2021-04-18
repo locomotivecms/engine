@@ -3,58 +3,67 @@
 describe Locomotive::ContentEntryImportService do
 
   let(:site)                  { create('test site') }
-  let(:account)               { create(:account) }
   let(:content_type)          { create_content_type }
   let(:authors_content_type)  { create_authors_content_type }
-  let(:locale)                { :en }
-  let(:service)               { described_class.new(content_type, account, locale) }
+  let(:service)               { described_class.new(content_type) }
   let(:csv_asset)             { create(:asset, site: site, source: FixturedAsset.open('articles.csv')) }
 
-  describe '#import!' do
-
-    context 'the CSV file is bogus' do
-      let(:csv_asset) { create(:asset, site: site, source: FixturedAsset.open('5k.png')) }
-      
-      it 'cancels the import' do
-        expect(content_type).to receive(:cancel_import).with('foo bar')
-        subject { service.import(csv_asset.id, {}) }  
-      end
-    end
-
-    context 'the CSV file is valid' do  
-      it 'updates the state of the import' do
-        expect(content_type.import_status).to eq nil
-        expect(content_type).to receive(:start_import).once
-        expect(content_type).to receive(:finish_import).once
-        expect(service).to receive(:import_rows).and_return([:ok, { created: 1, updated: 0, failed: [] }])
-        service.import('asset-42', {})
-      end
+  describe '#async_import' do
+    let(:csv_file) { rack_asset('5k.png') }
+    let(:csv_options) { {} }
+    subject { service.async_import(csv_file, csv_options) }
+    it 'saves the asset and enqueues a new import job' do
+      expect(Locomotive::ImportContentEntryJob).to receive(:perform_later)
+      expect {
+        subject
+      }.to change { site.content_assets.count }.by(1)
     end
   end
 
   describe '#import' do
-    before do
-      create_content_type_relationships
-      site.content_assets.create(filename: 'mybanner.png', source: FixturedAsset.open('5k.png'))
-      content_type.entries.create(_slug: 'first-article', title: 'First article')
-      content_type.entries.create(_slug: 'lorem-ipsum', title: 'Second article')
-      authors_content_type.entries.create!(name: 'John Doe', _slug: 'john-doe')
-      authors_content_type.entries.create!(name: 'Jane Doe', _slug: 'jane-doe')
-    end
-
     let(:csv_options) { {} }
     subject { service.import(csv_asset.id, csv_options) }
 
-    it 'creates as many articles as there are rows in the CSV' do
-      expect { 
-        is_expected.to eq([:ok, { created: 1, updated: 2, failed: [3] }])
-      }.to change(content_type.entries, :count).by(1)
-      entry = content_type.entries.first.reload
-      expect(entry.title).to eq 'Hello world'
-      expect(entry.banner_asset_url).to match /\/sites\/[^\/]+\/assets\/[^\/]+\/5k.png$/
-      expect(entry.category).to eq 'Development'
-      expect(entry.author.name).to eq 'John Doe'
-      expect(entry.reviewers.pluck(:name)).to eq(['John Doe', 'Jane Doe'])
+    context "the CSV file doesn't exist anymore" do
+      subject { service.import('unknown-asset-id', {}) }
+      it 'cancels the import' do
+        expect(content_type).to receive(:cancel_import).with('The CSV file doesn\'t exist anymore')
+        subject
+      end
+    end
+
+    context 'the CSV file is bogus' do
+      let(:csv_asset) { create(:asset, site: site, source: FixturedAsset.open('5k.png')) }
+      it 'cancels the import' do
+        expect(content_type).to receive(:cancel_import).with("Unquoted fields do not allow new line <\"\\r\"> in line 5.")
+        subject
+      end
+    end
+
+    context 'the CSV file is valid' do
+      before do
+        create_content_type_relationships
+        site.content_assets.create(filename: 'mybanner.png', source: FixturedAsset.open('5k.png'))
+        content_type.entries.create(_slug: 'first-article', title: 'First article')
+        content_type.entries.create(_slug: 'lorem-ipsum', title: 'Second article')
+        authors_content_type.entries.create!(name: 'John Doe', _slug: 'john-doe')
+        authors_content_type.entries.create!(name: 'Jane Doe', _slug: 'jane-doe')
+      end
+    
+      it 'creates/updates as many entries as there are rows in the CSV' do
+        expect { subject }.to change(content_type.entries, :count).by(1)
+        .and change { content_type.import_status }.from(:ready).to(:done)
+        .and change { content_type.import_state.created_rows_count }.from(0).to(1)
+        .and change { content_type.import_state.updated_rows_count }.from(0).to(2)
+        .and change { content_type.import_state.failed_rows_count }.from(0).to(1)
+
+        entry = content_type.entries.first.reload
+        expect(entry.title).to eq 'Hello world'
+        expect(entry.banner_asset_url).to match /\/sites\/[^\/]+\/assets\/[^\/]+\/5k.png$/
+        expect(entry.category).to eq 'Development'
+        expect(entry.author.name).to eq 'John Doe'
+        expect(entry.reviewers.pluck(:name)).to eq(['John Doe', 'Jane Doe'])
+      end
     end
   end
 

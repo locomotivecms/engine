@@ -47,7 +47,7 @@ describe Locomotive::Concerns::ContentType::Import do
     end
   end
 
-  describe '#update_imported_row' do
+  describe '#on_imported_row' do
     before { content_type.save }
     let(:status) { :created }
     subject { content_type.on_imported_row(6, status) }
@@ -76,6 +76,18 @@ describe Locomotive::Concerns::ContentType::Import do
         .and change { content_type.import_state.updated_rows_count }.by(0)
         .and change { content_type.import_state.failed_rows_count }.from(0).to(1)
         .and change { content_type.import_state.failed_rows_ids }.from([]).to([6])
+      end
+    end
+    context 'chaining multiple calls' do
+      it 'keeps track of the previous state' do
+        expect {
+          content_type.on_imported_row(0, :created)
+          content_type.on_imported_row(1, :updated)
+          content_type.on_imported_row(2, :failed)
+          content_type.on_imported_row(3, :updated)
+        }.to change { content_type.import_state.created_rows_count }.from(0).to(1)
+        .and change { content_type.import_state.updated_rows_count }.from(0).to(2)
+        .and change { content_type.import_state.failed_rows_count }.from(0).to(1)
       end
     end
   end
