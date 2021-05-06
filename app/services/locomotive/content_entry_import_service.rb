@@ -1,19 +1,5 @@
 require 'csv'
 
-# TODO:
-# x basic import: CSV -> entries
-# x transform all the types of attributes
-# x options col_sep + quote_char
-# x detect new or existing rows (don't throw an exception if something goes wrong)
-# x create a collection to store the progress of an import? / store it in the site itself? ++++ => content type of course!!!
-# x async method (can't run an import if already in progress)
-# x new attribute of a content type: importable / import_enabled (boolean)
-#   x api + (steam) + wagon?
-# x Import controller
-#   x create: initiate a new import
-#.  x show: see the state
-#   x destroy: cancel a job
-
 module Locomotive
   class ContentEntryImportService < Struct.new(:content_type)
 
