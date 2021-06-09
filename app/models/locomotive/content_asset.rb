@@ -29,6 +29,7 @@ module Locomotive
     ## scopes ##
     scope :ordered, -> { order_by(created_at: :desc) }
     scope :by_filename, ->(query) { where(source_filename: /.*#{query}.*/i) }
+    scope :by_exact_filename, ->(filename) { where(source_filename: filename) }
 
     ## methods ##
 

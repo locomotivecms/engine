@@ -10,10 +10,10 @@ module Locomotive
             if self.width && self.height && self.width < 85 && self.height < 85
               self.source.url
             else
-              Locomotive::Dragonfly.resize_url(self.source, '85x85#')
+              Locomotive::Dragonfly.resize_url(self.source, '85x85#', self.updated_at.to_i)
             end
           elsif self.pdf?
-            Locomotive::Dragonfly.thumbnail_pdf(self.source, '85x85#')
+            Locomotive::Dragonfly.thumbnail_pdf(self.source, '85x85#', self.updated_at.to_i)
           end
         end
 
@@ -24,7 +24,7 @@ module Locomotive
             '190x120#'
           end
 
-          Locomotive::Dragonfly.thumbnail_pdf(self.source, format) if format
+          Locomotive::Dragonfly.thumbnail_pdf(self.source, format, self.updated_at.to_i) if format
         end
 
         def big_vignette_url
@@ -32,7 +32,7 @@ module Locomotive
             '200x200#'
           end
 
-          Locomotive::Dragonfly.thumbnail_pdf(self.source, format) if format
+          Locomotive::Dragonfly.thumbnail_pdf(self.source, format, self.updated_at.to_i) if format
         end
 
       end

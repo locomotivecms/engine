@@ -59,7 +59,9 @@ module Locomotive
         :timezone_name, :timezone,
         :cache_enabled, :cache_control, :cache_vary,
         :asset_host, :redirect_to_first_domain, :redirect_to_https,
-        :private_access, :password, :prefix_default_locale, :bypass_browser_locale
+        :private_access, :password, :prefix_default_locale, :bypass_browser_locale,
+        :overwrite_same_content_assets,
+        :permitted_params_from_policy
       ]
       hash  = { domains: [], locales: [], url_redirections: [] }
 

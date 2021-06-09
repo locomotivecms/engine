@@ -40,7 +40,13 @@ module Locomotive
           end
           post do
             authorize ContentAsset, :create?
+
             form = form_klass.new(content_asset_params)
+
+            if current_site.overwrite_same_content_assets?
+              self.content_asset = content_assets.by_exact_filename(form.source['filename']).first || content_assets.new
+            end
+          
             persist_from_form(form)
 
             present content_asset, with: entity_klass
