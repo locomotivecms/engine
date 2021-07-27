@@ -114,7 +114,7 @@ module Locomotive
     end
 
     def options
-      { col_sep: col_sep || ';', quote_char: quote_char || "\"" }
+      { col_sep: col_sep || ',', quote_char: quote_char || "\"" }
     end
 
     def file?

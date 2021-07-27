@@ -34,10 +34,10 @@ module Locomotive
     end
 
     describe '#POST create' do      
-      let(:attributes) { { file: rack_asset('articles.csv') } }
+      let(:attributes) { { file: rack_asset('articles.csv'), col_sep: ';' } }
       subject { post :create, params: { site_handle: site, locale: :en, slug: content_type.slug, content_entry_import: attributes } }
       it 'triggers the async import task' do 
-        expect_any_instance_of(Locomotive::ContentEntryImportService).to receive(:async_import)
+        expect_any_instance_of(Locomotive::ContentEntryImportService).to receive(:async_import).with(anything, { col_sep: ';', quote_char: "\"" })
         is_expected.to be_redirect
       end
       context 'the file is missing' do

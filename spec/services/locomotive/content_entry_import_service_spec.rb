@@ -10,7 +10,7 @@ describe Locomotive::ContentEntryImportService do
 
   describe '#async_import' do
     let(:csv_file) { rack_asset('5k.png') }
-    let(:csv_options) { {} }
+    let(:csv_options) { { col_sep: ';' } }
     subject { service.async_import(csv_file, csv_options) }
     it 'saves the asset and enqueues a new import job' do
       expect(Locomotive::ImportContentEntryJob).to receive(:perform_later)
@@ -21,7 +21,7 @@ describe Locomotive::ContentEntryImportService do
   end
 
   describe '#import' do
-    let(:csv_options) { {} }
+    let(:csv_options) { { col_sep: ';' } }
     subject { service.import(csv_asset.id, csv_options) }
 
     context "the CSV file doesn't exist anymore" do

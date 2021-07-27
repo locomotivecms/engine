@@ -16,7 +16,7 @@ module Locomotive
 
     def create
       authorize @content_type, :import?
-      @import = Locomotive::ContentEntryImport.new(import_params)    
+      @import = Locomotive::ContentEntryImport.new(import_params)
       service.async_import(@import.file, @import.options) if @import.valid?
       respond_with @import, location: content_entry_import_path(current_site, @content_type.slug)
     end
@@ -44,7 +44,7 @@ module Locomotive
     end
 
     def import_params
-      params.require(:content_entry_import).permit(:file)
+      params.require(:content_entry_import).permit(:file, :col_sep, :quote_char)
     end
   end
 end
