@@ -4,7 +4,7 @@ module Locomotive
   class PictureUploader < BaseUploader
 
     def extension_whitelist
-      %w(jpg jpeg gif png)
+      %w(jpg jpeg gif png tiff)
     end
 
     def image?
