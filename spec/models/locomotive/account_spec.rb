@@ -15,6 +15,7 @@ describe Locomotive::Account do
   it { is_expected.to allow_value('valid@email.com').for(:email) }
   it { is_expected.to allow_value('prefix+suffix@email.com').for(:email) }
   it { is_expected.to_not allow_value('not-an-email').for(:email) }
+  it { is_expected.to_not allow_value('not-an-email@email').for(:email) }
 
   it "has a default locale" do
     account = Locomotive::Account.new
