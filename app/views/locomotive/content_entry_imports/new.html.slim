@@ -1,0 +1,23 @@
+- title t('.title', type: @content_type.name.capitalize)
+
+- content_for :actions do
+  .main-action
+    = link_to content_entry_import_path(current_site, @content_type.slug), class: 'btn btn-primary btn-sm' do
+      i.fas.fa-tachometer-alt
+      | &nbsp;
+      = t('.show')
+
+    | &nbsp;
+    | &nbsp;
+
+    = link_to t(:back, scope: 'locomotive.content_entries.shared').html_safe, content_entries_path(current_site, @content_type.slug), class: 'btn btn-sm btn-default'
+
+= locomotive_form_for @import, url: content_entry_import_path(current_site, @content_type.slug) do |f|
+
+  = f.inputs :information do
+    = f.input :file, as: :file
+
+    = f.input :col_sep
+    = f.input :quote_char
+  
+  = f.actions back_url: content_entries_path(current_site, @content_type.slug), use_stored_location: true

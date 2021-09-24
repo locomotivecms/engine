@@ -76,6 +76,7 @@ module Locomotive
               optional :asset_host
               optional :sections_content
               optional :routes
+              optional :overwrite_same_content_assets
             end
           end
           post do
@@ -113,11 +114,12 @@ module Locomotive
               optional :asset_host
               optional :sections_content
               optional :routes
+              optional :overwrite_same_content_assets
             end
           end
           put ':id' do
             site = load_site
-            authorize site, :update?
+            authorize site, :update?            
 
             site_form = Forms::SiteForm.new(permitted_params_from_policy(site, :site, [:picture], [:metafields_ui, :metafields_schema, :metafields, :routes, :sections_content]))
             service.update!(site, site_form.serializable_hash)

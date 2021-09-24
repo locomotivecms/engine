@@ -118,7 +118,7 @@ module Locomotive
         def setup_singular_getter_method
           self.class.send(:define_method, singular) do
             instance_variable = "@#{singular}"
-            if instance_variable_defined?(instance_variable)
+            if instance_variable_defined?(instance_variable)              
               instance_variable_get(instance_variable)
             else
               if params[:id]

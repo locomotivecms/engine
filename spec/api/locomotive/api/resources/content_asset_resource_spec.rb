@@ -43,8 +43,18 @@ describe Locomotive::API::Resources::ContentAssetResource do
         end
 
         it 'creates a content_asset on the current site' do
-          expect{ post("#{url_prefix}.json", content_asset: asset) }
+          expect { post("#{url_prefix}.json", content_asset: asset) }
             .to change{ Locomotive::ContentAsset.count }.by(1)
+        end
+
+        context 'the site overwrite_same_content_assets property is ON' do
+          let!(:site) { create(:site, domains: %w{www.acme.com}, locales: %w(en fr), overwrite_same_content_assets: true) }
+          it 'creates a single content_asset if persisting 2 files with the same filename' do
+            expect do
+              post("#{url_prefix}.json", content_asset: asset)
+              post("#{url_prefix}.json", content_asset: asset)
+            end.to change{ Locomotive::ContentAsset.count }.by(1)
+          end
         end
       end
     end

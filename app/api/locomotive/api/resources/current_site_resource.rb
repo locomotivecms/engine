@@ -47,6 +47,7 @@ module Locomotive
               optional :asset_host
               optional :sections_content
               optional :routes
+              optional :overwrite_same_content_assets
             end
           end
           put do
@@ -57,7 +58,6 @@ module Locomotive
 
             present current_site, with: entity_klass
           end
-
 
           desc "Delete current site"
           delete do

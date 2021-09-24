@@ -17,7 +17,7 @@ module Locomotive
 
     def create
       authorize Locomotive::ContentAsset
-      @content_asset = current_site.content_assets.create(content_asset_params)
+      @content_asset = service.create(content_asset_params)
       respond_with @content_asset, location: content_assets_path
     end
 

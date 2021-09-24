@@ -40,7 +40,8 @@ describe Locomotive::ContentAssetsController do
     let(:content_assets_attributes) do
       [
         { source: rack_asset('5k.png') },
-        { source: rack_asset('5k_2.png') }
+        { source: rack_asset('5k_2.png') },
+        { source: rack_asset('5k.png') },
       ]
     end
     subject do
@@ -48,7 +49,13 @@ describe Locomotive::ContentAssetsController do
     end
     it { is_expected.to be_success }
     specify do
-      expect { subject }.to change(Locomotive::ContentAsset, :count).by(2)
+      expect { subject }.to change(Locomotive::ContentAsset, :count).by(3)
+    end
+    context 'the site overwrite_same_content_assets property is ON' do
+      let(:site) { create(:site, domains: %w{www.acme.com}, overwrite_same_content_assets: true) }
+      specify do
+        expect { subject }.to change(Locomotive::ContentAsset, :count).by(2)
+      end
     end
   end
 

@@ -23,7 +23,6 @@ module Locomotive
 
     def destroy?
       site_staff? && !membership.visitor?
-    end
-
+    end    
   end
 end

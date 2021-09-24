@@ -41,6 +41,14 @@
         | &nbsp;
         = t('.new')
 
+    - if @content_type.import_enabled? 
+      | &nbsp;
+      | &nbsp;
+      = link_to new_content_entry_import_path(current_site, @content_type.slug), class: 'btn btn-primary btn-sm' do
+        i.fa.fa-file-import
+        | &nbsp;
+        = t('.import')
+
 - if @content_type.groupable?
   .row.list-groups
     .nav-container.nav-container--scroll

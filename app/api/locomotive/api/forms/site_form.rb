@@ -10,6 +10,7 @@ module Locomotive
         attrs :seo_title, :meta_keywords, :meta_description, localized: true
         attrs :cache_enabled, :cache_control, :cache_vary
         attrs :sections_content
+        attrs :overwrite_same_content_assets
 
         # Make sure locales and domains are in arrays.
         def locales

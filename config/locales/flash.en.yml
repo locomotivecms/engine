@@ -32,6 +32,12 @@ en:
           notice: "Model was successfully updated."
           alert: "Model was not updated."
 
+      content_entry_imports:
+        create:
+          notice: "The import task was successfully launched."
+        destroy:
+          notice: "The import task was manually cancelled."
+
       current_site:
         update:
           notice: "My site was successfully updated."

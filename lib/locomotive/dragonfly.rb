@@ -3,18 +3,20 @@ require 'locomotive/dragonfly/processors/smart_thumb'
 module Locomotive
   module Dragonfly
 
-    def self.resize_url(source, resize_string)
+    def self.resize_url(source, resize_string, timestamp = nil)
       if file = self.fetch_file(source)
-        file.thumb(resize_string).url
+        url = file.thumb(resize_string).url
+        timestamp ? url + "?#{timestamp}" : url
       else
         Locomotive.log :error, "Unable to resize on the fly: #{source.inspect}"
         return
       end
     end
 
-    def self.thumbnail_pdf(source, resize_string)
+    def self.thumbnail_pdf(source, resize_string, timestamp = nil)
       if file = self.fetch_file(source)
-        file.thumb(resize_string, format: 'png', frame: 0).encode('png').url
+        url = file.thumb(resize_string, format: 'png', frame: 0).encode('png').url
+        timestamp ? url + "?#{timestamp}" : url
       else
         Locomotive.log :error, "Unable to convert the pdf: #{source.inspect}"
         return

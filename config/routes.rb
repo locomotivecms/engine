@@ -66,12 +66,13 @@ Locomotive::Engine.routes.draw do
       get :new_account
     end
 
+    resource :content_entry_import, only: [:show, :new, :create, :destroy], path: 'content_types/:slug/imports'
+
     resources :content_entries, path: 'content_types/:slug/entries' do
       get :show_in_form,      on: :collection
       put :sort,              on: :collection
       get :export,            on: :collection
-      delete :bulk_destroy,   on: :collection
-
+      delete :bulk_destroy,   on: :collection      
       resource :impersonation, only: [:create], controller: 'content_entry_impersonations'
     end
 

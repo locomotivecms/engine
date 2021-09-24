@@ -1,0 +1,54 @@
+- title t('.title', type: @content_type.name.capitalize)
+
+- content_for :actions do
+  .main-action
+    - if @content_type.importing?
+      = link_to content_entry_import_path(current_site, @content_type.slug), class: 'btn btn-primary btn-sm' do
+        i.fas.fa-sync
+        | &nbsp;
+        = t('.refresh')
+
+      | &nbsp;
+      | &nbsp;
+
+      = link_to content_entry_import_path(current_site,  @content_type.slug), class: 'btn btn-danger btn-sm', method: :delete, data: { confirm: t('locomotive.messages.confirm') } do
+        i.far.fa-trash-alt
+        | &nbsp;
+        = t('.cancel')
+
+    | &nbsp;
+    | &nbsp;
+
+    = link_to t(:back, scope: 'locomotive.content_entries.shared').html_safe, content_entries_path(current_site, @content_type.slug), class: 'btn btn-sm btn-default'
+
+br
+br
+br
+br
+
+.row
+  .col-md-3
+    .metric
+      h2= t('.report.status')
+      h3= t(".statuses.#{@content_type.import_status}")
+
+  .col-md-3
+    .metric
+      h2= t('.report.created_rows')
+      h3= @content_type.import_state.created_rows_count
+
+  .col-md-3
+    .metric
+      h2= t('.report.updated_rows')
+      h3= @content_type.import_state.updated_rows_count
+
+  .col-md-3
+    .metric
+      h2= t('.report.failed_rows')
+      h3= @content_type.import_state.failed_rows_count
+
+br
+br
+
+pre
+  code= @content_type.raw_import_state

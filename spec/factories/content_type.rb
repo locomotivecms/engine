@@ -147,6 +147,10 @@ FactoryBot.define do
         content_type.public_submission_accounts = [create('admin user')._id]
       end
     end
+
+    trait :import_enabled do
+      import_enabled { true }
+    end
   end
 
   factory :content_entry, class: Locomotive::ContentEntry do

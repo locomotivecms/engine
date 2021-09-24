@@ -27,15 +27,21 @@ describe Locomotive::ContentAssetService do
 
       let(:assets) { [
         { source: FixturedAsset.open('5k.png') },
-        { source: FixturedAsset.open('5k_2.png') }
+        { source: FixturedAsset.open('5k_2.png') },
+        { source: FixturedAsset.open('5k.png') },
       ] }
 
-      it { expect(subject.size).to eq 2 }
-
+      it { expect(subject.size).to eq 3 }
       it 'creates content assets' do
-        expect { subject }.to change(Locomotive::ContentAsset, :count).by(2)
+        expect { subject }.to change(Locomotive::ContentAsset, :count).by(3)
       end
 
+      context 'the site overwrite_same_content_assets property is ON' do
+        let(:site) { create('test site', overwrite_same_content_assets: true) }
+        it "doesn't create a new asset if it has the same filename as an existing one" do
+          expect { subject }.to change(Locomotive::ContentAsset, :count).by(2)
+        end
+      end
     end
 
     context 'with a wrong asset' do
