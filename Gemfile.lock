@@ -10,7 +10,7 @@ GIT
 PATH
   remote: .
   specs:
-    locomotivecms (4.1.0.beta)
+    locomotivecms (4.1.0.rc1)
       actionmailer-with-request (~> 0.5.0)
       adomain (~> 0.1.1)
       autoprefixer-rails (~> 8.0.0)
