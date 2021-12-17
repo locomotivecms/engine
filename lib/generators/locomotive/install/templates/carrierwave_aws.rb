@@ -27,6 +27,11 @@ CarrierWave.configure do |config|
       config.aws_credentials[:endpoint] = ENV['S3_ENDPOINT']
     end
 
+    # For some endpoint like minio you need to rewrite path 
+    if ENV['S3_PATH_STYLE'].present?
+      config.aws_credentials[:force_path_style] = ENV['S3_PATH_STYLE']
+    end
+
     # Put your CDN host below instead
     if ENV['S3_ASSET_HOST_URL'].present?
       config.asset_host = ENV['S3_ASSET_HOST_URL']
