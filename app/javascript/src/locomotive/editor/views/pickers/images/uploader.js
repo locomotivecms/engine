@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { bindAll, map, compact } from 'lodash';
+import { bindAll, map, compact, mapKeys, camelCase } from 'lodash';
 import i18n from '../../../i18n';
 import Compress from 'client-compress';
 
@@ -34,9 +34,10 @@ class Uploader extends Component {
     if (files.length > 0)
       this.setState({ uploading: true }, () => {
         // do we have to compress the images on the browser before sending them to server?
-        // https://www.npmjs.com/package/client-compress
+        // https://www.npmjs.com/package/client-compress        
         if (this.props.compress !== undefined) {
-          const compress = new Compress(this.props.compress);
+          const options = mapKeys(this.props.compress, (_, k) => camelCase(k))
+          const compress = new Compress(options)
           compress.compress(files)
           .then(conversions => map(conversions, conversion => ({ blob: conversion.photo.data, filename: conversion.photo.name })))
           .then(_files => this._handleUpload(_files))
