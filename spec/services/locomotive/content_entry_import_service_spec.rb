@@ -51,18 +51,23 @@ describe Locomotive::ContentEntryImportService do
       end
     
       it 'creates/updates as many entries as there are rows in the CSV' do
-        expect { subject }.to change(content_type.entries, :count).by(1)
+        expect { subject }.to change(content_type.entries, :count).by(2)
         .and change { content_type.import_status }.from(:ready).to(:done)
-        .and change { content_type.import_state.created_rows_count }.from(0).to(1)
+        .and change { content_type.import_state.created_rows_count }.from(0).to(2)
         .and change { content_type.import_state.updated_rows_count }.from(0).to(2)
         .and change { content_type.import_state.failed_rows_count }.from(0).to(1)
 
         entry = content_type.entries.first.reload
+        expect(entry._slug).to eq 'first-article'
         expect(entry.title).to eq 'Hello world'
         expect(entry.banner_asset_url).to match /\/sites\/[^\/]+\/assets\/[^\/]+\/5k.png$/
         expect(entry.category).to eq 'Development'
         expect(entry.author.name).to eq 'John Doe'
         expect(entry.reviewers.pluck(:name)).to eq(['John Doe', 'Jane Doe'])
+
+        entry = content_type.entries.last.reload
+        expect(entry._slug).to eq 'my-article'
+        expect(entry.title).to eq 'My article with its own slug'
       end
     end
   end

@@ -58,7 +58,7 @@ module Locomotive
     end
 
     def attributes_from_row(row)
-      attributes = {}
+      attributes = { _slug: row['_slug'] }
       content_type.entries_custom_fields.each do |field|
         next if row[field.name].blank?
         name, value = transform_attribute(field, row[field.name])
