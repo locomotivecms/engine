@@ -8,7 +8,7 @@ before_install:
 after_failure: ./bin/ci/after_failure.sh
 services: mongodb
 rvm:
-  - 2.7.4
+  - 2.7.2
 notifications:
   email:
     - didier@nocoffee.fr
