@@ -1,3 +1,3 @@
 module Locomotive
-  VERSION = '4.1.0.rc1'
+  VERSION = '4.1.0.rc2'
 end
