@@ -23,9 +23,9 @@ module Locomotive
             self.slug = value.clone
           end
 
-          if self.slug.present?
-            self.slug.permalink!
-          end
+          return unless self.slug.present?
+
+          site&.allow_dots_in_slugs ? self.slug.pathify! : self.slug.permalink!
         end
 
       end

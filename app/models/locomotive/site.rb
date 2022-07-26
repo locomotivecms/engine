@@ -20,6 +20,7 @@ module Locomotive
     field :robots_txt
     field :maximum_uploaded_file_size, type: ::Integer, default: Locomotive.config.default_maximum_uploaded_file_size
     field :overwrite_same_content_assets, type: Boolean, default: false
+    field :allow_dots_in_slugs, type: Boolean, default: false
 
     mount_uploader :picture, PictureUploader, validate_integrity: true
 

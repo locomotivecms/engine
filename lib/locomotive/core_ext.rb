@@ -30,6 +30,27 @@ class String #:nodoc
 
   alias :parameterize! :permalink!
 
+  # Very similar to the to_url from the Stringex gem
+  # except that we allow the dots.
+  def pathify
+    whitespace_replacement_token = self.index('_').nil? ? '-' : '_'
+    self
+      .convert_smart_punctuation
+      .convert_accented_html_entities
+      .convert_vulgar_fractions
+      .convert_unreadable_control_characters
+      .convert_miscellaneous_html_entities
+      .to_ascii
+      .collapse
+      .replace_whitespace(whitespace_replacement_token)
+      .collapse(whitespace_replacement_token)
+      .downcase
+  end
+
+  def pathify!
+    replace(self.pathify)
+  end
+
 end
 
 ## Hash
