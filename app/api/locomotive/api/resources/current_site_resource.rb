@@ -48,6 +48,7 @@ module Locomotive
               optional :sections_content
               optional :routes
               optional :overwrite_same_content_assets
+              optional :allow_dots_in_slugs
             end
           end
           put do

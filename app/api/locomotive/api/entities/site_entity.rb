@@ -7,7 +7,8 @@ module Locomotive
         expose  :name, :handle, :seo_title, :meta_keywords, :meta_description,
                 :robots_txt, :cache_enabled, :private_access
 
-        expose :locales, :prefix_default_locale, :bypass_browser_locale, :domains, :asset_host, :url_redirections, :overwrite_same_content_assets
+        expose :locales, :prefix_default_locale, :bypass_browser_locale, :domains, :asset_host, :url_redirections
+        expose :overwrite_same_content_assets, :allow_dots_in_slugs
 
         expose :memberships, using: MembershipEntity
 
