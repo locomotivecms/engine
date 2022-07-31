@@ -74,6 +74,13 @@ describe Locomotive::ContentEntry do
       expect(entry._slug_translations).to eq({ 'en' => 'monkeys', 'fr' => 'monkeys', 'ru' => 'monkeys' })
     end
 
+    it 'accepts dots if the site has the allow_dots_in_slugs property on' do
+      site.allow_dots_in_slugs = true
+      entry = build_content_entry(_slug: '.monkey_wrench')
+      allow(entry).to receive(:site).and_return(site)
+      expect(entry.tap(&:save!)._slug).to eq('.monkey_wrench')
+    end
+
   end
 
   describe '#I18n' do
