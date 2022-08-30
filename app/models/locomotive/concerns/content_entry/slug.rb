@@ -21,7 +21,8 @@ module Locomotive
           self._slug = self._label.dup if self._slug.blank? && self._label.present?
 
           if self._slug.present?
-            if self.site.allow_dots_in_slugs?
+            # we can't rely on the self.site property yet (brand new entry for instance)
+            if self.content_type.site.allow_dots_in_slugs?
               self._slug.pathify!
             else
               self._slug.permalink!

@@ -77,7 +77,7 @@ describe Locomotive::ContentEntry do
     it 'accepts dots if the site has the allow_dots_in_slugs property on' do
       site.allow_dots_in_slugs = true
       entry = build_content_entry(_slug: '.monkey_wrench')
-      allow(entry).to receive(:site).and_return(site)
+      entry.site = nil # force the case when the entry is brand new and hasn't passed yet the validation step
       expect(entry.tap(&:save!)._slug).to eq('.monkey_wrench')
     end
 
