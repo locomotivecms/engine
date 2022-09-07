@@ -44,6 +44,10 @@ Locomotive::Steam.configure do |config|
   # let the Rails engine handle the "no site" error
   config.render_404_if_no_site = false
 
+  # setup the logger
+  config.log_file = Locomotive.config.steam_log_file || ENV['LOCOMOTIVE_STEAM_LOG'] || Rails.root.join('log', 'steam.log')
+  config.log_level = Locomotive.config.steam_log_level
+
   config.services_hook = -> (services) {
     services.cache  = Rails.cache
     repositories    = services.repositories
@@ -57,8 +61,8 @@ Locomotive::Steam.configure do |config|
   }
 end
 
-Locomotive::Common.reset
-Locomotive::Common.configure do |config|
-  config_file = ENV['LOCOMOTIVE_STEAM_LOG'] || Rails.root.join('log', 'steam.log')
-  config.notifier = Locomotive::Common::Logger.setup(config_file.to_s)
-end
+# Locomotive::Common.reset
+# Locomotive::Common.configure do |config|
+#   config_file = ENV['LOCOMOTIVE_STEAM_LOG'] || Rails.root.join('log', 'steam.log')
+#   config.notifier = Locomotive::Common::Logger.setup(config_file.to_s, )
+# end
