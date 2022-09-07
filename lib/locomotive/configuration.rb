@@ -15,6 +15,8 @@ module Locomotive
       site_locales:                 @@site_locales,
       cookie_key:                   '_locomotive_session',
       enable_logs:                  false,
+      steam_log_file:               nil,
+      steam_log_level:              ::Logger::DEBUG,
       enable_admin_ssl:             false,
       delayed_job:                  false,
       default_locale:               :en,

@@ -22,6 +22,10 @@ Locomotive.configure do |config|
   # tell if logs are enabled. Useful for debug purpose.
   config.enable_logs = true
 
+  # setup the logger for Steam (rendering)
+  # config.steam_log_file = Rails.root.join('log', 'steam.log')
+  # config.steam_log_level = ::Logger::DEBUG
+
   # the API authentication requires to developer to pass 2 params in the header
   # of the request: X-Locomotive-Account-Email and X-Locomotive-Token.
   # However, to keep backward compatability with v2.x versions, you can use
