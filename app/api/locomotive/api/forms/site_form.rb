@@ -11,6 +11,7 @@ module Locomotive
         attrs :cache_enabled, :cache_control, :cache_vary
         attrs :sections_content
         attrs :overwrite_same_content_assets
+        attrs :allow_dots_in_slugs
 
         # Make sure locales and domains are in arrays.
         def locales

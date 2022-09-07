@@ -116,6 +116,26 @@ describe Locomotive::Page do
       expect(page.slug).to eq('convention_valid_ite_dot_html')
     end
 
+    it 'allows dots in the slugs if enabled' do
+      site = build(:site, allow_dots_in_slugs: true)
+
+      page = build(:page, site: site, slug: '.well-known')
+      page.valid?
+      expect(page.slug).to eq('.well-known')
+
+      page = build(:page, site: site, slug: 'some-page-slug-requiring-versioning-v1.2')
+      page.valid?
+      expect(page.slug).to eq('some-page-slug-requiring-versioning-v1.2')
+
+      page = build(:page, site: site, slug: ' Valid  ité.html ')
+      page.valid?
+      expect(page.slug).to eq('valid-ite.html')
+
+      page = build(:page, site: site, slug: ' convention_Valid  ité.html ')
+      page.valid?
+      expect(page.slug).to eq('convention_valid_ite.html')
+    end
+
     it 'has cache enabled' do
       page = build(:page, site: nil)
       expect(page.cache_enabled?).to eq(true)

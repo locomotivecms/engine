@@ -60,7 +60,7 @@ module Locomotive
         :cache_enabled, :cache_control, :cache_vary,
         :asset_host, :redirect_to_first_domain, :redirect_to_https,
         :private_access, :password, :prefix_default_locale, :bypass_browser_locale,
-        :overwrite_same_content_assets,
+        :overwrite_same_content_assets, :allow_dots_in_slugs,
         :permitted_params_from_policy
       ]
       hash  = { domains: [], locales: [], url_redirections: [] }

@@ -21,7 +21,12 @@ module Locomotive
           self._slug = self._label.dup if self._slug.blank? && self._label.present?
 
           if self._slug.present?
-            self._slug.permalink!
+            # we can't rely on the self.site property yet (brand new entry for instance)
+            if self.content_type.site.allow_dots_in_slugs?
+              self._slug.pathify!
+            else
+              self._slug.permalink!
+            end
 
             self.find_next_unique_slug if self.slug_already_taken?
           end
@@ -29,7 +34,7 @@ module Locomotive
           # all the site locales share the same slug ONLY IF the entry is not localized.
           self.set_same_slug_for_all_site_locales if !self.localized?
         end
-
+        
         # For each locale of the site, we set the slug
         # coming from the value for the default locale.
         def set_same_slug_for_all_site_locales
