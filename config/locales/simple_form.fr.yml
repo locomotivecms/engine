@@ -84,6 +84,7 @@ fr:
           seo_title: "Ce titre sera utilisé par le tag HTML TITLE de votre page. Laissez le vide si voulez utiliser le titre défini dans les paramètres du site."
           meta_keywords: "Surcharge les META KEYWORDS définis dans les paramètres du site. Ils sont séparés par des virgules."
           meta_description: "Surcharge la META DESCRIPTION définie dans les paramètres du site. "
+          meta_robots: "Ajoutez les balises pour modifier le positionnement SEO de la page. Ils sont séparés par une virgule. Ex : 'noindex,nofollow'."
           is_layout: "Si cette option est activée, la page pourra être utilisée comme gabarit pour d'autres pages."
           allow_layout: "Laisse les auteurs la possibilité d'utiliser un autre gabarit pour cette page."
         site:
@@ -113,6 +114,7 @@ fr:
           seo_title: "Cette valeur sera utilisée dans le tag HTML TITLE de la page gabarit associé à ce modèle."
           meta_keywords: "Surcharge les META KEYWORDS définis dans les paramètres du site. Ils sont séparés par des virgules."
           meta_description: "Surcharge la META DESCRIPTION définie dans les paramètres du site. "
+          meta_robots: "Ajoutez les balises pour modifier le positionnement SEO de la page. Ils sont séparés par une virgule. Ex : 'noindex,nofollow'."
         content_type:
           public_submission_accounts: "Quand un élément est crée, un email de notification est envoyé à tous les comptes listés ci-dessous."
         image_resize_form:

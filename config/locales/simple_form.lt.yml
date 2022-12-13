@@ -81,6 +81,7 @@ lt:
           seo_title: "Apibrėžkite puslapio pavadinimą, kurio reikšmė bus naudojama title tag puslapio head skiltyje. Nepildykite, jeigu norite, kad būtų naudojama reikšmė apibrėžta tinklalapio nustatymuose."
           meta_keywords: "Perrašo tinklalapio meta raktažodžius naudojamus head tag paslapyje. Jie turi būti atskirti kableliu."
           meta_description: "Perrašo tinklalapio meta aprašą naudojamą head tag paslapyje."
+          meta_robots: "Pridėkite žymas, kad pakeistumėte puslapio SEO padėtį. Jie atskiriami kableliu. Pvz.: „noindex,nofollow“."
           is_layout: "Jei tiesa, šis puslapis gali būti naudojamas kaip maketas kitiems puslapiams."
           allow_layout: "Leisti autoriams keisti to puslapio maketą."
         site:
@@ -106,6 +107,7 @@ lt:
           seo_title: "Reikšmė pakeis siejamo su modeliu šablono puslapio SEO pavadinimą."
           meta_keywords: "Perrašo tinklalapio meta raktažodžius naudojamus head tag puslapyje. Jie turi būti atskirti kableliu."
           meta_description: "Perrašo tinklalapio meta aprašą naudojamą head tag puslapyje."
+          meta_robots: "Pridėkite žymas, kad pakeistumėte puslapio SEO padėtį. Jie atskiriami kableliu. Pvz.: „noindex,nofollow“."
         content_type:
           public_submission_accounts: "Kada įrašas yra sukuriamas, išsiunčiamas pranešimas el. paštu vartotojams, išvardintiems žemiau."
         image_resize_form:

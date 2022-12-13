@@ -186,7 +186,7 @@ describe Locomotive::ContentEntryService do
 
     subject { service.permitted_attributes }
 
-    it { is_expected.to eq %w(_slug _position _visible seo_title meta_keywords meta_description title body published) }
+    it { is_expected.to eq %w(_slug _position _visible seo_title meta_keywords meta_description meta_robots title body published) }
 
   end
 

@@ -50,7 +50,7 @@ module Locomotive
         end
 
         # SEO
-        expose :seo_title, :meta_keywords, :meta_description
+        expose :seo_title, :meta_keywords, :meta_description, :meta_robots
 
       end
 

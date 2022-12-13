@@ -81,6 +81,7 @@ pl-PL:
           seo_title: "Określ tytuł strony, który będzie użyty jako wartość dla znacznika title umieszczanego w sekcji head kodu HTML. Pozostaw to pole puste, jeśli chcesz, aby wykorzystana została domyślna wartość określona ustawieniami witryny."
           meta_keywords: "Nadpisz słowa kluczowe (meta keywords) umieszczane w sekcji head kodu HTML. Słowa powinny być oddzielone przecinkami."
           meta_description: "Nadpisz znacznik opisu (meta description) umieszczanego w sekcji head kodu HTML."
+          meta_robots: "Dodaj tagi, aby zmodyfikować pozycjonowanie strony pod kątem SEO. Są one oddzielone przecinkiem. Np.: „noindex, nofollow”."
           is_layout: "Jeśli włączone, ta strona będzie mogła zostać użyta jako layout innych stron."
           allow_layout: "Zezwól autorom na zmianę layoutu tej strony."
         site:
@@ -106,6 +107,7 @@ pl-PL:
           seo_title: "Wartość, którą tu podasz, zastąpi tytuł SEO strony szablonowej odnoszącej się do stworzonego modelu."
           meta_keywords: "Nadpisz słowa kluczowe (meta keywords) witryny, umieszczane w sekcji head kodu HTML strony. Powinny być oddzielone przecinkami."
           meta_description: "Nadpisz opis (meta description) witryny, umieszczany w sekcji head kodu HTML strony."
+          meta_robots: "Dodaj tagi, aby zmodyfikować pozycjonowanie strony pod kątem SEO. Są one oddzielone przecinkiem. Np.: „noindex, nofollow”."
         content_type:
           public_submission_accounts: "Kiedy pozycja jest tworzona wyślij e-mail z powiadomieniem do użytkowników podanych poniżej."
         image_resize_form:

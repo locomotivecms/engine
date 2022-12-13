@@ -12,7 +12,7 @@ module Locomotive
 
         expose :_label, :_position, :_visible
 
-        expose :seo_title, :meta_keywords, :meta_description
+        expose :seo_title, :meta_keywords, :meta_description, :meta_robots
 
         expose :dynamic_fields
 

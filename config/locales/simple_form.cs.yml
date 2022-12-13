@@ -81,6 +81,7 @@ cs:
           seo_title: "Definujte název stránky, který můžete použít jako titulek. Nechte prázdné, pokud chcete použít výchozí hodnotu v nastavení webové stránky."
           meta_keywords: "Přepíše meta klíčová slova používaná v rámci webových stránek. Jsou oddělena čárkou."
           meta_description: "Přepíše meta popis používaný v rámci webových stránek."
+          meta_robots: "Přidáním značek upravíte umístění SEO stránky. Jsou odděleny čárkou. Příklad: 'noindex,nofollow'."
           is_layout: "Pokud je to pravda, můžete použít rozvržení této stránky, pro jiné stránky."
           allow_layout: "Autoři, pojďme změnit, nebo nechme původní rozložení této stránky."
         site:
@@ -106,6 +107,7 @@ cs:
           seo_title: "Hodnota, kterou zadáte nahradí název SEO titulek stránky šablony, vztahující se k modelu."
           meta_keywords: "Přepíše meta klíčová slova používaná v rámci webových stránek. Jsou oddělena čárkou."
           meta_description: "Přepíše meta tag popis používaný v rámci webových stránek."
+          meta_robots: "Přidáním značek upravíte umístění SEO stránky. Jsou odděleny čárkou. Příklad: 'noindex,nofollow'."
         content_type:
           public_submission_accounts: "Když je vytvořen záznam, poslat oznámení e-mailem na účty, které jsou uvedeny níže."
         image_resize_form:

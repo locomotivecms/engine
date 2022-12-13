@@ -124,6 +124,7 @@ fr:
           title_label: "Titre SEO"
           meta_keywords_label: "Mots-clés META"
           meta_description_label: "Description META"
+          meta_robots_label: "Robots META"
 
         settings:
           title_label: "Titre"

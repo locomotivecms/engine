@@ -8,7 +8,7 @@ module Locomotive
 
         attr_accessor :content_type, :dynamic_attributes
 
-        attrs :_slug, :_position, :_visible, :seo_title, :meta_keywords, :meta_description
+        attrs :_slug, :_position, :_visible, :seo_title, :meta_keywords, :meta_description, :meta_robots
 
         def initialize(content_type, attributes)
           self.content_type = content_type

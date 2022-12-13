@@ -81,6 +81,7 @@ nl:
           seo_title: "Definieer een pagina titel die zal gebruikt worden als de waarde voor de SEO titel tag. Laat het leeg als u de standaard waarde van de site instellingen wilt gebruiken."
           meta_keywords: "Overschrijf de site zijn keywords die gebruikt worden voor SEO doeleinden. Ze zijn gescheiden door een komma."
           meta_description: "Overschrijf de site meta omschrijving die gebruikt wordt voor SEO doeleinden."
+          meta_robots: "Voeg de tags toe om de SEO-positionering van de pagina te wijzigen. Ze worden gescheiden door een komma. Bijv.: 'noindex,nofollow'."          
           is_layout: "Indien waar, dan kan deze pagina gebruikt worden als layout voor andere pagina's."
           allow_layout: "Laat auteurs de layout van een pagina wijzigen of niet."
         site:
@@ -105,6 +106,7 @@ nl:
           _visible: "Standaard zal het item tonen in de site. Dus het kan gebruikt worden als een gepubliceerde eigenschap."
           seo_title: "De waarde die u hier invult zal de SEO titel vervangen van de templatized pagina gerelateerd aan uw model."
           meta_keywords: "Overschrijft de site zijn keywords die gebruikt worden voor SEO doeleinden. Ze zijn gescheiden door een komma."
+          meta_robots: "Voeg de tags toe om de SEO-positionering van de pagina te wijzigen. Ze worden gescheiden door een komma. Bijv.: 'noindex,nofollow'."
           meta_description: "Overschrijf de site meta omschrijving die gebruikt wordt voor SEO doeleinden."
         content_type:
           public_submission_accounts: "Wanneer een item gecreëerd is, stuur dan een notificatie email naar de accounts hieronder."

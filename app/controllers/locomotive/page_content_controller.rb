@@ -69,7 +69,7 @@ module Locomotive
 
     def page_params
       params.require(:page).permit(:title, :slug, :published, :listed,
-        :seo_title, :meta_keywords, :meta_description,
+        :seo_title, :meta_keywords, :meta_description, :meta_robots,
         :sections_content, :sections_dropzone_content)
     end
 

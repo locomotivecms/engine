@@ -20,7 +20,7 @@ module Locomotive
         attrs :templatized, :target_klass_slug
 
         # SEO
-        attrs :seo_title, :meta_keywords, :meta_description
+        attrs :seo_title, :meta_keywords, :meta_description, :meta_robots
 
         # Editable elements
         attrs :editable_elements_attributes

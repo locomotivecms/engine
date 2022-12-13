@@ -71,6 +71,7 @@ module Locomotive
               optional :seo_title
               optional :meta_keywords
               optional :meta_description
+              optional :meta_robots
               optional :display_settings
             end
           end
@@ -111,6 +112,7 @@ module Locomotive
               optional :seo_title
               optional :meta_keywords
               optional :meta_description
+              optional :meta_robots
               optional :display_settings
             end
           end

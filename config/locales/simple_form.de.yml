@@ -81,6 +81,7 @@ de:
           seo_title: "Einen Seitentitel festlegen der als Wert für den Title-Tag im Head-Bereich dient. Leer lassen um den Standardwert aus den Einstellungen zu verwenden."
           meta_keywords: "Überschreibt die Standard Meta-Schlüsselwörter im Head-Tag der Seite. Durch Kommas getrennt."
           meta_description: "Überschreibt die Standard Meta-Beschreibung im Head-Tag der Seite."
+          meta_robots: "Fügen Sie die Tags hinzu, um die SEO-Positionierung der Seite zu ändern. Sie werden durch ein Komma getrennt. Beispiel: „noindex, nofollow“."
           is_layout: "Wenn eingeschaltet, kann diese Seite als Layout für andere Seiten dienen."
           allow_layout: "Autoren erlauben das Layout der Seite zu verändern."
         site:
@@ -106,6 +107,7 @@ de:
           seo_title: "Dieser Wert ersetzt den SEO-Titel der Vorlagenseite, die diesem Modell zugewiesen ist."
           meta_keywords: "Überschreibt die Standard Meta-Schlüsselwörter die im Head-Bereich der Seite genutzt werden. Durch Kommas getrennt."
           meta_description: "Überschreibt die Standard Meta-Beschreibung die im Head-Bereich der Seite genutzt wird."
+          meta_robots: "Fügen Sie die Tags hinzu, um die SEO-Positionierung der Seite zu ändern. Sie werden durch ein Komma getrennt. Beispiel: „noindex, nofollow“."
         content_type:
           public_submission_accounts: "Sende eine Benachrichtigung an unten angeführte Konten, wenn ein Eintrag erstellt wird."
         image_resize_form:
