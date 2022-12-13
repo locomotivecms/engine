@@ -67,6 +67,7 @@ export function saveContent(url, site, page, locale) {
       seo_title: page.seo_title,
       meta_keywords: page.meta_keywords,
       meta_description: page.meta_description,
+      meta_robots: page.meta_robots,
       sections_content: JSON.stringify(page.sectionsContent),
       sections_dropzone_content: JSON.stringify(page.sectionsDropzoneContent)
     }

@@ -13,6 +13,7 @@ describe Locomotive::API::Entities::ContentEntryEntity do
       seo_title
       meta_keywords
       meta_description
+      meta_robots
     )
 
   attributes.each do |exposure|

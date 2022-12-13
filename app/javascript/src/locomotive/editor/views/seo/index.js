@@ -30,6 +30,12 @@ const SeoForm = ({ page, errors, updatePageSetting, moreSettingPath, ...props })
           getValue={() => page.meta_description || ''}
           handleChange={value => updatePageSetting('meta_description', value)}
         />
+
+        <TextInput
+          label={i18n.t('views.seo.meta_robots_label')}
+          getValue={() => page.meta_robots || ''}
+          handleChange={value => updatePageSetting('meta_robots', value)}
+        />
       </div>
     </View>
   )

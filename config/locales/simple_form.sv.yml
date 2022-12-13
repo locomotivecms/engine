@@ -81,6 +81,7 @@ sv:
           seo_title: "Definiera en sidtitel som kan användas som värde för titel-tag i sidans <head>-sektion. Lämna tom om du vill använda standardvärden för din webbplats."
           meta_keywords: "Skriver över din webbplats metanyckelord i sidans <head>-sektion. Separera med kommatecken."
           meta_description: "Skriver över din webbplats metabeskrivning i sidans <head>-sektion."
+          meta_robots: "Lägg till taggarna för att ändra SEO-positioneringen för sidan. De är åtskilda av ett kommatecken. Ex: 'noindex,nofollow'."
           is_layout: "Om sant så kan denna sida användas som mall för andra sidor."
           allow_layout: "Låt författare ändra mall för sida."
         site:
@@ -106,6 +107,7 @@ sv:
           seo_title: "Värdet du fyller i kommer att ersätta SEO-titel i mallen relaterad till din innehållstyp."
           meta_keywords: "Skriver över webbplatsen metabeskrivning som används i sidans <head>-sektion. Separera med kommatecken."
           meta_description: "Skriver över webbplatsens metabeskrivning som används i sidans <head>-sektion."
+          meta_robots: "Lägg till taggarna för att ändra SEO-positioneringen för sidan. De är åtskilda av ett kommatecken. Ex: 'noindex,nofollow'."
         content_type:
           public_submission_accounts: "När ett inlägg skapas, skicka en avisering över e-post till konton listade nedan."
         image_resize_form:

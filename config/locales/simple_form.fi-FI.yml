@@ -81,6 +81,7 @@ fi-FI:
           seo_title: "Define a page title which should be used as the value for the title tag in the head section. Leave it empty if you want to use the default value from the site settings."
           meta_keywords: "Overrides the site's meta keywords used within the head tag of the page. They are separated by a comma."
           meta_description: "Overrides the site's meta description used within the head tag of the page."
+          meta_robots: "Lisää tageja muokataksesi sivun SEO-sijaintia. Ne erotetaan pilkulla. Esim: 'noindex,nofollow'."
           is_layout: "If true, this page can used as a layout for other pages."
           allow_layout: "Let authors change or not the layout of that page."
         site:
@@ -106,6 +107,7 @@ fi-FI:
           seo_title: "The value you fill in will replace the SEO title of the templatized page related to your model."
           meta_keywords: "Overrides the site's meta keywords used within the head tag of the page. They are separated by a comma."
           meta_description: "Overrides the site's meta description used within the head tag of the page."
+          meta_robots: "Lisää tageja muokataksesi sivun SEO-sijaintia. Ne erotetaan pilkulla. Esim: 'noindex,nofollow'."
         content_type:
           public_submission_accounts: "When an entry is created, send a notification email to the accounts listed below."
         image_resize_form:

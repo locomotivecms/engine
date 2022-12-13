@@ -81,6 +81,7 @@ pt-BR:
           seo_title: "Defina um título para a página que deve ser utilizado como valor para a tag de título dentro seção de cabeçalho. Deixe em branco caso você queira usar o valor padrão das configurações do site."
           meta_keywords: "Sobrescreve as palavras-chave do site utilizadas dentro da tag de cabeçalho da página. Estes são separados por uma vírgula."
           meta_description: "Sobrescreve as palavras-chave do site utilizadas dentro da tag de cabeçalho da página."
+          meta_robots: "Adicione as tags para modificar o posicionamento SEO da página. Eles são separados por uma vírgula. Ex: 'noindex,nofollow'."
           is_layout: "Se verdadeiro, essa página pode ser utilizado como um layout para outras páginas."
           allow_layout: "Deixe os autores alterarem ou não o layout dessa página."
         site:
@@ -106,6 +107,7 @@ pt-BR:
           seo_title: "O valor que você preencher irá substituir o título de SEO da página de template relacionada com o seu modelo."
           meta_keywords: "Sobrescreve as palavras-chave utilizadas dentro da tag de cabeçalho da página. Estes são separados por uma vírgula."
           meta_description: "Sobrescreve as palavras-chave do site utilizadas dentro da tag de cabeçalho da página."
+          meta_robots: "Adicione as tags para modificar o posicionamento SEO da página. Eles são separados por uma vírgula. Ex: 'noindex,nofollow'."
         content_type:
           public_submission_accounts: "Quando uma entrada é criada, envie um e-mail de notificação para as contas listadas abaixo."
         image_resize_form:

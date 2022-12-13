@@ -82,6 +82,7 @@ es:
           seo_title: "Define un titulo de pagina que debe ser usado como valor para una etiqueta de titulo en la seccion principal. Dejalo vacio si quieres usar el valor predetermiado de la configuracion del sitio."
           meta_keywords: "Sobreescribe las meta keywords del sitio usadas como la etiqueta principal de la pagina. Estan separadas por una coma."
           meta_description: "Sobreescribe la descripcion meta del sitio usada dentro de la etiqueta principal de la pagina."
+          meta_robots: "Añade las etiquetas para modificar el posicionamiento SEO de la pagina. Estan separadas por una coma. Ej: 'noindex,nofollow'"
           is_layout: "Si es true, esta pagina puede ser usada como layout para otras paginas."
           allow_layout: "Permitir a los autores cambiar o no la plantilla de la pagina."
         site:
@@ -108,6 +109,7 @@ es:
           seo_title: "El valor que escribas reemplazara el titulo SEO de la pagina con plantilla relacionada con tu modelo."
           meta_keywords: "Sobreescribe las meta keywords del sitio usadas como la etiqueta principal de la pagina. Estan separadas por una coma."
           meta_description: "Sobreescribe la descripcion meta del sitio usada dentro de la etiqueta principal de la pagina."
+          meta_robots: "Añade las etiquetas para modificar el posicionamiento SEO de la pagina. Estan separadas por una coma. Ej: 'noindex,nofollow'"
         content_type:
           public_submission_accounts: "Cuando una entrada sea creada, enviar una notificacion por email a las cuentas listadas debajo."
         image_resize_form:

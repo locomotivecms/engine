@@ -81,6 +81,7 @@ sl:
           seo_title: "Določite naslov strani, ki bo uporabljen kot vrednost naslova v glavi strani. Pustite prazno, če želite uporabiti privzeto vrednost iz nastavitev spletnega mesta."
           meta_keywords: "Prepiše meta ključne besede v glavi strani. Ključne besede ločite z vejico."
           meta_description: "Prepiše meta opis v glavi strani."
+          meta_robots: "Dodajte oznake, da spremenite SEO položaj strani. Ločeni so z vejico. Primer: 'noindex,nofollow'."
           is_layout: "Če DA, bo stran na voljo kot predloga za druge strani."
           allow_layout: "Omogoči urejanje postavitve na strani."
         site:
@@ -106,6 +107,7 @@ sl:
           seo_title: "Vrednost bo nadomestila SEO naslov strani iz predloge, ki je vezana na model."
           meta_keywords: "Prepiše meta ključne besede v glavi strani. Ključne besede ločite z vejico."
           meta_description: "Prepiše meta opis v glavi strani. "
+          meta_robots: "Dodajte oznake, da spremenite SEO položaj strani. Ločeni so z vejico. Primer: 'noindex,nofollow'."
         content_type:
           public_submission_accounts: "Ko je dodan nov zapis, pošji obvestilo na spodnje račune."
         image_resize_form:

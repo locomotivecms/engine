@@ -30,7 +30,8 @@ module Locomotive
     end
 
     def permitted_attributes
-      attributes = [:title, :layout_id, :slug, :parent_id, :listed, :published, :redirect, :redirect_url, :redirect_type, :seo_title, :meta_description, :meta_keywords]
+      attributes = [:title, :layout_id, :slug, :parent_id, :listed, :published, :redirect, :redirect_url,
+                    :redirect_type, :seo_title, :meta_description, :meta_keywords, :meta_robots]
       if site_admin_or_designer?
         attributes += [:cache_enabled, :cache_control, :cache_vary]
         attributes += [:handle]

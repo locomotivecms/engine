@@ -189,7 +189,7 @@ module Locomotive
       # needed to get the custom fields
       _entry = content_type.entries.build
 
-      default     = %w(_slug _position _visible seo_title meta_keywords meta_description)
+      default     = %w(_slug _position _visible seo_title meta_keywords meta_description meta_robots)
       dynamic     = _entry.custom_fields_safe_setters
       referenced  = {}
 

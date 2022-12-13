@@ -13,14 +13,14 @@ describe Locomotive::PagePolicy do
     context 'admin' do
 
       let(:membership) { build(:admin) }
-      it { is_expected.to eq([:title, :layout_id, :slug, :parent_id, :listed, :published, :redirect, :redirect_url, :redirect_type, :seo_title, :meta_description, :meta_keywords, :cache_enabled, :cache_control, :cache_vary, :handle]) }
+      it { is_expected.to eq([:title, :layout_id, :slug, :parent_id, :listed, :published, :redirect, :redirect_url, :redirect_type, :seo_title, :meta_description, :meta_keywords, :meta_robots, :cache_enabled, :cache_control, :cache_vary, :handle]) }
 
     end
 
     context 'author' do
 
       let(:membership) { build(:author) }
-      it { is_expected.to eq([:title, :layout_id, :slug, :parent_id, :listed, :published, :redirect, :redirect_url, :redirect_type, :seo_title, :meta_description, :meta_keywords]) }
+      it { is_expected.to eq([:title, :layout_id, :slug, :parent_id, :listed, :published, :redirect, :redirect_url, :redirect_type, :seo_title, :meta_description, :meta_keywords, :meta_robots]) }
 
     end
 

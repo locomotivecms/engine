@@ -81,6 +81,7 @@ ca:
           seo_title: "Definir un títol de la pàgina que ha de ser utilitzat com el valor de l'etiqueta del títol a la secció de capçalera. Deixiu-ho buit si vol utilitzar el valor per defecte de la configuració del lloc."
           meta_keywords: "Anul·la les paraules clau del lloc usades dins de l'etiqueta de capçalera de la pàgina. Estan separades per una coma."
           meta_description: "Anul·la la descripció de la web feta servir a l'etiqueta de capçalera."
+          meta_robots: "Afegeix les etiquetes per modificar el posicionament SEO de la pàgina. Estan separades per una coma. Ex: 'noindex,nofollow'."
           is_layout: "Si és veritat, aquesta pàgina es pot utilitzar com un disseny per a altres pàgines."
           allow_layout: "Permetre als autors canviar o no el disseny de la pàgina."
         site:
@@ -105,6 +106,7 @@ ca:
           _visible: "Per defecte, la entrada serà mostrada en el lloc web. Per tant es pot fer servir com un atribut publicat."
           seo_title: "El valor que entris reemplaçarà el títol SEO de la pàgina plantilla relativa al teu model."
           meta_keywords: "Anul•la les paraules clau del lloc web fetes servir dintre d'una etiqueta head de la pàgina. Són separades per comes."
+          meta_robots: "Afegeix les etiquetes per modificar el posicionament SEO de la pàgina. Estan separades per una coma. Ex: 'noindex,nofollow'."
           meta_description: "Anul•la la meta descripció feta servir dins l'etiqueta head de la pàgina."
         content_type:
           public_submission_accounts: "Quan es crea una entrada, envia un correu de notificació  a la llista dels comptes d'acontinuació."

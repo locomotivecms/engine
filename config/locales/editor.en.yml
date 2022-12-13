@@ -124,6 +124,7 @@ en:
           title_label: "SEO title"
           meta_keywords_label: "META keywords"
           meta_description_label: "META description"
+          meta_robots_label: "META robots"
 
         settings:
           title_label: "Title"
