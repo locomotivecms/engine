@@ -64,7 +64,7 @@ module Locomotive
     scope :handle,              ->(handle) { where(handle: handle) }
     scope :minimal_attributes,  -> { without(:raw_template, :template) }
     scope :dependent_from,      ->(id) { where(:template_dependencies.in => [id]) }
-    scope :by_id_or_fullpath,   ->(id_or_fullpath) { all.or({ _id: id_or_fullpath }, { fullpath: id_or_fullpath }) }
+    scope :by_id_or_fullpath,   ->(id_or_fullpath) { any_of({ _id: id_or_fullpath }, { fullpath: id_or_fullpath }) }
 
     delegate :fullpath, to: :parent, prefix: true
 
