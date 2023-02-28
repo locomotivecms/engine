@@ -169,7 +169,7 @@ module Locomotive
     def send_notifications(entry, emails = nil)
       return unless self.content_type.public_submission_enabled?
 
-      Locomotive::Account.any_of(
+      Locomotive::Account.or(
         { :_id.in   => self.content_type.public_submission_accounts || [] },
         { :email.in => emails || [] }
       ).each do |account|
