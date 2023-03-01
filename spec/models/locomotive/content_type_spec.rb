@@ -137,7 +137,7 @@ describe Locomotive::ContentType do
     context '#ordering in a belongs_to/has_many relationship' do
 
       it 'orders projects based on the default order of the Project content type' do
-        expect(@category_1.projects.relation_metadata.order).to eq(%w(name desc))
+        expect(@category_1.projects.association.order).to eq(%w(name desc))
         expect(@category_1.projects.sort.map(&:name)).to eq(%w(RubyOnRails LocomotiveCMS).sort)
         expect(@category_1.projects.ordered.all.map(&:name)).to eq(%w(RubyOnRails LocomotiveCMS))
       end
@@ -146,7 +146,7 @@ describe Locomotive::ContentType do
         @content_type.order_by = 'description'; @content_type.order_direction = 'ASC'; @content_type.save!
         @category_1 = safe_find(@category_1.class, @category_1._id)
 
-        expect(@category_1.projects.relation_metadata.order).to eq(%w(description ASC))
+        expect(@category_1.projects.association.order).to eq(%w(description ASC))
         expect(@category_1.projects.map(&:name)).to eq(%w(LocomotiveCMS RubyOnRails))
       end
 
@@ -156,7 +156,7 @@ describe Locomotive::ContentType do
 
         @category_content_type.save!; @category_1 = safe_find(@category_1.class, @category_1._id)
 
-        expect(@category_1.projects.relation_metadata.order.to_s).to eq('position_in_category')
+        expect(@category_1.projects.association.order.to_s).to eq('position_in_category')
         expect(@category_1.projects.map(&:name)).to eq(%w(LocomotiveCMS RubyOnRails))
       end
 

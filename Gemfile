@@ -11,14 +11,15 @@ gemspec
 # your gem to rubygems.org.
 
 group :development, :test do
+  gem 'puma', '~> 5.6.5'
+  gem 'sass-rails', '~> 5.1.0'
+
   gem 'rspec-rails',  '~> 3.8.0'
   gem 'capybara',     '~> 3.25.0'
 
   # To use a debugger
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-end
+  gem 'pry-byebug', '~> 3.10.1'
 
-group :development, :test do
   # gem 'custom_fields', path: '../custom_fields' # for Developers
   # gem 'custom_fields', github: 'locomotivecms/custom_fields', ref: 'ab075b1'
 
@@ -33,7 +34,6 @@ end
 
 group :test do
   gem 'selenium-webdriver',       '~> 3.142.3'
-  gem 'puma',                     '~> 5.1.0'
   gem 'webdrivers',               '~> 4.4.1'
 
   gem 'grape-entity-matchers',    github: 'salsify/grape-entity-matchers', branch: 'grape-entity-exposures'

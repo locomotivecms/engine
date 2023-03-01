@@ -38,7 +38,7 @@ module Locomotive
       site.pages
       .only(:_id, :title, :sections_dropzone_content, :sections_content)
       .where(is_layout: false, target_klass_name: nil, :slug.ne => '404')
-      .or({ title: /#{query}/i }, { _id: query })
+      .and(Locomotive::Page.or({ title: /#{query}/i }, { _id: query }))
       .limit(max_results)
       .sort(title: 1).map do |page|
         {

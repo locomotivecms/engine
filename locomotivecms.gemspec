@@ -27,13 +27,13 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'pundit',                          '~> 1.1.0'
 
-  s.add_dependency 'mongo',                           '2.13.1'
-  s.add_dependency 'mongoid',                         '~> 6.4.0'
+  s.add_dependency 'mongo',                           '~> 2.18.2'
+  s.add_dependency 'mongoid',                         '~> 7.5.2'
   s.add_dependency 'mongoid-tree',                    '~> 2.1.0'
   s.add_dependency 'origin',                          '~> 2.3.1'
 
-  s.add_dependency 'custom_fields',                   '~> 2.12.1'
-  s.add_dependency 'locomotivecms_steam',             '~> 1.6.1'
+  s.add_dependency 'custom_fields',                   '~> 2.13'
+  s.add_dependency 'locomotivecms_steam',             '~> 1.7.0'
 
   s.add_dependency 'slim',                            '~> 3.0.9'
   s.add_dependency 'simple_form',                     '~> 5.0.0'
@@ -44,6 +44,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails-i18n',                      '~> 5.1.1'
   s.add_dependency 'jbuilder',                        '~> 2.7'
 
+  s.add_dependency 'coffee-rails',                    '~> 5.0'
   s.add_dependency 'jquery-rails',                    '~> 4.3.1'
   s.add_dependency 'jquery-ui-rails',                 '~> 6.0.1'
   s.add_dependency 'codemirror-rails',                '~> 5.16.0'
@@ -57,7 +58,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'bazaar',                          '~> 0.0.2'
   s.add_dependency 'json-schema',                     '~> 2.8.0'
 
-  s.add_dependency 'carrierwave-mongoid',             '~> 1.3.0'
+  s.add_dependency 'carrierwave-mongoid',             '~> 1.4.0'
   s.add_dependency 'dragonfly',                       '~> 1.2.0'
   s.add_dependency 'rack-cache',                      '~> 1.7.1'
 

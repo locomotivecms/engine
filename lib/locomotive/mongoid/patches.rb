@@ -1,4 +1,4 @@
-# encoding: utf-8
+# # encoding: utf-8
 
 require 'mongoid'
 
@@ -41,72 +41,32 @@ module Mongoid #:nodoc:
     end
   end
 
-  # FIXME: https://github.com/benedikt/mongoid-tree/issues/58
-  # We replace all the @_#{name} occurences by @_#{name}_ivar.
-  module Relations
-    module Accessors
-      def reset_relation_criteria(name)
-        if instance_variable_defined?("@_#{name}_ivar")
-          send(name).reset_unloaded
-        end
-      end
-      def set_relation(name, relation)
-        instance_variable_set("@_#{name}_ivar", relation)
-      end
-    end
-    def reload_relations
-      relations.each_pair do |name, meta|
-        if instance_variable_defined?("@_#{name}_ivar")
-          if _parent.nil? || instance_variable_get("@_#{name}_ivar") != _parent
-            remove_instance_variable("@_#{name}_ivar")
-          end
-        end
-      end
-    end
-
+  # Hack to give a specific type to the EditableElement
+  module Association
     module Embedded
-      class Many < Relations::Many
+      class EmbedsMany
+        class Proxy < Association::Many
+          def with_same_class!(document, klass)
+            return document if document.is_a?(klass)
 
-        def with_same_class!(document, klass)
-          return document if document.is_a?(klass)
+            Factory.build(klass, {}).tap do |_document|
+              # make it part of the relationship
+              _document.apply_post_processed_defaults
+              integrate(_document)
 
-          Factory.build(klass, {}).tap do |_document|
-            # make it part of the relationship
-            _document.apply_post_processed_defaults
-            integrate(_document)
+              # make it look like the old document
+              attributes = document.attributes
+              attributes['_type'] = _document._type
 
-            # make it look like the old document
-            attributes = document.attributes
-            attributes['_type'] = _document._type
+              _document.instance_variable_set(:@attributes, attributes)
+              _document.new_record  = document.new_record?
+              _document._index      = document._index
 
-            _document.instance_variable_set(:@attributes, attributes)
-            _document.new_record  = document.new_record?
-            _document._index      = document._index
-
-            # finally, make the change in the lists
-            target[_document._index]    = _document
-            _unscoped[_document._index] = _document
+              # finally, make the change in the lists
+              _target[_document._index]   = _document
+              _unscoped[_document._index] = _document
+            end
           end
-        end
-
-      end
-    end
-
-  end
-  module Extensions
-    module Object
-      def ivar(name)
-        if instance_variable_defined?("@_#{name}_ivar")
-          return instance_variable_get("@_#{name}_ivar")
-        else
-          false
-        end
-      end
-      def remove_ivar(name)
-        if instance_variable_defined?("@_#{name}_ivar")
-          return remove_instance_variable("@_#{name}_ivar")
-        else
-          false
         end
       end
     end
