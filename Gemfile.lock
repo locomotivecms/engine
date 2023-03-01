@@ -8,42 +8,6 @@ GIT
       rspec (>= 3.2.0)
 
 PATH
-  remote: ../custom_fields
-  specs:
-    custom_fields (2.13.0)
-      activesupport (>= 5, < 8.0)
-      bcrypt (~> 3.1.18)
-      carrierwave-mongoid (~> 1.4.0)
-      monetize (~> 1.12.0)
-      mongoid (>= 7, < 8.0)
-
-PATH
-  remote: ../steam
-  specs:
-    locomotivecms_steam (1.7.0)
-      RedCloth (~> 4.3.2)
-      bcrypt (~> 3.1.11)
-      chronic (~> 0.10.2)
-      dragonfly (>= 1.2, < 1.5)
-      duktape (~> 2.0.1.1)
-      execjs (~> 2.8.1)
-      httparty (~> 0.16.0)
-      kramdown (~> 2.3.0)
-      liquid (~> 4.0.4)
-      locomotivecms_common (~> 0.4.0)
-      mime-types (~> 3.3.0)
-      mimetype-fu (~> 0.1.2)
-      moneta (~> 1.0.0)
-      morphine (~> 0.1.1)
-      multi_json (~> 1.15.0)
-      nokogiri (~> 1.14.2)
-      pony (~> 1.12)
-      rack-cache (~> 1.7.0)
-      rack-rewrite (~> 1.5.1)
-      rack_csrf (~> 2.6.0)
-      sanitize (~> 6.0.1)
-
-PATH
   remote: .
   specs:
     locomotivecms (4.2.0)
@@ -145,7 +109,7 @@ GEM
       addressable (~> 2.5)
       logger
     arel (9.0.0)
-    attr_extras (5.2.0)
+    attr_extras (7.1.0)
     autoprefixer-rails (8.0.0)
       execjs
     bazaar (0.0.2)
@@ -195,6 +159,12 @@ GEM
     colorize (0.8.1)
     concurrent-ruby (1.2.2)
     crass (1.0.6)
+    custom_fields (2.13.0)
+      activesupport (>= 5, < 8.0)
+      bcrypt (~> 3.1.18)
+      carrierwave-mongoid (~> 1.4.0)
+      monetize (~> 1.12.0)
+      mongoid (>= 7, < 8.0)
     database_cleaner (1.6.2)
     date (3.3.3)
     devise (4.7.3)
@@ -309,11 +279,33 @@ GEM
     launchy (2.5.2)
       addressable (~> 2.8)
     liquid (4.0.4)
-    locomotivecms_common (0.4.0)
-      activesupport (>= 5.1.5, < 6.0)
-      attr_extras (~> 5.2.0)
+    locomotivecms_common (0.5.0)
+      activesupport (>= 5)
+      attr_extras (~> 7.1.0)
       colorize
-      stringex (~> 2.8.2)
+      stringex (~> 2.8.5)
+    locomotivecms_steam (1.7.0)
+      RedCloth (~> 4.3.2)
+      bcrypt (~> 3.1.11)
+      chronic (~> 0.10.2)
+      dragonfly (>= 1.2, < 1.5)
+      duktape (~> 2.0.1.1)
+      execjs (~> 2.8.1)
+      httparty (~> 0.16.0)
+      kramdown (~> 2.3.0)
+      liquid (~> 4.0.4)
+      locomotivecms_common (~> 0.5.0)
+      mime-types (~> 3.3.0)
+      mimetype-fu (~> 0.1.2)
+      moneta (~> 1.0.0)
+      morphine (~> 0.1.1)
+      multi_json (~> 1.15.0)
+      nokogiri (~> 1.14.2)
+      pony (~> 1.12)
+      rack-cache (~> 1.7.0)
+      rack-rewrite (~> 1.5.1)
+      rack_csrf (~> 2.6.0)
+      sanitize (~> 6.0.1)
     logger (1.5.3)
     loofah (2.19.1)
       crass (~> 1.0.2)
@@ -532,14 +524,12 @@ PLATFORMS
 DEPENDENCIES
   capybara (~> 3.25.0)
   codeclimate-test-reporter (~> 1.0.7)
-  custom_fields!
   database_cleaner (~> 1.6.2)
   email_spec (~> 2.2.0)
   factory_bot_rails (~> 4.11.1)
   grape-entity-matchers!
   json_spec (~> 1.1.5)
   locomotivecms!
-  locomotivecms_steam!
   pry-byebug (~> 3.10.1)
   puma (~> 5.6.5)
   rails-controller-testing (~> 1.0.2)
@@ -551,4 +541,4 @@ DEPENDENCIES
   webdrivers (~> 4.4.1)
 
 BUNDLED WITH
-   2.1.4
+   2.3.10

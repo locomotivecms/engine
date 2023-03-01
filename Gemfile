@@ -20,13 +20,13 @@ group :development, :test do
   # To use a debugger
   gem 'pry-byebug', '~> 3.10.1'
 
-  gem 'custom_fields', path: '../custom_fields' # for Developers
+  # gem 'custom_fields', path: '../custom_fields' # for Developers
   # gem 'custom_fields', github: 'locomotivecms/custom_fields', ref: 'ab075b1'
 
   # gem 'locomotivecms_common', path: '../common', require: false
   # gem 'locomotivecms_common', github: 'locomotivecms/common', ref: '4d1bd56', require: false
 
-  gem 'locomotivecms_steam', path: '../steam', require: false
+  # gem 'locomotivecms_steam', path: '../steam', require: false
   # gem 'locomotivecms_steam', github: 'locomotivecms/steam', ref: 'e4be455', require: false
 
   # gem 'carrierwave-mongoid', git: 'git://github.com/locomotivecms/carrierwave-mongoid.git'
