@@ -11,6 +11,8 @@ module Locomotive
 
     helper Locomotive::BaseHelper
 
+    respond_to :html, :json
+
     before_action :set_locale
 
     def update

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  match '/foo' => 'foo#index', as: 'foo', via: :all
+  # match '/foo' => 'foo#index', as: 'foo', via: :all
 
   # Back-office
   mount Locomotive::Engine => '/locomotive', as: 'locomotive'
@@ -10,5 +10,4 @@ Rails.application.routes.draw do
 
   # Render site
   mount Locomotive::Steam.to_app => '/', anchor: false
-
 end

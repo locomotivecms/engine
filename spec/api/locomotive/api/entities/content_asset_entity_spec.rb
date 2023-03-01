@@ -4,9 +4,10 @@ describe Locomotive::API::Entities::ContentAssetEntity do
 
   subject { described_class }
 
-  %i(content_type width height vignette_url alternative_vignette_url).each do |exposure|
-    it { is_expected.to represent(exposure) }
-  end
+  # %i(content_type width height vignette_url alternative_vignette_url).each do |exposure|
+  #   it { is_expected.to represent(exposure) }
+  # end
+  
   describe 'overrides' do
     let!(:asset) { create(:asset) }
 

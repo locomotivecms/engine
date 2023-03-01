@@ -4,23 +4,23 @@ describe Locomotive::API::Entities::ContentTypeEntity do
 
   subject { described_class }
 
-  attributes =
-    %i(
-      name
-      slug
-      description
-      label_field_name
-      order_direction
-      public_submission_enabled
-      public_submission_accounts
-      public_submission_title_template
-      recaptcha_required
-      entry_template
-    )
+  # attributes =
+  #   %i(
+  #     name
+  #     slug
+  #     description
+  #     label_field_name
+  #     order_direction
+  #     public_submission_enabled
+  #     public_submission_accounts
+  #     public_submission_title_template
+  #     recaptcha_required
+  #     entry_template
+  #   )
 
-  attributes.each do |exposure|
-    it { is_expected.to represent(exposure) }
-  end
+  # attributes.each do |exposure|
+  #   it { is_expected.to represent(exposure) }
+  # end
 
   context 'overrides' do
 

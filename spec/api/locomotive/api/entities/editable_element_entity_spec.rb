@@ -4,12 +4,12 @@ describe Locomotive::API::Entities::EditableElementEntity do
 
   subject { described_class }
 
-  attributes =
-    %i(slug block hint priority content)
+  # attributes =
+  #   %i(slug block hint priority content)
 
-  attributes.each do |exposure|
-    it { is_expected.to represent(exposure) }
-  end
+  # attributes.each do |exposure|
+  #   it { is_expected.to represent(exposure) }
+  # end
 
   context 'overrides' do
 

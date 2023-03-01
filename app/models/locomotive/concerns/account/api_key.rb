@@ -3,7 +3,7 @@ module Locomotive
     module Account
 
       # More information here: https://github.com/mongoid/mongoid/issues/3626
-      module ApiKey
+      module APIKey
 
         extend ActiveSupport::Concern
 

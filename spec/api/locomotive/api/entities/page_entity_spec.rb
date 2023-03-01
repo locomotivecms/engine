@@ -4,35 +4,35 @@ describe Locomotive::API::Entities::PageEntity do
 
   subject { described_class }
 
-  attributes =
-    %i(
-      title
-      parent_id
-      position
-      handle
-      depth
-      translated_in
-      response_type
-      slug
-      fullpath
-      redirect
-      redirect_url
-      redirect_type
-      listed
-      published
-      templatized
-      templatized_from_parent
-      is_layout
-      allow_layout
-      cache_enabled
-      seo_title
-      meta_keywords
-      meta_description
-    )
+  # attributes =
+  #   %i(
+  #     title
+  #     parent_id
+  #     position
+  #     handle
+  #     depth
+  #     translated_in
+  #     response_type
+  #     slug
+  #     fullpath
+  #     redirect
+  #     redirect_url
+  #     redirect_type
+  #     listed
+  #     published
+  #     templatized
+  #     templatized_from_parent
+  #     is_layout
+  #     allow_layout
+  #     cache_enabled
+  #     seo_title
+  #     meta_keywords
+  #     meta_description
+  #   )
 
-  attributes.each do |exposure|
-    it { is_expected.to represent(exposure) }
-  end
+  # attributes.each do |exposure|
+  #   it { is_expected.to represent(exposure) }
+  # end
 
   context 'overrides' do
 

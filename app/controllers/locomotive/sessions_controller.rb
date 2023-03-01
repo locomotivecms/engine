@@ -11,6 +11,8 @@ module Locomotive
 
     before_action :set_locale
 
+    respond_to :html, :json
+
     helper Locomotive::BaseHelper
 
     private

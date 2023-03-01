@@ -18,14 +18,14 @@ Gem::Specification.new do |s|
   s.files = Dir['{app,config,db,lib,vendor}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
   s.files.reject! { |fn| fn.include?('app/javascript') }
 
-  s.add_dependency 'rails',                           '>= 5.2.4.2', '< 6.0'
+  s.add_dependency 'rails',                           '>= 7.0.4', '< 7.2'
   s.add_dependency 'rails-html-sanitizer',            '~> 1.3.0'
 
-  s.add_dependency 'devise',                          '~> 4.7.3'
+  s.add_dependency 'devise',                          '~> 4.8.1'
   s.add_dependency 'devise-encryptable',              '~> 0.2.0'
-  s.add_dependency 'simple_token_authentication',     '~> 1.15.1'
+  s.add_dependency 'simple_token_authentication',     '~> 1.18.1'
 
-  s.add_dependency 'pundit',                          '~> 1.1.0'
+  s.add_dependency 'pundit',                          '~> 2.3.0'
 
   s.add_dependency 'mongo',                           '~> 2.18.2'
   s.add_dependency 'mongoid',                         '~> 7.5.2'
@@ -35,44 +35,105 @@ Gem::Specification.new do |s|
   s.add_dependency 'custom_fields',                   '~> 2.13'
   s.add_dependency 'locomotivecms_steam',             '~> 1.7.0'
 
-  s.add_dependency 'slim',                            '~> 3.0.9'
-  s.add_dependency 'simple_form',                     '~> 5.0.0'
-  s.add_dependency 'kaminari-actionview',             '~> 1.2.1'
-  s.add_dependency 'kaminari-mongoid',                '~> 1.0.1'
+  s.add_dependency 'slim',                            '~> 5.0.0'
+  s.add_dependency 'simple_form',                     '~> 5.2.0'
+  s.add_dependency 'kaminari-actionview',             '~> 1.2.2'
+  s.add_dependency 'kaminari-mongoid',                '~> 1.0.2'
   s.add_dependency 'bootstrap-kaminari-views',        '~> 0.0.5'
-  s.add_dependency 'responders',                      '~> 2.4.0'
-  s.add_dependency 'rails-i18n',                      '~> 5.1.1'
-  s.add_dependency 'jbuilder',                        '~> 2.7'
+  s.add_dependency 'responders',                      '~> 3.1.0'
+  s.add_dependency 'rails-i18n',                      '~> 7.0.6'
+  s.add_dependency 'jbuilder',                        '~> 2.11'
 
+  s.add_dependency 'sprockets-rails',                 '~> 3.4.2'
+  s.add_dependency 'sass-rails',                      '~> 6.0.0'
   s.add_dependency 'coffee-rails',                    '~> 5.0'
-  s.add_dependency 'jquery-rails',                    '~> 4.3.1'
+  s.add_dependency 'jquery-rails',                    '~> 4.5.1'
   s.add_dependency 'jquery-ui-rails',                 '~> 6.0.1'
-  s.add_dependency 'codemirror-rails',                '~> 5.16.0'
-  s.add_dependency 'flash_cookie_session',            '~> 1.1.1'
+  
+  # https://github.com/fixlr/codemirror-rails/issues/61
+  # s.add_dependency 'codemirror-rails',                '~> 5.16.0'
+  
+  s.add_dependency 'flash_cookie_session',            '~> 1.1.6'
   s.add_dependency 'bootstrap-sass',                  '~> 3.4.1'
-  s.add_dependency 'autoprefixer-rails',              '~> 8.0.0'
+  s.add_dependency 'autoprefixer-rails',              '~> 10.4.13'
 
-  s.add_dependency 'font-awesome-sass',               '~> 5.2.0'
+  s.add_dependency 'font-awesome-sass',               '~> 6.3.0'
 
-  s.add_dependency 'highline',                        '~> 1.7.10'
+  s.add_dependency 'highline',                        '~> 2.1.0'
   s.add_dependency 'bazaar',                          '~> 0.0.2'
-  s.add_dependency 'json-schema',                     '~> 2.8.0'
+  s.add_dependency 'json-schema',                     '~> 3.0.0'
 
   s.add_dependency 'carrierwave-mongoid',             '~> 1.4.0'
-  s.add_dependency 'dragonfly',                       '~> 1.2.0'
-  s.add_dependency 'rack-cache',                      '~> 1.7.1'
+  s.add_dependency 'dragonfly',                       '~> 1.4.0'
+  s.add_dependency 'rack-cache',                      '~> 1.13.0'
 
   s.add_dependency 'multi_json',                      '~> 1.15.0'
-  s.add_dependency 'yajl-ruby',                       '~> 1.3.1'
+  s.add_dependency 'yajl-ruby',                       '~> 1.4.3'
   s.add_dependency 'actionmailer-with-request',       '~> 0.5.0'
-  s.add_dependency 'adomain',                         '~> 0.1.1'
+  s.add_dependency 'adomain',                         '~> 0.2.4'
 
-  s.add_dependency 'rack',                            '~> 2.1.4'
   s.add_dependency 'grape',                           '~> 1.5.0'
-  s.add_dependency 'grape-entity',                    '~> 0.8.1'
+  s.add_dependency 'grape-entity',                    '~> 0.10.0'
 
-  s.add_dependency 'carrierwave-imageoptim',          '0.1.5'
-  s.add_dependency 'image_optim',                     '0.26.3'
-  s.add_dependency 'image_optim_pack',                '0.5.1'
+  s.add_dependency 'carrierwave',                     '~> 1.3.3'
+  
+  # s.add_dependency 'rails',                           '>= 7.0.4', '< 7.2'
+  # s.add_dependency 'rails-html-sanitizer',            '~> 1.3.0'
+
+  # s.add_dependency 'devise',                          '~> 4.8.1'
+  # s.add_dependency 'devise-encryptable',              '~> 0.2.0'
+  # s.add_dependency 'simple_token_authentication',     '~> 1.15.1'
+
+  # s.add_dependency 'pundit',                          '~> 1.1.0'
+
+  # s.add_dependency 'mongo',                           '~> 2.18.2'
+  # s.add_dependency 'mongoid',                         '~> 7.5.2'
+  # s.add_dependency 'mongoid-tree',                    '~> 2.1.0'
+  # s.add_dependency 'origin',                          '~> 2.3.1'
+
+  # s.add_dependency 'custom_fields',                   '~> 2.13'
+  # s.add_dependency 'locomotivecms_steam',             '~> 1.7.0'
+
+  # s.add_dependency 'slim',                            '~> 3.0.9'
+  # s.add_dependency 'simple_form',                     '~> 5.0.0'
+  # s.add_dependency 'kaminari-actionview',             '~> 1.2.1'
+  # s.add_dependency 'kaminari-mongoid',                '~> 1.0.1'
+  # s.add_dependency 'bootstrap-kaminari-views',        '~> 0.0.5'
+  # s.add_dependency 'responders',                      '~> 2.4.0'
+  # s.add_dependency 'rails-i18n',                      '~> 5.1.1'
+  # s.add_dependency 'jbuilder',                        '~> 2.7'
+
+  # s.add_dependency 'sprockets-rails',                 '~> 3.4.2'
+  # s.add_dependency 'sass-rails',                      '~> 6.0.0'
+  # s.add_dependency 'coffee-rails',                    '~> 5.0'
+  # s.add_dependency 'jquery-rails',                    '~> 4.3.1'
+  # s.add_dependency 'jquery-ui-rails',                 '~> 6.0.1'
+  # s.add_dependency 'codemirror-rails',                '~> 5.16.0'
+  # s.add_dependency 'flash_cookie_session',            '~> 1.1.1'
+  # s.add_dependency 'bootstrap-sass',                  '~> 3.4.1'
+  # s.add_dependency 'autoprefixer-rails',              '~> 8.0.0'
+
+  # s.add_dependency 'font-awesome-sass',               '~> 5.2.0'
+
+  # s.add_dependency 'highline',                        '~> 1.7.10'
+  # s.add_dependency 'bazaar',                          '~> 0.0.2'
+  # s.add_dependency 'json-schema',                     '~> 2.8.0'
+
+  # s.add_dependency 'carrierwave-mongoid',             '~> 1.4.0'
+  # s.add_dependency 'dragonfly',                       '~> 1.2.0'
+  # s.add_dependency 'rack-cache',                      '~> 1.7.1'
+
+  # s.add_dependency 'multi_json',                      '~> 1.15.0'
+  # s.add_dependency 'yajl-ruby',                       '~> 1.3.1'
+  # s.add_dependency 'actionmailer-with-request',       '~> 0.5.0'
+  # s.add_dependency 'adomain',                         '~> 0.1.1'
+
+  # s.add_dependency 'rack',                            '~> 2.1.4'
+  # s.add_dependency 'grape',                           '~> 1.5.0'
+  # s.add_dependency 'grape-entity',                    '~> 0.8.1'
+
+  # s.add_dependency 'carrierwave-imageoptim',          '0.1.5'
+  # s.add_dependency 'image_optim',                     '~> 0.31.1'
+  # s.add_dependency 'image_optim_pack',                '~> 0.9.1'
 
 end
