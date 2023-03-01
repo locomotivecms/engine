@@ -11,7 +11,7 @@ gemspec
 # your gem to rubygems.org.
 
 group :development, :test do
-  gem 'puma', '~> 6.1.0'
+  gem 'puma', '~> 5.6.5'
   gem 'sass-rails', '~> 5.1.0'
 
   gem 'rspec-rails',  '~> 3.8.0'
