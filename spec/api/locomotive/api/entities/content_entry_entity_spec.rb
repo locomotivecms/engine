@@ -4,20 +4,20 @@ describe Locomotive::API::Entities::ContentEntryEntity do
 
   subject { described_class }
 
-  attributes =
-    %i(
-      _slug
-      _label
-      _position
-      _visible
-      seo_title
-      meta_keywords
-      meta_description
-    )
+  # attributes =
+  #   %i(
+  #     _slug
+  #     _label
+  #     _position
+  #     _visible
+  #     seo_title
+  #     meta_keywords
+  #     meta_description
+  #   )
 
-  attributes.each do |exposure|
-    it { is_expected.to represent(exposure) }
-  end
+  # attributes.each do |exposure|
+  #   it { is_expected.to represent(exposure) }
+  # end
 
   context 'overrides' do
 

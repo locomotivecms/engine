@@ -6,7 +6,7 @@ group :development, :test do
   gem 'puma', '~> 6.1.1'
   gem 'rspec-rails', '~> 6.0.1'
   gem 'capybara', '~> 3.38.0'
-  gem 'debug', '>= 1.0.0'
+  gem "debug", ">= 1.0.0"
   
   # gem 'custom_fields', path: '../custom_fields' # for Developers
   # gem 'custom_fields', github: 'locomotivecms/custom_fields', ref: 'ab075b1'
@@ -25,7 +25,6 @@ group :test do
   gem 'factory_bot_rails', '~> 6.2.0'
   gem 'json_spec', '~> 1.1.5'
   gem 'database_cleaner-mongoid', '~> 2.0.1'
-  gem 'rails-controller-testing'
   gem 'email_spec', '~> 2.2.1'
   gem 'simplecov', require: false
 end

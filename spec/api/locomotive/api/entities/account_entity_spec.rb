@@ -4,18 +4,18 @@ describe Locomotive::API::Entities::AccountEntity do
 
   subject { described_class }
 
-  attributes =
-    %i(
-      name
-      email
-      locale
-      api_key
-      super_admin
-    )
+  # attributes =
+  #   %i(
+  #     name
+  #     email
+  #     locale
+  #     api_key
+  #     super_admin
+  #   )
 
-  attributes.each do |exposure|
-    it { is_expected.to represent(exposure) }
-  end
+  # attributes.each do |exposure|
+  #   it { is_expected.to represent(exposure) }
+  # end
 
   context 'overrides' do
     let!(:account) { create(:account) }

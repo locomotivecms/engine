@@ -392,10 +392,6 @@ GEM
       activesupport (= 7.0.4.2)
       bundler (>= 1.15.0)
       railties (= 7.0.4.2)
-    rails-controller-testing (1.0.5)
-      actionpack (>= 5.0.1.rc1)
-      actionview (>= 5.0.1.rc1)
-      activesupport (>= 5.0.1.rc1)
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
@@ -520,7 +516,6 @@ DEPENDENCIES
   json_spec (~> 1.1.5)
   locomotivecms!
   puma (~> 6.1.1)
-  rails-controller-testing
   rspec-rails (~> 6.0.1)
   selenium-webdriver (~> 4.8.1)
   shoulda-matchers (~> 5.3.0)
