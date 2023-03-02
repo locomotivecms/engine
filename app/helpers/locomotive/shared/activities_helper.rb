@@ -42,7 +42,7 @@ module Locomotive
       end
 
       def activity_key_to_sentence(key, options = nil)
-        I18n.t(key, (options || {}).merge(scope: 'locomotive.activity')).html_safe
+        I18n.t(key, **(options || {}).merge(scope: 'locomotive.activity')).html_safe
       end
 
       def activity_emphasize(text)

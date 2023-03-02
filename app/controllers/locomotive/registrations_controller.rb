@@ -4,11 +4,13 @@ module Locomotive
     include Locomotive::Concerns::SslController
     include Locomotive::Concerns::RedirectToMainHostController
 
-    layout '/locomotive/layouts/account'
+    layout 'locomotive/layouts/account'
 
     before_action :configure_permitted_parameters
 
     helper Locomotive::BaseHelper
+
+    respond_to :html, :json
 
     before_action :set_locale
 

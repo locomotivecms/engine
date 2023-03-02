@@ -22,7 +22,7 @@ module Locomotive
 
         def decode_json(name, json)
           begin
-            value = json.is_a?(String) ? ActiveSupport::JSON.decode(URI.unescape(json)) : json
+            value = json.is_a?(String) ? ActiveSupport::JSON.decode(CGI.unescape(json)) : json
             instance_variable_set(:"@#{name}_json_parsing_error", nil)
             value
           rescue ActiveSupport::JSON.parse_error

@@ -87,10 +87,6 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
-  config.before(:each, type: :controller) do
-    request.host = 'locomotive.local' if request.respond_to?(:host=)
-  end
-
   config.before(:each, type: :system) do
     host! 'http://locomotive.local'
     driven_by :locomotive_headless_chrome

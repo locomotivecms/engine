@@ -21,8 +21,14 @@ module Locomotive
       ::ActionController::Base.wrap_parameters format: [:json]
     end
 
-    initializer 'locomotive.devise' do |app|
-      ::DeviseController.respond_to :html, :json
+    # initializer 'locomotive.devise' do |app|
+    #   ::DeviseController.respond_to :html, :json
+    # end
+
+    initializer 'locomotive.inflectors' do |app|
+      ActiveSupport::Inflector.inflections(:en) do |inflect|
+        inflect.acronym 'API'
+      end
     end
 
     initializer 'locomotive.assets' do |app|
@@ -31,6 +37,7 @@ module Locomotive
 
     initializer 'locomotive.precompile.hook', group: :all do |app|
       app.config.assets.precompile += %w(
+        locomotive_manifest.js
         locomotive/icons/flags/*.png
         locomotive/*.png
         locomotive/*.gif

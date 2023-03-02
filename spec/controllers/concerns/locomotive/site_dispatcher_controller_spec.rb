@@ -35,6 +35,8 @@ describe Locomotive::Concerns::SiteDispatcherController do
 
   describe '#render_no_site_error' do
 
+    before { request.host = 'locomotive.local' }
+      
     render_views
 
     controller(Locomotive::BaseController) do

@@ -19,7 +19,7 @@ module Locomotive
           options = { host: Locomotive.config.host }
           options[:port] = request.port if request.port != 80
 
-          redirect_to root_url(options)
+          redirect_to(root_url(**options), allow_other_host: true)
         end
       end
 

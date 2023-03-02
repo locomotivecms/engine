@@ -9,7 +9,7 @@ module Locomotive
     include Locomotive::Concerns::StoreLocationController
     include Locomotive::Concerns::WithinSiteController
 
-    layout '/locomotive/layouts/application'
+    layout 'locomotive/layouts/application'
 
     helper Locomotive::BaseHelper, Locomotive::ErrorsHelper
 

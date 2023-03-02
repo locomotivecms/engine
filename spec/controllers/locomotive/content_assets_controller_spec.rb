@@ -47,7 +47,7 @@ describe Locomotive::ContentAssetsController do
     subject do
       post :bulk_create, params: { site_handle: site, locale: :en, content_assets: content_assets_attributes, format: :json }
     end
-    it { is_expected.to be_success }
+    it { is_expected.to be_successful }
     specify do
       expect { subject }.to change(Locomotive::ContentAsset, :count).by(3)
     end

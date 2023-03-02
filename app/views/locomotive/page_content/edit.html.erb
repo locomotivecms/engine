@@ -2,7 +2,7 @@
 
 <% content_for :head do %>
   <script>
-    const _json = <%== render template: 'locomotive/page_content/edit.json.jbuilder' %>;
+    const _json = <%== render partial: 'locomotive/page_content/edit', formats: :json %>;
 
     window.Locomotive.previewBaseUrl = "<%= preview_path(current_site) %>";
 

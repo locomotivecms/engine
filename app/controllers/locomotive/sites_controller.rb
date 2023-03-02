@@ -3,7 +3,7 @@ module Locomotive
 
     account_required
 
-    layout '/locomotive/layouts/account'
+    layout 'locomotive/layouts/account'
 
     def index
       authorize Site

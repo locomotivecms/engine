@@ -71,7 +71,7 @@ module Locomotive
       csv_options = { headers: true, col_sep: ';', quote_char: "\"" }.merge(csv_options || {})
       asset = content_assets.where(id: csv_asset_id).first
       raise 'The CSV file doesn\'t exist anymore' unless asset
-      CSV.parse(asset.source.read, csv_options)
+      CSV.parse(asset.source.read, **csv_options)
     rescue Exception => e
       raise WrongImportFileException.new e.message
     end

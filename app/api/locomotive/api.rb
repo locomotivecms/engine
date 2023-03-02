@@ -19,7 +19,7 @@ module Locomotive
 
     class Dispatch < Grape::API
 
-      helpers Pundit
+      helpers Pundit::Authorization
       helpers API::Helpers::AuthenticationHelper
       helpers API::Helpers::ParamsHelper
       helpers API::Helpers::PersistenceHelper

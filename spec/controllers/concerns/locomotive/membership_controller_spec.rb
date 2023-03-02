@@ -1,12 +1,16 @@
 describe Locomotive::Concerns::MembershipController do
 
-   before(:all) do
+  before(:all) do
     class MyController < ActionController::Base
       include Locomotive::Concerns::MembershipController
       include Locomotive::Engine.routes.url_helpers # Required for loading engine routes
 
       def current_site; end
     end
+  end
+
+  before do
+    allow(request).to receive(:host).and_return('locomotive.local')
   end
 
   after(:all) { Object.send :remove_const, :MyController }

@@ -29,7 +29,7 @@ module Locomotive
       def render_no_site_error
         respond_to do |format|
           format.html do
-            redirect_to sites_path
+            redirect_to locomotive.sites_path
           end
           format.json do
             render json: { error: 'No site found' }, status: :not_found

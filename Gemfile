@@ -1,25 +1,13 @@
 source 'https://rubygems.org'
 
-# Declare your gem's dependencies in locomotive.gemspec.
-# Bundler will treat runtime dependencies like base dependencies, and
-# development dependencies will be added by default to the :development group.
 gemspec
 
-# Declare any dependencies that are still in development here instead of in
-# your gemspec. These might include edge Rails or gems from your path or
-# Git. Remember to move these dependencies to your gemspec before releasing
-# your gem to rubygems.org.
-
-group :development, :test do
-  gem 'puma', '~> 5.6.5'
-  gem 'sass-rails', '~> 5.1.0'
-
-  gem 'rspec-rails',  '~> 3.8.0'
-  gem 'capybara',     '~> 3.25.0'
-
-  # To use a debugger
-  gem 'pry-byebug', '~> 3.10.1'
-
+group :development, :test do 
+  gem 'puma', '~> 6.1.1'
+  gem 'rspec-rails', '~> 6.0.1'
+  gem 'capybara', '~> 3.38.0'
+  gem 'debug', '>= 1.0.0'
+  
   # gem 'custom_fields', path: '../custom_fields' # for Developers
   # gem 'custom_fields', github: 'locomotivecms/custom_fields', ref: 'ab075b1'
 
@@ -28,22 +16,16 @@ group :development, :test do
 
   # gem 'locomotivecms_steam', path: '../steam', require: false
   # gem 'locomotivecms_steam', github: 'locomotivecms/steam', ref: 'e4be455', require: false
-
-  # gem 'carrierwave-mongoid', git: 'git://github.com/locomotivecms/carrierwave-mongoid.git'
 end
 
 group :test do
-  gem 'selenium-webdriver',       '~> 3.142.3'
-  gem 'webdrivers',               '~> 4.4.1'
-
-  gem 'grape-entity-matchers',    github: 'salsify/grape-entity-matchers', branch: 'grape-entity-exposures'
-  gem 'shoulda-matchers',         '~> 3.1.2'
-  gem 'rails-controller-testing', '~> 1.0.2'
-  gem 'factory_bot_rails',        '~> 4.11.1'
-  gem 'json_spec',                '~> 1.1.5'
-  gem 'database_cleaner',         '~> 1.6.2'
-  gem 'email_spec',               '~> 2.2.0'
-
-  gem 'codeclimate-test-reporter',  '~> 1.0.7',  require: false
-  gem 'simplecov',                  require: false
+  gem 'selenium-webdriver', '~> 4.8.1'
+  gem 'webdrivers', '~> 5.2.0'
+  gem 'shoulda-matchers', '~> 5.3.0'
+  gem 'factory_bot_rails', '~> 6.2.0'
+  gem 'json_spec', '~> 1.1.5'
+  gem 'database_cleaner-mongoid', '~> 2.0.1'
+  gem 'rails-controller-testing'
+  gem 'email_spec', '~> 2.2.1'
+  gem 'simplecov', require: false
 end
