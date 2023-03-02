@@ -6,7 +6,7 @@ module Locomotive
       let(:current_site) { create(:site) }
       let(:current_locomotive_account) { create(:account, api_key: 'abc', email: 'foo@bar.com') }
       let(:expected_wagon_string) do
-        "wagon clone acme_website http://test.host -h acme -e foo@bar.com -a abc"
+        "wagon clone acme_website http://locomotive.local -h acme -e foo@bar.com -a abc"
       end
 
       around do |ex|

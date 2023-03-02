@@ -225,7 +225,7 @@ module Locomotive
     end
 
     def custom_field_t(name, type, interpolation = {})
-      t(name, { scope: ['locomotive.custom_fields.types', type] }.merge(interpolation))
+      t(name, **{ scope: ['locomotive.custom_fields.types', type] }.merge(interpolation))
     end
 
   end

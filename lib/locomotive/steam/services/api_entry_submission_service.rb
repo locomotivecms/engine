@@ -29,6 +29,7 @@ module Locomotive
           })
 
           entity = entry.to_steam(@content_type)
+
           Locomotive::Steam::Decorators::I18nDecorator.new(entity, locale)
         end
       end

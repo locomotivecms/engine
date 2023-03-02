@@ -27,9 +27,9 @@ module Locomotive
 
           steam_repositories.content_entry.with(to_steam).build(entry_attributes).tap do |entity|
             # copy error messages
-            entry.errors.each do |name, message|
-              next if name == :_slug
-              entity.errors.add(name, message)
+            entry.errors.each do |error|
+              next if error.attribute == :_slug
+              entity.errors.add(error.attribute, error.message)
             end
           end
         end
