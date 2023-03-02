@@ -4,7 +4,7 @@ describe Locomotive::API::Entities::MembershipEntity do
 
   subject { described_class }
 
-  # it { is_expected.to represent(:role) }
+  it { is_expected.to represent(:role) }
 
   context 'overrides' do
     let!(:account) { create(:account) }
