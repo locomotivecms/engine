@@ -78,7 +78,7 @@ module Locomotive
 
         if in_header
           set_flash_message!
-          message = URI::escape(controller.flash[type].to_str) if controller.flash[type]
+          message = ERB::Util.url_encode(controller.flash[type].to_str) if controller.flash[type]
 
           unless message.blank?
             controller.headers['X-Message']       = ActiveSupport::JSON.encode(message)

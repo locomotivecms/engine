@@ -4,7 +4,7 @@ module Locomotive
     include Locomotive::Concerns::SslController
     include Locomotive::Concerns::RedirectToMainHostController
 
-    layout '/locomotive/layouts/account'
+    layout 'locomotive/layouts/account'
 
     before_action :configure_permitted_parameters
 

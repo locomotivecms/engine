@@ -17,7 +17,7 @@ describe Locomotive::PagesController do
   # FIXME: no more index action
   # describe "#GET index" do
   #   subject { get :index, site_handle: site, locale: :en }
-  #   it { is_expected.to be_success }
+  #   it { is_expected.to be_successful }
   # end
 
   describe "#GET new" do

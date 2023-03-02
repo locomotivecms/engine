@@ -7,7 +7,7 @@ module Locomotive
 
     within_site_only_if_existing true
 
-    layout '/locomotive/layouts/account'
+    layout 'locomotive/layouts/account'
 
     helper Locomotive::BaseHelper
 

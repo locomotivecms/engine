@@ -1,7 +1,7 @@
 module Locomotive
   class ErrorsController < ApplicationController
 
-    layout '/locomotive/layouts/error'
+    layout 'locomotive/layouts/error'
 
     helper Locomotive::BaseHelper
 

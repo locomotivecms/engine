@@ -7,7 +7,7 @@ module Locomotive
 
     within_site_only_if_existing true # Note: do not validate the membership
 
-    layout '/locomotive/layouts/account'
+    layout 'locomotive/layouts/account'
 
     before_action :set_locale
 
