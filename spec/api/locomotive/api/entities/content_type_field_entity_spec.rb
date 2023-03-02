@@ -4,23 +4,23 @@ describe Locomotive::API::Entities::ContentTypeFieldEntity do
 
   subject { described_class }
 
-  # attributes =
-  #   %i(
-  #     name
-  #     type
-  #     label
-  #     hint
-  #     default
-  #     required
-  #     localized
-  #     unique
-  #     position
-  #     group
-  #   )
+  attributes =
+    %i(
+      name
+      type
+      label
+      hint
+      default
+      required
+      localized
+      unique
+      position
+      group
+    )
 
-  # attributes.each do |exposure|
-  #   it { is_expected.to represent(exposure) }
-  # end
+  attributes.each do |exposure|
+    it { is_expected.to represent(exposure) }
+  end
 
   context 'overrides' do
 

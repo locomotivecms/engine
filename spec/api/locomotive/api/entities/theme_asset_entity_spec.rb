@@ -6,9 +6,9 @@ describe Locomotive::API::Entities::ThemeAssetEntity do
 
   subject { described_class }
 
-  # it { is_expected.to represent(:content_type) }
-  # it { is_expected.to represent(:folder) }
-  # it { is_expected.to represent(:checksum) }
+  it { is_expected.to represent(:content_type) }
+  it { is_expected.to represent(:folder) }
+  it { is_expected.to represent(:checksum) }
 
   context 'overrides' do
 

@@ -6,9 +6,9 @@ describe Locomotive::API::Entities::SnippetEntity do
 
   before { Time.zone = ActiveSupport::TimeZone['Chicago'] }
 
-  # it { is_expected.to represent(:name) }
-  # it { is_expected.to represent(:slug) }
-  # it { is_expected.to represent(:template) }
+  it { is_expected.to represent(:name) }
+  it { is_expected.to represent(:slug) }
+  it { is_expected.to represent(:template) }
 
   context 'overrides' do
 
