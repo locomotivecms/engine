@@ -25,6 +25,7 @@ group :test do
   gem 'factory_bot_rails', '~> 6.2.0'
   gem 'json_spec', '~> 1.1.5'
   gem 'database_cleaner-mongoid', '~> 2.0.1'
+  gem 'rails-controller-testing'
   gem 'email_spec', '~> 2.2.1'
   gem 'simplecov', require: false
 end
