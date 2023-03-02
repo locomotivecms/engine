@@ -31,7 +31,7 @@ module Locomotive
 
     def new_content_entry_subject(entry, options)
       if entry.content_type.public_submission_title_template.blank?
-        t('locomotive.notifications.new_content_entry.subject', options)
+        t('locomotive.notifications.new_content_entry.subject', **options)
       else
         entry.content_type.public_submission_title(entry, options)
       end
