@@ -68,7 +68,7 @@ module Locomotive
             fields = content_type.ordered_entries_custom_fields
             labels = fields.map(&:label) << I18n.t('mongoid.attributes.locomotive/content_entry.created_at')
 
-            CSV.generate(csv_options) do |csv|
+            CSV.generate(**csv_options) do |csv|
               # header
               csv << labels
               # body
