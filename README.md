@@ -39,7 +39,6 @@ Have a look at our [Trello](https://trello.com/b/kRiy1dZu/locomotive-v3) board t
 
 Here is a list of the main gems used to power the Locomotive platform:
 
-<<<<<<< HEAD
 - Ruby 3+
 - Rails 7     - *web framework*
 - Bootstrap   - *UI framework*
