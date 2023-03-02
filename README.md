@@ -39,7 +39,7 @@ Have a look at our [Trello](https://trello.com/b/kRiy1dZu/locomotive-v3) board t
 
 Here is a list of the main gems used to power the Locomotive platform:
 
-- Ruby 2.7+
+- Ruby 2.7+ (< 3.2)
 - Rails 7     - *web framework*
 - Bootstrap   - *UI framework*
 - Mongoid 7   - *Object-Document-Mapper for MongoDB 6*
