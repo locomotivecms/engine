@@ -37,6 +37,7 @@ module Locomotive
 
     initializer 'locomotive.precompile.hook', group: :all do |app|
       app.config.assets.precompile += %w(
+        locomotive_manifest.js
         locomotive/icons/flags/*.png
         locomotive/*.png
         locomotive/*.gif

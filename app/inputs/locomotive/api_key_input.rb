@@ -1,5 +1,5 @@
 module Locomotive
-  class ApiKeyInput < ::SimpleForm::Inputs::Base
+  class APIKeyInput < ::SimpleForm::Inputs::Base
 
     include Locomotive::SimpleForm::Inputs::FasterTranslate
 
