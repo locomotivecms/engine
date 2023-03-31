@@ -68,7 +68,11 @@ module Locomotive
                   'name' => { 'type' => 'string', 'pattern' => '^[A-Za-z0-9_]+$', 'not': { 'enum': ['dom_id', 'model_name', 'method_missing', '_name', '_label', '_position', '_fields', '_t'] } },
                   'label' => { 'type' => ['string', 'object'] },
                   'hint' => { 'type' => ['string', 'object'] },
-                  'type' => { 'enum' => ['string', 'text', 'integer', 'float', 'image', 'boolean', 'select', 'color'] },
+
+                  ### TODO: fetch all valid types including user defined custom field types
+                  'type' => { 'type' => 'string' },
+                  #'type' => { 'enum' => ['string', 'text', 'integer', 'float', 'image', 'boolean', 'select', 'color'] },
+
                   'position' => { 'type' => 'integer' },
                   'select_options' => { 'type' => ['object', 'array'] },
                   'localized' => { 'type' => 'boolean' },
