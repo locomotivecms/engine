@@ -12,7 +12,7 @@ module Locomotive
           field :routes, type: Array, default: []
 
           ## behaviours ##
-          json_attribute  :routes
+          json_attribute :routes
         end
 
         private

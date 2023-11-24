@@ -9,7 +9,10 @@ module Locomotive
 
           def json_attribute(name)
             validate { |record| record.send(:json_attribute_must_be_valid, name) }
-            before_validation { |record| record.send(:add_json_parsing_error, name) }
+            before_validation do |record| 
+              record.send(:add_json_uncastable_values_error, name)
+              record.send(:add_json_parsing_error, name)
+            end
 
             define_method(:"#{name}=") do |json|
               super(decode_json(name, json))
@@ -41,6 +44,16 @@ module Locomotive
             JSON::Validator.validate!(schema, json)
           rescue JSON::Schema::ValidationError
             self.errors.add(name, $!.message)
+          end
+        end
+
+        def add_json_uncastable_values_error(name)
+          value = attributes_before_type_cast[name.to_s]
+
+          # https://www.mongodb.com/docs/mongoid/current/reference/fields/#uncastable-values
+          if self[name].nil? && !value.nil?
+            # Uncastable value detected!
+            self.errors.add(name, 'has a wrong object type')
           end
         end
 
