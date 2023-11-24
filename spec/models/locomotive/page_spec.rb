@@ -30,14 +30,14 @@ describe Locomotive::Page do
       page = create(:page)
       another_page = build(:page, site: page.site)
       expect(another_page).to_not be_valid
-      expect(another_page.errors[:slug]).to eq(["is already taken"])
+      expect(another_page.errors[:slug]).to eq(["has already been taken"])
     end
 
     it 'requires the uniqueness of the handle' do
       page = create(:page, handle: 'foo')
       another_page = build(:page, handle: 'foo', site: page.site)
       expect(another_page).to_not be_valid
-      expect(another_page.errors[:handle]).to eq(["is already taken"])
+      expect(another_page.errors[:handle]).to eq(["has already been taken"])
     end
 
     it 'requires the uniqueness of the slug within a "folder"' do
@@ -46,7 +46,7 @@ describe Locomotive::Page do
       child_1 = create(:page, slug: 'first_child', parent: root, site: site)
       page = build(:page, slug: 'first_child', parent: root, site: site)
       expect(page).to_not be_valid
-      expect(page.errors[:slug]).to eq(["is already taken"])
+      expect(page.errors[:slug]).to eq(["has already been taken"])
 
       page.slug = 'index'
       expect(page.valid?).to eq(true)
@@ -261,7 +261,7 @@ describe Locomotive::Page do
 
       another_page = build(:page, title: 'Lorem ipsum', parent: @home, site: @home.site, templatized: true, target_klass_name: 'Foo')
       expect(another_page.valid?).to eq(false)
-      expect(another_page.errors['slug']).to eq(['is already taken'])
+      expect(another_page.errors['slug']).to eq(['has already been taken'])
     end
 
     context '#descendants' do
