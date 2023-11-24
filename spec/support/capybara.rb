@@ -8,7 +8,7 @@ if chromedriver_version = ENV['CHROMEDRIVER_VERSION']
   Webdrivers.cache_time = 86_400 # ie. 24 hours
 end
 
-Capybara.server = :puma #webrick
+Capybara.server = :puma 
 Capybara.app_host = 'http://locomotive.local'
 Capybara.server_host = '0.0.0.0'
 Capybara.server_port = 9886

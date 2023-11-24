@@ -41,7 +41,7 @@ def Locomotive.configure_for_test(force = false)
 
     if force
       Locomotive.send(:remove_const, 'Site') if Locomotive.const_defined?('Site')
-      load 'locomotive/site.rb'
+      load Rails.root.join('..', '..', 'app', 'models', 'locomotive/site.rb').to_s
     end
   end
 end

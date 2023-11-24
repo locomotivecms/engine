@@ -18,22 +18,22 @@ Gem::Specification.new do |s|
   s.files = Dir['{app,config,db,lib,vendor}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
   s.files.reject! { |fn| fn.include?('app/javascript') }
 
-  s.add_dependency 'rails',                           '>= 7.0.4', '< 7.2'
-  s.add_dependency 'rails-html-sanitizer',            '~> 1.3.0'
+  s.add_dependency 'rails',                           '>= 7.1'
+  s.add_dependency 'rails-html-sanitizer',            '~> 1.6.0'
 
-  s.add_dependency 'devise',                          '~> 4.8.1'
+  s.add_dependency 'devise',                          '~> 4.9.3'
   s.add_dependency 'devise-encryptable',              '~> 0.2.0'
   s.add_dependency 'simple_token_authentication',     '~> 1.18.1'
 
   s.add_dependency 'pundit',                          '~> 2.3.0'
 
-  s.add_dependency 'mongo',                           '~> 2.18.2'
-  s.add_dependency 'mongoid',                         '~> 7.5.2'
-  s.add_dependency 'mongoid-tree',                    '~> 2.1.0'
+  s.add_dependency 'mongo',                           '~> 2.19.3'
+  s.add_dependency 'mongoid',                         '~> 8.0.7'
+  s.add_dependency 'mongoid-tree',                    '~> 2.2.0'
   s.add_dependency 'origin',                          '~> 2.3.1'
 
-  s.add_dependency 'custom_fields',                   '~> 2.13.1'
-  s.add_dependency 'locomotivecms_steam',             '~> 1.7.1'
+  # s.add_dependency 'custom_fields',                   '~> 2.13.1'
+  # s.add_dependency 'locomotivecms_steam',             '~> 1.7.1'
 
   s.add_dependency 'slim',                            '~> 5.0.0'
   s.add_dependency 'simple_form',                     '~> 5.2.0'
@@ -62,14 +62,14 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'carrierwave-mongoid',             '~> 1.4.0'
   s.add_dependency 'dragonfly',                       '~> 1.4.0'
-  s.add_dependency 'rack-cache',                      '~> 1.13.0'
+  s.add_dependency 'rack-cache',                      '~> 1.14.0'
 
   s.add_dependency 'multi_json',                      '~> 1.15.0'
   s.add_dependency 'yajl-ruby',                       '~> 1.4.3'
   s.add_dependency 'actionmailer-with-request',       '~> 0.5.0'
   s.add_dependency 'adomain',                         '~> 0.2.4'
 
-  s.add_dependency 'grape',                           '~> 1.5.0'
+  s.add_dependency 'grape',                           '~> 1.5.3'
   s.add_dependency 'grape-entity',                    '~> 0.10.0'
 
   s.add_dependency 'carrierwave',                     '~> 1.3.3'

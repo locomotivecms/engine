@@ -105,7 +105,7 @@ describe Locomotive::Site do
       create(:site)
       site = build(:site)
       expect(site).to_not be_valid
-      expect(site.errors[:handle]).to eq(["is already taken"])
+      expect(site.errors[:handle]).to eq(['has already been taken'])
     end
 
     it 'validates uniqueness of domains' do

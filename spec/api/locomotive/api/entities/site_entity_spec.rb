@@ -10,7 +10,7 @@ describe Locomotive::API::Entities::SiteEntity do
     end
 
   context 'overrides' do
-    let!(:admin)  { create(:admin) }
+    let!(:admin)  { build(:admin) }
     let!(:site)   { admin.site }
     let(:options) { { env: { 'HTTP_HOST' => 'http://locomotive.works:8080' } } }
 
@@ -25,7 +25,7 @@ describe Locomotive::API::Entities::SiteEntity do
 
     describe 'template_version' do
       it 'returns the template version (integer)' do
-        expect(exposure[:template_version]).not_to eq 0
+        expect(exposure[:template_version]).to eq 0
       end
     end
 

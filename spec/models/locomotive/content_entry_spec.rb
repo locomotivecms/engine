@@ -434,6 +434,29 @@ describe Locomotive::ContentEntry do
 
   end
 
+  describe '.by_id_or_slug' do
+    before do
+      build_content_entry({ _slug: 'foo' }, false).save!
+      build_content_entry({ _slug: 'bar' }, false).save!
+    end
+    
+    subject { content_type.entries.by_id_or_slug(slug).first }
+
+    describe 'Given there is no content entry in DB matching the slug' do
+      let(:slug) { 'unknown' }
+
+      it { is_expected.to eq nil }
+    end
+
+    describe 'Given there is a content entry in DB matching the slug' do
+      let(:slug) { 'foo' }
+
+      it 'returns the section' do
+        expect(subject._slug).to eq 'foo'
+      end
+    end
+  end
+
   def localize_content_type
     content_type.entries_custom_fields.first.localized = true
     content_type.save

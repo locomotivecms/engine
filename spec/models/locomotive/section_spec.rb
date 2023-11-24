@@ -65,4 +65,29 @@ describe Locomotive::Section do
 
   end
 
+  describe '.by_id_or_slug' do
+    let(:site) { create(:site) }
+
+    before do
+      create(:section, slug: 'header', site: site)
+      create(:section, slug: 'footer', site: site)
+    end
+    
+    subject { site.sections.by_id_or_slug(slug).first }
+
+    describe 'Given there is no section in DB matching the slug' do
+      let(:slug) { 'unknown' }
+
+      it { is_expected.to eq nil }
+    end
+
+    describe 'Given there is a section in DB matching the slug' do
+      let(:slug) { 'header' }
+
+      it 'returns the section' do
+        expect(subject.slug).to eq 'header'
+      end
+    end
+  end
+
 end
