@@ -191,7 +191,7 @@ describe Locomotive::Page do
       sub_child_1 = create(:page, title: 'Sub Subpage 1', slug: 'bar', parent: child_1)
       expect(sub_child_1.fullpath).to eq("foo/bar")
       child_1.slug = "milky"
-      child_1.save
+      child_1.save!
       expect(sub_child_1.reload.fullpath).to eq("milky/bar")
     end
 
