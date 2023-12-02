@@ -1,5 +1,7 @@
-PATH
-  remote: ../common
+GIT
+  remote: https://github.com/locomotivecms/common.git
+  revision: 054505cd367db40b5abffea96f4b10801731bccd
+  ref: 054505c
   specs:
     locomotivecms_common (0.5.0)
       activesupport (>= 5)
@@ -7,8 +9,10 @@ PATH
       colorize
       stringex (~> 2.8.5)
 
-PATH
-  remote: ../custom_fields
+GIT
+  remote: https://github.com/locomotivecms/custom_fields.git
+  revision: d526dcb7bcb117d61a22b4c29eac99b691bde036
+  ref: d526dcb7bcb1
   specs:
     custom_fields (2.13.0)
       activesupport (>= 7, < 8.0)
@@ -17,8 +21,10 @@ PATH
       monetize (~> 1.12.0)
       mongoid (>= 7, < 9.0)
 
-PATH
-  remote: ../steam
+GIT
+  remote: https://github.com/locomotivecms/steam.git
+  revision: 67c0de7b4e820fc0132d4d41d7e9ea0497781848
+  ref: 67c0de7b4e
   specs:
     locomotivecms_steam (1.7.1)
       RedCloth (~> 4.3.2)
