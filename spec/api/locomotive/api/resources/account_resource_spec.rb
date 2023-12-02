@@ -54,8 +54,7 @@ describe Locomotive::API::Resources::AccountResource do
         it 'does not set super_admin on create' do
           new_account.merge!(super_admin: true)
           post("#{url_prefix}.json", account: new_account)
-
-          expect(last_response[:super_admin]).to be_falsy
+          expect(last_response.body.first['super_admin']).to be_falsy
         end
       end
     end
