@@ -47,14 +47,20 @@ module Locomotive
           end
         end
 
+        # https://www.mongodb.com/docs/mongoid/current/reference/fields/#uncastable-values
         def add_json_uncastable_values_error(name)
-          value = attributes_before_type_cast[name.to_s]
+          value_before = attributes_before_type_cast[name.to_s]
+          value_now = self.send(name)
 
-          # https://www.mongodb.com/docs/mongoid/current/reference/fields/#uncastable-values
-          if self[name].nil? && !value.nil?
-            # Uncastable value detected!
-            self.errors.add(name, 'has a wrong object type')
+          return if value_now
+
+          # if the field is localized, take the translated value (current locale)
+          if value_before && fields[name.to_s].try(:localized?) && value_before.respond_to?(:key?)
+            value_before = value_before[::Mongoid::Fields::I18n.locale] 
           end
+            
+          # Uncastable value detected!
+          self.errors.add(name, 'has a wrong object type') if !value_before.nil?
         end
 
         def add_json_parsing_error(name)

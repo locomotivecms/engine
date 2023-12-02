@@ -27,10 +27,10 @@ module Locomotive
       if include_new_options && locale != default_locale
         ::Mongoid::Fields::I18n.with_locale(default_locale) do
           self.field.reload.select_options.each do |option|
-            next unless option.attributes[:name][default_locale].blank?
+            next unless option.attributes['name'][default_locale.to_s].blank?
 
             # force the name in the default locale
-            option.name = option.attributes[:name].values.first
+            option.name = option.attributes['name'].values.first
           end
         end
 
