@@ -24,9 +24,6 @@ begin
 rescue LoadError
 end
 
-require 'webdrivers'
-load 'webdrivers/Rakefile'
-
 # === Travis ===
 task :travis do
   puts "Install Yarn packages"
