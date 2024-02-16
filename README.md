@@ -63,6 +63,7 @@ Locomotive is an open source project, we encourage contributions. If you have fo
 - Clone the project <code>git clone git@github.com:locomotivecms/engine.git</code>
 - Setup a virtual host entry for <code>locomotive.local</code> to point to localhost
 - Start mongodb if it is not already running
+- Run <code>yarn install</code>
 - Run the tests <code>bundle exec rake</code>
 - Write your failing tests
 - Make the tests pass
