@@ -42,7 +42,6 @@ describe Locomotive::Steam::LiquidParserWithCacheService do
 
       it 'does not parse the template twice' do
         service.parse(page) # warm up the cache
-        pp "--- warming up done! ---"
         expect(service).not_to receive(:_parse)
         expect(subject.render).to eq 'Hello world!'
       end
