@@ -12,6 +12,11 @@ module Locomotive
       end
     end
 
+    initializer 'locomotive.mongoid' do
+      # https://jira.mongodb.org/browse/MONGOID-5260?jql=text%20~%20%22pluck%20localized%22
+      ::Mongoid.legacy_pluck_distinct = true
+    end
+
     initializer 'locomotive.params.filter' do |app|
       # Do not log remote_<field>_url params because they can contain huge base64 string
       app.config.filter_parameters += [/\Aremote_.+_url\Z/]

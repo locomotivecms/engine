@@ -188,7 +188,7 @@ module Locomotive
         # attribute got changed.
         #
         def propagate_templatized
-          return unless self.templatized_changed?
+          return unless self.templatized_previously_changed?
 
           selector = { 'parent_ids' => { '$in' => [self._id] } }
           operations  = {

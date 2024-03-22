@@ -2,9 +2,19 @@ module Locomotive
   class ContentTypeService < Struct.new(:site)
 
     def list
-      site.content_types
-        .only(:_id, :name, :slug, :number_of_entries, :display_settings)
-        .order_by(:'display_settings.position'.asc, :name.asc).to_a
+      site
+      .content_types
+      .order_by(:'display_settings.position'.asc, :name.asc)
+      .pluck(:_id, :name, :slug, :number_of_entries, :display_settings)
+      .map do |(_id, name, slug, number_of_entries, display_settings)|
+        Locomotive::ContentType.new(
+          _id: _id,
+          name: name,
+          slug: slug,
+          number_of_entries: number_of_entries,
+          display_settings: display_settings
+        )
+      end
     end
 
     def find_by_slug(slug)

@@ -16,8 +16,9 @@ describe Locomotive::Concerns::Page::Sections do
 
       let(:sections_content) { [] }
 
-      it { expect { page }.to raise_error }
+      it { expect(page.sections_content).to eq nil }
 
+      it { expect(page).not_to be_valid }
     end
 
     describe "must not contain additional properties" do

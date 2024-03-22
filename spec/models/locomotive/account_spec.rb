@@ -25,7 +25,7 @@ describe Locomotive::Account do
   it "validates the uniqueness of email" do
     account = build(:account, email: existing_account.email)
     expect(account).not_to be_valid
-    expect(account.errors[:email]).to eq(["is already taken"])
+    expect(account.errors[:email]).to eq(["has already been taken"])
   end
 
   ## Associations ##

@@ -111,7 +111,7 @@ module Locomotive
     end
 
     def touch_site_attribute
-      self.raw_template_changed? ? :template_version : :content_version
+      self.raw_template_previously_changed? ? :template_version : :content_version
     end
 
     protected
@@ -145,7 +145,7 @@ module Locomotive
     end
 
     def update_children
-      self.children.map(&:save) if self.slug_changed? or self.fullpath_changed?
+      self.children.map(&:save) if self.slug_previously_changed? or self.fullpath_previously_changed?
     end
 
     def record_current_locale

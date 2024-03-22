@@ -38,8 +38,8 @@ module Locomotive
     scope :latest_updated, -> { order_by(updated_at: :desc).limit(Locomotive.config.ui[:latest_entries_nb]) }
     scope :next_or_previous,
       ->(condition, order_by) { where({ _visible: true }.merge(condition)).limit(1).order_by(order_by) }
-    scope :by_id_or_slug, ->(id_or_slug) { all.or({ _id: id_or_slug }, { _slug: id_or_slug }) }
-    scope :by_ids_or_slugs, ->(ids_or_slugs) { all.or({ :_slug.in => [*ids_or_slugs] }, { :_id.in => [*ids_or_slugs] }) }
+    scope :by_id_or_slug, ->(id_or_slug) { where('$or' => [{ _id: id_or_slug }, { _slug: id_or_slug }]) }
+    scope :by_ids_or_slugs, ->(ids_or_slugs) { where('$or' => [{ :_slug.in => [*ids_or_slugs] }, { :_id.in => [*ids_or_slugs] }]) }
 
     ## indexes ##
     index _type: 1

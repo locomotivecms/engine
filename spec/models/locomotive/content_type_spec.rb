@@ -36,7 +36,7 @@ describe Locomotive::ContentType do
       content_type.save
       content_type = build(:content_type, site: content_type.site, slug: content_type.slug)
       expect(content_type).to_not be_valid
-      expect(content_type.errors[:slug]).to eq(["is already taken"])
+      expect(content_type.errors[:slug]).to eq(["has already been taken"])
     end
 
     it 'is not valid if there is no field' do
@@ -212,7 +212,7 @@ describe Locomotive::ContentType do
       it 'does not have unique label' do
         field = @content_type.entries_custom_fields.build label: 'Active', type: 'boolean'
         expect(field).to_not be_valid
-        expect(field.errors[:label]).to eq(["is already taken"])
+        expect(field.errors[:label]).to eq(["has already been taken"])
       end
 
       it 'invalidates parent if custom field is not valid' do
