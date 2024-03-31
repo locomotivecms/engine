@@ -19,6 +19,28 @@ end
 
 module Mongoid #:nodoc:
 
+  module Fields
+    module ClassMethods
+      alias_method :add_field_without_locomotive_patch, :add_field
+
+      def add_field(name, options = {})
+        # FIXME: The Rails ActionView inputs get the value of a field from the <FIELD>_before_type_cast method if it exists.
+        # In Mongoid 7, the Mongoid core team implemented the `_before_type_cast?` / `_before_type_cast` 
+        # for ALL the fields including the localized ones.
+        # Incidentally, it breaks the form inputs for localized fields. 
+        # This patch restores the old behavior for localized fiels by implementing the X_came_from_user? method
+        # which makes the form inputs use the translated value of a field.
+        generated_methods.module_eval do
+          re_define_method("#{name}_came_from_user?") do
+            false
+          end
+        end if options[:localize]
+
+        add_field_without_locomotive_patch(name, options)
+      end
+    end
+  end
+
   # FIXME: the Origin (used by Steam) and Mongoid gems both modify the Symbol class
   # to allow writing queries like .where(:position.lt => 1)
   # By convention, Origin::Key will be the one. So we need to make sure it doesn't

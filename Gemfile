@@ -2,12 +2,16 @@ source 'https://rubygems.org'
 
 gemspec
 
+group :development do
+  gem 'debug', '~> 1.9.2'
+  gem 'web-console', '~> 4.2.1'
+  gem 'error_highlight', '>= 0.4.0'
+end
+
 group :development, :test do 
   gem 'puma', '~> 6.4.0'
   gem 'rspec-rails', '~> 6.0.1'
-  gem 'capybara', '~> 3.39.0'
-  gem 'debug', '>= 1.0.0'
-  
+  gem 'capybara', '~> 3.39.0'  
   # gem 'custom_fields', path: '../custom_fields' # for Developers
   # gem 'custom_fields', github: 'locomotivecms/custom_fields', ref: 'd526dcb7bcb1'
 
