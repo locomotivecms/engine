@@ -15,7 +15,7 @@ describe 'User creates a site' do
     fill_in 'Name', with: ''
     click_button 'Create'
     message = page.find("#site_name").native.attribute("validationMessage")
-    expect(message).to eq "Please fill out this field."
+    expect(message).to eq "Please fill in this field."
     expect(page).not_to have_content('Site was successfully created.')
   end
 

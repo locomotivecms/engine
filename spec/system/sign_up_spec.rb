@@ -17,7 +17,7 @@ describe 'User signs up' do
     sign_up_with 'John Doe', 'valid@example.com', ''
     expect(page).to have_content('Already have an account?')
     message = page.find("#locomotive_account_password").native.attribute("validationMessage")
-    expect(message).to eq "Please fill out this field."
+    expect(message).to eq "Please fill in this field."
   end
 
   it 'with not matching passwords' do
