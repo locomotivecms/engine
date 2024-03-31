@@ -6,6 +6,7 @@ FactoryBot.define do
   factory :site, class: Locomotive::Site do
     name { 'Acme Website' }
     handle { 'acme' }
+    locales { ['en'] }
     # sequence(:handle) { |n| "acme#{n*rand(10_000)}" }
     created_at { Time.now }
 
