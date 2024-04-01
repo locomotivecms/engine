@@ -72,5 +72,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'grape',                           '~> 1.5.3'
   s.add_dependency 'grape-entity',                    '~> 0.10.0'
 
-  s.add_dependency 'carrierwave',                     '~> 1.3.3'
+  s.add_dependency 'carrierwave',                     '~> 2.2.6'
 end
