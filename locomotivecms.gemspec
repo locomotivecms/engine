@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.files = Dir['{app,config,db,lib,vendor}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
   s.files.reject! { |fn| fn.include?('app/javascript') }
 
-  s.add_dependency 'rails',                           '>= 7.1'
+  s.add_dependency 'rails',                           '>= 7.1.3.1'
   s.add_dependency 'rails-html-sanitizer',            '~> 1.6.0'
 
   s.add_dependency 'devise',                          '~> 4.9.3'
@@ -48,7 +48,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'sass-rails',                      '~> 6.0.0'
   s.add_dependency 'coffee-rails',                    '~> 5.0'
   s.add_dependency 'jquery-rails',                    '~> 4.5.1'
-  s.add_dependency 'jquery-ui-rails',                 '~> 6.0.1'
+  s.add_dependency 'jquery-ui-rails',                 '~> 7.0.0'
   
   s.add_dependency 'flash_cookie_session',            '~> 1.1.6'
   s.add_dependency 'bootstrap-sass',                  '~> 3.4.1'
