@@ -73,7 +73,7 @@ module Locomotive
             requires :id, type: String, desc: 'Content entry ID or SLUG'
             requires :content_entry, type: Hash
           end
-          put ':id' do
+          put ':id', requirements: { id: /.*?/, format: /[^.]+/ } do
             form = form_klass.new(parent_content_type, content_entry_params)
 
             if @content_entry = parent_content_type.entries.by_id_or_slug(params[:id]).first

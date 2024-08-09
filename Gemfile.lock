@@ -359,6 +359,8 @@ GEM
     nokogiri (1.13.8)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
+    nokogiri (1.13.8-x86_64-darwin)
+      racc (~> 1.4)
     nokogumbo (2.0.5)
       nokogiri (~> 1.8, >= 1.8.4)
     origin (2.3.1)
@@ -503,6 +505,7 @@ GEM
 
 PLATFORMS
   ruby
+  x86_64-darwin-22
 
 DEPENDENCIES
   byebug

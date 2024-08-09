@@ -135,6 +135,16 @@ describe Locomotive::API::Resources::ContentEntryResource do
               .to change { Locomotive::ContentEntry.find(content_entry.id).title }.to('Hello world [UPDATED]')
           end
 
+          context 'the slug contains a dot' do
+            let!(:site) { create(:site, domains: %w{www.acme.com}, locales: %w(en fr), allow_dots_in_slugs: true) }
+            let!(:content_entry) { content_type.entries.create(title: 'Hello world', body: 'Lorem ipsum', site: site, _slug: 'foo.bar') }
+
+            it 'updates the existing content entry' do
+              expect { put_request }
+                .to change { Locomotive::ContentEntry.find(content_entry.id).title }.to('Hello world [UPDATED]')
+            end
+          end
+
         end
 
         context 'the content entry does not exist so create it' do
