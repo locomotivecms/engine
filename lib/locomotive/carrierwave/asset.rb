@@ -31,7 +31,8 @@ module Locomotive
         def set_content_type_of_model(*args)
           content_type = file.content_type
 
-          if content_type.blank? || ['application/octet-stream'].include?(content_type)
+          # https://github.com/carrierwaveuploader/carrierwave/issues/2424
+          if content_type.blank? || ['application/octet-stream', 'invalid/invalid'].include?(content_type)
             content_type = File.mime_type?(original_filename)
           end
 

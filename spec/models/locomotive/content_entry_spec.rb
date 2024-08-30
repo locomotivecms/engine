@@ -384,7 +384,7 @@ describe Locomotive::ContentEntry do
 
         expect(entry.file.url).to eq nil
         expect(entry.another_file.url).not_to eq nil
-        expect(File.exists?(entry.another_file.path)).to eq true
+        expect(File.exist?(entry.another_file.path)).to eq true
       end
 
       it 'allows to delete the 2 files at once' do
@@ -398,8 +398,8 @@ describe Locomotive::ContentEntry do
 
         expect(entry.file.url).to eq nil
         expect(entry.another_file.url).to eq nil
-        expect(File.exists?(old_file_path)).to eq false
-        expect(File.exists?(old_another_file_path)).to eq false
+        expect(File.exist?(old_file_path)).to eq false
+        expect(File.exist?(old_another_file_path)).to eq false
       end
 
     end

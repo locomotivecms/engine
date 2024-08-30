@@ -13,13 +13,13 @@ group :development, :test do
   gem 'rspec-rails', '~> 6.0.1'
   gem 'capybara', '~> 3.39.0'  
   # gem 'custom_fields', path: '../custom_fields' # for Developers
-  # gem 'custom_fields', github: 'locomotivecms/custom_fields', ref: 'd526dcb7bcb1'
+  gem 'custom_fields', github: 'locomotivecms/custom_fields', ref: '87bf1b389d'
 
   # gem 'locomotivecms_common', path: '../common', require: false
   # gem 'locomotivecms_common', github: 'locomotivecms/common', ref: '054505c', require: false
 
   # gem 'locomotivecms_steam', path: '../steam', require: false
-  # gem 'locomotivecms_steam', github: 'locomotivecms/steam', ref: '67c0de7b4e', require: false
+  gem 'locomotivecms_steam', github: 'locomotivecms/steam', ref: '4386db6', require: false
 end
 
 group :test do
