@@ -123,7 +123,7 @@ module Locomotive
       end
 
       def localhost?(request)
-        request.host == '0.0.0.0' || request.host == 'localhost'
+        request.host == '0.0.0.0' || request.host == 'localhost' || request.host == '127.0.0.1'
       end
 
       def default_host
