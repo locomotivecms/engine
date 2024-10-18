@@ -11,7 +11,9 @@ end
 group :development, :test do 
   gem 'puma', '~> 6.4.0'
   gem 'rspec-rails', '~> 6.0.1'
-  gem 'capybara', '~> 3.39.0'  
+  gem 'capybara', '~> 3.40'
+  gem "rack", "3.1.8"
+
   # gem 'custom_fields', path: '../custom_fields' # for Developers
   gem 'custom_fields', github: 'locomotivecms/custom_fields', ref: '87bf1b389d'
 
@@ -19,7 +21,7 @@ group :development, :test do
   # gem 'locomotivecms_common', github: 'locomotivecms/common', ref: '054505c', require: false
 
   # gem 'locomotivecms_steam', path: '../steam', require: false
-  gem 'locomotivecms_steam', github: 'locomotivecms/steam', ref: '4386db6', require: false
+  gem 'locomotivecms_steam', github: 'locomotivecms/steam', ref: 'ba10b57', require: false
 end
 
 group :test do

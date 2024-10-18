@@ -29,9 +29,9 @@ describe Locomotive::API::Resources::ContentEntryResource do
           it 'returns a successful response' do
             expect(last_response).to be_successful
             expect(parsed_response.size).to eq 1
-            expect(last_response.header['X-Per-Page'].to_i).to eq 1
-            expect(last_response.header['X-Total-Entries'].to_i).to eq 2
-            expect(last_response.header['X-Total-Pages'].to_i).to eq 2
+            expect(last_response.headers['X-Per-Page'].to_i).to eq 1
+            expect(last_response.headers['X-Total-Entries'].to_i).to eq 2
+            expect(last_response.headers['X-Total-Pages'].to_i).to eq 2
           end
 
         end

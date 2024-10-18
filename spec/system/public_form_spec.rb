@@ -26,7 +26,5 @@ describe 'A site with a form content type' do
       expect(page).to have_content('num errors: 1')
       expect(page).to have_content("-name can't be blank-")
     end
-
   end
-
 end
