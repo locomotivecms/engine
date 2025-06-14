@@ -1,9 +1,11 @@
 describe 'A site with a form content type' do
+  before do
+    create_full_site
+  end
 
-  before { create_full_site }
+  let(:entry) { @site.content_entries.last }
 
   describe 'it submits the form in HTML' do
-
     before { preview_page 'contact' }
 
     it 'with valid inputs' do
@@ -11,7 +13,6 @@ describe 'A site with a form content type' do
       fill_in 'content[message]', with: 'Hello world'
       click_button 'Send'
 
-      entry = @site.content_entries.last
       expect(entry.name).to eq 'John Doe'
       expect(entry.message).to eq 'Hello world'
 

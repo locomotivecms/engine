@@ -354,6 +354,7 @@ GEM
     mime-types-data (3.2023.1003)
     mimetype-fu (0.1.2)
     mini_mime (1.1.5)
+    mini_portile2 (2.8.9)
     minitest (5.20.0)
     moneta (1.6.0)
     monetize (1.12.0)
@@ -389,6 +390,9 @@ GEM
     net-smtp (0.4.0)
       net-protocol
     nio4r (2.6.0)
+    nokogiri (1.16.7)
+      mini_portile2 (~> 2.8.2)
+      racc (~> 1.4)
     nokogiri (1.16.7-x86_64-darwin)
       racc (~> 1.4)
     origin (2.3.1)
@@ -561,6 +565,7 @@ GEM
     zeitwerk (2.6.12)
 
 PLATFORMS
+  ruby
   x86_64-darwin-22
 
 DEPENDENCIES
