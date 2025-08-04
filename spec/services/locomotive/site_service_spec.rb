@@ -60,7 +60,7 @@ describe Locomotive::SiteService do
       service.content_entry_service = content_entry_service
     }
 
-    subject { service.update(site, attributes) }
+    subject { service.update(site, attributes, true) }
 
     it { is_expected.to eq true }
 
@@ -76,18 +76,37 @@ describe Locomotive::SiteService do
 
     context 'default locale changed' do
 
-      let(:attributes) { { locales: %w(fr en de) } }
+      let(:attributes) { { locales: %w(fr de en) } }
 
       before {
-        allow(site).to receive(:localized_content_types).and_return([true])
-        expect(page_service).to receive(:localize).with(%w(fr de), 'en')
+        allow(site).to receive(:localized_content_types).and_return([true])      
         expect(content_entry_service).to receive(:localize).with(%w(fr de), 'en')
       }
 
-      it { is_expected.to eq true }
+      context 'with a mocked PageService' do
 
+        before do
+          expect(page_service).to receive(:localize).with(%w(fr de), 'en')
+        end
+
+        it { is_expected.to eq true }
+
+      end
+
+      context 'with the default implementation of the PageService' do
+        let(:page_service) { Locomotive::PageService.new(nil, account) }
+
+        before do
+          ::Mongoid::Fields::I18n.locale = 'en'
+          ::Mongoid::Fields::I18n.fallbacks_for('en', ['en'])          
+        end
+
+        it 'should localize the pages' do
+          expect { subject }.to change { site.pages.root.first.title_translations }.from({ 'en' => 'Home page' }).to({ 'fr' => "Page d'accueil", 'de' => 'Startseite', 'en' => 'Home page' })
+        end
+
+      end
     end
-
   end
 
 end

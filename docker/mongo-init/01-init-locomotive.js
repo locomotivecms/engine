@@ -54,3 +54,17 @@ db.createCollection('theme_assets');
 db.createCollection('translations');
 
 print('LocomotiveCMS test database initialized successfully');
+
+// Create a new database for the custom fields
+db = db.getSiblingDB('custom_fields_test');
+
+db.createUser({
+  user: 'admin',
+  pwd: 'password',
+  roles: [
+    {
+      role: 'readWrite',
+      db: 'custom_fields_test'
+    }
+  ]
+});
