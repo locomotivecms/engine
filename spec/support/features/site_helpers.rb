@@ -28,9 +28,9 @@ module Features
       create(:section, :gallery, site: @site) # Gallery of images
 
       # 4. create pages
-      @site.pages.create(parent: @site.pages.root.first, title: 'Contact', slug: 'contact', raw_template: %{<html><body>{% if message.errors %}num errors: {{ message.errors.size }} / {% for error in message.errors %}-{{error[0]}} {{error[1]}}-{% endfor %}{% endif %}{% model_form 'messages', success: '/', error: '/contact' %}<input type="text" name="content[name]" value="{{customer_message.name}}"><input type="text" name="content[message]" value="{{customer_message.message}}"><input type="submit" value="Send">{% endmodel_form %}</body></html>})
+      @site.pages.create(parent: @site.pages.home.first, title: 'Contact', slug: 'contact', raw_template: %{<html><body>{% if message.errors %}num errors: {{ message.errors.size }} / {% for error in message.errors %}-{{error[0]}} {{error[1]}}-{% endfor %}{% endif %}{% model_form 'messages', success: '/', error: '/contact' %}<input type="text" name="content[name]" value="{{customer_message.name}}"><input type="text" name="content[message]" value="{{customer_message.message}}"><input type="submit" value="Send">{% endmodel_form %}</body></html>})
       @site.pages.create(
-        parent: @site.pages.root.first,
+        parent: @site.pages.home.first,
         title: 'Hello world',
         slug: 'hello-world',
         raw_template: %{<html><body>{% section 'header' %} {% section 'gallery' %}</body></html>},

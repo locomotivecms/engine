@@ -42,7 +42,7 @@ describe Locomotive::Page do
 
     it 'requires the uniqueness of the slug within a "folder"' do
       site = create(:site)
-      root = site.pages.root.first
+      root = site.pages.home.first
       child_1 = create(:page, slug: 'first_child', parent: root, site: site)
       page = build(:page, slug: 'first_child', parent: root, site: site)
       expect(page).to_not be_valid
@@ -157,7 +157,7 @@ describe Locomotive::Page do
   describe 'tree organization' do
 
     let!(:site)   { create(:site) }
-    let(:home)    { site.pages.root.first }
+    let(:home)    { site.pages.home.first }
     let(:child_1) { create(:page, title: 'Subpage 1', slug: 'foo', parent: home) }
 
     it 'adds root elements' do

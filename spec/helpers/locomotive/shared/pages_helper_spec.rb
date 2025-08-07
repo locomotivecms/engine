@@ -9,7 +9,7 @@ describe Locomotive::Shared::PagesHelper do
 
   describe '#localized_preview_page_paths' do
 
-    let(:page) { current_site.pages.root.first }
+    let(:page) { current_site.pages.home.first }
 
     subject { localized_preview_page_paths(page, mounted_on: mounted_on) }
 

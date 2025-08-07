@@ -36,7 +36,9 @@ module Locomotive
       site.pages.unscoped.
         minimal_attributes.
         order_by_depth_and_position.
-        to_a
+        to_a.tap do |pages|
+          Rails.logger.debug "*** pages = #{pages.first.inspect}"
+        end
     end
 
     #:nodoc:

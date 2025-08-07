@@ -3,7 +3,7 @@
 describe Locomotive::PageParsingService do
 
   let(:site)    { create(:site) }
-  let(:home)    { site.pages.root.first }
+  let(:home)    { site.pages.home.first }
   let(:service) { described_class.new(site, :en) }
 
   describe '#find_all_elements' do

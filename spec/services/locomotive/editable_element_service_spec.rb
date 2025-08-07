@@ -3,7 +3,7 @@
 describe Locomotive::EditableElementService do
 
   let(:site)    { create(:site) }
-  let(:home)    { site.pages.root.first }
+  let(:home)    { site.pages.home.first }
   let(:account) { create(:account) }
   let(:locale)  { :en }
   let(:service) { described_class.new(site, account, locale) }

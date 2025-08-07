@@ -9,7 +9,7 @@ describe Locomotive::PageService do
 
   describe '#create' do
 
-    subject { service.create(title: 'Hello world', parent: site.pages.root.first) }
+    subject { service.create(title: 'Hello world', parent: site.pages.home.first) }
 
     it { expect { subject }.to change { Locomotive::Page.count }.by 1 }
 
@@ -19,7 +19,7 @@ describe Locomotive::PageService do
 
   describe '#update' do
 
-    let(:page) { site.pages.root.first }
+    let(:page) { site.pages.home.first }
 
     subject { service.update(page, title: 'My new home page') }
 
@@ -39,7 +39,7 @@ describe Locomotive::PageService do
 
     context 'index page' do
 
-      subject { site.pages.root.first }
+      subject { site.pages.home.first }
 
       it 'sets a nice default title, the slug and the fullpath' do
         expect(subject.title_translations).to eq('en' => 'Home page', 'fr' => "Page d'accueil")
@@ -115,7 +115,7 @@ describe Locomotive::PageService do
 
       context 'index page' do
 
-        subject { site.pages.root.first }
+        subject { site.pages.home.first }
 
         it 'sets a nice default title, the slug and the fullpath' do
           expect(subject.title_translations).to eq('en' => 'Home page', 'fr' => "Page d'accueil")
@@ -125,7 +125,6 @@ describe Locomotive::PageService do
       end
 
     end
-
   end
 
 end

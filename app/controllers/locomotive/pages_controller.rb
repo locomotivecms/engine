@@ -38,7 +38,7 @@ module Locomotive
     def destroy
       authorize @page
       service.destroy(@page)
-      respond_with @page, location: edit_content_path(current_site.pages.root.first)
+      respond_with @page, location: edit_content_path(current_site.pages.home.first)
     end
 
     def sort

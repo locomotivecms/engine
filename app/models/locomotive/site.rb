@@ -115,7 +115,7 @@ module Locomotive
 
     def destroy_pages
       # pages is a tree so we just need to delete the root (as well as the page not found page)
-      self.pages.root.first.try(:destroy) && self.pages.not_found.first.try(:destroy)
+      self.pages.home.first.try(:destroy) && self.pages.not_found.first.try(:destroy)
     end
 
   end

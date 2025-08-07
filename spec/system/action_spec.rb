@@ -9,7 +9,7 @@ describe 'A site with a javascript action' do
         var entry = createEntry('messages', { name: 'John', message: 'Hello world' });
         setProp("message", entry.name + ' sends ' + entry.message);
       JS
-      @site.pages.create(parent: @site.pages.root.first, title: 'Action call', slug: 'action', raw_template: %{<html><body>{% action "create message" %}#{javascript}{% endaction %}{{ message }}</body></html>})
+      @site.pages.create(parent: @site.pages.home.first, title: 'Action call', slug: 'action', raw_template: %{<html><body>{% action "create message" %}#{javascript}{% endaction %}{{ message }}</body></html>})
     end
 
     it 'executes the action' do
@@ -30,7 +30,7 @@ describe 'A site with a javascript action' do
         var entry = updateEntry('messages', 'john', { message: 'Hello world!' });
         setProp("message", entry.name + ' sends ' + entry.message);
       JS
-      @site.pages.create(parent: @site.pages.root.first, title: 'Action call', slug: 'action', raw_template: %{<html><body>{% action "create message" %}#{javascript}{% endaction %}{{ message }}</body></html>})
+      @site.pages.create(parent: @site.pages.home.first, title: 'Action call', slug: 'action', raw_template: %{<html><body>{% action "create message" %}#{javascript}{% endaction %}{{ message }}</body></html>})
     end
 
     it 'executes the action' do

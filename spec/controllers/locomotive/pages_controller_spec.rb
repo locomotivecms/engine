@@ -7,7 +7,7 @@ describe Locomotive::PagesController do
   let!(:membership) do
     create(:membership, account: account, site: site, role: 'admin')
   end
-  let(:page) { site.pages.root.first }
+  let(:page) { site.pages.home.first }
 
   before do
     request_site site
@@ -27,7 +27,7 @@ describe Locomotive::PagesController do
 
   describe "#POST create" do
     let(:page_attributes)  do
-      attributes_for(:sub_page, parent_id: site.pages.root.first._id, raw_template: 'Hello world')
+      attributes_for(:sub_page, parent_id: site.pages.home.first._id, raw_template: 'Hello world')
     end
     subject do
       post :create, params: { site_handle: site, locale: :en, page: page_attributes }

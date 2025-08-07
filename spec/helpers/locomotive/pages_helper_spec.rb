@@ -13,7 +13,7 @@ describe Locomotive::PagesHelper do
 
     context 'index page' do
 
-      let(:page) { current_site.pages.root.first  }
+      let(:page) { current_site.pages.home.first  }
       it { is_expected.to eq false }
 
     end

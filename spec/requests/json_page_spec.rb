@@ -6,7 +6,7 @@ RSpec.describe 'Locomotive JSON page', type: :request do
 
   before do 
     page = site.pages.create(
-      parent: site.pages.root.first, 
+      parent: site.pages.home.first, 
       title: 'Post form', 
       slug: 'post-form', 
       response_type: 'application/json', 
