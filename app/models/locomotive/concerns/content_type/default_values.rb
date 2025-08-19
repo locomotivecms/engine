@@ -32,6 +32,23 @@ module Locomotive
           end
         end
 
+        def set_group_by
+          # Use .present? to check for not nil AND not empty string
+          if @group_by.present
+            field = self.find_entries_custom_field(@group_by)
+            # A valid field name was provided, and the field was found
+            if field
+              self.group_by_field_id = field._id
+            # A field name was provided, but it's invalid or not found
+            else
+              self.group_by_field_id = nil
+            end
+          # @group_by is nil or an empty string (intention to unset grouping)
+          else
+            self.group_by_field_id = nil
+          end
+        end
+
         def set_label_field
           if @new_label_field_name.present?
             self.label_field_id = self.entries_custom_fields.detect { |f| f.name == @new_label_field_name.underscore }.try(:_id)
