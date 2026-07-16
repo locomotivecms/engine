@@ -224,15 +224,10 @@ module Locomotive
 
     # Other helpers
 
-    # MongoDB crashes when performing a query on a big collection
-    # where there is a sort without an index on the fields to sort.
+    # Avoid an unnecessary unindexed sort when checking whether a criteria is empty.
     def empty_collection?(collection)
-      # criteria ?
-      if collection.respond_to?(:without_sorting)
-        collection.without_sorting.empty?
-      else
-        collection.empty?
-      end
+      collection = collection.reorder if collection.respond_to?(:reorder)
+      collection.empty?
     end
 
     # Display the name of the account (+ avatar) who created or updated the document

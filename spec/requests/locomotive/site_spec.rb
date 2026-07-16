@@ -37,7 +37,7 @@ describe Locomotive::Middlewares::Site do
         before { allow(Locomotive.config).to receive(:host).and_return('example.com') }
 
         it { expect(subject.first).to eq 301 }
-        it { expect(subject[1]['Location']).to eq '/locomotive/sign_in' }
+        it { expect(subject[1]).to eq('location' => '/locomotive/sign_in', 'content-type' => 'text/html') }
 
       end
 
@@ -54,14 +54,14 @@ describe Locomotive::Middlewares::Site do
     it { expect(subject.first).to eq 301 }
 
     context 'default config' do
-      it { expect(subject[1]['Location']).to eq '/locomotive/sign_up' }
+      it { expect(subject[1]).to eq('location' => '/locomotive/sign_up', 'content-type' => 'text/html') }
     end
 
     context 'config enable_registration set to false' do
 
       before { allow(Locomotive.config).to receive(:enable_registration).and_return(false) }
 
-      it { expect(subject[1]['Location']).to eq '/locomotive/sign_in' }
+      it { expect(subject[1]['location']).to eq '/locomotive/sign_in' }
     end
 
   end

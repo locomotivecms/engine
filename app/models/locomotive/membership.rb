@@ -10,7 +10,7 @@ module Locomotive
 
     ## associations ##
     belongs_to  :account, class_name: 'Locomotive::Account', validate: false
-    embedded_in :site,    class_name: 'Locomotive::Site',    inverse_of: :memberships
+    embedded_in :site,    class_name: 'Locomotive::Site',    inverse_of: :memberships, touch: false
 
     ## validations ##
     validates_presence_of :account

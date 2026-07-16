@@ -1,1 +1,0 @@
-require 'locomotive/rails/action_view'

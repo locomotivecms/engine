@@ -49,7 +49,7 @@ module Locomotive
       end
 
       def respond(response = '', status = 200)
-        [status, { 'Content-Type' => 'text/plain' }, [response]]
+        [status, { 'content-type' => 'text/plain' }, [response]]
       end
 
     end

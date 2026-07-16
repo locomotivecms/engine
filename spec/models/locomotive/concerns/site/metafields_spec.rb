@@ -27,6 +27,29 @@ describe Locomotive::Concerns::Site::Metafields do
 
   end
 
+  describe 'metafields=' do
+
+    let(:json) do
+      {
+        contacts: {
+          phone:   '+1 202 555 0143',
+          website: 'https://example.test/a%20b'
+        }
+      }.to_json
+    end
+
+    subject do
+      site.metafields = json
+      site.metafields
+    end
+
+    it 'preserves a leading + and any percent-sequence in the stored values' do
+      expect(subject['contacts']['phone']).to eq('+1 202 555 0143')
+      expect(subject['contacts']['website']).to eq('https://example.test/a%20b')
+    end
+
+  end
+
   describe 'schema validation' do
 
     subject { site.valid?; site.errors[:metafields_schema] }
@@ -165,6 +188,18 @@ describe Locomotive::Concerns::Site::Metafields do
       let(:fields) { { 'social' => { 'title' => 'FB', 'enabled' => '1', 'count' => '42' } } }
 
       it { is_expected.to eq({ 'title' => 'FB', 'enabled' => true, 'count' => 42 }) }
+
+    end
+
+    context 'namespace and field names requiring normalization' do
+
+      # schema keeps the raw names; the stored values use the normalized keys
+      # (as persisted by the backoffice form / SiteMetafieldsService)
+      let(:namespace) { 'mailer_settings' }
+      let(:schema)    { [{ 'name' => 'Mailer_Settings', 'fields' => [{ 'name' => 'Address' }] }] }
+      let(:fields)    { { 'mailer_settings' => { 'address' => 'smtp.example.org' } } }
+
+      it { is_expected.to eq({ 'address' => 'smtp.example.org' }) }
 
     end
 

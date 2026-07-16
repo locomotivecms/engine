@@ -97,4 +97,38 @@ describe Locomotive::API::Resources::AccountResource do
 
   end
 
+  context 'authenticated as a non super-admin' do
+    include_context 'api header setup'
+
+    describe 'PUT update on its own account' do
+      it 'updates allowed attributes but drops super_admin' do
+        put "#{url_prefix}/#{account.id}.json", account: { name: 'Renamed', super_admin: true }
+
+        expect(last_response).to be_successful
+        expect(account.reload.name).to eq('Renamed')
+        expect(account.super_admin).to eq(false)
+      end
+
+      it 'updates allowed attributes but drops a forged api_key' do
+        original = account.api_key
+
+        put "#{url_prefix}/#{account.id}.json", account: { name: 'Renamed', api_key: 'forged' }
+
+        expect(last_response).to be_successful
+        expect(account.reload.name).to eq('Renamed')
+        expect(account.api_key).to eq(original)
+      end
+
+      it 'updates allowed attributes but drops a forged authentication_token' do
+        original = account.authentication_token
+
+        put "#{url_prefix}/#{account.id}.json", account: { name: 'Renamed', authentication_token: 'forged' }
+
+        expect(last_response).to be_successful
+        expect(account.reload.name).to eq('Renamed')
+        expect(account.authentication_token).to eq(original)
+      end
+    end
+  end
+
 end

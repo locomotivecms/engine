@@ -28,9 +28,11 @@ module Locomotive
         end
 
         def current_membership
-          return nil if current_account.nil?
-          membership = current_site ? current_site.membership_for(current_account) : nil
-          membership || Locomotive::Membership.new(account: current_account)
+          return unless current_account
+          return Locomotive::Membership.new(account: current_account) unless current_site
+
+          current_site.membership_for(current_account) ||
+            (Locomotive::Membership.new(account: current_account) if current_account.super_admin?)
         end
 
         def pundit_user

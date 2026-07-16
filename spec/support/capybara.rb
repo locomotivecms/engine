@@ -1,14 +1,7 @@
-require 'webdrivers'
 require 'selenium-webdriver'
 
-if chromedriver_version = ENV['CHROMEDRIVER_VERSION']
-  Webdrivers::Chromedriver.required_version = chromedriver_version
-
-  # https://www.rubydoc.info/github/titusfortner/webdrivers/master
-  Webdrivers.cache_time = 86_400 # ie. 24 hours
-end
-
-Capybara.server = :puma 
+Capybara.server = :puma
+Capybara.disable_animation = true # CSS transitions shift click coordinates in headless Chrome
 Capybara.app_host = 'http://locomotive.local'
 Capybara.server_host = '0.0.0.0'
 Capybara.server_port = 9886
@@ -16,7 +9,13 @@ Capybara.default_max_wait_time = 10
 
 Capybara.register_driver(:locomotive_headless_chrome) do |app|
   options = Selenium::WebDriver::Chrome::Options.new(
-    args: %w[headless=new disable-gpu no-sandbox window-size=1600,768]
+    args: [
+      'headless=new', 'disable-gpu', 'no-sandbox', 'window-size=1600,768',
+      # locomotive.local is not in /etc/hosts on every machine
+      'host-resolver-rules=MAP locomotive.local 127.0.0.1',
+      # the Capybara server speaks plain http
+      'disable-features=HttpsUpgrades'
+    ]
   )
 
   Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)

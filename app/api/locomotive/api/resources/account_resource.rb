@@ -77,7 +77,7 @@ module Locomotive
             authenticate_locomotive_account!
             authorize account, :update?
 
-            form = form_klass.new(account_params)
+            form = form_klass.new(permitted_params_from_policy(account, :account))
             persist_from_form(form)
 
             present account, with: entity_klass

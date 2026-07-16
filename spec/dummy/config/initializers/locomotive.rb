@@ -26,12 +26,6 @@ Locomotive.configure do |config|
   # config.steam_log_file = Rails.root.join('log', 'steam.log')
   # config.steam_log_level = ::Logger::DEBUG
 
-  # the API authentication requires to developer to pass 2 params in the header
-  # of the request: X-Locomotive-Account-Email and X-Locomotive-Token.
-  # However, to keep backward compatability with v2.x versions, you can use
-  # the "token" request param instead although it is considered unsafe.
-  config.unsafe_token_authentication = true
-
   # Uncomment this line to force Locomotive to redirect all requests in the
   # back-office to https in production.
   # config.enable_admin_ssl = Rails.env.production?

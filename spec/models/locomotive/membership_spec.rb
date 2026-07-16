@@ -40,4 +40,18 @@ describe Locomotive::Membership do
 
   end
 
+  describe 'parent touch' do
+
+    let(:site)        { create(:site) }
+    let(:account)     { create('admin user') }
+    let!(:membership) { site.memberships.create!(account: account, role: 'author') }
+
+    it 'does not touch the site when saved' do
+      site.set(updated_at: 1.year.ago)
+
+      expect { membership.update!(role: 'admin') }.not_to change { site.reload.updated_at }
+    end
+
+  end
+
 end

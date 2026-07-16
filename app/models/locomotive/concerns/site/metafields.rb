@@ -35,22 +35,32 @@ module Locomotive
 
           fields = self.metafields_schema.map { |g| g['fields'] }.flatten
 
-          fields.find do |f|
-            _name = f['name'].downcase.underscore.gsub(' ', '_')
-            _name == name
-          end
+          fields.find { |f| normalize_metafield_name(f['name']) == name }
+        end
+
+        # Normalize a metafield namespace/field name the same way the backoffice
+        # form does (CurrentSiteMetafieldsHelper::SchemaGroup#_name /
+        # SchemaField#name), so submitted keys match the raw schema names.
+        def normalize_metafield_name(name)
+          name.to_s.downcase.underscore.gsub(' ', '_')
         end
 
         def cast_metafields(namespace)
           return nil if namespace.blank? || !has_metafields?
 
-          schema = self.metafields_schema.find { |s| s['name'] == namespace }
+          namespace = normalize_metafield_name(namespace)
+
+          schema = self.metafields_schema.find do |s|
+            normalize_metafield_name(s['name']) == namespace
+          end
           values = self.metafields[namespace]
 
           return nil if schema.blank? || values.blank?
 
           values.map do |name, value|
-            field = schema['fields'].find { |f| f['name'] == name }
+            field = schema['fields'].find do |f|
+              normalize_metafield_name(f['name']) == normalize_metafield_name(name)
+            end
             next unless field
             [name, cast_metafield_value(field, value)]
           end.compact.to_h

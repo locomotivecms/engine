@@ -44,4 +44,26 @@ describe Locomotive::BaseHelper do
 
   end
 
+  describe '#empty_collection?' do
+
+    let(:site)         { create(:site) }
+    let(:content_type) { create(:content_type, :article, site: site) }
+
+    it 'is true for an empty sorted criteria' do
+      expect(helper.empty_collection?(content_type.entries.order_by(:_position.desc))).to eq(true)
+    end
+
+    it 'is false for a non-empty criteria' do
+      content_type.entries.create!(title: 'X', _label_field_name: 'title')
+
+      expect(helper.empty_collection?(content_type.entries.order_by(:_position.desc))).to eq(false)
+    end
+
+    it 'falls back to #empty? for a plain array' do
+      expect(helper.empty_collection?([])).to eq(true)
+      expect(helper.empty_collection?([1])).to eq(false)
+    end
+
+  end
+
 end

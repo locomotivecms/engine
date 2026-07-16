@@ -148,8 +148,8 @@ module Locomotive
     end
 
     def add_to_list_bottom
-      max = self.class.indexed_max(:_position)
-      self._position = max + 1 if max
+      max_position = self.class.order_by(_position: :desc).pick(:_position)
+      self._position = max_position + 1 if max_position
     end
 
     def _label_field_name(type = nil)

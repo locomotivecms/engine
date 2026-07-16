@@ -37,6 +37,19 @@ describe Locomotive::Middlewares::ImageThumbnail do
 
     end
 
+    describe 'raw response headers on the 422 path' do
+
+      let(:env) { Rack::MockRequest.env_for('http://locomotive.dev/locomotive/_image_thumbnail') }
+
+      it 'sets a lowercase content-type header' do
+        status, headers, _body = middleware.call(env)
+
+        expect(status).to eq(422)
+        expect(headers).to eq('content-type' => 'text/plain')
+      end
+
+    end
+
     describe 'convert an url' do
 
       it { expect(subject.status).to eq 200 }

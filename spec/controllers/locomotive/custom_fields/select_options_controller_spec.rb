@@ -46,7 +46,7 @@ describe Locomotive::CustomFields::SelectOptionsController do
       let(:options) { [{ _id: field.select_options.first._id, name: 'Développement' }, { name: 'Marketing' }] }
 
       before do
-        field.update_attributes(select_options_attributes: [{ name: 'Development' }])
+        field.update(select_options_attributes: [{ name: 'Development' }])
         content_type.save
       end
 

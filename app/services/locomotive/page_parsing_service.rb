@@ -62,17 +62,18 @@ module Locomotive
     private
 
     def subscribe(parsed, &block)
-      subscribers = [
-        subscribe_to_extends(parsed[:extends]),
-        subscribe_to_blocks(parsed[:blocks], parsed[:super_blocks]),
-        subscribe_to_editable_elements(parsed[:elements]),
-        subscribe_to_sections(parsed[:sections])
-      ]
+      subscribers = []
+      subscribers << subscribe_to_extends(parsed[:extends])
+      subscribers << subscribe_to_blocks(parsed[:blocks], parsed[:super_blocks])
+      subscribers << subscribe_to_editable_elements(parsed[:elements])
+      subscribers << subscribe_to_sections(parsed[:sections])
 
-      yield.tap do
-        subscribers.each do |subscriber|
-          ActiveSupport::Notifications.unsubscribe(subscriber)
-        end
+      yield
+    ensure
+      # without the ensure, a parsing error would leak the subscribers for the
+      # lifetime of the process
+      subscribers.each do |subscriber|
+        ActiveSupport::Notifications.unsubscribe(subscriber)
       end
     end
 

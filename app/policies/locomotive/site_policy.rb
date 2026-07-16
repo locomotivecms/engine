@@ -18,7 +18,7 @@ module Locomotive
     end
 
     def show?
-      true
+      super_admin? || site_staff?
     end
 
     def edit?

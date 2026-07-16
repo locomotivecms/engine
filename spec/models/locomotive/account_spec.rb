@@ -123,4 +123,27 @@ describe Locomotive::Account do
 
   end
 
+  describe 'authentication_token' do
+
+    it 'is generated and persisted when an account is saved without one' do
+      account = build(:account)
+      expect(account.authentication_token).to be_nil
+      account.save!
+      expect(account.authentication_token).to be_present
+      expect(account.reload.authentication_token).to eq(account.authentication_token)
+    end
+
+    it 'is left unchanged by an unrelated update' do
+      account = create(:account)
+      token   = account.authentication_token
+      account.update!(name: 'Renamed')
+      expect(account.reload.authentication_token).to eq(token)
+    end
+
+    it 'differs between two accounts' do
+      expect(create(:account).authentication_token).to_not eq(create(:account).authentication_token)
+    end
+
+  end
+
 end

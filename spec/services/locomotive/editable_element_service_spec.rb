@@ -11,7 +11,7 @@ describe Locomotive::EditableElementService do
   describe '#update_all' do
 
     before do
-      home.update_attributes(
+      home.update(
         raw_template: 'Test: {% editable_file banner, fixed: true %}banner.png{% endeditable_file %}{% block body %}{% editable_text bottom %}Bla bla{% endeditable_text %}{% endblock %}',
         editable_elements_attributes: [
           { block: nil, slug: 'banner', fixed: true, default_source_url: 'banner.png', _type: 'Locomotive::EditableFile' },

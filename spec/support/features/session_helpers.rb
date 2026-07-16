@@ -22,13 +22,15 @@ module Features
       sign_up_with 'John Doe', 'john@doe.net', 'password'
       click_link 'John Doe'
       within('.navigation') { click_link 'Log out' }
-      # click_link 'Log out'
       click_link 'Forgot my password'
+      expect(page).to have_field('Your email')
       fill_in 'Your email', with: 'john@doe.net'
       click_button 'Submit'
+      # Devise redirects back to the sign in page once the e-mail has been sent;
+      # waiting on that state guarantees the request (and delivery) completed.
+      expect(page).to have_css('body.sessions')
 
       if block_given?
-        sleep(1)
         last_email = ActionMailer::Base.deliveries.last
         last_email.body.to_s =~ /<a href="http:\/\/locomotive.local:9886(\S+)">/
         yield last_email, $1

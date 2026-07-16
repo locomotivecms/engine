@@ -67,17 +67,11 @@ module Locomotive
         end
 
         def similar_slug(slug)
-          _last_slug = self.class.where(_slug: /^#{slug}-?\d*$/i)
-                    .excludes(_id: self._id)
-                    .order_by(:created_at.desc)
-                    .pluck(:_slug)
-                    .first
-
-          if _last_slug
-            _last_slug[::Mongoid::Fields::I18n.locale.to_s]
-          else
-            nil
-          end
+          self.class.where(_slug: /^#{slug}-?\d*$/i)
+            .excludes(_id: self._id)
+            .order_by(:created_at.desc)
+            .pluck(:_slug)
+            .first
         end
 
         def slug_already_taken?

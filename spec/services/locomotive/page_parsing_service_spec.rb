@@ -13,7 +13,7 @@ describe Locomotive::PageParsingService do
       let(:home_template) { %({% global_section nav, placement: 'top' %}{% section title, id: 'page_title', placement: 'top' %} {% block body %}{% section random_section %}{% endblock %}{% global_section footer, placement: 'bottom' %}) }
       let(:page_template) { '{% extends parent %}{% block body %}{% sections_dropzone %}{% endblock %}' }
 
-      before { home.update_attributes(raw_template: home_template) }
+      before { home.update(raw_template: home_template) }
 
       let(:page) { create(:sub_page, site: site, parent: home, raw_template: page_template) }
 
@@ -32,7 +32,7 @@ describe Locomotive::PageParsingService do
     let(:home_template) { 'Test: {% editable_file banner, fixed: true %}banner.png{% endeditable_file %}{% block body %}{% editable_text bottom %}Bla bla{% endeditable_text %}{% endblock %}' }
     let(:page_template) { '{% extends parent %}{% block body %}{% editable_text top %}Hello world{% endeditable_text %}{% endblock %}' }
 
-    before { home.update_attributes(raw_template: home_template) }
+    before { home.update(raw_template: home_template) }
 
     let(:page) { create(:sub_page, site: site, parent: home, raw_template: page_template) }
 
@@ -93,6 +93,38 @@ describe Locomotive::PageParsingService do
 
       it { expect(subject.class).to eq(Locomotive::EditableText) }
       it { expect(subject.default_content?).to eq(false) }
+
+    end
+
+    # characterization: parsing errors (whatever the Liquid version raises)
+    # are swallowed by the service which logs them and returns nil instead
+    context 'the page template has a Liquid syntax error' do
+
+      let(:page_template) { '{% extends parent %}{% block body %}{{ foo {% endblock %}' }
+
+      before { allow(service).to receive(:puts) } # the rescue also writes to stdout
+
+      it 'logs the error and returns nil' do
+        expect(Rails.logger).to receive(:error).with(/\[PageParsing\]/)
+        expect(service.find_or_create_editable_elements(page)).to eq nil
+      end
+
+    end
+
+    context 'an included snippet has a Liquid syntax error' do
+
+      let(:broken_snippet) { create(:snippet, slug: 'broken_snippet', site: home.site, template: '{{ foo') }
+      let(:page_template)  { "{% block body %}{% include 'broken_snippet' %}{% endblock %}" }
+
+      before do
+        broken_snippet
+        allow(service).to receive(:puts) # the rescue also writes to stdout
+      end
+
+      it 'logs the error and returns nil' do
+        expect(Rails.logger).to receive(:error).with(/\[PageParsing\]/)
+        expect(service.find_or_create_editable_elements(page)).to eq nil
+      end
 
     end
 

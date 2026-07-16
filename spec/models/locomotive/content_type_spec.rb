@@ -326,7 +326,7 @@ describe Locomotive::ContentType do
         field = @content_type.entries_custom_fields.build label: 'Title', type: 'string'
         @content_type.save
 
-        @content_type.update_attributes(entries_custom_fields_attributes: {
+        @content_type.update(entries_custom_fields_attributes: {
           '0' => { '_id' => lookup_field_id(1), 'label' => 'My Description', 'type' => 'text', '_destroy' => '1' },
           '1' => { '_id' => lookup_field_id(2), 'label' => 'Active', 'type' => 'boolean', '_destroy' => '1' },
           '2' => { '_id' => field._id, 'label' => 'My Title !' },

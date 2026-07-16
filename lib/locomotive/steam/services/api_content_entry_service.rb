@@ -17,7 +17,7 @@ module Locomotive
         with_form(type_slug, attributes, as_json) do |_attributes|
           entry = @content_type.entries.by_id_or_slug(id_or_slug).first
 
-          entry.update_attributes(_attributes)
+          entry.update(_attributes)
 
           entry
         end

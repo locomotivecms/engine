@@ -13,13 +13,11 @@ module Locomotive
             begin
               token = Account.create_api_token(params[:email], params[:password], params[:api_key])
               { token: token }
-            rescue Exception => e
-              response = { message: e.message }
-              error! response, 401, 'X-Error-Detail' => e.message
+            rescue Locomotive::Account::AuthenticationError
+              error!({ error: 'Invalid credentials' }, 401)
             end
           end
 
-          # stub destroy Account#invalidate_api_token(token)
         end
 
       end

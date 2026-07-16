@@ -57,6 +57,17 @@ describe Locomotive::API::Resources::CurrentSiteResource do
 
           end
 
+        context 'a string metafield with a leading +' do
+
+          let(:site_params) { { metafields: '{"contacts":{"phone":"+1 202 555 0143"}}' } }
+
+          it 'persists the phone number verbatim' do
+            put_request
+            expect(site.reload.metafields['contacts']['phone']).to eq('+1 202 555 0143')
+          end
+
+        end
+
       end
     end
 

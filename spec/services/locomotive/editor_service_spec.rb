@@ -125,7 +125,7 @@ describe Locomotive::EditorService do
       allow(page).to receive(:title) { 'aTitle' }
       allow(page).to receive(:_id) { 'anId' }
 
-      expect(site).to receive(:update_attributes).with({
+      expect(site).to receive(:update).with({
         sections_content: {
           'header_01' => {
             'settings' => {},
@@ -134,7 +134,7 @@ describe Locomotive::EditorService do
         }
       }).and_return(true)
 
-      expect(page).to receive(:update_attributes).with({
+      expect(page).to receive(:update).with({
         sections_dropzone_content: [
           { 'name' => 'Cover 04', 'settings' => {}, 'blocks' => [{ 'type' => 'slide' }, { 'type' => 'slide' }] }
         ],

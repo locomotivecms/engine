@@ -3,8 +3,6 @@ module Locomotive
 
     class LiquidParserWithCacheService < LiquidParserService
 
-      UNMARSHALABLE_OPTIONS = %i(parser page parent_finder snippet_finder section_finder).freeze
-
       attr_accessor_initialize :current_site, :parent_finder, :snippet_finder, :locale
 
       def parse(page)
@@ -37,58 +35,12 @@ module Locomotive
       end
 
       def marshal(template)
-        _template = template.dup
-
-        # delete the unmarshalable options of the Liquid Template
-        delete_unmarshalable_options(_template)
-
-        # get rid of options in any tags/blocks of the document
-        # because options can not be marshaled
-        clean_template!(_template.root)
-
-        Marshal.dump(_template)
-      end
-
-      def clean_template!(node)
-        remove_unmarshalable_parse_context_options(node)
-
-        # special case
-        clean_template!(node.descendant) if node.respond_to?(:descendant) && node.descendant
-
-        if node.respond_to?(:nodelist) && node.nodelist
-          node.nodelist.each do |_node|
-            clean_template!(_node)
-          end
-        end
-
-        # FIXME: To debug marshalling errors, find the node element which can't be marshaled with `Marshal.dump(node)`
-      end
-
-      def remove_unmarshalable_parse_context_options(node)
-        parse_context = node.instance_variable_get(:@parse_context)
-
-        return if parse_context.nil?
-
-        unless parse_context[:inherited_blocks].blank?
-          remove_unmarshalable_parse_context_options_from_inherited_blocks(parse_context)
-        end
-
-        delete_unmarshalable_options(parse_context)
-      end
-
-      def remove_unmarshalable_parse_context_options_from_inherited_blocks(parse_context)
-        parse_context[:inherited_blocks].values.each do |blocks|
-          (blocks.respond_to?(:has_key?) ? blocks.values : blocks).each do |block|
-            _parse_context = block.instance_variable_get(:@parse_context)
-            delete_unmarshalable_options(_parse_context)
-          end
-        end
-      end
-
-      def delete_unmarshalable_options(template_or_parse_context)
-        options = template_or_parse_context.instance_variable_get(:@template_options) ||
-                  template_or_parse_context.instance_variable_get(:@options)
-        options.delete_if { |name, _| UNMARSHALABLE_OPTIONS.include?(name) }
+        # The unmarshalable parse-time state is stripped and restored by
+        # Locomotive::Steam::Liquid::MarshalCache (locomotivecms_steam).
+        # Consequence: a cache hit carries no parse-time discovery services --
+        # editable elements/sections discovery is considered done by the cold
+        # parse that wrote the cache entry.
+        Marshal.dump(template)
       end
 
     end

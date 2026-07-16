@@ -26,15 +26,22 @@ module Locomotive
           params = env['api.endpoint'].params.to_hash
           params.delete_if { |k, _| %w(route_info format).include?(k) }
 
+          headers = env.select { |k, _| k.is_a?(String) && k.start_with?('HTTP_X') }
+
           [
             [:service,    'api.request'],
             [:method,     env['REQUEST_METHOD']],
             [:endpoint,   env['PATH_INFO']],
-            [:params,     params.inspect],
-            [:headers,    env.select { |k, _| k.is_a?(String) && k.start_with?('HTTP_X') }],
+            [:params,     parameter_filter.filter(params).inspect],
+            [:headers,    parameter_filter.filter(headers)],
             [:status,     response[0]],
             [:timestamp,  Time.zone.now]
           ]
+        end
+
+        # Build after initialization so host application filters are included.
+        def parameter_filter
+          @parameter_filter ||= ActiveSupport::ParameterFilter.new(Rails.application.config.filter_parameters)
         end
 
       end

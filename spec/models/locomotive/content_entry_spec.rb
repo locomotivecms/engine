@@ -119,6 +119,15 @@ describe Locomotive::ContentEntry do
         expect(content_entry._slug).to eq('hello-world') # French
       end
 
+      it 'increments a colliding slug within the active (non-default) locale' do
+        content_type.site.update!(locales: %w(en fr))
+
+        ::Mongoid::Fields::I18n.with_locale(:fr) do
+          build_content_entry(_slug: 'fish-1-2').tap(&:save!)
+          expect(build_content_entry(_slug: 'fish-1-2').tap(&:save!)._slug).to eq('fish-1-3')
+        end
+      end
+
     end
 
   end
@@ -168,6 +177,25 @@ describe Locomotive::ContentEntry do
 
   end
 
+  describe 'position assignment' do
+
+    it 'assigns the next bottom position to a new entry' do
+      entries = Array.new(3) { create_content_entry }
+
+      expect(entries.map(&:_position)).to eq([0, 1, 2])
+    end
+
+    it 'scopes the position to the content type' do
+      3.times { create_content_entry }
+
+      other_type  = create('article content type', site: site, slug: 'news')
+      first_entry = other_type.entries.create!(title: 'First', _label_field_name: 'title')
+
+      expect(first_entry._position).to eq(0)
+    end
+
+  end
+
   describe "#navigation" do
 
     before(:each) { content_type.update_attribute :order_by, '_position' }
@@ -196,7 +224,7 @@ describe Locomotive::ContentEntry do
 
     context "ordered by published at" do
 
-      before(:each) { content_type.update_attributes order_by: 'published_at', order_direction: 'asc' }
+      before(:each) { content_type.update order_by: 'published_at', order_direction: 'asc' }
 
       let!(:very_first) { create_content_entry(title: 'very first', _position: 4, published_at: Time.now, visible: true) }
 
@@ -400,6 +428,15 @@ describe Locomotive::ContentEntry do
         expect(entry.another_file.url).to eq nil
         expect(File.exist?(old_file_path)).to eq false
         expect(File.exist?(old_another_file_path)).to eq false
+      end
+
+      it 'removes the shared file from the disk when the entry is destroyed' do
+        entry.save
+        old_file_path = entry.file.path
+
+        entry.destroy
+
+        expect(File.exist?(old_file_path)).to eq false
       end
 
     end

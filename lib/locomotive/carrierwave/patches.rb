@@ -101,30 +101,41 @@ module CarrierWave
   # The solution is to not delete a file if inside the same model, we find another file field
   # sharing the same file identifier.
   #
+  # CarrierWave 2 deletes files flagged with remove_<column> through
+  # Mounter#remove_previous (after save) instead of Mounter#remove!, so the
+  # guard lives there now. One more adaptation is required: when the remove
+  # flag is set, remember the real identifier, otherwise the Mongoid
+  # dirty-tracking sentinel ('_new_') would be used as the file name to
+  # delete, silently orphaning the real file.
+  #
   module SafeRemove
 
-    def remove!
-      record.class.uploaders.each do |_column, _|
-        next if _column == column
+    def remove=(value)
+      super
 
-        _mounter    = self.record.send(:_mounter, _column)
-        _uploader   = self.record.send(_column)
-        _identifier = _uploader.identifier
+      if remove?
+        record.instance_variable_set(:"@_previous_uploader_value_for_#{column}",
+                                     record.read_uploader(serialization_column))
+      end
+    end
 
-        # different uploaders, same file identifiers, we have to know if this file was aimed to be deleted too
-        # if not, we disable the deletion of the original uploader
-        if self.identifiers.include?(_identifier) && !_mounter.remove?
-          # no idea why there might be more than one uploader
-          uploaders.reject(&:blank?).each do |uploader|
-            uploader.instance_variable_set(:@file, nil)
-            uploader.instance_variable_set(:@cache_id, nil)
-          end
-
-          return false
-        end
+    def remove_previous(before = nil, after = nil)
+      if before.present?
+        kept   = kept_identifiers
+        before = before.reject { |value| value.is_a?(String) && kept.include?(value) }
       end
 
-      super
+      super(before, after)
+    end
+
+    private
+
+    def kept_identifiers
+      record.class.uploaders.keys.reject { |_column| _column == column }.filter_map do |_column|
+        next if record.send(:_mounter, _column).remove?
+
+        record.send(_column)&.identifier
+      end
     end
 
   end

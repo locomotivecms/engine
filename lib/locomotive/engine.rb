@@ -12,14 +12,9 @@ module Locomotive
       end
     end
 
-    initializer 'locomotive.mongoid' do
-      # https://jira.mongodb.org/browse/MONGOID-5260?jql=text%20~%20%22pluck%20localized%22
-      ::Mongoid.legacy_pluck_distinct = true
-    end
-
     initializer 'locomotive.params.filter' do |app|
-      # Do not log remote_<field>_url params because they can contain huge base64 string
-      app.config.filter_parameters += [/\Aremote_.+_url\Z/]
+      # Filter engine credentials and potentially large remote upload payloads.
+      app.config.filter_parameters += [:password, :api_key, :token, /\Aremote_.+_url\Z/]
     end
 
     initializer 'locomotive.action_controller' do |app|
@@ -76,9 +71,7 @@ module Locomotive
     initializer 'locomotive.middlewares' do |app|
       require 'locomotive/middlewares'
 
-      # Note: "insert 4" means inserting after Rack::Lock
-      # specifying Rack::Lock caused an error in production.
-      app.middleware.insert 4, ::Locomotive::Middlewares::ImageThumbnail
+      app.middleware.insert_after ::Rack::Runtime, ::Locomotive::Middlewares::ImageThumbnail
       app.middleware.use ::Locomotive::Middlewares::Site
     end
 

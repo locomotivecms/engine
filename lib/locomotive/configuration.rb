@@ -21,7 +21,7 @@ module Locomotive
       delayed_job:                  false,
       default_locale:               :en,
       mailer_sender:                'support@example.com',
-      unsafe_token_authentication:  false,
+      allow_site_notifications_via_application_delivery_method: true,
       enable_registration:          true,
       optimize_uploaded_files:      false,
       default_maximum_uploaded_file_size: 2.megabytes,

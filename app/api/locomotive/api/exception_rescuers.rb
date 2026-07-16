@@ -10,7 +10,7 @@ module Locomotive
         rescue_from :all do |e|
           Rails.logger.error "[API] " + e.message + "\n\t" + e.backtrace.join("\n\t")
 
-          error!({ error: e.message }, 500)
+          error!({ error: 'Internal server error' }, 500)
         end
 
         rescue_from ::Mongoid::Errors::DocumentNotFound do

@@ -1,12 +1,10 @@
-require 'adomain'
-
 module Locomotive
   class Notifications < ActionMailer::Base
 
     SMTP_SETTINGS_NAMES = %w(smtp_settings mailer_settings email_settings).freeze
     SMTP_ATTRIBUTES = %w(address authentication port enable_starttls_auto user_name password domain).freeze
 
-    after_action :set_delivery_options
+    after_action :configure_delivery
 
     def new_content_entry(site, account, entry)
       @site, @account = site, account
@@ -14,7 +12,6 @@ module Locomotive
       @domain         = fetch_domain
 
       subject = new_content_entry_subject(entry, domain: @domain, type: @type.name, locale: account.locale)
-      from    = fetch_from
 
       # attach uploaded files
       if @type.public_submission_email_attachments
@@ -24,7 +21,7 @@ module Locomotive
         end
       end
 
-      mail subject: subject, from: from, to: account.email, reply_to: from
+      mail subject: subject, to: account.email
     end
 
     protected
@@ -47,22 +44,44 @@ module Locomotive
       @site.domains.first || ActionMailer::Base.default_url_options[:host] || 'localhost'
     end
 
-    def fetch_from
-      if from = site_mailer_settings['from']
-        from
-      elsif top_level_domain = Adomain.domain(@domain)
-        "noreply@#{top_level_domain}"
+    def configure_delivery
+      settings      = site_mailer_settings
+      smtp_settings = settings.slice(*SMTP_ATTRIBUTES).delete_if { |_, value| value.blank? }.symbolize_keys
+      site_from     = settings['from']
+
+      if smtp_settings[:address].present?
+        if site_from.blank?
+          skip_delivery('site SMTP settings without a from address')
+        elsif !valid_site_sender?(site_from)
+          skip_delivery('invalid site from address')
+        else
+          mail.delivery_method(:smtp, smtp_settings)
+          set_sender(site_from)
+        end
+      elsif Locomotive.config.allow_site_notifications_via_application_delivery_method
+        set_sender(Locomotive.config.mailer_sender)
       else
-        Locomotive.config.mailer_sender
+        skip_delivery('no site SMTP settings')
       end
     end
 
-    def set_delivery_options
-      smtp_settings = site_mailer_settings.slice(*SMTP_ATTRIBUTES).delete_if { |_, value| value.blank? }.symbolize_keys
+    def set_sender(address)
+      mail.from     = address
+      mail.reply_to = address
+    end
 
-      if smtp_settings && smtp_settings[:address].present?
-        mail.delivery_method.settings = smtp_settings
-      end
+    def skip_delivery(reason)
+      mail.perform_deliveries = false
+      Locomotive::Common::Logger.warn(
+        "[Notifications] skipped for site #{@site._id} (#{action_name}): #{reason}".yellow
+      )
+    end
+
+    def valid_site_sender?(value)
+      address = Mail::Address.new(value.to_s)
+      address.address.present? && address.domain.present?
+    rescue Mail::Field::ParseError
+      false
     end
 
   end

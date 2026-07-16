@@ -42,51 +42,33 @@ module Locomotive
 
         module ClassMethods
 
-          # Create the API token which will be passed to all the requests to the Locomotive API.
-          # It requires the credentials of an account with admin role OR the API key of the site.
-          # If an error occurs (invalid account, ...etc), this method raises an exception that has
-          # to be caught somewhere.
+          # Issue the account's authentication token, identifying the account by its
+          # email/password pair or by its api_key.
           #
-          # @param [ String ] email The email of the account
-          # @param [ String ] password The password of the account
-          # @param [ String ] api_key The API key of the site.
+          # @param  [ String ] email    The account email
+          # @param  [ String ] password The account password
+          # @param  [ String ] api_key  The account API key
           #
-          # @return [ String ] The API token
+          # @return [ String ] The account authentication token
+          # @raise  [ Account::AuthenticationError ] if the credentials do not authenticate
           #
           def create_api_token(email, password, api_key)
             if api_key.present?
               account = self.where(api_key: api_key).first
 
-              raise 'The API key is invalid.' if account.nil?
+              raise Locomotive::Account::AuthenticationError, 'invalid API key' if account.nil?
             elsif email.present? && password.present?
               account = self.where(email: email.downcase).first
 
-              raise 'Invalid email or password.' if account.nil? || !account.valid_password?(password)
+              raise Locomotive::Account::AuthenticationError, 'invalid email or password' if account.nil? || !account.valid_password?(password)
             else
-              raise 'The request must contain either the user email and password OR the API key.'
+              raise Locomotive::Account::AuthenticationError, 'missing credentials'
             end
 
             account.ensure_authentication_token
             account.save
 
             account.authentication_token
-          end
-
-          # Logout the user responding to the token passed in parameter from the API.
-          # An exception is raised if no account corresponds to the token.
-          #
-          # @param [ String ] token The API token created by the create_api_token method.
-          #
-          # @return [ String ] The API token
-          #
-          def invalidate_api_token(token)
-            account = self.where(authentication_token: token).first
-
-            raise 'Invalid token.' if account.nil?
-
-            account.reset_authentication_token!
-
-            token
           end
 
         end

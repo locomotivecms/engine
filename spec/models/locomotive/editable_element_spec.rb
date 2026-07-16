@@ -45,4 +45,18 @@ describe Locomotive::EditableElement do
 
   end
 
+  describe 'parent touch' do
+
+    let(:site)     { create(:site) }
+    let(:page)     { create(:page, site: site) }
+    let!(:element) { page.editable_elements.create!(slug: 'intro', block: 'body') }
+
+    it 'does not touch the page when saved' do
+      page.set(updated_at: 1.year.ago)
+
+      expect { element.update!(content: 'changed') }.not_to change { page.reload.updated_at }
+    end
+
+  end
+
 end

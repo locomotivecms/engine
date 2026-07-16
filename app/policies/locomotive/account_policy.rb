@@ -23,6 +23,12 @@ module Locomotive
       super_admin? && !owner?
     end
 
+    def permitted_attributes
+      attributes = [:name, :email, :locale, :password, :password_confirmation]
+      attributes += [:api_key, :super_admin] if super_admin?
+      attributes
+    end
+
     private
 
     def owner?

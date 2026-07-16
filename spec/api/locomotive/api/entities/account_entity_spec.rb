@@ -46,4 +46,13 @@ describe Locomotive::API::Entities::AccountEntity do
 
   end
 
+  describe 'authentication_token exposure' do
+    let(:account)  { create(:account) }
+    let(:exposure) { described_class.new(account).serializable_hash }
+
+    it 'is not exposed in the serialized hash' do
+      expect(exposure.stringify_keys).not_to have_key('authentication_token')
+    end
+  end
+
 end

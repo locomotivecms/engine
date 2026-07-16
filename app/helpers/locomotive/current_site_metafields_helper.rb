@@ -14,7 +14,7 @@ module Locomotive
       end
 
       def _name
-        @attributes['name'].downcase.underscore.gsub(' ', '_')
+        @site.normalize_metafield_name(@attributes['name'])
       end
 
       alias :dom_id :_name
@@ -60,7 +60,7 @@ module Locomotive
       end
 
       def name
-        t(@attributes['name']).downcase.underscore.gsub(' ', '_')
+        @site.normalize_metafield_name(t(@attributes['name']))
       end
 
       def label

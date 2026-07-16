@@ -61,7 +61,7 @@ module Locomotive
       parent_fullpaths  = {}
       default_locale    = previous_default_locale || site.default_locale
 
-      site.pages.without_sorting.order_by(:depth.asc).each_by(50) do |page|
+      site.pages.reorder(depth: :asc).batch_size(50).each do |page|
         _localize(page, locales, default_locale, parent_fullpaths)
 
         page.skip_callbacks_on_update = true

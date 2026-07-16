@@ -6,17 +6,6 @@ class RawArray < ::Array
   def resizable?; false; end
 end
 
-module BSON
-  class ObjectId
-    def to_json(*)
-      to_s.to_json
-    end
-    def as_json(*)
-      to_s.as_json
-    end
-  end
-end
-
 module Mongoid #:nodoc:
 
   module Fields
@@ -25,9 +14,9 @@ module Mongoid #:nodoc:
 
       def add_field(name, options = {})
         # FIXME: The Rails ActionView inputs get the value of a field from the <FIELD>_before_type_cast method if it exists.
-        # In Mongoid 7, the Mongoid core team implemented the `_before_type_cast?` / `_before_type_cast` 
+        # In Mongoid 7, the Mongoid core team implemented the `_before_type_cast?` / `_before_type_cast`
         # for ALL the fields including the localized ones.
-        # Incidentally, it breaks the form inputs for localized fields. 
+        # Incidentally, it breaks the form inputs for localized fields.
         # This patch restores the old behavior for localized fiels by implementing the X_came_from_user? method
         # which makes the form inputs use the translated value of a field.
         generated_methods.module_eval do
@@ -37,28 +26,6 @@ module Mongoid #:nodoc:
         end if options[:localize]
 
         add_field_without_locomotive_patch(name, options)
-      end
-    end
-  end
-
-  # FIXME: the Origin (used by Steam) and Mongoid gems both modify the Symbol class
-  # to allow writing queries like .where(:position.lt => 1)
-  # By convention, Origin::Key will be the one. So we need to make sure it doesn't
-  # break the Mongoid queries.
-  class Criteria
-    module Queryable
-      module Selectable
-        def selection(criterion = nil)
-          clone.tap do |query|
-            if criterion
-              criterion.each_pair do |field, value|
-                _field = field.is_a?(Key) || field.is_a?(Origin::Key) ? field : field.to_s
-                yield(query.selector, _field, value)
-              end
-            end
-            query.reset_strategies!
-          end
-        end
       end
     end
   end
@@ -103,67 +70,8 @@ module Mongoid #:nodoc:
   end
 
   class Criteria
-    def first!
-      self.first.tap do |model|
-        if model.nil?
-          raise Mongoid::Errors::DocumentNotFound.new(self.klass, self.selector)
-        end
-      end
-    end
-
-    def without_sorting
-      clone.tap { |crit| crit.options.delete(:sort) }
-    end
-
-    # http://code.dblock.org/paging-and-iterating-over-large-mongo-collections
-    def each_by(by, &block)
-      idx = total = 0
-      set_limit = options[:limit]
-      while ((results = ordered_clone.limit(by).skip(idx)) && results.any?)
-        results.each do |result|
-          return self if set_limit and set_limit >= total
-          total += 1
-          yield result
-        end
-        idx += by
-      end
-      self
-    end
-
-    # Optimized version of the max aggregate method.
-    # It works efficiently only if the field is part of a MongoDB index.
-    # more here: http://stackoverflow.com/questions/4762980/getting-the-highest-value-of-a-column-in-mongodb
-    def indexed_max(field)
-      _criteria = criteria.order_by(field.to_sym.desc).only(field.to_sym)
-      selector  = _criteria.send(:selector_with_type_selection)
-      fields    = _criteria.options[:fields]
-      sort      = _criteria.options[:sort]
-
-      document = collection.find(selector).projection(fields).sort(sort).limit(1).first
-      document ? document[field.to_s].to_i : nil
-    end
-
     def to_liquid
       Locomotive::Liquid::Drops::ProxyCollection.new(self)
-    end
-
-    private
-
-    def ordered_clone
-      options[:sort] ? clone : clone.asc(:_id)
-    end
-  end
-
-  module Findable
-    def indexed_max(field)
-      with_default_scope.indexed_max(field)
-    end
-  end
-
-  module Criterion
-    class Selector < Hash
-      # for some reason, the store method behaves differently than the []= one, causing regression bugs (query not localized)
-      alias :store :[]=
     end
   end
 

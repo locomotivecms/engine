@@ -151,7 +151,7 @@ module Locomotive
     def localize(new_locales, previous_default_locale)
       default_locale = previous_default_locale || content_type.site.default_locale
 
-      content_type.entries.each_by(50) do |entry|
+      content_type.entries.batch_size(50).each do |entry|
         slug = entry._slug_translations[default_locale]
 
         new_locales.each do |locale|

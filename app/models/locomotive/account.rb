@@ -3,8 +3,10 @@ module Locomotive
 
     include Locomotive::Mongoid::Document
     devise *Locomotive.config.devise_modules
-    acts_as_token_authenticatable
     include Locomotive::Concerns::Account::APIKey
+
+    # Raised when the credentials passed to create_api_token do not authenticate.
+    class AuthenticationError < StandardError; end
 
     ## devise fields (need to be declared since 2.x) ##
     field :remember_created_at,     type: Time
@@ -36,6 +38,7 @@ module Locomotive
     has_many :created_sites, class_name: 'Locomotive::Site', validate: false, autosave: false
 
     ## callbacks ##
+    before_save    :ensure_authentication_token
     before_destroy :remove_memberships!
 
     ## scopes ##
@@ -75,6 +78,15 @@ module Locomotive
 
     def devise_mailer
       Locomotive::DeviseMailer
+    end
+
+    def ensure_authentication_token
+      return if authentication_token.present?
+
+      self.authentication_token = loop do
+        token = ::Devise.friendly_token
+        break token unless self.class.unscoped.where(authentication_token: token).exists?
+      end
     end
 
     protected

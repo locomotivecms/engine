@@ -13,7 +13,7 @@ require "locomotive"
 
 module Dummy
   class Application < Rails::Application
-    config.load_defaults Rails::VERSION::STRING.to_f
+    config.load_defaults 8.1
 
     # For compatibility with applications that use this config
     config.action_controller.include_all_helpers = false

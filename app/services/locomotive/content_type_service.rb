@@ -22,7 +22,7 @@ module Locomotive
     end
 
     def update(content_type, attributes = {})
-      content_type.update_attributes(attributes)
+      content_type.update(attributes)
     end
 
   end

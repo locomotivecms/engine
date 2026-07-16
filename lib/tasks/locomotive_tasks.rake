@@ -32,7 +32,7 @@ namespace :locomotive do
       puts '...'
 
       # subdomain to handle
-      Locomotive::Site.all.each_by(10) do |site|
+      Locomotive::Site.all.no_timeout.batch_size(10).each do |site|
         if subdomain = site.attributes['subdomain']
           site.set handle: subdomain
         end
@@ -40,54 +40,62 @@ namespace :locomotive do
       puts '[x] set the handle attribute for all the sites'
 
       # number_of_entries by content type
-      Locomotive::ContentType.all.each_by(10) do |content_type|
+      Locomotive::ContentType.all.no_timeout.batch_size(10).each do |content_type|
         content_type.set number_of_entries: content_type.entries.count
       end
       puts '[x] set the number of entries by content type'
 
       # content_types: filter_fields (don't use ids but use field name instead)
-      Locomotive::ContentType.where(:'filter_fields.0'.exists => true).all.each_by(10) do |content_type|
-        content_type.filter_fields = content_type.filter_fields.map do |id_or_name|
-          content_type.entries_custom_fields.where(id: id_or_name).first&.name || id_or_name
+      Locomotive::ContentType
+        .where(:'filter_fields.0'.exists => true)
+        .no_timeout
+        .batch_size(10)
+        .each do |content_type|
+          content_type.filter_fields = content_type.filter_fields.map do |id_or_name|
+            content_type.entries_custom_fields.where(id: id_or_name).first&.name || id_or_name
+          end
+          content_type.save
         end
-        content_type.save
-      end
       puts '[x] make filter_fields an array of only names (and not of field ids)'
 
 
       # content_entries: many_to_many relationships, make sure both sides are consistent
-      Locomotive::ContentType.where('entries_custom_fields.type' => 'many_to_many').all.each_by(10) do |content_type|
-        # puts "[#{content_type.site.name}] #{content_type.name}"
-        content_type.entries_custom_fields.where('type' => 'many_to_many').all.each do |field|
-          # puts "\t[#{content_type.name}][#{field.name}] #{field.label}"
+      Locomotive::ContentType
+        .where('entries_custom_fields.type' => 'many_to_many')
+        .no_timeout
+        .batch_size(10)
+        .each do |content_type|
+          # puts "[#{content_type.site.name}] #{content_type.name}"
+          content_type.entries_custom_fields.where('type' => 'many_to_many').all.each do |field|
+            # puts "\t[#{content_type.name}][#{field.name}] #{field.label}"
 
-          content_type.entries.each_by(10) do |entry|
-            ids_name = "#{field.name.singularize}_ids"
-            # puts "\t\t[#{content_type.name}][#{entry._id}][#{entry._slug}] #{entry.attributes[ids_name].inspect}"
-            entry.send(field.name).each do |target_entry|
-              target_ids_name = "#{field.inverse_of.singularize}_ids"
-              target_ids      = target_entry.attributes[target_ids_name]
+            content_type.entries.no_timeout.batch_size(10).each do |entry|
+              ids_name = "#{field.name.singularize}_ids"
+              # puts "\t\t[#{content_type.name}][#{entry._id}][#{entry._slug}] #{entry.attributes[ids_name].inspect}"
+              entry.send(field.name).each do |target_entry|
+                target_ids_name = "#{field.inverse_of.singularize}_ids"
+                target_ids      = target_entry.attributes[target_ids_name]
 
-              if target_ids.nil?
-                puts "[ERROR][#{content_type.site.name}] wrong many-to-many inverse_of key for #{content_type.name}"
-                next
-              end
-
-              valid = target_ids.include?(entry._id)
-
-              unless valid
-                target_entry.send(target_ids_name.to_sym) << entry._id
-                target_entry.save
-                target_entry.reload
+                if target_ids.nil?
+                  puts "[ERROR][#{content_type.site.name}] wrong many-to-many inverse_of key for #{content_type.name}"
+                  next
+                end
 
                 valid = target_ids.include?(entry._id)
-              end
 
-              # puts "\t\t\t[#{content_type.name}][#{target_entry._id}][#{target_entry._slug}] inverse target ids: #{target_ids.inspect} | valid? #{valid.inspect}"
+                unless valid
+                  target_entry.send(target_ids_name.to_sym) << entry._id
+                  target_entry.save
+                  target_entry.reload
+
+                  valid = target_ids.include?(entry._id)
+                end
+
+                # puts "\t\t\t[#{content_type.name}][#{target_entry._id}][#{target_entry._slug}] inverse target ids: #{target_ids.inspect} | valid? #{valid.inspect}"
+              end
             end
           end
         end
-      end
       puts '[x] make many_to_many relationships exist both sides'
 
       # content asset checksums
@@ -105,7 +113,7 @@ namespace :locomotive do
       puts '[x] set completion for translations'
 
       # rename routes to url_redirections
-      Locomotive::Site.all.each_by(10) do |site|
+      Locomotive::Site.all.no_timeout.batch_size(10).each do |site|
         site.url_redirections = site.routes
         site.routes = nil
         site.save
@@ -113,8 +121,8 @@ namespace :locomotive do
       puts '[x] rename site attribute: change routes to url_redirections'
 
       # editable controle are now localized by default
-      Locomotive::Site.all.each_by(10) do |site|
-        site.pages.each_by(10) do |page|
+      Locomotive::Site.all.no_timeout.batch_size(10).each do |site|
+        site.pages.no_timeout.batch_size(10).each do |page|
           page.editable_elements.each do |el|
             next if !el.is_a?(Locomotive::EditableControl) || el.attributes['content'].is_a?(Hash)
 

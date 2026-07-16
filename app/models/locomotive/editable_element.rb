@@ -15,7 +15,7 @@ module Locomotive
     field :locales,     type: Array,   default: []
 
     ## associations ##
-    embedded_in :page, class_name: 'Locomotive::Page', inverse_of: :editable_elements
+    embedded_in :page, class_name: 'Locomotive::Page', inverse_of: :editable_elements, touch: false
 
     ## validations ##
     validates_presence_of :slug

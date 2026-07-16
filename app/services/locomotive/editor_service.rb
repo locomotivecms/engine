@@ -21,11 +21,11 @@ module Locomotive
     # Save sections for both the current site (global versions) and the page
     def save(site_attributes, page_attributes)
       site_attributes[:sections_content] = parse_sections_content(site_attributes[:sections_content])
-      site.update_attributes(site_attributes)
+      site.update(site_attributes)
 
       page_attributes[:sections_content]          = parse_sections_content(page_attributes[:sections_content])
       page_attributes[:sections_dropzone_content] = parse_sections_dropzone_content(page_attributes[:sections_dropzone_content])
-      page.update_attributes(page_attributes)
+      page.update(page_attributes)
 
       track_activity 'page_content.updated',
         parameters: { _id: page._id, title: page.title },

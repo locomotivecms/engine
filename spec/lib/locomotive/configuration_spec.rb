@@ -10,6 +10,10 @@ describe Locomotive::Configuration do
     expect(Locomotive.config.reserved_site_handles).to eq(['empty'])
   end
 
+  it 'allows site notifications to use the application delivery method by default' do
+    expect(Locomotive.config.allow_site_notifications_via_application_delivery_method).to eq(true)
+  end
+
   after { Locomotive.config = @old_config }
 
 end

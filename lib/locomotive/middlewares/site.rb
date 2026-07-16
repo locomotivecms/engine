@@ -99,7 +99,7 @@ module Locomotive
       end
 
       def redirect_to(destination)
-        [301, { 'Location' => destination, 'Content-Type' => 'text/html' }, []]
+        [301, { 'location' => destination, 'content-type' => 'text/html' }, []]
       end
 
       def site_handle_regexp

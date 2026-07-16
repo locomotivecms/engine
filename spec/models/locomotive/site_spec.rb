@@ -179,9 +179,9 @@ describe Locomotive::Site do
       end
 
       it 'does not allow to remove the default locale' do
-        site.update_attributes locales: %w(fr)
+        site.update locales: %w(fr)
         expect(site.errors[:locales]).to eq(['The previous default locale can not be removed right away.'])
-        site.update_attributes locales: [:en]
+        site.update locales: [:en]
         expect(site.errors[:locales]).to eq []
       end
 

@@ -58,6 +58,50 @@ describe Locomotive::SiteMetafieldsService do
 
     end
 
+    context 'field name shared across namespaces with different localization' do
+
+      before { allow(::Mongoid::Fields::I18n).to receive(:locale).and_return(:en) }
+
+      let(:values) { {} }
+      let(:schema) do
+        [
+          { 'name' => 'contacts',        'fields' => [{ 'name' => 'address', 'localized' => true }] },
+          { 'name' => 'mailer_settings', 'fields' => [{ 'name' => 'address' }] }
+        ]
+      end
+
+      let(:attributes) do
+        {
+          'contacts'        => { 'address' => '7 alley Albert Camus' },
+          'mailer_settings' => { 'address' => 'smtp.example.org' }
+        }
+      end
+
+      it 'localizes the value in the namespace whose field is localized' do
+        expect(subject.metafields['contacts']['address']).to eq('en' => '7 alley Albert Camus')
+      end
+
+      it 'keeps the value plain in the namespace whose field is not localized' do
+        expect(subject.metafields['mailer_settings']['address']).to eq 'smtp.example.org'
+      end
+
+    end
+
+    context 'namespace name requiring normalization (uppercase)' do
+
+      let(:values) { {} }
+      let(:schema) do
+        [{ 'name' => 'Mailer_Settings', 'fields' => [{ 'name' => 'address' }] }]
+      end
+      # the backoffice form posts the normalized namespace key (dom_id)
+      let(:attributes) { { 'mailer_settings' => { 'address' => 'smtp.example.org' } } }
+
+      it 'still resolves the schema and persists the value' do
+        expect(subject.metafields['mailer_settings']['address']).to eq 'smtp.example.org'
+      end
+
+    end
+
   end
 
 end
