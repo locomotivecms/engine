@@ -165,10 +165,10 @@ module Locomotive
         as:           :editable_select,
         wrapper_html: { class: 'select' },
         collection:   field.ordered_select_options.map { |option| [option.name, option.id] },
-        manage_collection:    {
+        manage_collection: field.options_editable? ? {
           label:  custom_field_t(:edit, field.type),
           url:    edit_custom_fields_select_options_path(current_site, entry.content_type.slug, field.name)
-        }
+        } : nil
       }
     end
 

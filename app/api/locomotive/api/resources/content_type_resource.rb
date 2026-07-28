@@ -50,6 +50,7 @@ module Locomotive
                 optional :position
                 optional :text_formatting
                 optional :select_options
+                optional :options_editable
                 optional :target
                 optional :inverse_of
                 optional :order_by
@@ -101,6 +102,7 @@ module Locomotive
                 optional :position
                 optional :text_formatting
                 optional :select_options
+                optional :options_editable
                 optional :target
                 optional :inverse_of
                 optional :order_by

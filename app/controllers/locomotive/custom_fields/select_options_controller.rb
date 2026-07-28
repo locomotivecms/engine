@@ -8,6 +8,7 @@ module Locomotive
 
       before_action :load_content_type
       before_action :load_custom_field
+      before_action :ensure_options_editable
 
       def edit
         respond_with @custom_field
@@ -36,6 +37,10 @@ module Locomotive
 
       def load_custom_field
         @custom_field = @content_type.entries_custom_fields.where(name: params[:name]).first
+      end
+
+      def ensure_options_editable
+        head :forbidden unless @custom_field.options_editable?
       end
 
       def service

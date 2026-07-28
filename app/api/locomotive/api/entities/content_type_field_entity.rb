@@ -10,6 +10,8 @@ module Locomotive
         expose :text_formatting, if: ->(field, _) { field.type.to_s == 'text' }
 
         # select type field
+        expose :options_editable, if: ->(field, _) { field.type.to_s == 'select' }
+        
         expose :select_options, if: ->(field, _) { field.type.to_s == 'select' } do |field, _|
           field.select_options.map do |option|
             { id: option._id, name: option.name_translations, position: option.position }
