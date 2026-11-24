@@ -12,7 +12,7 @@ GIT
 
 GIT
   remote: https://github.com/dahogenelst/custom_fields.git
-  revision: ac808c7b2dc08443e8d68ba74ed940bef5637fc6
+  revision: ae64c46bdc8d2b584ab95e6b18512caaa3767c7e
   branch: master
   specs:
     custom_fields (2.14.0.alpha1)
@@ -25,7 +25,7 @@ GIT
 
 GIT
   remote: https://github.com/dahogenelst/steam.git
-  revision: e4b9cfbbec71511e5394519cb195db73675fee7a
+  revision: d896c6ec66e7460ee9d43f20a9eed48fbd5bb799
   branch: master
   specs:
     locomotivecms_steam (1.8.0.alpha2)
@@ -302,6 +302,7 @@ GEM
     factory_bot_rails (6.5.1)
       factory_bot (~> 6.5)
       railties (>= 6.1.0)
+    ffi (1.17.4)
     ffi (1.17.4-arm64-darwin)
     ffi (1.17.4-x86_64-linux-gnu)
     flash_cookie_session (1.1.6)
@@ -389,6 +390,7 @@ GEM
     mime-types-data (3.2026.1103)
     mimetype-fu (0.1.2)
     mini_mime (1.1.5)
+    mini_portile2 (2.8.9)
     minitest (6.1.0)
       drb (~> 2.0)
       prism (>= 1.5, < 3)
@@ -428,6 +430,9 @@ GEM
     net-smtp (0.5.2)
       net-protocol
     nio4r (2.7.5)
+    nokogiri (1.19.7)
+      mini_portile2 (~> 2.8.2)
+      racc (~> 1.4)
     nokogiri (1.19.7-arm64-darwin)
       racc (~> 1.4)
     nokogiri (1.19.7-x86_64-linux-gnu)
@@ -443,6 +448,7 @@ GEM
     pp (0.6.4)
       prettyprint
     prettyprint (0.2.1)
+    prism (2.1.0)
     prism (2.1.0-arm64-darwin)
     prism (2.1.0-x86_64-linux-gnu)
     public_suffix (7.0.5)
@@ -633,4 +639,4 @@ DEPENDENCIES
   webdrivers (~> 5.3)
 
 BUNDLED WITH
-   4.1.0
+  4.1.0
