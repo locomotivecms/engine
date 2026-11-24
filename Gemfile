@@ -29,8 +29,7 @@ group :development, :test do
 end
 
 group :test do
-  gem 'selenium-webdriver', '4.10'
-  gem 'webdrivers', '~> 5.3'
+  gem 'selenium-webdriver'  # Selenium Manager fetches drivers, no webdrivers gem needed
   gem 'shoulda-matchers', '~> 5.3'
   gem 'factory_bot_rails', '~> 6.4'
   gem 'json_spec', '~> 1.1'

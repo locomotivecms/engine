@@ -1,12 +1,4 @@
-require 'webdrivers'
-require 'selenium-webdriver'
-
-if chromedriver_version = ENV['CHROMEDRIVER_VERSION']
-  Webdrivers::Chromedriver.required_version = chromedriver_version
-
-  # https://www.rubydoc.info/github/titusfortner/webdrivers/master
-  Webdrivers.cache_time = 86_400 # ie. 24 hours
-end
+require 'selenium-webdriver' # Selenium Manager downloads a matching chromedriver
 
 Capybara.server = :puma 
 Capybara.app_host = 'http://locomotive.local'
