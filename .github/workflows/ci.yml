@@ -31,8 +31,16 @@ jobs:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
       - run: sudo apt-get update && sudo apt-get install -y imagemagick
-      # system specs need a browser and the javascript spec needs yarn/jest; not run in CI yet
-      - run: bundle exec rspec --exclude-pattern "spec/{system,javascript}/**/*_spec.rb"
+      # system specs drive the runner's preinstalled Chrome against http://locomotive.local
+      - run: echo "127.0.0.1 locomotive.local" | sudo tee -a /etc/hosts
+      # the javascript spec runs jest through yarn; not in CI yet (webpack 4 toolchain)
+      - run: bundle exec rspec --exclude-pattern "spec/javascript/**/*_spec.rb"
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: capybara-screenshots-${{ matrix.ruby }}
+          path: spec/dummy/tmp/capybara
+          if-no-files-found: ignore
 
   notify-dependents:
     needs: test

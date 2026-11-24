@@ -11,11 +11,12 @@ describe 'A site with a form content type' do
       fill_in 'content[message]', with: 'Hello world'
       click_button 'Send'
 
+      # wait for the redirect, otherwise the entry may not be saved yet
+      expect(page).to have_content('Content of the home page')
+
       entry = @site.content_entries.last
       expect(entry.name).to eq 'John Doe'
       expect(entry.message).to eq 'Hello world'
-
-      expect(page).to have_content('Content of the home page')
     end
 
     it 'with missing inputs' do

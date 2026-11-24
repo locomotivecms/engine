@@ -3,13 +3,23 @@ module Features
 
     class HaveNoJavascriptError
 
-      def matches?(page)
-        @js_errors = page.driver.browser.logs.get(:browser).select do |error|
-          # placeholder.com is waiting for a specific user-agent so it will raise a 403 error
-          # when capybara will try to load the images.
-          # we don't mind about those errors.
-          !error.message.include?('via.placeholder.com')
+      IGNORED = [
+        # placeholder.com wants a specific user-agent and answers capybara's image requests with a 403
+        'via.placeholder.com',
+        # shortcut: Chrome blocks unload handlers; history.js and the editor preview iframe still register them.
+        # Remove once the editor uses pagehide (needs a webpack rebuild, see HANDOFF.md).
+        'Permissions policy violation: unload is not allowed'
+      ].freeze
+
+      # browser console errors since the last call (reading the log empties it)
+      def self.errors(page)
+        page.driver.browser.logs.get(:browser).select do |entry|
+          entry.level == 'SEVERE' && IGNORED.none? { |ignored| entry.message.include?(ignored) }
         end
+      end
+
+      def matches?(page)
+        @js_errors = self.class.errors(page)
         @js_errors.blank?
       end
 
