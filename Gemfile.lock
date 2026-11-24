@@ -12,7 +12,7 @@ GIT
 
 GIT
   remote: https://github.com/dahogenelst/custom_fields.git
-  revision: ae64c46bdc8d2b584ab95e6b18512caaa3767c7e
+  revision: 44dd1264aebb97f981196dd9a2f0e69bb1a198cb
   branch: master
   specs:
     custom_fields (2.14.0.alpha1)
