@@ -12,7 +12,7 @@ GIT
 
 GIT
   remote: https://github.com/dahogenelst/custom_fields.git
-  revision: 44dd1264aebb97f981196dd9a2f0e69bb1a198cb
+  revision: 84398bf870e4909b38afc559a4e1e94e16593aa5
   branch: master
   specs:
     custom_fields (2.14.0.alpha1)
@@ -25,7 +25,7 @@ GIT
 
 GIT
   remote: https://github.com/dahogenelst/steam.git
-  revision: e6764601d5bc62dacf1bc5a7d9e033769e0fdc55
+  revision: 4128642f9338f2f9be928ebf67b63b61f120fa0b
   branch: master
   specs:
     locomotivecms_steam (1.8.0.alpha2)
