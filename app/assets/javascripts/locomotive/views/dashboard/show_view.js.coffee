@@ -14,7 +14,7 @@ class Locomotive.Views.Dashboard.ShowView extends Backbone.View
     super
 
     # replace the img by the name of the file
-    @$('.assets img').error ->
+    @$('.assets img').on 'error', ->
       $(this).parent().html($(this).attr('alt'))
 
   loading_activity_feed: (event) -> $(event.target).button('loading')
@@ -28,7 +28,7 @@ class Locomotive.Views.Dashboard.ShowView extends Backbone.View
     $response.find('.activity-feed > li').appendTo(@$('.activity-feed'))
 
     # display or not the load more button
-    if ($new_btn = $response.find(@infinite_activity_button)).size() > 0
+    if ($new_btn = $response.find(@infinite_activity_button)).length > 0
       $btn.replaceWith($new_btn)
     else
       @$(@infinite_activity_button).hide()

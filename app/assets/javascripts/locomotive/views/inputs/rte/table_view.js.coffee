@@ -13,7 +13,7 @@ class Locomotive.Views.Inputs.Rte.TableView extends Backbone.View
     @$content = @$link.next('.table-dialog-content')
 
   render: ->
-    return if @$link.size() == 0
+    return if @$link.length == 0
 
     @create_popover()
 

@@ -93,7 +93,7 @@ class Locomotive.Views.Inputs.ArrayView extends Backbone.View
     $item           = $link.parents('.item')
     $destroy_input  = $item.find('.mark-as-destroyed')
 
-    if $destroy_input.size() > 0
+    if $destroy_input.length > 0
       # mark item as destroyed and hide the item
       $destroy_input.val('1')
       $item.addClass('hide')
@@ -108,7 +108,7 @@ class Locomotive.Views.Inputs.ArrayView extends Backbone.View
     @hide_if_empty()
 
   hide_if_empty: ->
-    if @$list.find('> .item:not(".hide")').size() == 0
+    if @$list.find('> .item:not(".hide")').length == 0
       @hideEl(@$list)
 
       if @$list.hasClass('new-input-disabled')

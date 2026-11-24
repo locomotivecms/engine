@@ -74,7 +74,7 @@ export function prepareLinks(_window) {
 
     var $setting = $(event.target).closest('[data-locomotive-editor-setting]');
 
-    if (link && $setting.size() === 0) {
+    if (link && $setting.length === 0) {
       const url       = link.getAttribute('href');
       const resource  = decodeLinkResource(url);
 
@@ -159,7 +159,7 @@ export function updateSectionText(_window, section, blockId, settingId, value) {
       .find(`[data-locomotive-editor-setting='${dataValue}']`)
       .html(value);
 
-    if ($elem.size() > 0)
+    if ($elem.length > 0)
       resolve(true);
     else
       reject();

@@ -39,7 +39,7 @@ class Locomotive.Views.EditableElements.EditView extends Locomotive.Views.Shared
   highlight_form_group: (msg, data) ->
     $form_group = $(@el).find("#editable-text-#{data.element_id}")
 
-    return false if $form_group.size() == 0
+    return false if $form_group.length == 0
 
     @filter_elements_by('')
 

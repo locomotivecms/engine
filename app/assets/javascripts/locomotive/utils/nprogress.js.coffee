@@ -1,6 +1,6 @@
-parent = if $('.content').size() > 0 then '.content' else '.wrapper'
+parent = if $('.content').length > 0 then '.content' else '.wrapper'
 
-if $(parent).size() > 0
+if $(parent).length > 0
   NProgress.configure
     showSpinner:  false
     ease:         'ease'

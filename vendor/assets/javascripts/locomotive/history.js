@@ -29,7 +29,7 @@
      * @return {void}
      */
     bind: function(el,event,callback){
-      jQuery(el).bind(event,callback);
+      jQuery(el).on(event,callback); // locomotive: .bind is deprecated in jQuery 3
     },
 
     /**

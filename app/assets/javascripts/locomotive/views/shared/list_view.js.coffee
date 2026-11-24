@@ -35,8 +35,8 @@ class Locomotive.Views.Shared.ListView extends Backbone.View
 
   on_successful_sort: (data, status, xhr) ->
     message = xhr.getResponseHeader('X-Message')
-    Locomotive.notify decodeURIComponent($.parseJSON(message)), 'success'
+    Locomotive.notify decodeURIComponent(JSON.parse(message)), 'success'
 
   on_failed_sort: (data, status, xhr) ->
-    message = if _.isObject(xhr) then $.parseJSON(xhr.getResponseHeader('X-Message')) else xhr
+    message = if _.isObject(xhr) then JSON.parse(xhr.getResponseHeader('X-Message')) else xhr
     Locomotive.notify decodeURIComponent(message), 'danger'

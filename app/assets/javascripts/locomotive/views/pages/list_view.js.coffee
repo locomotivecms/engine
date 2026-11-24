@@ -28,7 +28,7 @@ class Locomotive.Views.Pages.ListView extends Backbone.View
       # hide the folded nodes at startup
       $children.hide() if $toggler.hasClass('folded')
 
-    .click (event) ->
+    .on 'click', (event) ->
       $toggler  = $(this)
       $node     = $toggler.parents('li.node')
       $children = $toggler.next('ul.leaves')
@@ -56,12 +56,12 @@ class Locomotive.Views.Pages.ListView extends Backbone.View
       stop: (event, ui) ->
         if $(@).hasClass('root')
           position = ui.item.index()
-          $(@).sortable('cancel') if position == 0 || position >= $(@).find('> li').size() - 2
+          $(@).sortable('cancel') if position == 0 || position >= $(@).find('> li').length - 2
 
   make_hoverable: ->
-    @$('a').hover ->
-      $(@).prev('i.icon').addClass('on')
-    , -> $(@).prev('i.icon').removeClass('on')
+    @$('a')
+      .on 'mouseenter', -> $(@).prev('i.icon').addClass('on')
+      .on 'mouseleave', -> $(@).prev('i.icon').removeClass('on')
 
   call_sort: (folder) ->
     $.rails.ajax
@@ -75,11 +75,11 @@ class Locomotive.Views.Pages.ListView extends Backbone.View
       error:      @.on_failed_sort
 
   on_successful_sort: (data, status, xhr) ->
-    Locomotive.notify decodeURIComponent($.parseJSON(xhr.getResponseHeader('X-Message'))), 'success'
+    Locomotive.notify decodeURIComponent(JSON.parse(xhr.getResponseHeader('X-Message'))), 'success'
 
     # maybe some components depends on it (ex: refreshing a menu if live editing is on)
     PubSub.publish 'pages.sorted'
 
   on_failed_sort: (data, status, xhr) ->
-    Locomotive.notify decodeURIComponent($.parseJSON(xhr.getResponseHeader('X-Message'))), 'error'
+    Locomotive.notify decodeURIComponent(JSON.parse(xhr.getResponseHeader('X-Message'))), 'error'
 

@@ -51,7 +51,7 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
       @$(".nav-tabs a[href='##{name}']").tab('show')
 
   record_active_tab: ->
-    if $('form .nav-tabs li.active a').size() > 0
+    if $('form .nav-tabs li.active a').length > 0
       tab_name = $('form .nav-tabs li.active a').attr('href').replace('#', '')
       @$('#active_tab').val(tab_name)
 
@@ -74,10 +74,9 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
     @reset_state()
 
   enable_hover: ->
-    $('.form-group.input').hover ->
-      $(this).addClass('hovered')
-    , ->
-      $(this).removeClass('hovered')
+    $('.form-group.input')
+      .on 'mouseenter', -> $(this).addClass('hovered')
+      .on 'mouseleave', -> $(this).removeClass('hovered')
 
   enable_simple_image_inputs: ->
     self = @

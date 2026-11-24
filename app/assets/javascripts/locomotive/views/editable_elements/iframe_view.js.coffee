@@ -7,12 +7,12 @@ class Locomotive.Views.EditableElements.IframeView extends Backbone.View
   startup: true
 
   initialize: ->
-    if $(@el).size() > 0
+    if $(@el).length > 0
       # shortcut
       @window = $(@el)[0].contentWindow
 
       # when the url of the iframe changes, process
-      $(@el).load (event) => @on_load(event)
+      $(@el).on 'load', (event) => @on_load(event)
 
   reload: ->
     $(@el).attr('src', @preview_url)

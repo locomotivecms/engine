@@ -30,8 +30,8 @@ class Locomotive.Views.Inputs.FileView extends Backbone.View
 
     @pubsub_token   = PubSub.subscribe 'file_picker.select', @use_content_asset
 
-  begin_change_file: -> @$file.click()
-  begin_choose_file: -> @$file.click()
+  begin_change_file: -> @$file.trigger('click')
+  begin_choose_file: -> @$file.trigger('click')
 
   open_content_assets_drawer: (event) ->
     event.stopPropagation() & event.preventDefault()

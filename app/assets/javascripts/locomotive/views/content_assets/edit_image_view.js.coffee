@@ -37,7 +37,7 @@ class Locomotive.Views.ContentAssets.EditImageView extends Backbone.View
     @$content.find('.apply-resizing-btn').on 'click', @apply_resizing
     @$content.find('.cancel-resizing-btn').on 'click', @cancel_resizing
 
-    container = if $('.drawer').size() > 0 then '.drawer' else '.main'
+    container = if $('.drawer').length > 0 then '.drawer' else '.main'
 
     @$link.popover
       container:  container
@@ -138,7 +138,7 @@ class Locomotive.Views.ContentAssets.EditImageView extends Backbone.View
 
     $label = $dragger.find('> .cropper-label')
 
-    if $label.size() == 0
+    if $label.length == 0
       $label = $dragger.append('<span class="cropper-label"><span>').find('> .cropper-label')
 
     $label.html("#{width} x #{height}")

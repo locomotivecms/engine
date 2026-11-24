@@ -36,7 +36,7 @@ class Locomotive.Views.CustomFields.SelectOptions.EditView extends Locomotive.Vi
   mark_as_destroyed: (event) ->
     $destroy_input = $(event.target).parents('.item').find('.mark-as-destroyed')
 
-    if $destroy_input.size() > 0
+    if $destroy_input.length > 0
       $destroy_input.val('1')
 
 

@@ -21,7 +21,7 @@ class Locomotive.Views.Shared.BulkDeleteView extends Backbone.View
     @$('.item input[type=checkbox]:checked').each(() -> ids.push($(this).val()))
     @$('.bulk-destroy-action input[name=ids]').val(ids.join(','))
 
-    if @$('.item input[type=checkbox]:checked').size() > 0
+    if @$('.item input[type=checkbox]:checked').length > 0
       @$('.bulk-destroy-action').removeClass('hidden')
     else
       @$('.bulk-destroy-action').addClass('hidden')

@@ -47,7 +47,7 @@ class Locomotive.Views.ApplicationView extends Locomotive.Views.SimpleView
     height
 
   register_warning_if_unsaved_content: ->
-    $(window).bind 'beforeunload', ->
+    $(window).on 'beforeunload', ->
       if window.unsaved_content
         return $('meta[name=unsaved-content-warning]').attr('content')
 

@@ -48,7 +48,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'sass-rails',                      '~> 6.0'
   s.add_dependency 'coffee-rails',                    '~> 5.0'
   s.add_dependency 'jquery-rails',                    '~> 4.5'
-  s.add_dependency 'jquery-ui-rails',                 '~> 6.0'
+  s.add_dependency 'jquery-ui-rails',                 '~> 8.0'
   
   s.add_dependency 'flash_cookie_session',            '~> 1.1'
   s.add_dependency 'bootstrap-sass',                  '~> 3.4'

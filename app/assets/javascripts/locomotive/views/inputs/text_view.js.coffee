@@ -23,4 +23,4 @@ class Locomotive.Views.Inputs.TextView extends Backbone.View
     textarea.val()
 
   highlight: (event) ->
-    $(event.target).focus()
+    $(event.target).trigger('focus')

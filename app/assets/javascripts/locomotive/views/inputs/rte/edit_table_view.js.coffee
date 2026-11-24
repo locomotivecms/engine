@@ -10,7 +10,7 @@ class Locomotive.Views.Inputs.Rte.EditTableView extends Backbone.View
     @editor   = @options.editor
 
   render: ->
-    return if @$link.size() == 0
+    return if @$link.length == 0
 
     @create_popover()
     @attach_events()

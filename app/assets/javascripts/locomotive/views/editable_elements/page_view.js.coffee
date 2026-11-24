@@ -32,7 +32,7 @@ class Locomotive.Views.EditableElements.PageView extends Backbone.View
     @_scroll_to @$("span.locomotive-editable-text[data-element-id=\"#{data.element_id}\"]")
 
   _scroll_to: (element) ->
-    return false if element.size() == 0
+    return false if element.length == 0
     @$('body').animate({ scrollTop: element.offset().top }, 500)
 
   each_elements: (view, callback) ->
@@ -54,10 +54,10 @@ class Locomotive.Views.EditableElements.PageView extends Backbone.View
 
   refresh_image: (msg, data) ->
     @each_elements data.view, ($elements, element_id) =>
-      if $elements.size() == 0
+      if $elements.length == 0
         $elements = @find_and_reference_images_identified_by_url(data.view.path, element_id)
 
-      return if $elements.size() == 0
+      return if $elements.length == 0
 
       resize_format     = data.view.$('.row').data('resize-format')
       current_image_url = data.view.$('input[name*="[content]"]').val()

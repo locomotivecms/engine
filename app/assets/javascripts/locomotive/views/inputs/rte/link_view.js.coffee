@@ -75,7 +75,7 @@ class Locomotive.Views.Inputs.Rte.LinkView extends Backbone.View
       @_input_el('title').val($link.attr('title'))
 
     @$link.popover('toggle')
-    @_input_el('url').focus() # first field
+    @_input_el('url').trigger('focus') # first field
 
     @isOpen = true
 
