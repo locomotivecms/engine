@@ -31,7 +31,8 @@ class Iframe extends React.Component {
         return this.props.changed ? 'Changes unsaved!' : null;
       }
 
-      this.iframe.contentWindow.onunload =() => {
+      // pagehide, not unload: browsers no longer fire unload (permissions policy / bfcache)
+      this.iframe.contentWindow.onpagehide = () => {
         this.createdAt = new Date().getMilliseconds();
         if (this.iframe?.contentWindow)
           startLoadingIframe(this.iframe.contentWindow);

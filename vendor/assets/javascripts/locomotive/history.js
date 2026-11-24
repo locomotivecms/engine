@@ -1985,7 +1985,7 @@
     /**
      * Clear Intervals on exit to prevent memory leaks
      */
-    History.Adapter.bind(window,"unload",History.clearAllIntervals);
+    History.Adapter.bind(window,"pagehide",History.clearAllIntervals); // locomotive: pagehide, browsers no longer fire unload
 
     /**
      * Create the initial State
@@ -2070,7 +2070,7 @@
 
       // For Other Browsers
       History.Adapter.bind(window,'beforeunload',History.onUnload);
-      History.Adapter.bind(window,'unload',History.onUnload);
+      History.Adapter.bind(window,'pagehide',History.onUnload); // locomotive: pagehide, browsers no longer fire unload
 
       // Both are enabled for consistency
     }

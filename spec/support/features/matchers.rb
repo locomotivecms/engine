@@ -6,8 +6,8 @@ module Features
       IGNORED = [
         # placeholder.com wants a specific user-agent and answers capybara's image requests with a 403
         'via.placeholder.com',
-        # shortcut: Chrome blocks unload handlers; history.js and the editor preview iframe still register them.
-        # Remove once the editor uses pagehide (needs a webpack rebuild, see HANDOFF.md).
+        # shortcut: the jQuery bundled by jquery-rails (`require jquery`) registers an IE 9-11 only unload
+        # handler inside iframes, which Chrome reports. Harmless; goes away with the jQuery 3 migration.
         'Permissions policy violation: unload is not allowed'
       ].freeze
 

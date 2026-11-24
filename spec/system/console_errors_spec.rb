@@ -5,8 +5,6 @@ describe 'Browser console', js: true do
   let(:errors) { {} }
 
   before do
-    # the browser log survives between examples; drop what earlier specs left behind
-    Features::Matchers::HaveNoJavascriptError.errors(page)
     check('setup (sign in, create site)') { create_full_site }
   end
 

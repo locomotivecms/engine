@@ -4,7 +4,8 @@ import { each, replace } from 'lodash';
 const requestOptions = (verb, data, headers) => {
   const _headers = Object.assign({
     'Content-Type':   'application/json',
-    'X-CSRF-Token':   document.querySelector('meta[name="csrf-token"]').content
+    // the meta tag is absent when forgery protection is off (test env) or the page is going away
+    'X-CSRF-Token':   document.querySelector('meta[name="csrf-token"]')?.content
   }, headers);
 
   if (_headers['Content-Type'] === null)

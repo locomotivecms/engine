@@ -93,5 +93,7 @@ RSpec.configure do |config|
   config.before(:each, type: :system) do
     host! 'http://locomotive.local'
     driven_by :locomotive_headless_chrome
+    # the browser log outlives an example; start each one with an empty log
+    page.driver.browser.logs.get(:browser)
   end
 end
