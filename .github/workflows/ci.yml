@@ -44,6 +44,7 @@ jobs:
         run: for r in $DEPENDENTS; do gh workflow run ci.yml -R dahogenelst/$r; done
 
   bump-internal-gems:
+    concurrency: bump-internal-gems  # serialize runs that race on the same branch
     if: (github.event_name == 'workflow_dispatch' || github.event_name == 'schedule') && github.repository_owner == 'dahogenelst'
     runs-on: ubuntu-latest
     steps:
@@ -60,13 +61,14 @@ jobs:
           [ -n "$INTERNAL_GEMS" ] || exit 0  # an empty list would make bundler update everything
           bundle lock --update $INTERNAL_GEMS
           git diff --quiet Gemfile.lock && exit 0
-          branch=cascade/$(date +%Y%m%d-%H%M%S)
+          # one fixed branch: a later run force-pushes onto the open PR instead of opening a conflicting one
+          branch=cascade/bump-internal-gems
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git switch -c $branch
           git commit -am "chore: bump internal gems ($INTERNAL_GEMS)"
-          git push origin $branch
-          gh pr create --fill --head $branch
+          git push --force origin $branch
+          gh pr view $branch --json state --jq .state | grep -q OPEN || gh pr create --fill --head $branch
           gh pr merge $branch --auto --squash --delete-branch
 
   dependabot-automerge:
