@@ -98,31 +98,19 @@ module CarrierWave
   # - action: we delete one of the 2 files.
   # - result: the second file will be erased too.
   #
-  # The solution is to not delete a file if inside the same model, we find another file field
-  # sharing the same file identifier.
+  # The solution is to not delete a file if another file field of the same model
+  # still points to it. Carrierwave 3 deletes replaced/removed files in
+  # Mounter#remove_previous (fields being removed have no uploaders left by then).
   #
   module SafeRemove
 
-    def remove!
-      record.class.uploaders.each do |_column, _|
-        next if _column == column
+    def remove_previous
+      in_use = record.class.uploaders.keys
+        .reject { |other| other == column }
+        .flat_map { |other| record.send(:_mounter, other).uploaders.map(&:path) }
+        .compact
 
-        _mounter    = self.record.send(:_mounter, _column)
-        _uploader   = self.record.send(_column)
-        _identifier = _uploader.identifier
-
-        # different uploaders, same file identifiers, we have to know if this file was aimed to be deleted too
-        # if not, we disable the deletion of the original uploader
-        if self.identifiers.include?(_identifier) && !_mounter.remove?
-          # no idea why there might be more than one uploader
-          uploaders.reject(&:blank?).each do |uploader|
-            uploader.instance_variable_set(:@file, nil)
-            uploader.instance_variable_set(:@cache_id, nil)
-          end
-
-          return false
-        end
-      end
+      @removed_uploaders.reject! { |uploader| in_use.include?(uploader.path) }
 
       super
     end

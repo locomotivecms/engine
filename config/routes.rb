@@ -40,11 +40,11 @@ Locomotive::Engine.routes.draw do
       get 'content/edit/*nav', to: 'page_content#edit'
     end
 
-    resources :editable_elements, only: [:index, :update_all], path: 'pages/:page_id/editable_elements' do
+    resources :editable_elements, only: [:index], path: 'pages/:page_id/editable_elements' do
       patch :update_all, on: :collection
     end
 
-    resources :current_site_metafields, only: [:index, :update_all] do
+    resources :current_site_metafields, only: [:index] do
       patch :update_all, on: :collection
     end
 

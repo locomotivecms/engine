@@ -47,8 +47,10 @@ module Locomotive
       !!self.disabled # the original method does not work quite well with the localization
     end
 
+    # untyped elements (from the page YAML header) have no _type; subclasses keep theirs.
+    # Read the attribute: which subclass gets a generated _type getter depends on load order.
     def _type
-      nil
+      self.class == Locomotive::EditableElement ? nil : attributes['_type']
     end
 
     def page_id

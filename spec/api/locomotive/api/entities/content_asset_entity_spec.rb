@@ -41,6 +41,7 @@ describe Locomotive::API::Entities::ContentAssetEntity do
 
     describe 'content_type_text' do
       context 'content_type is other' do
+        before { subject.object.content_type = 'other' } # carrierwave 3 detects rails.png as an image
         context 'file extension blank' do
           it 'returns a question mark' do
             expect(exposure[:content_type_text]).to eq '?'
@@ -65,6 +66,7 @@ describe Locomotive::API::Entities::ContentAssetEntity do
 
     describe 'with_thumbnail' do
       context 'content_type is other' do
+        before { subject.object.content_type = 'other' }
         it 'returns false' do
           expect(exposure[:with_thumbnail]).to be_falsey
         end

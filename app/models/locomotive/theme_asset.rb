@@ -65,8 +65,9 @@ module Locomotive
 
     protected
 
+    # carrierwave 3 writes the cache name ("<cache id>/file.png") into source_filename until the file is stored
     def safe_source_filename
-      self.source_filename || self.source.send(:original_filename) rescue nil
+      self.source.send(:original_filename) || self.source_filename rescue nil
     end
 
     def sanitize_folder

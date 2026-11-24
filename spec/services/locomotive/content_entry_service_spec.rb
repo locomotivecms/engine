@@ -176,7 +176,7 @@ describe Locomotive::ContentEntryService do
 
     subject { service.sort(attributes); content_type.ordered_entries }
 
-    it { expect(subject.pluck(:title)).to eq [{ "en" => "Hello world" }, { "en" => "Goodbye" }] }
+    it { expect(subject.pluck(:title)).to eq ['Hello world', 'Goodbye'] }
     it { expect(subject.pluck(:updated_at)).to eq [sometime, sometime] }
     it { expect { subject }.to change { site.reload.content_version } }
 

@@ -35,7 +35,7 @@ describe Locomotive::ContentEntryImportService do
     context 'the CSV file is bogus' do
       let(:csv_asset) { create(:asset, site: site, source: FixturedAsset.open('5k.png')) }
       it 'cancels the import' do
-        expect(content_type).to receive(:cancel_import).with("Unquoted fields do not allow new line <\"\\r\"> in line 5.")
+        expect(content_type).to receive(:cancel_import).with(a_string_matching(/line 5/)) # the exact message depends on the csv gem version
         subject
       end
     end

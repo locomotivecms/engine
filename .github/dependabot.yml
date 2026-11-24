@@ -1,0 +1,19 @@
+version: 2
+updates:
+  - package-ecosystem: bundler
+    directory: /
+    schedule:
+      interval: weekly
+    versioning-strategy: increase
+    open-pull-requests-limit: 10
+    ignore:
+      # internal gems come from dahogenelst/* via git and move through the CI cascade
+      - dependency-name: 'locomotivecms*'
+      - dependency-name: custom_fields
+    groups:
+      minor-and-patch:
+        update-types: [minor, patch]
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly

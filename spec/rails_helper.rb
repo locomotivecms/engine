@@ -29,6 +29,9 @@ Dir[File.join(File.dirname(__FILE__), 'support', '**', '*.rb')].each { |f| requi
 Locomotive.configure_for_test
 
 RSpec.configure do |config|
+  # Rails 8 loads routes lazily; Devise only knows its mappings once they are loaded
+  config.before(:suite) { Rails.application.reload_routes_unless_loaded }
+
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and

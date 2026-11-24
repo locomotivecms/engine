@@ -1,0 +1,82 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:      # fired by upstream locomotive repos once their master is green
+  schedule:
+    - cron: '0 4 * * 1'   # weekly safety net in case a dispatch was missed
+
+env:
+  INTERNAL_GEMS: 'custom_fields locomotivecms_steam locomotivecms_common'  # locomotive gems this repo pulls from dahogenelst/* via git
+  DEPENDENTS: ''        # repos whose CI must run after this master goes green
+
+jobs:
+  test:
+    if: github.event_name == 'push' || github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby: ['3.3', '4.0']
+    services:
+      mongo:
+        image: mongo:8.0
+        ports: ['27017:27017']
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+      - run: sudo apt-get update && sudo apt-get install -y imagemagick
+      # system specs need a browser and the javascript spec needs yarn/jest; not run in CI yet
+      - run: bundle exec rspec --exclude-pattern "spec/{system,javascript}/**/*_spec.rb"
+
+  notify-dependents:
+    needs: test
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          GH_TOKEN: ${{ secrets.CASCADE_TOKEN }}
+        run: for r in $DEPENDENTS; do gh workflow run ci.yml -R dahogenelst/$r; done
+
+  bump-internal-gems:
+    if: (github.event_name == 'workflow_dispatch' || github.event_name == 'schedule') && github.repository_owner == 'dahogenelst'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          token: ${{ secrets.CASCADE_TOKEN }}  # a PAT, so the push and PR below trigger CI
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+      - name: Open an auto-merging PR when an internal gem moved
+        env:
+          GH_TOKEN: ${{ secrets.CASCADE_TOKEN }}
+        run: |
+          [ -n "$INTERNAL_GEMS" ] || exit 0  # an empty list would make bundler update everything
+          bundle lock --update $INTERNAL_GEMS
+          git diff --quiet Gemfile.lock && exit 0
+          branch=cascade/$(date +%Y%m%d-%H%M%S)
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git switch -c $branch
+          git commit -am "chore: bump internal gems ($INTERNAL_GEMS)"
+          git push origin $branch
+          gh pr create --fill --head $branch
+          gh pr merge $branch --auto --squash --delete-branch
+
+  dependabot-automerge:
+    if: github.event_name == 'pull_request' && github.actor == 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - id: meta
+        uses: dependabot/fetch-metadata@v3
+      - if: steps.meta.outputs.update-type != 'version-update:semver-major'
+        env:
+          GH_TOKEN: ${{ secrets.CASCADE_TOKEN }}  # a PAT, so the merge push triggers CI and the cascade
+          PR: ${{ github.event.pull_request.html_url }}
+        run: gh pr merge --auto --squash "$PR"
