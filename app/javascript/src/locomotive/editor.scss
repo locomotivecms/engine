@@ -1,31 +1,31 @@
-@import "~react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-@import "~react-image-crop/lib/ReactCrop.scss";
-@import '~rc-slider/assets/index.css';
+@use "~react-draft-wysiwyg/dist/react-draft-wysiwyg";
+@use "~react-image-crop/lib/ReactCrop.scss";
+@use "~rc-slider/assets/index";
 
-@import "./editor/styles/helpers";
-@import "./editor/styles/variables";
-@import "./editor/styles/list";
-@import "./editor/styles/inputs";
+@use "./editor/styles/helpers";
+@use "./editor/styles/variables" as *;
+@use "./editor/styles/list";
+@use "./editor/styles/inputs";
 
-@import "./editor/styles/views/base";
-@import "./editor/styles/views/menu";
-@import "./editor/styles/views/header";
-@import "./editor/styles/views/preview";
-@import "./editor/styles/views/page";
-@import "./editor/styles/views/sections";
-@import "./editor/styles/views/section_gallery";
-@import "./editor/styles/views/blocks";
+@use "./editor/styles/views/base";
+@use "./editor/styles/views/menu";
+@use "./editor/styles/views/header";
+@use "./editor/styles/views/preview";
+@use "./editor/styles/views/page";
+@use "./editor/styles/views/sections";
+@use "./editor/styles/views/section_gallery";
+@use "./editor/styles/views/blocks";
 
-@import "./editor/styles/components/modal";
-@import "./editor/styles/components/popover";
-@import "./editor/styles/components/asset_picker";
-@import "./editor/styles/components/image_picker";
-@import "./editor/styles/components/url_picker";
-@import "./editor/styles/components/content_entry_picker";
-@import "./editor/styles/components/locale_switcher";
-@import "./editor/styles/components/switch";
-@import "./editor/styles/components/slider";
-@import "./editor/styles/components/autosuggest";
+@use "./editor/styles/components/modal";
+@use "./editor/styles/components/popover";
+@use "./editor/styles/components/asset_picker";
+@use "./editor/styles/components/image_picker";
+@use "./editor/styles/components/url_picker";
+@use "./editor/styles/components/content_entry_picker";
+@use "./editor/styles/components/locale_switcher";
+@use "./editor/styles/components/switch";
+@use "./editor/styles/components/slider";
+@use "./editor/styles/components/autosuggest";
 
 #editor-app, #editor-app .container-fluid {
   height: 100%;

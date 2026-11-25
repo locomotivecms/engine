@@ -1,3 +1,5 @@
+@use "sass:color";
+
 @keyframes final-text {
   0%      { opacity: 0; transform: translate(-2rem, 0); }
   100%    { opacity: 1; transform: translate(0px, 0); }
@@ -50,7 +52,7 @@
 
       &[disabled] {
         background-color: #ddd;
-        border-color: darken(#ddd, 20%);
+        border-color: color.adjust(#ddd, $lightness: -20%, $space: hsl);
         color: #fff;
         opacity: 1;
       }
@@ -77,12 +79,12 @@
 
         &--success {
           background: #31BD9C;
-          border-color: darken(#31BD9C, 10%);
+          border-color: color.adjust(#31BD9C, $lightness: -10%, $space: hsl);
         }
 
         &--error {
           background: #F34748;
-          border-color: darken(#F34748, 10%);
+          border-color: color.adjust(#F34748, $lightness: -10%, $space: hsl);
         }
       }
     }
