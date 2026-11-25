@@ -33,7 +33,7 @@ jobs:
       - run: sudo apt-get update && sudo apt-get install -y imagemagick
       # system specs drive the runner's preinstalled Chrome against http://locomotive.local
       - run: echo "127.0.0.1 locomotive.local" | sudo tee -a /etc/hosts
-      # the javascript spec runs jest through yarn; not in CI yet (webpack 4 toolchain)
+      # the jest suite runs in the editor-bundle job
       - run: bundle exec rspec --exclude-pattern "spec/javascript/**/*_spec.rb"
       - uses: actions/upload-artifact@v4
         if: failure()
@@ -41,6 +41,38 @@ jobs:
           name: capybara-screenshots-${{ matrix.ruby }}
           path: spec/dummy/tmp/capybara
           if-no-files-found: ignore
+
+  editor-bundle:
+    # the React editor is shipped prebuilt (app/assets); it must match its source
+    if: github.event_name == 'push' || github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.head_ref || github.ref }}
+          token: ${{ secrets.CASCADE_TOKEN || github.token }}  # a PAT, so the push below triggers CI
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .node-version
+          cache: yarn
+      - run: yarn install --frozen-lockfile
+      - run: yarn test  # jest suite of the editor
+      - run: yarn build:dev
+      - name: Rebuilt bundle is committed (Dependabot PRs get it pushed, everyone else must commit it)
+        env:
+          BUNDLE: app/assets/javascripts/locomotive/editor.js app/assets/stylesheets/locomotive/editor.css
+        run: |
+          git diff --quiet -- $BUNDLE && exit 0
+          if [ "${{ github.event_name }}" = pull_request ] && [ "${{ github.actor }}" = 'dependabot[bot]' ]; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m "chore: rebuild editor bundle" -- $BUNDLE
+            git push origin HEAD:${{ github.head_ref }}
+          else
+            git diff --stat -- $BUNDLE
+            echo "::error::editor.js / editor.css are out of date: run 'yarn build:dev' and commit them"
+            exit 1
+          fi
 
   notify-dependents:
     needs: test

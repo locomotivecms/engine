@@ -16,7 +16,12 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: ['style-loader', MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader']
+        use: [ // extracted to editor.css, linked by the page
+          MiniCssExtractPlugin.loader,
+          { loader: 'css-loader', options: { sourceMap: false } }, // no editor.css.map next to the asset
+          'postcss-loader',
+          { loader: 'sass-loader', options: { sassOptions: { quietDeps: true } } } // deprecations in node_modules are not ours to fix
+        ]
       }
     ]
   },
